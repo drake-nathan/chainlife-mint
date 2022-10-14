@@ -5,7 +5,7 @@ import { toWei } from 'web3-utils';
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  handleCryptoMint: (quantity: number) => void;
+  handleCryptoMint: () => void;
   handleError: (error: string) => void;
   buyButtonText: string;
 }
@@ -15,43 +15,26 @@ const BuyModal: React.FC<Props> = ({
   handleCryptoMint,
   buyButtonText,
 }) => {
-  const { mintPrice, maxMint, discountPrice } = useMintDetails();
-  const [quantity, setQuantity] = useState(1);
-  const [total, setTotal] = useState(mintPrice.toFixed(2));
+  const { mintPrice } = useMintDetails();
 
   const handleCloseModal = () => {
     setShowModal(false);
-  };
-
-  const minMint = 1;
-
-  const handleQuantityChange = (newQuantity: number) => {
-    if (newQuantity >= minMint && newQuantity <= maxMint) {
-      setQuantity(newQuantity);
-      setTotal((newQuantity * mintPrice).toFixed(2));
-    }
   };
 
   return (
     <>
       <St.BuyModalBackground onClick={handleCloseModal} />
       <St.BuyModalContainer>
-        <St.MsgDiv style={{ justifyContent: 'center' }}>
-          <St.Text>CHOOSE QUANTITY</St.Text>
-        </St.MsgDiv>
-        <St.UnitDiv>
-          <St.SubtleText>MAX: {maxMint}</St.SubtleText>
-        </St.UnitDiv>
         <St.UnitDiv>
           <St.UnitText style={{ color: '#fff', fontWeight: 500 }}>
-            TOTAL:{' '}
+            PRICE:{' '}
             <St.UnitText style={{ marginLeft: '0.25em' }}>
-              {total}(ETH)
+              {mintPrice}(ETH)
             </St.UnitText>
           </St.UnitText>
         </St.UnitDiv>
 
-        <St.Button onClick={() => handleCryptoMint(quantity)}>
+        <St.Button onClick={() => handleCryptoMint()}>
           {buyButtonText}
         </St.Button>
       </St.BuyModalContainer>

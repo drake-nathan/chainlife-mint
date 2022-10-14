@@ -9,8 +9,8 @@ export const useMintDetails = () => {
 
   const mintPrice = 0.06;
   const discountPrice = 0.06;
-  const maxSupply = 1000;
-  const maxMint = 10;
+  const maxSupply = 4096;
+  const maxMint = 1;
 
   const [isMintLive, setIsMintLive] = useState(false);
   const [isPreSale, setIsPreSale] = useState(false);

@@ -1,28 +1,20 @@
 import { AbiItem } from 'web3-utils';
-import storefrontAbi from '../web3/HdlStorefront.abi.json';
-import tokenContractAbi from '../web3/HdlGenesisToken.abi.json';
+import storefrontAbi from '../web3/Chainlife.abi.json';
 import { useWeb3 } from './useWeb3';
 
 export const useContract = () => {
   const web3 = useWeb3();
-  const storefrontContractAddress =
-    '0xaFD7183Abc81D31984E4DC3a6658cb0aCf910DE5';
-  const tokenContractAddress = '0x5343067232fE0B555f7Cb48B0C3398E7d51855BE';
+  const goerliContractAddress = '0x04c9E99D134565eB0F0Fef07FB70741A5b615075';
 
-  const storefrontContract = new web3.eth.Contract(
+  const goerliContract = new web3.eth.Contract(
     storefrontAbi as AbiItem[],
-    storefrontContractAddress,
+    goerliContractAddress,
   );
 
-  const tokenContract = new web3.eth.Contract(
-    tokenContractAbi as AbiItem[],
-    tokenContractAddress,
-  );
+  // TODO: Think through how to handle multiple contracts
 
   return {
-    storefrontContract,
-    tokenContract,
-    storefrontContractAddress,
-    tokenContractAddress,
+    goerliContract,
+    goerliContractAddress,
   };
 };

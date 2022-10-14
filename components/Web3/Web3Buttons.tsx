@@ -8,23 +8,16 @@ import ConnectModal from 'components/Modals/ConnectModal';
 import BuyModal from 'components/Modals/BuyModal';
 import ErrorModal from 'components/Modals/ErrorModal';
 import SuccessModal from 'components/Modals/SuccessModal';
-import { getAllowlistStatus, AllowlistStatus } from 'utils/getAllowlistStatus';
 import * as St from '../Hero/Hero.styled';
 
 const Web3Buttons: React.FC = () => {
   useEagerConnect();
   const { active, account } = useWeb3React();
-  const { isPreSale, mintPrice, maxSupply, discountPrice, isMintLive } =
-    useMintDetails();
-  const { storefrontContract, tokenContract } = useContract();
+  const { isPreSale, mintPrice, maxSupply, isMintLive } = useMintDetails();
+  const { goerliContract } = useContract();
 
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
-
-  const [allowlistInfo, setAllowlistInfo] = useState({
-    allowlistStatus: AllowlistStatus.NotAllowlisted,
-    merkleProof: [''],
-  });
 
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -46,10 +39,7 @@ const Web3Buttons: React.FC = () => {
     }
     if (!active) {
       setShowConnectModal(!showConnectModal);
-    } else if (
-      isPreSale &&
-      allowlistInfo.allowlistStatus === AllowlistStatus.NotAllowlisted
-    ) {
+    } else if (isPreSale) {
       handleError('MUST BE ALLOWLISTED TO MINT DURING PRESALE');
     } else {
       setBuyButtonText('MINT WITH CRYPTO');
@@ -57,41 +47,21 @@ const Web3Buttons: React.FC = () => {
     }
   };
 
-  const handleCardClick = async () => {
-    if (!isMintLive) {
-      return handleError('MINT IS NOT LIVE YET');
-    }
-    if (isPreSale && !active) {
-      return handleError('MUST CONNECT WALLET DURING PRESALE FOR ALLOWLIST');
-    }
-    if (
-      isPreSale &&
-      active &&
-      allowlistInfo.allowlistStatus === AllowlistStatus.NotAllowlisted
-    ) {
-      return handleError('MUST BE ALLOWLISTED TO MINT DURING PRESALE');
-    }
-
-    setBuyButtonText('MINT WITH CARD');
-    setShowBuyModal(true);
-  };
-
-  const handleCryptoMint = async (numberOfTokens: number) => {
-    const payableAmount = numberOfTokens * mintPrice;
+  const handleCryptoMint = async () => {
+    const payableAmount = mintPrice;
+    const projectNumber = 34;
+    const tokenNumber = 1;
+    const toAddress = '';
 
     try {
-      if (
-        isPreSale &&
-        allowlistInfo.allowlistStatus === AllowlistStatus.Allowlisted
-      ) {
+      if (isPreSale) {
         presaleMint(
-          storefrontContract,
-          tokenContract,
+          goerliContract,
           maxSupply,
           account as string,
           payableAmount,
-          numberOfTokens,
-          allowlistInfo.merkleProof,
+          projectNumber,
+          tokenNumber,
           handleError,
           handleSuccess,
           setBuyButtonText,
@@ -99,12 +69,11 @@ const Web3Buttons: React.FC = () => {
         );
       } else {
         publicMint(
-          storefrontContract,
-          tokenContract,
+          goerliContract,
           maxSupply,
           account as string,
           payableAmount,
-          numberOfTokens,
+          toAddress,
           handleError,
           handleSuccess,
           setBuyButtonText,
@@ -131,20 +100,6 @@ const Web3Buttons: React.FC = () => {
 
   useEffect(() => {
     if (active) {
-      if (account) {
-        getAllowlistStatus(account as string)
-          .then((status) => {
-            if (status) setAllowlistInfo(status);
-          })
-          .catch((err) => {
-            console.error(err);
-            setAllowlistInfo({
-              allowlistStatus: AllowlistStatus.NotAllowlisted,
-              merkleProof: [''],
-            });
-          });
-      }
-
       setCryptoButtonText('MINT');
       setTimeout(() => {
         setShowConnectModal(false);
@@ -160,9 +115,6 @@ const Web3Buttons: React.FC = () => {
   return (
     <St.ButtonContainer>
       <St.Button onClick={handleCryptoClick}>{cryptoButtonText}</St.Button>
-      {isMintLive && !isPreSale && (
-        <St.Button onClick={handleCardClick}>PAY WITH CARD</St.Button>
-      )}
 
       {showConnectModal && <ConnectModal setShowModal={setShowConnectModal} />}
 
