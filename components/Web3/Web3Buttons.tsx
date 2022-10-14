@@ -3,18 +3,11 @@ import { useWeb3React } from '@web3-react/core';
 import { useEagerConnect } from 'hooks/useEagerConnect';
 import { useMintDetails } from 'hooks/useMintDetails';
 import { useContract } from 'hooks/useContract';
-import {
-  publicMint,
-  presaleMint,
-  discountMint,
-  ISuccessInfo,
-} from './web3Helpers';
-import { checkIfUserHasClaimedDiscount } from 'web3/web3Fetches';
+import { publicMint, presaleMint, ISuccessInfo } from './web3Helpers';
 import ConnectModal from 'components/Modals/ConnectModal';
 import BuyModal from 'components/Modals/BuyModal';
 import ErrorModal from 'components/Modals/ErrorModal';
 import SuccessModal from 'components/Modals/SuccessModal';
-import CardDiscountModal from 'components/Modals/CardDiscountModal';
 import { getAllowlistStatus, AllowlistStatus } from 'utils/getAllowlistStatus';
 import * as St from '../Hero/Hero.styled';
 
@@ -28,8 +21,6 @@ const Web3Buttons: React.FC = () => {
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
 
-  const [payWithCard, setPayWithCard] = useState(false);
-  const [isDiscount, setIsDiscount] = useState(false);
   const [allowlistInfo, setAllowlistInfo] = useState({
     allowlistStatus: AllowlistStatus.NotAllowlisted,
     merkleProof: [''],
@@ -38,10 +29,8 @@ const Web3Buttons: React.FC = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [showSuccessModal, setShowSuccessModal] = useState(true);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [successInfo, setSuccessInfo] = useState<ISuccessInfo>();
-
-  const [showCardDiscountModal, setShowCardDiscountModal] = useState(false);
 
   const [cryptoButtonText, setCryptoButtonText] = useState('CONNECT WALLET');
   const [buyButtonText, setBuyButtonText] = useState('MINT WITH CRYPTO');
@@ -63,7 +52,6 @@ const Web3Buttons: React.FC = () => {
     ) {
       handleError('MUST BE ALLOWLISTED TO MINT DURING PRESALE');
     } else {
-      setPayWithCard(false);
       setBuyButtonText('MINT WITH CRYPTO');
       setShowBuyModal(true);
     }
@@ -84,7 +72,6 @@ const Web3Buttons: React.FC = () => {
       return handleError('MUST BE ALLOWLISTED TO MINT DURING PRESALE');
     }
 
-    setPayWithCard(true);
     setBuyButtonText('MINT WITH CARD');
     setShowBuyModal(true);
   };
@@ -140,7 +127,6 @@ const Web3Buttons: React.FC = () => {
     setShowBuyModal(false);
     setShowErrorModal(false);
     setShowSuccessModal(false);
-    setShowCardDiscountModal(false);
   };
 
   useEffect(() => {
@@ -183,8 +169,6 @@ const Web3Buttons: React.FC = () => {
       {showBuyModal && (
         <BuyModal
           setShowModal={setShowBuyModal}
-          payWithCard={payWithCard}
-          isDiscount={isDiscount}
           handleCryptoMint={handleCryptoMint}
           handleError={handleError}
           buyButtonText={buyButtonText}
@@ -199,15 +183,6 @@ const Web3Buttons: React.FC = () => {
         <SuccessModal
           setShowModal={setShowSuccessModal}
           successInfo={successInfo as ISuccessInfo}
-        />
-      )}
-
-      {showCardDiscountModal && (
-        <CardDiscountModal
-          setShowModal={setShowCardDiscountModal}
-          setIsDiscount={setIsDiscount}
-          setPayWithCard={setPayWithCard}
-          setShowBuyModal={setShowBuyModal}
         />
       )}
     </St.ButtonContainer>

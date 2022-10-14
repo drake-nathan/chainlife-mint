@@ -5,8 +5,6 @@ import { toWei } from 'web3-utils';
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  payWithCard: boolean;
-  isDiscount: boolean;
   handleCryptoMint: (quantity: number) => void;
   handleError: (error: string) => void;
   buyButtonText: string;
@@ -14,24 +12,15 @@ interface Props {
 
 const BuyModal: React.FC<Props> = ({
   setShowModal,
-  payWithCard,
-  isDiscount,
   handleCryptoMint,
-  handleError,
   buyButtonText,
 }) => {
   const { mintPrice, maxMint, discountPrice } = useMintDetails();
   const [quantity, setQuantity] = useState(1);
-  const [total, setTotal] = useState(
-    isDiscount ? discountPrice.toFixed(2) : mintPrice.toFixed(2),
-  );
+  const [total, setTotal] = useState(mintPrice.toFixed(2));
 
   const handleCloseModal = () => {
     setShowModal(false);
-  };
-
-  const handleCardMint = (quantity: number) => {
-    handleError('Card minting not yet implemented');
   };
 
   const minMint = 1;
@@ -48,20 +37,11 @@ const BuyModal: React.FC<Props> = ({
       <St.BuyModalBackground onClick={handleCloseModal} />
       <St.BuyModalContainer>
         <St.MsgDiv style={{ justifyContent: 'center' }}>
-          <St.Text>
-            {isDiscount
-              ? 'YOU GET A FLOCKER DISCOUNT ON ONE MINT'
-              : 'CHOOSE QUANTITY'}
-          </St.Text>
+          <St.Text>CHOOSE QUANTITY</St.Text>
         </St.MsgDiv>
-        {!isDiscount && (
-          <St.UnitDiv>
-            <St.SubtleText>MAX: {maxMint}</St.SubtleText>
-            <St.SubtleText>
-              PRICE: {isDiscount ? discountPrice : mintPrice}(ETH)
-            </St.SubtleText>
-          </St.UnitDiv>
-        )}
+        <St.UnitDiv>
+          <St.SubtleText>MAX: {maxMint}</St.SubtleText>
+        </St.UnitDiv>
         <St.UnitDiv>
           <St.UnitText style={{ color: '#fff', fontWeight: 500 }}>
             TOTAL:{' '}
@@ -70,37 +50,10 @@ const BuyModal: React.FC<Props> = ({
             </St.UnitText>
           </St.UnitText>
         </St.UnitDiv>
-        {!isDiscount && (
-          <St.PlusMinusDiv>
-            <St.PlusMinusButton
-              disabled={quantity === minMint ? true : false}
-              onClick={() => handleQuantityChange(quantity - 1)}
-            >
-              -
-            </St.PlusMinusButton>
-            <St.CounterText>{quantity}</St.CounterText>
-            <St.PlusMinusButton
-              disabled={quantity === maxMint ? true : false}
-              onClick={() => handleQuantityChange(quantity + 1)}
-            >
-              +
-            </St.PlusMinusButton>
-          </St.PlusMinusDiv>
-        )}
-        {!payWithCard ? (
-          <St.Button onClick={() => handleCryptoMint(quantity)}>
-            {buyButtonText}
-          </St.Button>
-        ) : (
-          <CrossmintPayButton
-            clientId="80ea9518-778f-4924-9924-be506144cc03"
-            mintConfig={{
-              type: 'erc-721',
-              totalPrice: total,
-              numberOfTokens: quantity,
-            }}
-          />
-        )}
+
+        <St.Button onClick={() => handleCryptoMint(quantity)}>
+          {buyButtonText}
+        </St.Button>
       </St.BuyModalContainer>
     </>
   );
