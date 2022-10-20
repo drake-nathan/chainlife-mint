@@ -4,9 +4,9 @@ export const theme: DefaultTheme = {
   borderRadius: '1px',
 
   colors: {
-    bgMain: '#000000',
-    textMain: '#ffffff',
+    bgMain: '#F4F5F0',
+    textMain: '#3A3A3A',
     textOffset: '#9c9c9c',
-    hover: 'rgb(251, 191, 36);',
+    hover: '#9c9c9c',
   },
 };

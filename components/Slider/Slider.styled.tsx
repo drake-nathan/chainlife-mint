@@ -17,24 +17,24 @@ type SliderProps = {
 };
 
 export const SliderWrapper = styled.div<SliderWrapperProps>`
-  overflow: hidden;
+  // overflow: hidden;
   position: relative;
-  margin-top: 2rem;
-  width: 100%;
-  height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  // margin-top: 2rem;
+  width: 225px;
+  // height: 906px;
   padding: ${(props) => (props.zoomFactor / props.visibleSlides) * 0.7 + '%'} 0;
-  margin-bottom: 2em;
+  // margin-bottom: 2em;
 
   .button-wrapper {
-    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 48px;
-    height: 275px;
-    top: 0;
-    margin-top: ${(props) =>
-      (props.zoomFactor / props.visibleSlides) * 0.7 + '%'};
     box-sizing: border-box;
   }
 
@@ -43,9 +43,8 @@ export const SliderWrapper = styled.div<SliderWrapperProps>`
     border: 0;
     width: 48px;
     height: fit-content;
-    color: #fff;
-    font-size: 5rem;
-    font-weight: 800;
+    color: ${(props) => props.theme.colors.textMain};
+    font-size: 3.5rem;
     cursor: pointer;
     outline: none;
     transition: all 0.7s;
@@ -55,23 +54,43 @@ export const SliderWrapper = styled.div<SliderWrapperProps>`
     }
   }
 
+  .disabled {
+    color: ${(props) => props.theme.colors.textOffset};
+    cursor: default;
+    :hover {
+      opacity: 1;
+    }
+  }
+
   .back {
-    left: 0;
-    border-radius: 0 8px 8px 0;
   }
 
   .forward {
-    right: 0;
-    border-radius: 8px 0 0 8px;
   }
+`;
+
+export const InnerWrapper = styled.div`
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const SliderDiv = styled.div<SliderProps>`
   display: flex;
-  padding: 0 55px;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 800px;
+  padding-left: 15px;
+  padding-right: 15px;
   transition: transform ${(props) => props.pageTransition}ms ease;
 
   :hover ${SliderItemDiv} {
-    transform: translateX(${(props) => props.transformValue});
+    transform: translateY(${(props) => props.transformValue});
   }
+  //::-webkit-scrollbar {
+  //display: none;
+  // }
 `;

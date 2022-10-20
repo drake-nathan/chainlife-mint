@@ -8,7 +8,7 @@ import ConnectModal from 'components/Modals/ConnectModal';
 import BuyModal from 'components/Modals/BuyModal';
 import ErrorModal from 'components/Modals/ErrorModal';
 import SuccessModal from 'components/Modals/SuccessModal';
-import * as St from '../Hero/Hero.styled';
+import * as St from '../DescriptionSections/Description.styled';
 
 const Web3Buttons: React.FC = () => {
   useEagerConnect();
@@ -26,7 +26,7 @@ const Web3Buttons: React.FC = () => {
   const [successInfo, setSuccessInfo] = useState<ISuccessInfo>();
 
   const [cryptoButtonText, setCryptoButtonText] = useState('CONNECT WALLET');
-  const [buyButtonText, setBuyButtonText] = useState('MINT WITH CRYPTO');
+  const [buyButtonText, setBuyButtonText] = useState('MINT');
 
   const handleError = (error: string) => {
     setErrorMessage(error);
