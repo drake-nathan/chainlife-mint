@@ -13,7 +13,7 @@ import * as St from '../DescriptionSections/Description.styled';
 const Web3Buttons: React.FC = () => {
   useEagerConnect();
   const { active, account } = useWeb3React();
-  const { isPreSale, mintPrice, maxSupply, isMintLive } = useMintDetails();
+  const { isPreMint, mintPrice, maxSupply, isMintLive } = useMintDetails();
   const { goerliContract } = useContract();
 
   const [showConnectModal, setShowConnectModal] = useState(false);
@@ -39,7 +39,7 @@ const Web3Buttons: React.FC = () => {
     }
     if (!active) {
       setShowConnectModal(!showConnectModal);
-    } else if (isPreSale) {
+    } else if (isPreMint) {
       handleError('MUST BE ALLOWLISTED TO MINT DURING PRESALE');
     } else {
       setBuyButtonText('MINT WITH CRYPTO');
@@ -54,7 +54,7 @@ const Web3Buttons: React.FC = () => {
     const toAddress = '';
 
     try {
-      if (isPreSale) {
+      if (isPreMint) {
         presaleMint(
           goerliContract,
           maxSupply,

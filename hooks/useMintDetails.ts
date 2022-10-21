@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 
 export const useMintDetails = () => {
   const currentTime = new Date().getTime();
-  const mintStart = Date.parse('2022-09-17T14:22:00-0400');
-  const preSalePeriod = 24 * 60 * 60 * 1000;
+  const mintStart = Date.parse('2022-10-17T14:22:00-0400');
+  const preSalePeriod = 48 * 60 * 60 * 1000;
   const publicStart = mintStart + preSalePeriod;
   const mintEnd = Date.parse('2023-10-18T14:22:00-0400');
 
@@ -13,7 +13,7 @@ export const useMintDetails = () => {
   const maxMint = 1;
 
   const [isMintLive, setIsMintLive] = useState(false);
-  const [isPreSale, setIsPreSale] = useState(false);
+  const [isPreMint, setIsPreMint] = useState(false);
 
   useEffect(() => {
     if (currentTime >= mintStart && currentTime <= mintEnd) {
@@ -21,13 +21,13 @@ export const useMintDetails = () => {
     }
 
     if (currentTime >= mintStart && currentTime <= publicStart) {
-      setIsPreSale(true);
+      setIsPreMint(true);
     }
   }, [currentTime]);
 
   return {
     isMintLive,
-    isPreSale,
+    isPreMint,
     mintStart,
     mintEnd,
     mintPrice,

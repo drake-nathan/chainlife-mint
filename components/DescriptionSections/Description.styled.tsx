@@ -72,20 +72,6 @@ export const SubtleText = styled.span`
   font-size: 18px;
 `;
 
-export const YellowText = styled.span`
-  color: ${(props) => props.theme.colors.hover};
-  font-size: 16px;
-`;
-
-export const CountdownDiv = styled.div`
-  display: flex;
-`;
-
-export const CountdownStyled = styled(Countdown)`
-  color: ${(props) => props.theme.colors.hover};
-  margin-right: 0.5em;
-`;
-
 export const Button = styled.button`
   display: flex;
   justify-content: center;

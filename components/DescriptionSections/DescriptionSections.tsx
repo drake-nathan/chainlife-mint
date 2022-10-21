@@ -4,36 +4,21 @@ import Socials from '../Socials/Socials';
 import { section1Text, section2Text } from './SectionText';
 
 const DescriptionSections: React.FC = () => {
-  const [isSection1Active, setIsSection1Active] = useState(true);
-  const [isSection2Active, setIsSection2Active] = useState(false);
-
-  const handleSection1Click = () => {
-    if (isSection2Active) {
-      setIsSection2Active(false);
-      setIsSection1Active(true);
-    }
-  };
-
-  const handleSection2Click = () => {
-    if (isSection1Active) {
-      setIsSection2Active(true);
-      setIsSection1Active(false);
-    }
-  };
+  const [activeSection, setActiveSection] = useState(1);
 
   return (
     <St.HeroContainer>
       <St.SectionTitleContainer>
         <St.Title
-          onClick={handleSection1Click}
-          className={isSection1Active ? '' : 'inactive'}
+          onClick={() => setActiveSection(1)}
+          className={activeSection === 1 ? '' : 'inactive'}
         >
           SECTION 1
         </St.Title>
         <St.Title>|</St.Title>
         <St.Title
-          onClick={handleSection2Click}
-          className={isSection2Active ? '' : 'inactive'}
+          onClick={() => setActiveSection(2)}
+          className={activeSection === 2 ? '' : 'inactive'}
         >
           SECTION 2
         </St.Title>
@@ -42,7 +27,7 @@ const DescriptionSections: React.FC = () => {
       <St.SubtleDiv>
         <St.SubtleText>
           {' '}
-          {isSection2Active ? section2Text : section1Text}
+          {activeSection === 2 ? section2Text : section1Text}
         </St.SubtleText>
       </St.SubtleDiv>
       <Socials />

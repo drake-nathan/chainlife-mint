@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { YellowText } from 'components/DescriptionSections/Description.styled';
 
 export const ModalBackground = styled.div`
   height: 150vh;
@@ -160,8 +159,4 @@ export const SubtleText = styled.span`
 
 export const UnitText = styled(Text)`
   color: ${(props) => props.theme.colors.hover};
-`;
-
-export const CounterText = styled(YellowText)`
-  font-size: 30px;
 `;

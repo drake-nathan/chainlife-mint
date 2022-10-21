@@ -59,3 +59,14 @@ export const callPublicMintTo = async (
     .MINT_TO_ADDRESS(toAddress)
     .send({ from: account, value: toWei(payableAmount.toString(), 'ether') });
 };
+
+export const callCustomRule = async (
+  contract: Contract,
+  account: string,
+  tokenId: number,
+  rule: string,
+) => {
+  return await contract.methods
+    .CUSTOM_RULE(tokenId, rule)
+    .send({ from: account });
+};

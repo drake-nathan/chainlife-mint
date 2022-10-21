@@ -1,7 +1,6 @@
-/* eslint-disable react/no-unknown-property */
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import NavBar from 'components/NavBar/NavBar';
@@ -12,12 +11,14 @@ import { generatorURLs } from 'components/helpers/iFrameMedia';
 import { sliderMedia } from 'components/Slider/sliderMedia';
 import { useMintDetails } from 'hooks/useMintDetails';
 import DynamicFallback from 'components/FallbackPage/DynamicFallback';
-import * as st from '../styles/App.styled';
+import * as St from '../styles/App.styled';
+import { MintPageContext } from 'contexts/MintPageContext';
 
 const Home: NextPage = () => {
   const nodeEnv = process.env.NODE_ENV;
   const { isMintLive } = useMintDetails();
   const { query } = useRouter();
+  const { mintPage } = useContext(MintPageContext);
 
   const [showFallback, setShowFallback] = useState(true);
 
@@ -43,36 +44,33 @@ const Home: NextPage = () => {
   }, [query, isMintLive, nodeEnv]);
 
   return (
-    <st.AppContainer>
+    <St.AppContainer>
       <Head>
-        <title>ChainLife Mint</title>
-        <meta name="description" content="ChainLife Mint." />
+        <title>Chainlife Mint</title>
+        <meta name="description" content="Chainlife Mint." />
         <link rel="icon" href="/favicon-16x16.png" />
       </Head>
 
       {!showFallback ? (
         <>
           <NavBar />
-          <st.BodyContainer>
-            <st.SliderAndIframeContainer>
+          <St.BodyContainer>
+            <St.SliderAndIframeContainer>
               <Slider>
                 {sliderMedia.map((nft) => (
                   <div key={nft.id}>
-                    {/* <video loop autoPlay muted webkit-playsInline playsInline>
-                  <source src={nft.video_url} type="video/mp4" />
-            </video> */}
                     <img src={nft.video_url} alt="nft" />
                   </div>
                 ))}
               </Slider>
-              <st.LeftSection>
-                <st.TitleAnCryptoContainer>
-                  <st.TitleContainer>
-                    <st.Title>NFT #</st.Title>
-                    <st.SubTitle>NFT DESCRIPTION</st.SubTitle>
-                  </st.TitleContainer>
+              <St.LeftSection>
+                <St.TitleAnCryptoContainer>
+                  <St.TitleContainer>
+                    <St.Title>NFT #</St.Title>
+                    <St.SubTitle>NFT DESCRIPTION</St.SubTitle>
+                  </St.TitleContainer>
                   <Web3Buttons />
-                </st.TitleAnCryptoContainer>
+                </St.TitleAnCryptoContainer>
                 <iframe
                   height={650}
                   width={650}
@@ -80,23 +78,23 @@ const Home: NextPage = () => {
                   title="generator"
                   frameBorder="0"
                 ></iframe>
-                <st.InfoContainer>
-                  <st.InfoText>
+                <St.InfoContainer>
+                  <St.InfoText>
                     A brief description about this colletcion and stuff. More
                     stuff, more stuff, more stuff, more stuff, more stuff...
-                  </st.InfoText>
-                </st.InfoContainer>
-              </st.LeftSection>
-            </st.SliderAndIframeContainer>
-            <st.DescriptionsContainer>
+                  </St.InfoText>
+                </St.InfoContainer>
+              </St.LeftSection>
+            </St.SliderAndIframeContainer>
+            <St.DescriptionsContainer>
               <DescriptionSections />
-            </st.DescriptionsContainer>
-          </st.BodyContainer>
+            </St.DescriptionsContainer>
+          </St.BodyContainer>
         </>
       ) : (
         <DynamicFallback />
       )}
-    </st.AppContainer>
+    </St.AppContainer>
   );
 };
 
