@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { YellowText } from 'components/Hero/Hero.styled';
+import { YellowText } from 'components/DescriptionSections/Description.styled';
 
 export const ModalBackground = styled.div`
   height: 150vh;

@@ -5,7 +5,7 @@ import {
   CountdownStyled,
   SubtleText,
   SubtleDiv,
-} from 'components/Hero/Hero.styled';
+} from 'components/DescriptionSections/Description.styled';
 
 export const FallbackContainer = styled.div`
   display: flex;

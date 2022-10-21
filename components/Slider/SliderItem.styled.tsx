@@ -17,7 +17,7 @@ export const SliderItemDiv = styled.div<Props>`
   transform: scale(1);
   user-select: none;
   position: relative;
-  box-shadow: 0px 50px 70px rgba(0, 0, 0, 0.5);
+  // box-shadow: 0px 50px 70px rgba(0, 0, 0, 0.5);
 
   flex: 0 0
     calc(
@@ -25,7 +25,7 @@ export const SliderItemDiv = styled.div<Props>`
         ${(props) => props.slideMargin * 2}px
     );
 
-  video {
+  img {
     height: 100%;
     width: 100%;
     box-sizing: border-box;
@@ -36,22 +36,22 @@ export const SliderItemDiv = styled.div<Props>`
   }
 
   :hover ~ * {
-    transform: translateX(${(props) => props.zoomFactor / 2 + '%'}) !important;
+    transform: translateY(${(props) => props.zoomFactor / 2 + '%'}) !important;
   }
 
   &.left {
-    transform-origin: left;
+    transform-origin: top;
 
     :hover ~ * {
-      transform: translateX(${(props) => props.zoomFactor + '%'}) !important;
+      transform: translateY(${(props) => props.zoomFactor + '%'}) !important;
     }
   }
 
   &.right {
-    transform-origin: right;
+    transform-origin: bottom;
 
     :hover ~ * {
-      transform: translateX(0%) !important;
+      transform: translateY(0%) !important;
     }
   }
 `;

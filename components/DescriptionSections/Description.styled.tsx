@@ -4,10 +4,10 @@ import Countdown from 'react-countdown';
 export const HeroContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
+  padding-right: 15px;
   gap: 1.5em;
-  margin-bottom: 1em;
 `;
 
 export const ButtonContainer = styled.div`
@@ -24,9 +24,22 @@ export const ButtonContainer = styled.div`
   }
 `;
 
+export const SectionTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+  height: 75px;
+  width: 100%;
+  border-bottom: 1px solid ${(props) => props.theme.colors.textOffset};
+
+  .inactive {
+    color: ${(props) => props.theme.colors.textOffset};
+  }
+`;
+
 export const Title = styled.h1`
-  font-weight: 500;
-  letter-spacing: 1.25px;
+  font-weight: 400;
+  cursor: pointer;
 
   @media (max-width: 600px) {
     font-size: 1.25rem;
@@ -48,7 +61,6 @@ export const SubtleDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 1.25em;
-  margin-top: 1.25em;
 
   @media (max-width: 600px) {
     flex-direction: column;
@@ -57,7 +69,7 @@ export const SubtleDiv = styled.div`
 
 export const SubtleText = styled.span`
   color: ${(props) => props.theme.colors.textOffset};
-  font-size: 16px;
+  font-size: 18px;
 `;
 
 export const YellowText = styled.span`
@@ -84,7 +96,7 @@ export const Button = styled.button`
   border-radius: ${(props) => props.theme.borderRadius};
   background-color: ${(props) => props.theme.colors.bgMain};
   color: ${(props) => props.theme.colors.textMain};
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 500;
   padding: 0 0.5em;
   cursor: pointer;

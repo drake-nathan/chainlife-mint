@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SliderItem from './SliderItem';
+import * as IoIcons from 'react-icons/io5';
 import * as St from './Slider.styled';
 import { numberOfSlides } from './sliderHelpers';
 
@@ -8,9 +9,9 @@ interface Props {
 }
 
 const Slider: React.FC<Props> = ({ children }) => {
-  const zoomFactor = 15;
-  const slideMargin = 12;
-  const maxVisibleSlides = 5;
+  const zoomFactor = 10;
+  const slideMargin = 0;
+  const maxVisibleSlides = 6;
   const pageTransition = 500;
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -25,7 +26,7 @@ const Slider: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
-      setScrollSize(entries[0].contentRect.width);
+      setScrollSize(entries[0].contentRect.height);
     });
     resizeObserver.observe(sliderRef.current!);
   }, [sliderRef]);
@@ -33,11 +34,11 @@ const Slider: React.FC<Props> = ({ children }) => {
   // Position slider on resize
   useEffect(() => {
     if (sliderRef && sliderRef.current) {
-      if (currentPage === totalPages) setCurrentPage(0);
+      // if (currentPage === totalPages) setCurrentPage(0);
       if (currentPage > totalPages) setCurrentPage(totalPages);
-      sliderRef.current.style.transform = `translate3D(-${
+      sliderRef.current.style.transform = `translate3D(0, -${
         currentPage * scrollSize
-      }px, 0, 0)`;
+      }px, 0)`;
     }
   }, [sliderRef, currentPage, scrollSize, totalPages]);
 
@@ -55,14 +56,14 @@ const Slider: React.FC<Props> = ({ children }) => {
     setCurrentPage(currentPage + (forward ? 1 : -1));
 
     if (sliderRef.current)
-      sliderRef.current.style.transform = `translate3D(-${
+      sliderRef.current.style.transform = `translate3D(0, -${
         (currentPage + (forward ? 1 : -1)) * scrollSize
-      }px, 0, 0)`;
+      }px, 0)`;
   };
 
   const handleMouseOver = (id: number) => {
     if (id % visibleSlides === 1) setTransformValue('0%'); // left
-    if (id % visibleSlides === 0) setTransformValue(`-${zoomFactor}%`); // right
+    if (id % visibleSlides === 0) setTransformValue(`0%`); // right
   };
 
   const handleMouseOut = () => {
@@ -80,49 +81,51 @@ const Slider: React.FC<Props> = ({ children }) => {
       visibleSlides={visibleSlides}
       slideMargin={slideMargin}
     >
-      <St.SliderDiv
-        visibleSlides={visibleSlides}
-        transformValue={transformValue}
-        zoomFactor={zoomFactor}
-        slideMargin={slideMargin}
-        pageTransition={pageTransition}
-        ref={sliderRef}
-      >
-        {children.map((child: any, i: number) => (
-          <SliderItem
-            key={i}
-            slideMargin={slideMargin}
-            visibleSlides={visibleSlides}
-            zoomFactor={zoomFactor}
-            slideClass={assignSlideClass(i + 1, visibleSlides)}
-            id={i + 1}
-            callback={handleMouseOver}
-            callbackOut={handleMouseOut}
-          >
-            {child}
-          </SliderItem>
-        ))}
-      </St.SliderDiv>
-      {currentPage > 0 && (
-        <div className="button-wrapper back">
-          <button
-            className="button back"
-            onClick={() => handleSlideMove(false)}
-          >
-            &#8249;
-          </button>
-        </div>
-      )}
-      {currentPage !== totalPages && (
-        <div className="button-wrapper forward">
-          <button
-            className="button forward"
-            onClick={() => handleSlideMove(true)}
-          >
-            &#8250;
-          </button>
-        </div>
-      )}
+      <div className="button-wrapper back">
+        <button
+          className={currentPage === 0 ? 'button back disabled' : 'button back'}
+          onClick={() => handleSlideMove(false)}
+        >
+          <IoIcons.IoCaretUpCircleOutline />
+        </button>
+      </div>
+      <St.InnerWrapper>
+        <St.SliderDiv
+          visibleSlides={visibleSlides}
+          transformValue={transformValue}
+          zoomFactor={zoomFactor}
+          slideMargin={slideMargin}
+          pageTransition={pageTransition}
+          ref={sliderRef}
+        >
+          {children.map((child: any, i: number) => (
+            <SliderItem
+              key={i}
+              slideMargin={slideMargin}
+              visibleSlides={visibleSlides}
+              zoomFactor={zoomFactor}
+              slideClass={assignSlideClass(i + 1, visibleSlides)}
+              id={i + 1}
+              callback={handleMouseOver}
+              callbackOut={handleMouseOut}
+            >
+              {child}
+            </SliderItem>
+          ))}
+        </St.SliderDiv>
+      </St.InnerWrapper>
+      <div className="button-wrapper forward">
+        <button
+          className={
+            currentPage === totalPages
+              ? 'button forward disabled'
+              : 'button forward'
+          }
+          onClick={() => handleSlideMove(true)}
+        >
+          <IoIcons.IoCaretDownCircleOutline />
+        </button>
+      </div>
     </St.SliderWrapper>
   );
 };
