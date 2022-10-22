@@ -19,7 +19,7 @@ const NavBar: React.FC = () => {
       <St.NavContainer>
         <St.logoDiv>
           <Image src={ClLogo} height={35} width={35} alt="ChainLife logo" />
-          <St.NavLink href="https://matto.xyz/" target="blank" rel="noreferrer">
+          <St.NavLink href="/">
             <St.NavTitle>Chainlife</St.NavTitle>
           </St.NavLink>
         </St.logoDiv>

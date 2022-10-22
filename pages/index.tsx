@@ -11,8 +11,8 @@ import { generatorURLs } from 'components/helpers/iFrameMedia';
 import { sliderMedia } from 'components/Slider/sliderMedia';
 import { useMintDetails } from 'hooks/useMintDetails';
 import DynamicFallback from 'components/FallbackPage/DynamicFallback';
-import * as St from '../styles/App.styled';
 import { MintPageContext } from 'contexts/MintPageContext';
+import * as St from '../styles/App.styled';
 
 const Home: NextPage = () => {
   const nodeEnv = process.env.NODE_ENV;

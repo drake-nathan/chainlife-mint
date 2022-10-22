@@ -13,7 +13,6 @@ export const Container = styled.div`
   padding-right: 15px;
   gap: 1.5em;
 `;
-
 export const TitleDiv = styled(SectionTitleContainer)``;
 
 export const Title = styled(DescTitle)``;

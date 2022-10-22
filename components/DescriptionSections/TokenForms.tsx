@@ -2,7 +2,6 @@ import { useWeb3React } from '@web3-react/core';
 import { useContract } from 'hooks/useContract';
 import React, { useState } from 'react';
 import { callCustomRule } from 'web3/web3Fetches';
-import Socials from '../Socials/Socials';
 import * as St from './TokenForms.styled';
 
 interface Props {
@@ -43,7 +42,9 @@ const TokenForms: React.FC<Props> = ({ tokenId }) => {
         >
           CUSTOM RULE
         </St.Title>
+
         <St.Title>|</St.Title>
+
         <St.Title
           onClick={() => setActiveSection(2)}
           className={activeSection === 2 ? '' : 'inactive'}
@@ -51,6 +52,7 @@ const TokenForms: React.FC<Props> = ({ tokenId }) => {
           SHIFT LEVELS
         </St.Title>
       </St.TitleDiv>
+
       <St.Form
         onSubmit={(e) => {
           e.preventDefault();
@@ -59,6 +61,7 @@ const TokenForms: React.FC<Props> = ({ tokenId }) => {
       >
         <St.LabelDiv>
           <St.Label htmlFor="custom-rule">Submit a Custom Rule</St.Label>
+
           <St.Input
             type="text"
             id="custom-rule"
@@ -67,16 +70,16 @@ const TokenForms: React.FC<Props> = ({ tokenId }) => {
             onChange={(e) => setCustomRule(e.target.value)}
           />
         </St.LabelDiv>
+
+        <St.Button
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit();
+          }}
+        >
+          Submit
+        </St.Button>
       </St.Form>
-      <St.Button
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit();
-        }}
-      >
-        Submit
-      </St.Button>
-      <Socials />
     </St.Container>
   );
 };
