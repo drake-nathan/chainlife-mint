@@ -3,8 +3,7 @@ import { useContract } from 'hooks/useContract';
 import React, { useState } from 'react';
 import { callCustomRule } from 'web3/web3Fetches';
 import Socials from '../Socials/Socials';
-import * as St from './Description.styled';
-import * as StForm from './TokenForms.styled';
+import * as St from './TokenForms.styled';
 
 interface Props {
   tokenId: number;
@@ -36,8 +35,8 @@ const TokenForms: React.FC<Props> = ({ tokenId }) => {
   };
 
   return (
-    <St.HeroContainer>
-      <St.SectionTitleContainer>
+    <St.Container>
+      <St.TitleDiv>
         <St.Title
           onClick={() => setActiveSection(1)}
           className={activeSection === 1 ? '' : 'inactive'}
@@ -51,26 +50,24 @@ const TokenForms: React.FC<Props> = ({ tokenId }) => {
         >
           SHIFT LEVELS
         </St.Title>
-      </St.SectionTitleContainer>
-      <StForm.Form
+      </St.TitleDiv>
+      <St.Form
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
         }}
       >
-        <StForm.LabelDiv>
-          <StForm.Label htmlFor="custom-rule">
-            Submit a Custom Rule
-          </StForm.Label>
-          <StForm.Input
+        <St.LabelDiv>
+          <St.Label htmlFor="custom-rule">Submit a Custom Rule</St.Label>
+          <St.Input
             type="text"
             id="custom-rule"
             required
             value={customRule}
             onChange={(e) => setCustomRule(e.target.value)}
           />
-        </StForm.LabelDiv>
-      </StForm.Form>
+        </St.LabelDiv>
+      </St.Form>
       <St.Button
         onSubmit={(e) => {
           e.preventDefault();
@@ -80,7 +77,7 @@ const TokenForms: React.FC<Props> = ({ tokenId }) => {
         Submit
       </St.Button>
       <Socials />
-    </St.HeroContainer>
+    </St.Container>
   );
 };
 

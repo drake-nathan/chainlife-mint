@@ -1,4 +1,22 @@
 import styled from 'styled-components';
+import { Main } from 'styles/Library/Button.styled';
+import {
+  SectionTitleContainer,
+  Title as DescTitle,
+} from './Description.styled';
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-right: 15px;
+  gap: 1.5em;
+`;
+
+export const TitleDiv = styled(SectionTitleContainer)``;
+
+export const Title = styled(DescTitle)``;
 
 export const Form = styled.form`
   display: flex;
@@ -21,3 +39,5 @@ export const Input = styled.input`
   border: 2px solid ${(props) => props.theme.colors.textOffset};
   border-radius: ${(props) => props.theme.borderRadius};
 `;
+
+export const Button = styled(Main)``;
