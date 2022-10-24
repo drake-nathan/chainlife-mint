@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import * as St from './Description.styled';
-import Socials from '../Socials/Socials';
 import { section1Text, section2Text } from './SectionText';
 
 const DescriptionSections: React.FC = () => {
@@ -30,7 +29,6 @@ const DescriptionSections: React.FC = () => {
           {activeSection === 2 ? section2Text : section1Text}
         </St.SubtleText>
       </St.SubtleDiv>
-      <Socials />
     </St.HeroContainer>
   );
 };

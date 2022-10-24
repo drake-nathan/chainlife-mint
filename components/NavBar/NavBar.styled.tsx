@@ -31,7 +31,8 @@ export const logoDiv = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  gap: 1.5em;
+  gap: 0.5em;
+  font-size: 20px;
 `;
 
 export const NavTitle = styled.h1``;
@@ -52,7 +53,13 @@ export const NavLinksDiv = styled.div`
 `;
 
 export const SocialContainer = styled(NavContainer)`
-  justify-content: flex-start;
+  display: flex;
+  padding-top: 40px;
+  padding-left: 0;
+  padding-right: 0;
+  height: fit-content;
+  width: fit-content;
+  gap: 1.5em;
 `;
 
 export const NavLink = styled.a`

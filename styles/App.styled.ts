@@ -14,7 +14,7 @@ export const AppContainer = styled.div`
 export const BodyContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 0 100px;
+  padding: 60px 100px;
   max-width: 1920px;
   gap: 7rem;
 
