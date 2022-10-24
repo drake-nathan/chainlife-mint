@@ -18,7 +18,7 @@ const TokenForms: React.FC<Props> = ({ tokenId }) => {
   const [customRule, setCustomRule] = useState('');
 
   const handleSubmit = async () => {
-    console.log('submitting');
+    console.info('submitting');
     try {
       if (!active) throw new Error('Must be connected to wallet');
 
