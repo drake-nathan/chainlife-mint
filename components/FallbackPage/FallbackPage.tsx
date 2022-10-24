@@ -14,9 +14,9 @@ const FallbackPage: React.FC = () => {
         {mintStart > now ? (
           <>
             <St.Text>The Pre-Genesis Deity pre-sale begins in...</St.Text>
-            <St.MintCountdownDiv>
+            {/* <St.MintCountdownDiv>
               <St.MintCountdown date={mintStart} />
-            </St.MintCountdownDiv>
+            </St.MintCountdownDiv> */}
           </>
         ) : (
           <St.Text>The mint you are trying access is no longer active.</St.Text>
