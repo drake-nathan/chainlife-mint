@@ -119,6 +119,7 @@ export const CenterButtonDiv = styled.div`
 `;
 
 export const XButton = styled.img`
+  color: ${(props) => props.theme.colors.textMain};
   width: 1.25em;
   cursor: pointer;
 `;

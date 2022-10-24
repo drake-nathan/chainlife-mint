@@ -18,20 +18,34 @@ export const BodyContainer = styled.div`
   max-width: 1920px;
   gap: 7rem;
 
-  @media (max-width: 1600px) {
+  @media (max-width: 1700px) {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 3.5rem;
   }
 `;
 
-export const LeftSection = styled.div``;
+export const LeftSection = styled.div`
+  @media (max-width: 750px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    background: yellow;
+    gap: 2rem;
+  }
+`;
 
 export const SliderAndIframeContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 7rem;
+  @media (max-width: 750px) {
+    flex-direction: column;
+    gap: 2rem;
+  }
 `;
 
 export const TitleAnCryptoContainer = styled.div`
@@ -41,9 +55,14 @@ export const TitleAnCryptoContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-
-  button {
-    margin-right: -52px;
+  @media (max-width: 750px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: pink;
+    min-height: 150px;
+    max-width: 350px;
   }
 `;
 
@@ -51,6 +70,9 @@ export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  @media (max-width: 750px) {
+    align-items: center;
+  }
 `;
 
 export const Title = styled.h1``;
@@ -71,6 +93,9 @@ export const InfoContainer = styled.div`
   justify-content: center;
   height: 75px;
   width: 650px;
+  @media (max-width: 750px) {
+    width: 360px;
+  }
 `;
 
 export const InfoText = styled.p`

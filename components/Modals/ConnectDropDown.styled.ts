@@ -3,12 +3,11 @@ import styled from 'styled-components';
 export const DropDownContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 185px;
+  width: 175px;
   position: absolute;
-  top: 85px;
-  right: 50px;
+  top: 80px;
+  right: 30px;
   background-color: ${(props) => props.theme.colors.textMain};
-  border: 3px solid ${(props) => props.theme.colors.textMain};
   overflow: hidden;
   z-index: 40;
 
@@ -82,7 +81,7 @@ export const TopButtonContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   border-bottom: 3px solid ${(props) => props.theme.colors.bgMain};
-  width: 185px;
+  width: 175px;
   color: ${(props) => props.theme.colors.bgMain};
   background: ${(props) => props.theme.colors.textMain};
   font-size: 28px;

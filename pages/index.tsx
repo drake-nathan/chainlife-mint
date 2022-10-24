@@ -10,6 +10,7 @@ import Web3Buttons from 'components/Web3/Web3Buttons';
 import { generatorURLs } from 'components/helpers/iFrameMedia';
 import { sliderMedia } from 'components/Slider/sliderMedia';
 import { useMintDetails } from 'hooks/useMintDetails';
+import { useWindowSize } from 'hooks/useWindowSize';
 import DynamicFallback from 'components/FallbackPage/DynamicFallback';
 import * as St from '../styles/App.styled';
 import { MintPageContext } from 'contexts/MintPageContext';
@@ -21,6 +22,8 @@ const Home: NextPage = () => {
   const { mintPage } = useContext(MintPageContext);
 
   const [showFallback, setShowFallback] = useState(true);
+
+  const { windowWidth, windowHeight } = useWindowSize();
 
   const generateRandomImage = (arr: string[]) => {
     return arr.length > 0
@@ -56,13 +59,15 @@ const Home: NextPage = () => {
           <NavBar />
           <St.BodyContainer>
             <St.SliderAndIframeContainer>
-              <Slider>
-                {sliderMedia.map((nft) => (
-                  <div key={nft.id}>
-                    <img src={nft.video_url} alt="nft" />
-                  </div>
-                ))}
-              </Slider>
+              {windowWidth > 1000 ? (
+                <Slider>
+                  {sliderMedia.map((nft) => (
+                    <div key={nft.id}>
+                      <img src={nft.video_url} alt="nft" />
+                    </div>
+                  ))}
+                </Slider>
+              ) : null}
               <St.LeftSection>
                 <St.TitleAnCryptoContainer>
                   <St.TitleContainer>
@@ -72,8 +77,8 @@ const Home: NextPage = () => {
                   <Web3Buttons />
                 </St.TitleAnCryptoContainer>
                 <iframe
-                  height={650}
-                  width={650}
+                  height={windowWidth > 750 ? '650' : '300'}
+                  width={windowWidth > 750 ? '650' : '300'}
                   src={generateRandomImage(generatorURLs)}
                   title="generator"
                   frameBorder="0"

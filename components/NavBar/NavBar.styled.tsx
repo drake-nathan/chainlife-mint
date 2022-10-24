@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 export const NavContainer = styled.div`
-  display: grid;
-  grid-template-columns: 350px auto 500px;
+  display: flex;
   align-items: center;
   width: 100%;
+  justify-content: space-between;
   position: top;
   top: 0;
   padding-right: 30px;
+  padding-left: 30px;
   height: 100px;
   margin-bottom: 30px;
 
@@ -27,9 +28,7 @@ export const Gap = styled.div`
 `;
 
 export const logoDiv = styled.div`
-  position: absolute;
-  top: 25px;
-  left: 50px;
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1.5em;
@@ -39,11 +38,17 @@ export const NavTitle = styled.h1``;
 
 export const NavLinksDiv = styled.div`
   display: flex;
+  position: relative;
+  right: 0;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   font-size: 20px;
   font-weight: 500;
+  gap: 1.5em;
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 
 export const SocialContainer = styled(NavContainer)`
@@ -66,6 +71,9 @@ export const NavConnect = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 
   :hover {
     color: ${(props) => props.theme.colors.hover};

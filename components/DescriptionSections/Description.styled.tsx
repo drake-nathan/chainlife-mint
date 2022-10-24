@@ -13,7 +13,7 @@ export const HeroContainer = styled.div`
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   margin-top: 0.5em;
   gap: 1em;
   width: 35%;
@@ -82,7 +82,7 @@ export const Button = styled.button`
   border-radius: ${(props) => props.theme.borderRadius};
   background-color: ${(props) => props.theme.colors.bgMain};
   color: ${(props) => props.theme.colors.textMain};
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 500;
   padding: 0 0.5em;
   cursor: pointer;

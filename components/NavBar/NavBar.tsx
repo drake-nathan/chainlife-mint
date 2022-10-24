@@ -24,7 +24,6 @@ const NavBar: React.FC = () => {
           </St.NavLink>
         </St.logoDiv>
         <St.NavLinksDiv />
-        <St.Gap />
         <St.NavLinksDiv>
           <St.NavLink href="https://matto.xyz/" target="blank">
             ABOUT
@@ -32,6 +31,7 @@ const NavBar: React.FC = () => {
           <St.NavLink href="https://matto.xyz/" target="blank">
             HOW IT WORKS
           </St.NavLink>
+          <St.NavConnect>MARKETS</St.NavConnect>
           <St.NavConnect onClick={handleConnectClick}>
             {!active ? 'CONNECT WALLET' : 'CONNECTED'}
           </St.NavConnect>
