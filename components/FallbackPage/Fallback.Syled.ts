@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'components/NavBar/NavBar.styled';
 import {
-  CountdownDiv,
-  CountdownStyled,
   SubtleText,
   SubtleDiv,
 } from 'components/DescriptionSections/Description.styled';
@@ -53,9 +51,9 @@ export const HDLTitle = styled.h1`
   }
 `;
 
-export const MintCountdownDiv = styled(CountdownDiv)``;
+// export const MintCountdownDiv = styled(CountdownDiv)``;
 
-export const MintCountdown = styled(CountdownStyled)`
-  font-size: 30px;
-  margin: 1em;
-`;
+// export const MintCountdown = styled(CountdownStyled)`
+//   font-size: 30px;
+//   margin: 1em;
+// `;
