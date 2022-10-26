@@ -5,11 +5,11 @@ import { useRouter } from 'next/router';
 import NavBar from 'components/NavBar/NavBar';
 import TokenForms from 'components/DescriptionSections/TokenForms';
 import { AppContainer } from '../../styles/App.styled';
-import * as St from './token.styled';
 import { getToken } from 'azureApi/fetches';
 import { useEffect, useState } from 'react';
 import { IToken } from 'azureApi/types';
 import Traits from 'components/Traits/Traits';
+import * as St from '../../styles/token.styled';
 
 const Home: NextPage = () => {
   const router = useRouter();

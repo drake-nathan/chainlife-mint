@@ -12,7 +12,7 @@ const TokenForms: React.FC<Props> = ({ tokenId }) => {
   const { active, account } = useWeb3React();
   const { goerliContract } = useContract();
 
-  const [activeSection, setActiveSection] = useState(1);
+  const [activeSection, setActiveSection] = useState<1 | 2>(1);
   const [customRule, setCustomRule] = useState('');
 
   const handleSubmit = async () => {
