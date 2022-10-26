@@ -3,14 +3,11 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Squash as Hamburger } from 'hamburger-react';
+import { useWeb3React } from '@web3-react/core';
 import { useWindowSize } from 'hooks/useWindowSize';
 import ConnectDropDown from 'components/Modals/ConnectDropDown';
 import MarketsDropDown from 'components/Modals/MarketsDropDown';
-import Twitter from '../../public/icons/Twitter.svg';
-import Discord from '../../public/icons/Discord-Logo-White.svg';
-import ClLogo from '../../public/chainlife_tree_logo.png';
 import * as St from './NavBar.styled';
-import { useWeb3React } from '@web3-react/core';
 
 const NavBar: React.FC = () => {
   const { active } = useWeb3React();
@@ -33,7 +30,12 @@ const NavBar: React.FC = () => {
     return (
       <St.NavContainer>
         <St.logoDiv>
-          <Image src={ClLogo} height={50} width={50} alt="ChainLife logo" />
+          <Image
+            src={'/chainlife_tree_logo.png'}
+            height={50}
+            width={50}
+            alt="ChainLife logo"
+          />
           <St.NavLink href="/">
             <St.NavTitle>Chainlife (Testnet)</St.NavTitle>
           </St.NavLink>
@@ -45,14 +47,19 @@ const NavBar: React.FC = () => {
               target="blank"
               rel="noreferrer"
             >
-              <Image src={Twitter} height={21} width={21} alt="logo" />
+              <Image src={'/icons/Twitter.svg'} height={21} width={21} alt="logo" />
             </St.NavLink>
             <St.NavLink
               href="https://discord.com/invite/AQDwjAa3g2"
               target="blank"
               rel="noreferrer"
             >
-              <Image src={Discord} height={24} width={24} alt="logo" />
+              <Image
+                src={'/icons/Discord-Logo-White.svg'}
+                height={24}
+                width={24}
+                alt="logo"
+              />
             </St.NavLink>
           </St.SocialContainer>
           <St.NavLink href="https://matto.xyz/" target="blank">
