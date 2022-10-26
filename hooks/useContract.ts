@@ -8,7 +8,7 @@ export const useContract = () => {
 
   const goerliContract = new web3.eth.Contract(
     storefrontAbi as AbiItem[],
-    goerliContractAddress,
+    goerliContractAddress.toLowerCase(),
   );
 
   // TODO: Think through how to handle multiple contracts

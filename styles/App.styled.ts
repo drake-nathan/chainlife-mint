@@ -23,18 +23,21 @@ export const BodyContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3.5rem;
+    gap: 3rem;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 3rem;
+    padding-bottom: 25px;
   }
 `;
 
 export const LeftSection = styled.div`
   @media (max-width: 750px) {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: yellow;
-    gap: 2rem;
+    // gap: 4.5rem;
   }
 `;
 
@@ -44,7 +47,7 @@ export const SliderAndIframeContainer = styled.div`
   gap: 7rem;
   @media (max-width: 750px) {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 `;
 
@@ -57,11 +60,8 @@ export const TitleAnCryptoContainer = styled.div`
   justify-content: space-between;
   @media (max-width: 750px) {
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    background: pink;
-    min-height: 150px;
+    align-items: center;
     max-width: 350px;
   }
 `;
@@ -71,19 +71,40 @@ export const TitleContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   @media (max-width: 750px) {
+    margin-bottom: -12px;
+    width: 350px;
     align-items: center;
   }
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.p`
+  color: ${(props) => props.theme.colors.textOffset};
+  font-size: 18px;
+  @media (max-width: 500px) {
+    font-size: 15px;
+  }
+`;
 
-export const SubTitle = styled.h3``;
+export const SubTitle = styled.h3`
+  @media (max-width: 500px) {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 20px;
+  }
+`;
 
 export const DescriptionsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-top: 128px;
+  height: 650px;
   align-items: center;
+  @media (max-width: 1700px) {
+    margin-top: 0px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 `;
 
 export const InfoContainer = styled.div`
@@ -95,6 +116,14 @@ export const InfoContainer = styled.div`
   width: 650px;
   @media (max-width: 750px) {
     width: 360px;
+    margin-top: 3.5rem;
+    margin-bottom: 2rem;
+    gap: 2rem;
+    flex-direction: column;
+
+    button {
+      max-width: 225px;
+    }
   }
 `;
 
@@ -102,4 +131,7 @@ export const InfoText = styled.p`
   font-size: 18px;
   font-weight: 300;
   font-style: italic;
+  @media (max-width: 750px) {
+    font-size: 15px;
+  }
 `;

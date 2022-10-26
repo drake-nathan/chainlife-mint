@@ -1,5 +1,5 @@
 export const section1Text =
-  'Received overcame oh sensible so at an. Formed do change merely to county it. Am separate contempt domestic to to oh. On relation my so addition branched. Put hearing cottage she norland letters equally prepare too. Replied exposed savings he no viewing as up. Soon body add him hill. No father living really people estate if.';
+  "Collectors of Matto's Art Blocks 'Zenerative' projects, Enso and FOCUS, can mint Chainlife tokens during a 48-hour window prior to the public mint. These mints will have a special trait 'Zen. Mint' and will have a special interactive function that will be unavailable to public mints. Each Zenerative token is eligible to claim one Chainlife token. Thank you prior collectors!";
 
 export const section2Text =
-  'Spot of come to ever hand as lady meet on. Delicate contempt received two yet advanced. Gentleman as belonging he commanded believing dejection in by. On no am winding chicken so behaved. Its preserved sex enjoyment new way behaviour. Him yet devonshire celebrated especially. Unfeeling one provision are smallness resembled repulsive.';
+  "Note that a Chainlife's first starting population is determined entirely by its first owner. For this reason, minting to an address will create a different result than minting and then sending it to that address. Learn more in the ";

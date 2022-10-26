@@ -2,7 +2,6 @@ import { useWeb3React } from '@web3-react/core';
 import { useContract } from 'hooks/useContract';
 import React, { useState } from 'react';
 import { callCustomRule } from 'web3/web3Fetches';
-import Socials from '../Socials/Socials';
 import * as St from './Description.styled';
 import * as StForm from './TokenForms.styled';
 
@@ -79,7 +78,6 @@ const TokenForms: React.FC<Props> = ({ tokenId }) => {
       >
         Submit
       </St.Button>
-      <Socials />
     </St.HeroContainer>
   );
 };

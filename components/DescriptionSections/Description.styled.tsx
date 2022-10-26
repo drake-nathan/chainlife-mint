@@ -35,6 +35,10 @@ export const SectionTitleContainer = styled.div`
   .inactive {
     color: ${(props) => props.theme.colors.textOffset};
   }
+
+  @media (max-width: 500px) {
+    justify-content: center;
+  }
 `;
 
 export const Title = styled.h1`
@@ -65,11 +69,38 @@ export const SubtleDiv = styled.div`
   @media (max-width: 600px) {
     flex-direction: column;
   }
+
+  .one {
+    &:after {
+      background-image: url('/prayer_emoji_icon.png');
+      background-size: 25px 25px;
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      margin-left: 8px;
+      content: '';
+    }
+  }
+
+  .two {
+    &:after {
+      background-image: url('/brain_emoji_icon.png');
+      background-size: 25px 25px;
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      margin-left: 8px;
+      content: '';
+    }
+  }
 `;
 
 export const SubtleText = styled.span`
   color: ${(props) => props.theme.colors.textOffset};
   font-size: 18px;
+  @media (max-width: 500px) {
+    font-size: 15px;
+  }
 `;
 
 export const Button = styled.button`
