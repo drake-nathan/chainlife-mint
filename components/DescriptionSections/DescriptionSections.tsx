@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import * as St from './Description.styled';
-import Socials from '../Socials/Socials';
 import { section1Text, section2Text } from './SectionText';
 
 const DescriptionSections: React.FC = () => {
@@ -13,24 +12,42 @@ const DescriptionSections: React.FC = () => {
           onClick={() => setActiveSection(1)}
           className={activeSection === 1 ? '' : 'inactive'}
         >
-          SECTION 1
+          PREMINT
         </St.Title>
         <St.Title>|</St.Title>
         <St.Title
           onClick={() => setActiveSection(2)}
           className={activeSection === 2 ? '' : 'inactive'}
         >
-          SECTION 2
+          PUBLIC
         </St.Title>
       </St.SectionTitleContainer>
-      <St.SubTitle>SECTION SUBTITLE</St.SubTitle>
+      <St.SubTitle>
+        {activeSection === 1
+          ? 'Minting wallet must hold eligible token.'
+          : '1 Mint per transaction'}{' '}
+        {activeSection === 1 ? '(Cost Per Mint: 0.08 ETH)' : ''}
+      </St.SubTitle>
       <St.SubtleDiv>
-        <St.SubtleText>
+        <St.SubtleText className={activeSection === 1 ? 'one' : 'two'}>
           {' '}
-          {activeSection === 2 ? section2Text : section1Text}
+          {activeSection === 2 ? section2Text : section1Text}{' '}
+          {activeSection === 2 ? (
+            <a
+              href="https://chainlife.gitbook.io/docs/"
+              target="blank"
+              rel="noreferrer"
+              style={{
+                textDecoration: 'underline',
+                color: '#3a3a3a',
+                fontWeight: '500',
+              }}
+            >
+              docs.
+            </a>
+          ) : null}
         </St.SubtleText>
       </St.SubtleDiv>
-      <Socials />
     </St.HeroContainer>
   );
 };
