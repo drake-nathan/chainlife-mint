@@ -4,9 +4,10 @@ export const ModalBackground = styled.div`
   height: 150vh;
   width: 100%;
   position: absolute;
+  left: 0;
+  top: 0;
   z-index: 30;
-  background: rgba(0, 0, 0, 0.6);
-  color: pink;
+  background: rgba(253, 253, 253, 0.7);
   backdrop-filter: blur(4px);
   cursor: pointer;
 
@@ -22,6 +23,7 @@ export const BuyModalBackground = styled(ModalBackground)`
 export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1.5em;
   position: fixed;
   top: 50%;
@@ -42,19 +44,19 @@ export const BuyModalContainer = styled(ModalContainer)`
   z-index: 20;
   padding: 2.5em 2.5em;
   @media (max-width: 500px) {
-    min-width: 350px;
+    min-width: 375px;
   }
 `;
 
 export const CenterModalContainer = styled(ModalContainer)`
   align-items: center;
+  justify-content: center;
 `;
 
 export const MsgDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 1em;
+  align-items: flex-start;
 `;
 
 export const UnitDiv = styled(MsgDiv)`
@@ -70,8 +72,13 @@ export const Text = styled.span`
   font-size: 1.25rem;
   font-weight: 500;
   text-align: center;
+  margin-right: -8px;
+  margin-top: 34px;
   line-height: 1.5;
   max-width: 25ch;
+  @media (max-width: 500px) {
+    margin-top: 18px;
+  }
 `;
 
 export const Link = styled.a`
@@ -91,6 +98,7 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   min-width: 175px;
   min-height: 65px;
   border: 3px solid ${(props) => props.theme.colors.textMain};
@@ -119,7 +127,9 @@ export const CenterButtonDiv = styled.div`
 `;
 
 export const XButton = styled.img`
+  color: ${(props) => props.theme.colors.textMain};
   width: 1.25em;
+  margin-top: -4px;
   cursor: pointer;
 `;
 
@@ -155,6 +165,9 @@ export const PlusMinusButton = styled(Button)`
 
 export const SubtleText = styled.span`
   color: ${(props) => props.theme.colors.textOffset};
+  @media (max-width: 500px) {
+    font-size: 13px;
+  }
 `;
 
 export const UnitText = styled(Text)`

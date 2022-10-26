@@ -23,6 +23,7 @@ export const SliderWrapper = styled.div<SliderWrapperProps>`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 30px;
   gap: 30px;
   // margin-top: 2rem;
   width: 225px;
@@ -82,7 +83,7 @@ export const SliderDiv = styled.div<SliderProps>`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  max-height: 800px;
+  max-height: 650px;
   padding-left: 15px;
   padding-right: 15px;
   transition: transform ${(props) => props.pageTransition}ms ease;

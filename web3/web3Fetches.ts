@@ -14,17 +14,15 @@ export const checkIfPresaleActive = async (contract: Contract) => {
 };
 
 export const fetchCurrentSupply = async (contract: Contract) => {
-  // const currentSupply = (await contract.methods.totalSupply().call()) as number;
+  const currentSupply = (await contract.methods.totalSupply().call()) as number;
 
-  // return currentSupply;
-  return 69;
+  return currentSupply;
 };
 
 export const checkIfSupply = async (contract: Contract, maxSupply: number) => {
-  // const currentSupply = (await contract.methods.totalSupply().call()) as number;
+  const currentSupply = (await contract.methods.totalSupply().call()) as number;
 
-  // return currentSupply < maxSupply;
-  return true;
+  return currentSupply < maxSupply;
 };
 
 export const callPremint = async (

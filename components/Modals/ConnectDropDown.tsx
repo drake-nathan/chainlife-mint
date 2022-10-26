@@ -50,7 +50,10 @@ const ConnectDropDown: React.FC<Props> = ({ setShowModal }) => {
     <>
       <St.DropDownContainer>
         <St.TopButtonContainer>
-          <IoIcons.IoCaretUpCircleOutline onClick={handleCloseModal} />
+          <IoIcons.IoCaretUpCircleOutline
+            className="up-arrow"
+            onClick={handleCloseModal}
+          />
           <St.Button
             id="metamask"
             onClick={() => handleConnectWallet(Connectors.Injected)}

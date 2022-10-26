@@ -3,17 +3,18 @@ import styled from 'styled-components';
 export const DropDownContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   width: 175px;
   position: absolute;
   top: 80px;
-  right: 30px;
+  right: 235px;
   gap: 0.25em;
   background-color: ${(props) => props.theme.colors.bgMain};
 `;
 
 export const TopButtonContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: space-between;
   width: 175px;
@@ -34,7 +35,7 @@ export const TopButtonContainer = styled.div`
     color: inherit;
     background: inherit;
     border: none;
-    margin-left: 4px;
+    margin-right: 12px;
   }
 
   button {
@@ -42,12 +43,17 @@ export const TopButtonContainer = styled.div`
     background: inherit;
     border: none;
   }
+
+  #opensea {
+    width: 100%;
+    margin-left: -8px;
+  }
 `;
 
 export const Button = styled.button`
   display: flex;
-  justify-content: flex-end;
-  text-align: end;
+  justify-content: flex-start;
+  text-align: start;
   outline: none;
   align-items: center;
   min-height: 45px;
@@ -57,6 +63,7 @@ export const Button = styled.button`
   font-weight: 500;
   padding: 0 0.5em;
   cursor: pointer;
+  width: 175px;
 
   :hover {
     color: ${(props) => props.theme.colors.textMain};
