@@ -1,4 +1,7 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+export const FadeIn = keyframes`0% {opacity: 0;}
+100% {opacity: 100;}`;
 
 export const AppContainer = styled.div`
   width: 100%;
@@ -17,6 +20,7 @@ export const BodyContainer = styled.div`
   padding: 60px 100px;
   max-width: 1920px;
   gap: 7rem;
+  width: 100%;
 
   @media (max-width: 1700px) {
     display: flex;
@@ -30,6 +34,62 @@ export const BodyContainer = styled.div`
     padding-bottom: 25px;
   }
 `;
+
+export const WorldViewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  gap: 3rem;
+
+  p {
+    cursor: pointer;
+    animation-name: ${FadeIn};
+    animation-duration: 1s;
+  }
+`;
+
+export const InstructionsContainer = styled.div`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+`;
+
+export const ViewInstructions = styled.p`
+  color: ${(props) => props.theme.colors.textOffset};
+  font-weight: 500;
+  font-size: 18px;
+`;
+
+export const StepContainer = styled.div`
+  position: absolute;
+  top: 10%;
+  z-index: 20;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 16px;
+  background: rgba(244, 245, 240, 0.95);
+  max-width: 650px;
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  animation-name: ${FadeIn};
+  animation-duration: 1s ease-in-out;
+  @media (max-width: 550px) {
+    font-size: 14px;
+    max-width: 350px;
+  }
+`;
+
+export const Step = styled.p``;
 
 export const LeftSection = styled.div`
   @media (max-width: 750px) {
@@ -85,6 +145,24 @@ export const Title = styled.p`
   }
 `;
 
+export const WorldViewTitle = styled(Title)`
+  max-width: 800px;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  @media (max-width: 550px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+`;
+
+export const WorldViewInfo = styled.h1`
+  text-align: center;
+  @media (max-width: 600px) {
+    font-size: 24px;
+  }
+`;
+
 export const SubTitle = styled.h3`
   @media (max-width: 500px) {
     font-size: 14px;
@@ -92,6 +170,26 @@ export const SubTitle = styled.h3`
     margin-top: 20px;
   }
 `;
+
+export const NotesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+  text-align: left;
+  padding-left: 80px;
+  padding-right: 80px;
+  @media (max-width: 600px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+`;
+
+export const NotesTitle = styled(SubTitle)`
+  color: ${(props) => props.theme.colors.textMain};
+`;
+
+export const NotesText = styled.p``;
 
 export const DescriptionsContainer = styled.div`
   display: flex;
