@@ -6,7 +6,6 @@ import NavBar from 'components/NavBar/NavBar';
 import TokenForms from 'components/DescriptionSections/TokenForms';
 import { AppContainer } from '../../styles/App.styled';
 import * as St from './token.styled';
-import Footer from 'components/Footer/Footer';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -39,8 +38,6 @@ const Home: NextPage = () => {
           <TokenForms tokenId={tokenIdNum} />
         </St.FormContainer>
       </St.TokenContainer>
-
-      <Footer />
     </AppContainer>
   );
 };

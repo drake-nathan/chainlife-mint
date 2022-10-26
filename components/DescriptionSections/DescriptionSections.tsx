@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import * as St from './Description.styled';
+import { useMintDetails } from 'hooks/useMintDetails';
 import { section1Text, section2Text } from './SectionText';
+import * as St from './Description.styled';
 
 const DescriptionSections: React.FC = () => {
+  const { discountPrice, mintPrice } = useMintDetails();
   const [activeSection, setActiveSection] = useState(1);
 
   return (
@@ -12,7 +14,7 @@ const DescriptionSections: React.FC = () => {
           onClick={() => setActiveSection(1)}
           className={activeSection === 1 ? '' : 'inactive'}
         >
-          PREMINT
+          PRESALE
         </St.Title>
         <St.Title>|</St.Title>
         <St.Title
@@ -26,7 +28,10 @@ const DescriptionSections: React.FC = () => {
         {activeSection === 1
           ? 'Minting wallet must hold eligible token.'
           : '1 Mint per transaction'}{' '}
-        {activeSection === 1 ? '(Cost Per Mint: 0.08 ETH)' : ''}
+        <br />
+        {activeSection === 1
+          ? `(Cost Per Mint: ${discountPrice} ETH)`
+          : `(Cost Per Mint: ${mintPrice} ETH)`}
       </St.SubTitle>
       <St.SubtleDiv>
         <St.SubtleText className={activeSection === 1 ? 'one' : 'two'}>

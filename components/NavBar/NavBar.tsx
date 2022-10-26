@@ -56,9 +56,9 @@ const NavBar: React.FC = () => {
             </St.NavLink>
           </St.SocialContainer>
           <St.NavLink href="https://matto.xyz/" target="blank">
-            ABOUT
+            MATTO
           </St.NavLink>
-          <St.NavLink href="https://matto.xyz/" target="blank">
+          <St.NavLink href="https://demo.chainlife.xyz/" target="blank">
             HOW IT WORKS
           </St.NavLink>
           <St.NavConnect onClick={handleMarketsClick}>MARKETS</St.NavConnect>
@@ -66,9 +66,7 @@ const NavBar: React.FC = () => {
             {!active ? 'CONNECT WALLET' : 'CONNECTED'}
           </St.NavConnect>
         </St.NavLinksDiv>
-        {showConnectModal && (
-          <ConnectDropDown setShowModal={setShowConnectModal} />
-        )}
+        {showConnectModal && <ConnectDropDown setShowModal={setShowConnectModal} />}
         {showMarketsDropDown && (
           <MarketsDropDown setShowMarketsDropDown={setShowMarketsDropDown} />
         )}
@@ -86,16 +84,12 @@ const NavBar: React.FC = () => {
           <St.MobileNavLink href="https://matto.xyz/" target="blank">
             HOW IT WORKS
           </St.MobileNavLink>
-          <St.MobileNavConnect onClick={handleMarketsClick}>
-            MARKETS
-          </St.MobileNavConnect>
+          <St.MobileNavConnect onClick={handleMarketsClick}>MARKETS</St.MobileNavConnect>
           <St.MobileNavConnect onClick={handleConnectClick}>
             {!active ? 'CONNECT WALLET' : 'CONNECTED'}
           </St.MobileNavConnect>
         </St.MobileNavLinksDiv>
-        {showConnectModal && (
-          <ConnectDropDown setShowModal={setShowConnectModal} />
-        )}
+        {showConnectModal && <ConnectDropDown setShowModal={setShowConnectModal} />}
         {showMarketsDropDown && (
           <MarketsDropDown setShowMarketsDropDown={setShowMarketsDropDown} />
         )}

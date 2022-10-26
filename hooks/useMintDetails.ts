@@ -7,9 +7,10 @@ export const useMintDetails = () => {
   const publicStart = mintStart + preSalePeriod;
   const mintEnd = Date.parse('2023-10-18T14:22:00-0400');
 
-  const mintPrice = 0.06;
-  const discountPrice = 0.06;
+  const mintPrice = 0.1;
+  const discountPrice = 0.08;
   const maxSupply = 4096;
+  const currentSupply = 14;
   const maxMint = 1;
 
   const [isMintLive, setIsMintLive] = useState(false);
@@ -33,6 +34,7 @@ export const useMintDetails = () => {
     mintPrice,
     discountPrice,
     maxSupply,
+    currentSupply,
     maxMint,
   };
 };
