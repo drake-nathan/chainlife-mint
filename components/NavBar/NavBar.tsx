@@ -109,7 +109,12 @@ const NavBar: React.FC = () => {
       <>
         <St.NavContainer>
           <St.logoDiv>
-            <Image src={ClLogo} height={35} width={35} alt="ChainLife logo" />
+            <Image
+              src={'/chainlife_tree_logo.png'}
+              height={35}
+              width={35}
+              alt="ChainLife logo"
+            />
             <St.NavLink
               href="https://linktr.ee/MonkMatto"
               target="blank"
@@ -125,14 +130,19 @@ const NavBar: React.FC = () => {
                 target="blank"
                 rel="noreferrer"
               >
-                <Image src={Twitter} height={21} width={21} alt="logo" />
+                <Image src={'/icons/Twitter.svg'} height={21} width={21} alt="logo" />
               </St.NavLink>
               <St.NavLink
                 href="https://discord.com/invite/AQDwjAa3g2"
                 target="blank"
                 rel="noreferrer"
               >
-                <Image src={Discord} height={24} width={24} alt="logo" />
+                <Image
+                  src={'/icons/Discord-Logo-White.svg'}
+                  height={24}
+                  width={24}
+                  alt="logo"
+                />
               </St.NavLink>
             </St.SocialContainer>
           </St.NavLinksDiv>
