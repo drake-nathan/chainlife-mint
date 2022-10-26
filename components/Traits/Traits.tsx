@@ -8,10 +8,6 @@ interface Props {
 
 const Traits: React.FC<Props> = ({ token }) => {
   const { attributes } = token;
-  const traitKeys = attributes.map((attr) => attr.trait_type);
-  const traitValues = attributes.map((attr) => attr.value);
-
-  console.log(traitKeys, traitValues);
 
   return (
     <St.Table>

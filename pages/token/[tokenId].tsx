@@ -9,7 +9,6 @@ import * as St from './token.styled';
 import { getToken } from 'azureApi/fetches';
 import { useEffect, useState } from 'react';
 import { IToken } from 'azureApi/types';
-import LoadingVideo from 'components/LoadingVideo/LoadingVideo';
 import Traits from 'components/Traits/Traits';
 
 const Home: NextPage = () => {
@@ -44,17 +43,13 @@ const Home: NextPage = () => {
       <NavBar />
 
       <St.TokenContainer>
-        {generatorUrl ? (
-          <iframe
-            height={650}
-            width={650}
-            src={generatorUrl}
-            title="generator"
-            frameBorder="0"
-          ></iframe>
-        ) : (
-          <LoadingVideo />
-        )}
+        <iframe
+          height={650}
+          width={650}
+          src={generatorUrl}
+          title="generator"
+          frameBorder="0"
+        ></iframe>
         {token && <Traits token={token} />}
       </St.TokenContainer>
       <St.FormContainer>

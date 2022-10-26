@@ -33,9 +33,9 @@ const NavBar: React.FC = () => {
     return (
       <St.NavContainer>
         <St.logoDiv>
-          <Image src={ClLogo} height={35} width={35} alt="ChainLife logo" />
+          <Image src={ClLogo} height={50} width={50} alt="ChainLife logo" />
           <St.NavLink href="/">
-            <St.NavTitle>Chainlife</St.NavTitle>
+            <St.NavTitle>Chainlife (Testnet)</St.NavTitle>
           </St.NavLink>
         </St.logoDiv>
         <St.NavLinksDiv>
