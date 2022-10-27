@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Chainlife Mint</title>
         <meta name="description" content="Chainlife Mint." />
-        <link rel="icon" href="/favicon-16x16.png" />
+        <link rel="icon" href="/chainlife/favicon.ico" />
       </Head>
 
       <NavBar />

@@ -37,7 +37,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Chainlife</title>
         <meta name="description" content="Chainlife Token." />
-        <link rel="icon" href="/favicon-16x16.png" />
+        <link rel="icon" href="/chainlife/favicon.ico" />
       </Head>
 
       <NavBar />

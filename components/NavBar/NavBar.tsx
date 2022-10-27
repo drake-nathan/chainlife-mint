@@ -32,7 +32,7 @@ const NavBar: React.FC = () => {
       <St.NavContainer>
         <St.logoDiv>
           <Image
-            src={'/chainlife_tree_logo.png'}
+            src={'/chainlife/chainlife.png'}
             height={50}
             width={50}
             alt="ChainLife logo"
@@ -120,7 +120,7 @@ const NavBar: React.FC = () => {
         <St.NavContainer>
           <St.logoDiv>
             <Image
-              src={'/chainlife_tree_logo.png'}
+              src={'/chainlife/chainlife.png'}
               height={35}
               width={35}
               alt="ChainLife logo"
