@@ -56,8 +56,16 @@ export const InstructionsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: fit-content;
   height: fit-content;
+  width: 100%;
+
+  @media (max-width: 1800px) {
+    width: 80%;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export const Expand = styled.a`
@@ -239,5 +247,18 @@ export const InfoText = styled.p`
   font-style: italic;
   @media (max-width: 750px) {
     font-size: 15px;
+  }
+`;
+
+export const FrameDiv = styled.div`
+  /* border: 1px solid #000000; */
+  width: 100%;
+  iframe {
+    width: 100%;
+    height: 50vh;
+
+    @media (min-width: 1000px) {
+      height: 75vh;
+    }
   }
 `;

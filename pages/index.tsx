@@ -68,15 +68,13 @@ const Home: NextPage = () => {
               ) : null}
             </St.StepContainer>
           ) : null}
-          <iframe
-            height={850}
-            width={850}
-            src={
-              'https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world'
-            }
-            title="generator"
-            frameBorder="0"
-          ></iframe>
+          <St.FrameDiv>
+            <iframe
+              src="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
+              title="generator"
+              frameBorder="0"
+            ></iframe>
+          </St.FrameDiv>
           <St.Expand
             href="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
             target="blank"
