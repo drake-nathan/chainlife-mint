@@ -73,14 +73,14 @@ const NavBar: React.FC = () => {
         </St.NavLinksDiv>
         <St.NavLinksDiv>
           <St.NavLink href="https://chainlife.gitbook.io/docs/" target="blank">
-            HOW IT WORKS
+            {windowWidth < 500 ? 'ABOUT' : 'HOW IT WORKS'}
           </St.NavLink>
           <St.NavLink href="https://random.chainlife.xyz/" target="blank">
             RANDOM
           </St.NavLink>
           <St.NavConnect onClick={handleMarketsClick}>MARKETS</St.NavConnect>
           <St.NavConnect onClick={handleConnectClick}>
-            {!active ? 'CONNECT WALLET' : 'CONNECTED'}
+            {!active ? (windowWidth < 500 ? 'CONNECT' : 'CONNECT WALLET') : 'CONNECTED'}
           </St.NavConnect>
         </St.NavLinksDiv>
         {showConnectModal && <ConnectDropDown setShowModal={setShowConnectModal} />}

@@ -251,7 +251,6 @@ export const InfoText = styled.p`
 `;
 
 export const FrameDiv = styled.div`
-  /* border: 1px solid #000000; */
   width: 100%;
   iframe {
     width: 100%;
