@@ -11,20 +11,20 @@ const Traits: React.FC<Props> = ({ token }) => {
 
   return (
     <St.Table>
-      <St.TableHead>
-        <St.Row>
-          <St.Header>Trait</St.Header>
-          <St.Header>Value</St.Header>
-        </St.Row>
-      </St.TableHead>
-      <St.TableBody>
-        {attributes.map((trait) => (
-          <St.Row key={trait.trait_type}>
-            <St.Cell>{trait.trait_type}</St.Cell>
-            <St.Cell>{trait.value}</St.Cell>
-          </St.Row>
-        ))}
-      </St.TableBody>
+      <St.HeaderContainer>
+        <St.Header>Trait</St.Header>
+        <St.Header>Value</St.Header>
+      </St.HeaderContainer>
+      <St.TableWrapper>
+        <St.TableBody>
+          {attributes.map((trait) => (
+            <St.RowContainer key={trait.trait_type}>
+              <St.Row>{trait.trait_type}</St.Row>
+              <St.Row>{trait.value}</St.Row>
+            </St.RowContainer>
+          ))}
+        </St.TableBody>
+      </St.TableWrapper>
     </St.Table>
   );
 };

@@ -3,8 +3,8 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import NavBar from 'components/NavBar/NavBar';
 import * as Steps from 'helpers/worldviewInstructions';
-import { generatorURLs } from 'helpers/iFrameMedia';
 import { useWindowSize } from 'hooks/useWindowSize';
+import * as IoIcons from 'react-icons/io';
 import * as St from '../styles/App.styled';
 
 const Home: NextPage = () => {
@@ -57,19 +57,34 @@ const Home: NextPage = () => {
                   <St.Step>{Steps.step2Line4}</St.Step>
                 </>
               ) : activeStep === 3 ? (
-                <St.Step key={Steps.step3}>{Steps.step3}</St.Step>
+                <>
+                  <St.Step key={Steps.step3}>{Steps.step3}</St.Step>
+                  <St.Step>{Steps.step3Line2}</St.Step>
+                  <St.Step>{Steps.step3Line3}</St.Step>
+                  <St.Step>{Steps.step3Line4}</St.Step>
+                  <St.Step>{Steps.step3Line5}</St.Step>
+                  <St.Step>{Steps.step3Line6}</St.Step>
+                </>
               ) : null}
             </St.StepContainer>
           ) : null}
           <iframe
-            height={windowWidth < 850 ? windowWidth : '850'}
-            width={windowWidth < 850 ? windowWidth : '850'}
+            height={850}
+            width={850}
             src={
               'https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world'
             }
             title="generator"
             frameBorder="0"
           ></iframe>
+          <St.Expand
+            href="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
+            target="blank"
+            rel="noreferrer"
+            title="Expand Worldview"
+          >
+            <IoIcons.IoIosExpand />
+          </St.Expand>
         </St.InstructionsContainer>
         {activeStep === 0 ? (
           <St.ViewInstructions onClick={() => setActiveStep(1)}>

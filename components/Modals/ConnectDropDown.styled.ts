@@ -23,6 +23,8 @@ export const TopButtonContainer = styled.div`
   padding-left: 0.35em;
   font-weight: 500;
   cursor: pointer;
+  @media (max-width: 500px) {
+  }
 
   &:hover {
     color: ${(props) => props.theme.colors.textMain};
@@ -35,6 +37,10 @@ export const TopButtonContainer = styled.div`
     background: inherit;
     border: none;
     margin-left: 4px;
+    @media (max-width: 500px) {
+      min-width: 25px;
+      padding: 0px;
+    }
   }
 
   button {
@@ -65,6 +71,6 @@ export const Button = styled.button`
   }
 
   @media (max-width: 500px) {
-    min-width: 150px;
+    min-width: 125px;
   }
 `;
