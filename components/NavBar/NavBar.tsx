@@ -6,29 +6,63 @@ import { Squash as Hamburger } from 'hamburger-react';
 import { useWeb3React } from '@web3-react/core';
 import { useWindowSize } from 'hooks/useWindowSize';
 import ConnectDropDown from 'components/Modals/ConnectDropDown';
+import ConnectModal from 'components/Modals/ConnectModal';
 import MarketsDropDown from 'components/Modals/MarketsDropDown';
+import MarketsModal from 'components/Modals/MarketsModal';
 import * as IoIcons from 'react-icons/io';
 import * as St from './NavBar.styled';
 
 const NavBar: React.FC = () => {
   const { active } = useWeb3React();
   const [showConnectModal, setShowConnectModal] = useState(false);
-  const [showMarketsDropDown, setShowMarketsDropDown] = useState(false);
-  const { windowWidth, windowHeight } = useWindowSize();
-  const [isOpen, setOpen] = useState(false);
+  const [showMarketsModal, setShowMarketsModal] = useState(false);
+  const { windowWidth } = useWindowSize();
+  // const [isOpen, setOpen] = useState(false);
 
   const handleConnectClick = () => {
-    setShowMarketsDropDown(false);
+    setShowMarketsModal(false);
     setShowConnectModal(!showConnectModal);
   };
 
   const handleMarketsClick = () => {
     setShowConnectModal(false);
-    setShowMarketsDropDown(!showMarketsDropDown);
+    setShowMarketsModal(!showMarketsModal);
   };
 
-  const renderFullNav = () => {
-    return (
+  const renderDropDown = () => {
+    if (windowWidth < 675 && showConnectModal === true) {
+      return (
+        <>
+          <ConnectModal setShowModal={setShowConnectModal} />
+        </>
+      );
+    } else if (windowWidth > 675 && showConnectModal === true) {
+      return (
+        <>
+          <ConnectDropDown setShowModal={setShowConnectModal} />{' '}
+        </>
+      );
+    }
+  };
+
+  const renderMarketsDropDown = () => {
+    if (windowWidth < 675 && showMarketsModal === true) {
+      return (
+        <>
+          <MarketsModal setShowModal={setShowMarketsModal} />{' '}
+        </>
+      );
+    } else if (windowWidth > 675 && showMarketsModal === true) {
+      return (
+        <>
+          <MarketsDropDown setShowModal={setShowMarketsModal} />
+        </>
+      );
+    }
+  };
+
+  return (
+    <>
       <St.NavContainer>
         <St.logoDiv>
           <Image
@@ -37,11 +71,14 @@ const NavBar: React.FC = () => {
             width={50}
             alt="ChainLife logo"
           />
-          <St.NavLink href="/">
-            <St.NavTitle>Chainlife (Testnet)</St.NavTitle>
-          </St.NavLink>
+          <St.TitleDiv>
+            <St.NavLink href="/">
+              <St.NavTitle>Chainlife</St.NavTitle>
+            </St.NavLink>
+            <h5>(Testnet V 1.0)</h5>
+          </St.TitleDiv>
         </St.logoDiv>
-        <St.NavLinksDiv>
+        <St.SocialsAndLinks>
           <St.SocialContainer>
             <St.NavLink
               href="https://twitter.com/MonkMatto"
@@ -70,100 +107,23 @@ const NavBar: React.FC = () => {
               <IoIcons.IoLogoYoutube style={{ height: '24px', width: '24px' }} />
             </St.NavLink>
           </St.SocialContainer>
-        </St.NavLinksDiv>
-        <St.NavLinksDiv>
-          <St.NavLink href="https://chainlife.gitbook.io/docs/" target="blank">
-            {windowWidth < 500 ? 'ABOUT' : 'HOW IT WORKS'}
-          </St.NavLink>
-          <St.NavLink href="https://random.chainlife.xyz/" target="blank">
-            RANDOM
-          </St.NavLink>
-          <St.NavConnect onClick={handleMarketsClick}>MARKETS</St.NavConnect>
-          <St.NavConnect onClick={handleConnectClick}>
-            {!active ? (windowWidth < 500 ? 'CONNECT' : 'CONNECT WALLET') : 'CONNECTED'}
-          </St.NavConnect>
-        </St.NavLinksDiv>
-        {showConnectModal && <ConnectDropDown setShowModal={setShowConnectModal} />}
-        {showMarketsDropDown && (
-          <MarketsDropDown setShowMarketsDropDown={setShowMarketsDropDown} />
-        )}
-      </St.NavContainer>
-    );
-  };
-
-  const renderMobileNav = () => {
-    return (
-      <St.MobileNavContainer>
-        <St.MobileNavLinksDiv>
-          <St.MobileNavLink href="https://matto.xyz/" target="blank">
-            ABOUT
-          </St.MobileNavLink>
-          <St.MobileNavLink href="https://matto.xyz/" target="blank">
-            HOW IT WORKS
-          </St.MobileNavLink>
-          <St.MobileNavConnect onClick={handleMarketsClick}>MARKETS</St.MobileNavConnect>
-          <St.MobileNavConnect onClick={handleConnectClick}>
-            {!active ? 'CONNECT WALLET' : 'CONNECTED'}
-          </St.MobileNavConnect>
-        </St.MobileNavLinksDiv>
-        {showConnectModal && <ConnectDropDown setShowModal={setShowConnectModal} />}
-        {showMarketsDropDown && (
-          <MarketsDropDown setShowMarketsDropDown={setShowMarketsDropDown} />
-        )}
-      </St.MobileNavContainer>
-    );
-  };
-
-  const renderHamNav = () => {
-    return (
-      <>
-        <St.NavContainer>
-          <St.logoDiv>
-            <Image
-              src={'/chainlife/chainlife.png'}
-              height={35}
-              width={35}
-              alt="ChainLife logo"
-            />
-            <St.NavLink
-              href="https://linktr.ee/MonkMatto"
-              target="blank"
-              rel="noreferrer"
-            >
-              <St.NavTitle>Chainlife</St.NavTitle>
-            </St.NavLink>
-          </St.logoDiv>
           <St.NavLinksDiv>
-            <St.SocialContainer>
-              <St.NavLink
-                href="https://twitter.com/MonkMatto"
-                target="blank"
-                rel="noreferrer"
-              >
-                <Image src={'/icons/Twitter.svg'} height={21} width={21} alt="logo" />
-              </St.NavLink>
-              <St.NavLink
-                href="https://discord.com/invite/AQDwjAa3g2"
-                target="blank"
-                rel="noreferrer"
-              >
-                <Image
-                  src={'/icons/Discord-Logo-White.svg'}
-                  height={24}
-                  width={24}
-                  alt="logo"
-                />
-              </St.NavLink>
-            </St.SocialContainer>
+            <St.NavLink href="https://chainlife.gitbook.io/docs/" target="blank">
+              {windowWidth < 500 ? 'ABOUT' : 'HOW IT WORKS'}
+            </St.NavLink>
+            <St.NavLink href="https://random.chainlife.xyz/" target="blank">
+              RANDOM
+            </St.NavLink>
+            <St.NavConnect onClick={handleMarketsClick}>MARKETS</St.NavConnect>
+            <St.NavConnect onClick={handleConnectClick}>
+              {!active ? (windowWidth < 500 ? 'CONNECT' : 'CONNECT WALLET') : 'CONNECTED'}
+            </St.NavConnect>
           </St.NavLinksDiv>
-          <Hamburger toggled={isOpen} toggle={setOpen} />
-        </St.NavContainer>
-        {isOpen ? renderMobileNav() : null}
-      </>
-    );
-  };
-
-  return <>{renderFullNav()}</>;
+        </St.SocialsAndLinks>
+        {showConnectModal ? renderDropDown() : renderMarketsDropDown()}
+      </St.NavContainer>
+    </>
+  );
 };
 
 export default NavBar;

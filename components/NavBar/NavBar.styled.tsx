@@ -1,14 +1,9 @@
 import styled, { keyframes } from 'styled-components';
 
-const slideDown = keyframes`
-  0% {transform: translateY(-200px);}
-  100% {transform: translateY(0px)};
-`;
-
 export const NavContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   justify-content: space-between;
   position: top;
   top: 0;
@@ -16,13 +11,17 @@ export const NavContainer = styled.div`
   padding-left: 30px;
   height: 100px;
   margin-bottom: 30px;
-  @media (max-width: 750px) {
+  @media (max-width: 825px) {
     flex-direction: column-reverse;
     height: fit-content;
     margin-bottom: 20px;
     margin-top: 2rem;
     padding-left: 10px;
     padding-right: 10px;
+  }
+
+  h5 {
+    color: ${(props) => props.theme.colors.textOffset};
   }
 `;
 
@@ -32,7 +31,7 @@ export const MobileNavContainer = styled(NavContainer)`
   position: absolute;
   top: 10.5rem;
   z-index: 10;
-  height: 750px;
+  height: 825px;
   background: ${(props) => props.theme.colors.bgMain};
   /* @media (max-width: 500px) {
     height:;
@@ -46,10 +45,11 @@ export const Gap = styled.div`
 export const logoDiv = styled.div`
   position: relative;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 0.5em;
   font-size: 20px;
-  @media (max-width: 1200px) {
+  @media (max-width: 1300px) {
     position: absolute;
     display: flex;
     width: 100%;
@@ -57,7 +57,7 @@ export const logoDiv = styled.div`
     top: 6rem;
     left: 0;
   }
-  @media (max-width: 750px) {
+  @media (max-width: 825px) {
     position: absolute;
     display: flex;
     width: 100%;
@@ -66,7 +66,11 @@ export const logoDiv = styled.div`
     left: 0;
 
     h1 {
-      font-size: 24px;
+      font-size: 28px;
+    }
+
+    h5 {
+      font-size: 14px;
     }
   }
 
@@ -77,6 +81,22 @@ export const logoDiv = styled.div`
     justify-content: center;
     top: 9.5rem;
     left: 0;
+  }
+`;
+
+export const TitleDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+  @media (max-width: 825px) {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.1em;
+
+    h5 {
+      margin-top: -8px;
+    }
   }
 `;
 
@@ -97,6 +117,27 @@ export const NavLinksDiv = styled.div`
   }
 `;
 
+export const SocialsAndLinks = styled.div`
+  display: flex;
+  //justify-content: space-between;
+  width: 100%;
+  @media (max-width: 1300px) {
+    justify-content: space-between;
+  }
+
+  @media (min-width: 1300px) {
+    justify-content: flex-end;
+    width: 60%;
+    gap: 1.5em;
+  }
+
+  @media (max-width: 825px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: -2rem;
+  }
+`;
+
 export const MobileNavLinksDiv = styled(NavLinksDiv)`
   flex-direction: column;
   justify-content: center;
@@ -105,6 +146,7 @@ export const MobileNavLinksDiv = styled(NavLinksDiv)`
 
 export const SocialContainer = styled(NavContainer)`
   display: flex;
+  justify-content: center;
   padding-top: 40px;
   padding-left: 0;
   padding-right: 0;
@@ -114,7 +156,8 @@ export const SocialContainer = styled(NavContainer)`
   @media (max-width: 1200px) {
     flex-direction: row;
   }
-  @media (max-width: 750px) {
+
+  @media (max-width: 825px) {
     margin-top: -0.75rem;
   }
 `;
@@ -139,7 +182,7 @@ export const NavConnect = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  @media (max-width: 600px) {
+  @media (max-width: 675px) {
     font-size: 16px;
   }
 
