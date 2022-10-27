@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
 export const useMintDetails = () => {
-  const currentTime = new Date().getTime();
-  const mintStart = Date.parse('2022-10-17T14:22:00-0400');
-  const preSalePeriod = 48 * 60 * 60 * 1000;
-  const publicStart = mintStart + preSalePeriod;
-  const mintEnd = Date.parse('2023-10-18T14:22:00-0400');
+  const currentTime = new Date();
+  const mintStart = new Date('2023-10-17T14:22:00-0400');
+  const preSalePeriod = 2;
+  const publicStart = new Date(mintStart.setDate(mintStart.getDate() + preSalePeriod));
+  const mintEnd = new Date('3000-01-01');
 
   const mintPrice = 0.1;
   const discountPrice = 0.08;

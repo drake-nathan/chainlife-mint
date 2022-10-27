@@ -12,11 +12,11 @@ import { useMintDetails } from 'hooks/useMintDetails';
 import { useWindowSize } from 'hooks/useWindowSize';
 import DynamicFallback from 'components/FallbackPage/DynamicFallback';
 import { MintPageContext } from 'contexts/MintPageContext';
-import * as St from '../styles/App.styled';
 import { getGeneratorUrl, getSliderTokens } from 'helpers/getRandomToken';
+import * as St from '../styles/App.styled';
 
 const Home: NextPage = () => {
-  const nodeEnv = process.env.NODE_ENV;
+  const nodeEnv = process.env.NODE_ENV || 'production';
   const { isMintLive, maxSupply, currentSupply } = useMintDetails();
   const { query } = useRouter();
   const { mintPage } = useContext(MintPageContext);

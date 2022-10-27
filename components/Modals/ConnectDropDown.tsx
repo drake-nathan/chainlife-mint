@@ -12,8 +12,6 @@ interface Props {
 const ConnectDropDown: React.FC<Props> = ({ setShowModal }) => {
   const { activate, active } = useWeb3React();
 
-  const [txMsg, setTxMsg] = useState('');
-
   const handleConnectWallet = async (connectorToUse: Connectors) => {
     const connector = connectors[connectorToUse];
 
@@ -26,25 +24,12 @@ const ConnectDropDown: React.FC<Props> = ({ setShowModal }) => {
       await activate(connector);
     } catch (err) {
       console.error(err);
-      setTxMsg('ERROR, PLEASE TRY AGAIN');
     }
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setTxMsg('');
-    }, 5000);
-  }, [txMsg]);
-
-  useEffect(() => {
-    if (active) {
-      setTxMsg('SUCCESSFULLY CONNECTED');
-    }
-  }, [active]);
 
   return (
     <>
@@ -61,15 +46,10 @@ const ConnectDropDown: React.FC<Props> = ({ setShowModal }) => {
             METAMASK
           </St.Button>
         </St.TopButtonContainer>
-        <St.Button
-          onClick={() => handleConnectWallet(Connectors.WalletConnect)}
-        >
+        <St.Button onClick={() => handleConnectWallet(Connectors.WalletConnect)}>
           WALLETCONNECT
         </St.Button>
-        <St.Button
-          id="coinbase"
-          onClick={() => handleConnectWallet(Connectors.Coinbase)}
-        >
+        <St.Button id="coinbase" onClick={() => handleConnectWallet(Connectors.Coinbase)}>
           COINBASE
         </St.Button>
       </St.DropDownContainer>
