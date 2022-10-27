@@ -41,9 +41,9 @@ const MarketsDropDown: React.FC<Props> = ({ setShowMarketsDropDown }) => {
         >
           <St.Button>X2Y2</St.Button>
         </a>
-        <a href="https://artacle.io" target="_blank" rel="noreferrer">
+        {/* <a href="https://artacle.io" target="_blank" rel="noreferrer">
           <St.Button id="coinbase">ARTACLE</St.Button>
-        </a>
+        </a> */}
       </St.DropDownContainer>
     </>
   );

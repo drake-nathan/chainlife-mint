@@ -62,6 +62,8 @@ const NavBar: React.FC = () => {
               />
             </St.NavLink>
           </St.SocialContainer>
+        </St.NavLinksDiv>
+        <St.NavLinksDiv>
           <St.NavLink href="https://matto.xyz/" target="blank">
             MATTO
           </St.NavLink>
@@ -153,7 +155,7 @@ const NavBar: React.FC = () => {
     );
   };
 
-  return <>{windowWidth > 1000 ? renderFullNav() : renderHamNav()}</>;
+  return <>{renderFullNav()}</>;
 };
 
 export default NavBar;

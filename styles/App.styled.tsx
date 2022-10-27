@@ -60,6 +60,14 @@ export const InstructionsContainer = styled.div`
   height: fit-content;
 `;
 
+export const Expand = styled.a`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 34px;
+  margin-bottom: -12px;
+`;
+
 export const ViewInstructions = styled.p`
   color: ${(props) => props.theme.colors.textOffset};
   font-weight: 500;

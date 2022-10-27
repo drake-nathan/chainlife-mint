@@ -36,6 +36,7 @@ export const TopButtonContainer = styled.div`
     background: inherit;
     border: none;
     margin-right: 12px;
+    min-width: 25px;
   }
 
   button {
@@ -72,6 +73,6 @@ export const Button = styled.button`
   }
 
   @media (max-width: 500px) {
-    min-width: 150px;
+    min-width: 125px;
   }
 `;

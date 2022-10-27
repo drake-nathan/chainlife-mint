@@ -8,7 +8,7 @@ const slideDown = keyframes`
 export const NavContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   justify-content: space-between;
   position: top;
   top: 0;
@@ -16,6 +16,14 @@ export const NavContainer = styled.div`
   padding-left: 30px;
   height: 100px;
   margin-bottom: 30px;
+  @media (max-width: 750px) {
+    flex-direction: column-reverse;
+    height: fit-content;
+    margin-bottom: 20px;
+    margin-top: 2rem;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 `;
 
 export const MobileNavContainer = styled(NavContainer)`
@@ -41,12 +49,33 @@ export const logoDiv = styled.div`
   align-items: center;
   gap: 0.5em;
   font-size: 20px;
-  @media (max-width: 675px) {
+  @media (max-width: 1200px) {
     position: absolute;
     display: flex;
     width: 100%;
     justify-content: center;
     top: 6rem;
+    left: 0;
+  }
+  @media (max-width: 750px) {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    top: 8.5rem;
+    left: 0;
+
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    top: 9.5rem;
     left: 0;
   }
 `;
@@ -82,11 +111,11 @@ export const SocialContainer = styled(NavContainer)`
   height: fit-content;
   width: fit-content;
   gap: 1.5em;
-  @media (max-width: 1000px) {
-    margin-left: 225px;
+  @media (max-width: 1200px) {
+    flex-direction: row;
   }
-  @media (max-width: 675px) {
-    margin-left: 0px;
+  @media (max-width: 750px) {
+    margin-top: -0.75rem;
   }
 `;
 
