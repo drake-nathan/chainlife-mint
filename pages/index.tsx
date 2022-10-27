@@ -69,29 +69,8 @@ const Home: NextPage = () => {
             </St.StepContainer>
           ) : null}
           <iframe
-            key={0}
-            height={
-              windowWidth > 850
-                ? '850'
-                : windowWidth >= 500
-                ? '500'
-                : windowWidth === 412
-                ? '412'
-                : windowWidth === 390
-                ? '390'
-                : '360'
-            }
-            width={
-              windowWidth > 850
-                ? '850'
-                : windowWidth >= 500
-                ? '500'
-                : windowWidth === 412
-                ? '412'
-                : windowWidth === 390
-                ? '390'
-                : '360'
-            }
+            height={850}
+            width={850}
             src={
               'https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world'
             }

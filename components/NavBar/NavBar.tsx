@@ -7,6 +7,7 @@ import { useWeb3React } from '@web3-react/core';
 import { useWindowSize } from 'hooks/useWindowSize';
 import ConnectDropDown from 'components/Modals/ConnectDropDown';
 import MarketsDropDown from 'components/Modals/MarketsDropDown';
+import * as IoIcons from 'react-icons/io';
 import * as St from './NavBar.styled';
 
 const NavBar: React.FC = () => {
@@ -61,14 +62,21 @@ const NavBar: React.FC = () => {
                 alt="logo"
               />
             </St.NavLink>
+            <St.NavLink
+              href="https://www.youtube.com/channel/UCZGHO8oZZcvgdXVyDv-majg/featured"
+              target="blank"
+              rel="noreferrer"
+            >
+              <IoIcons.IoLogoYoutube style={{ height: '24px', width: '24px' }} />
+            </St.NavLink>
           </St.SocialContainer>
         </St.NavLinksDiv>
         <St.NavLinksDiv>
-          <St.NavLink href="https://matto.xyz/" target="blank">
-            MATTO
-          </St.NavLink>
-          <St.NavLink href="https://demo.chainlife.xyz/" target="blank">
+          <St.NavLink href="https://chainlife.gitbook.io/docs/" target="blank">
             HOW IT WORKS
+          </St.NavLink>
+          <St.NavLink href="https://random.chainlife.xyz/" target="blank">
+            RANDOM
           </St.NavLink>
           <St.NavConnect onClick={handleMarketsClick}>MARKETS</St.NavConnect>
           <St.NavConnect onClick={handleConnectClick}>
