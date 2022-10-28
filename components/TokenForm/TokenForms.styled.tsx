@@ -3,22 +3,26 @@ import { Main } from 'styles/Library/Button.styled';
 import {
   SectionTitleContainer,
   Title as DescTitle,
-} from './Description.styled';
+} from '../DescriptionSections/Description.styled';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
-  padding-right: 15px;
   gap: 1.5em;
 `;
-export const TitleDiv = styled(SectionTitleContainer)``;
+
+export const TitleDiv = styled(SectionTitleContainer)`
+  justify-content: center;
+  width: 100%;
+`;
 
 export const Title = styled(DescTitle)``;
 
 export const Form = styled.form`
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 1em;
   padding: 0 1em;
@@ -40,3 +44,5 @@ export const Input = styled.input`
 `;
 
 export const Button = styled(Main)``;
+
+export const ErrorText = styled.p``;

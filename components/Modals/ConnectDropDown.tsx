@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { Connectors, connectors } from 'web3/connectors';
 import { switchChain } from 'components/Web3/web3Helpers';
 import * as IoIcons from 'react-icons/io5';
 import * as St from './ConnectDropDown.styled';
+import { useEagerConnect } from 'hooks/useEagerConnect';
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,6 +17,7 @@ const ConnectDropDown: React.FC<Props> = ({ setShowModal }) => {
     const connector = connectors[connectorToUse];
 
     try {
+      // NOTE: uncomment this when ready to switch to mainnet
       // if (connectorToUse === Connectors.Injected) {
       //   if (connector.getChainId().valueOf() !== '0x1') {
       //     await switchChain('0x1');
@@ -24,6 +26,8 @@ const ConnectDropDown: React.FC<Props> = ({ setShowModal }) => {
       await activate(connector);
     } catch (err) {
       console.error(err);
+    } finally {
+      setShowModal(false);
     }
   };
 

@@ -1,5 +1,6 @@
 import { Contract } from 'web3-eth-contract';
 import { toWei } from 'web3-utils';
+import { equalAddresses } from './web3helpers';
 
 export const checkIfMintActive = async (contract: Contract) => {
   const mintStage = (await contract.methods.mintStage().call()) as number;
@@ -23,6 +24,16 @@ export const checkIfSupply = async (contract: Contract, maxSupply: number) => {
   const currentSupply = (await contract.methods.totalSupply().call()) as number;
 
   return currentSupply < maxSupply;
+};
+
+export const checkIfOwner = async (
+  contract: Contract,
+  account: string,
+  tokenId: number | string,
+) => {
+  const owner = (await contract.methods.ownerOf(tokenId).call()) as string;
+
+  return equalAddresses(owner, account);
 };
 
 export const callPremint = async (
@@ -64,7 +75,5 @@ export const callCustomRule = async (
   tokenId: number,
   rule: string,
 ) => {
-  return await contract.methods
-    .CUSTOM_RULE(tokenId, rule)
-    .send({ from: account });
+  return await contract.methods.CUSTOM_RULE(tokenId, rule).send({ from: account });
 };

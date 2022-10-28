@@ -59,7 +59,6 @@ const Home: NextPage = () => {
       <Head>
         <title>Chainlife Mint</title>
         <meta name="description" content="Chainlife Mint." />
-        <link rel="icon" href="/chainlife/favicon.ico" />
       </Head>
 
       {!showFallback ? (

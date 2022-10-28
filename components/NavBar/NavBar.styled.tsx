@@ -14,7 +14,7 @@ export const NavContainer = styled.div`
   top: 0;
   padding-right: 30px;
   padding-left: 30px;
-  height: 100px;
+  min-height: 100px;
   margin-bottom: 30px;
   @media (max-width: 750px) {
     flex-direction: column-reverse;

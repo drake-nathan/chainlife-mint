@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
+export const PageContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+`;
+
 export const TokenContainer = styled.div`
   display: flex;
-  gap: 7em;
-  margin-top: 5rem;
-
-  @media (max-width: 1400px) {
-    flex-direction: column;
-  }
+  flex-direction: column;
 `;
 
 export const FormContainer = styled.div`

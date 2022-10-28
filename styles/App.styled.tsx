@@ -12,6 +12,7 @@ export const AppContainer = styled.div`
   align-items: center;
   justify-content: center;
   cursor: default;
+  padding-bottom: 150px;
 `;
 
 export const BodyContainer = styled.div`

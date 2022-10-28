@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const TableWrapper = styled.div`
   width: fit-content;
-  height: 590px;
+  max-height: 590px;
   overflow-y: scroll;
 `;
 

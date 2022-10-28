@@ -7,10 +7,12 @@ import { useWeb3React } from '@web3-react/core';
 import { useWindowSize } from 'hooks/useWindowSize';
 import ConnectDropDown from 'components/Modals/ConnectDropDown';
 import MarketsDropDown from 'components/Modals/MarketsDropDown';
+import { useEagerConnect } from 'hooks/useEagerConnect';
 import * as IoIcons from 'react-icons/io';
 import * as St from './NavBar.styled';
 
 const NavBar: React.FC = () => {
+  useEagerConnect();
   const { active } = useWeb3React();
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showMarketsDropDown, setShowMarketsDropDown] = useState(false);
