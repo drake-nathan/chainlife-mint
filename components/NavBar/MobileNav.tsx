@@ -42,11 +42,7 @@ const MobileNav: React.FC<NavProps> = ({ isOpen, setOpen }) => {
       <St.NavContainer>
         <St.logoDiv>
           <Image src={ClLogo} height={35} width={35} alt="ChainLife logo" />
-          <St.NavLink
-            href="https://linktr.ee/MonkMatto"
-            target="blank"
-            rel="noreferrer"
-          >
+          <St.NavLink href="https://linktr.ee/MonkMatto" target="blank" rel="noreferrer">
             <St.NavTitle>Chainlife</St.NavTitle>
           </St.NavLink>
           <Hamburger color="#F4F5F0" onToggle={handleToggle} />
@@ -79,12 +75,8 @@ const MobileNav: React.FC<NavProps> = ({ isOpen, setOpen }) => {
             {!active ? 'CONNECT WALLET' : 'CONNECTED'}
           </St.NavConnect>
         </St.NavLinksDiv>
-        {showConnectModal && (
-          <ConnectDropDown setShowModal={setShowConnectModal} />
-        )}
-        {showMarketsDropDown && (
-          <MarketsDropDown setShowMarketsDropDown={setShowMarketsDropDown} />
-        )}
+        {showConnectModal && <ConnectDropDown setShowModal={setShowConnectModal} />}
+        {showMarketsDropDown && <MarketsDropDown setShowModal={setShowMarketsDropDown} />}
       </St.NavContainer>
     </>
   );

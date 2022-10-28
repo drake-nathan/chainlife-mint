@@ -3,10 +3,10 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import NavBar from 'components/NavBar/NavBar';
 import * as Steps from 'helpers/worldviewInstructions';
-import TokenIdForm from 'components/TokenIdForm';
 import { useWindowSize } from 'hooks/useWindowSize';
 import * as IoIcons from 'react-icons/io';
 import * as St from '../styles/App.styled';
+import TokenIdForm from 'components/TokenForm/TokenIdForm';
 
 const Home: NextPage = () => {
   const { windowWidth } = useWindowSize();

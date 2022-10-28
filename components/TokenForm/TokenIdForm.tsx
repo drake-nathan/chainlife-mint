@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import * as IoIcons from 'react-icons/io5';
-import * as St from './DescriptionSections/TokenForms.styled';
+import * as St from './TokenForms.styled';
 import { useRouter } from 'next/router';
 
 const TokenIdForm = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [tokenId, settokenId] = useState('');
-  
-  const handleParam = setValue => e => setValue(e.target.value)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    router.push(`/token/${tokenId}`)
+    router.push(`/token/${tokenId}`);
   };
 
   return (
@@ -22,9 +20,7 @@ const TokenIdForm = () => {
         or by entering an ID below.
       </St.Label>
 
-      <St.Form
-        onSubmit={handleSubmit}
-      >
+      <St.Form onSubmit={handleSubmit}>
         <St.LabelDiv>
           <St.Label htmlFor="enter-id">
             <St.IdFormLabel>Enter Token Id</St.IdFormLabel>
@@ -35,13 +31,11 @@ const TokenIdForm = () => {
             id="enter-id"
             required
             value={tokenId}
-            onChange={handleParam(settokenId)}
+            onChange={(e) => settokenId(e.target.value)}
           />
           <St.Asterisk>* must be a number between 1 and 100.</St.Asterisk>
         </St.LabelDiv>
-        <St.SmallButton
-          onSubmit={handleSubmit}
-        >
+        <St.SmallButton onSubmit={handleSubmit}>
           <IoIcons.IoCaretForwardCircleOutline />
         </St.SmallButton>
       </St.Form>
