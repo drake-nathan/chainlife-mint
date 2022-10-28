@@ -3,12 +3,12 @@ import * as IoIcons from 'react-icons/io5';
 import * as St from './MarketsDropDown.styled';
 
 interface Props {
-  setShowMarketsDropDown: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MarketsDropDown: React.FC<Props> = ({ setShowMarketsDropDown }) => {
-  const handleCloseDropDown = () => {
-    setShowMarketsDropDown(false);
+const MarketsDropDown: React.FC<Props> = ({ setShowModal }) => {
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -17,7 +17,7 @@ const MarketsDropDown: React.FC<Props> = ({ setShowMarketsDropDown }) => {
         <St.TopButtonContainer>
           <IoIcons.IoCaretUpCircleOutline
             className="up-arrow"
-            onClick={handleCloseDropDown}
+            onClick={handleCloseModal}
           />
           <a
             href="https://testnets.opensea.io/collection/chainlife"
