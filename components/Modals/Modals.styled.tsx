@@ -7,7 +7,7 @@ export const ModalBackground = styled.div`
   left: 0;
   top: 0;
   z-index: 30;
-  background: rgba(253, 253, 253, 0.7);
+  background: rgba(244, 245, 240, 0.7);
   backdrop-filter: blur(4px);
   cursor: pointer;
 

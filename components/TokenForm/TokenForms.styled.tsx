@@ -46,3 +46,24 @@ export const Input = styled.input`
 export const Button = styled(Main)``;
 
 export const ErrorText = styled.p``;
+
+export const IdFormLabel = styled.h4`
+  color: ${(props) => props.theme.colors.textMain};
+`;
+
+export const Asterisk = styled.p`
+  color: ${(props) => props.theme.colors.textOffset};
+  font-size: 13px;
+  margin-top: 4px;
+  font-style: italic;
+`;
+
+export const SmallButton = styled(Button)`
+  min-height: 30px;
+  min-width: 30px;
+  height: 37px;
+  width: 37px;
+  font-size: 25px;
+  padding: 0;
+  margin-left: -10px;
+`;
