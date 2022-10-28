@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import NavBar from 'components/NavBar/NavBar';
 import * as Steps from 'helpers/worldviewInstructions';
+import TokenIdForm from 'components/TokenIdForm';
 import { useWindowSize } from 'hooks/useWindowSize';
 import * as IoIcons from 'react-icons/io';
 import * as St from '../styles/App.styled';
@@ -89,6 +90,7 @@ const Home: NextPage = () => {
             Click here to view instructions.
           </St.ViewInstructions>
         ) : null}
+        <TokenIdForm />
         <St.NotesContainer>
           <St.NotesTitle>A Few Notes:</St.NotesTitle>
           <St.NotesText>
