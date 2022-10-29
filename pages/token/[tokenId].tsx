@@ -14,9 +14,11 @@ import { useContract } from 'hooks/useContract';
 import LoadingVideo from 'components/LoadingVideo/LoadingVideo';
 import { equalAddresses, shortenAddress } from 'web3/web3helpers';
 import * as St from '../../styles/token.styled';
+import { useWindowSize } from 'hooks/useWindowSize';
 
 const Token: NextPage = () => {
   const router = useRouter();
+  const { windowWidth } = useWindowSize();
   const { account, active } = useWeb3React();
   const { goerliContract } = useContract();
   const { tokenId } = router.query;
@@ -89,7 +91,7 @@ const Token: NextPage = () => {
           <TokenForms tokenId={tokenIdNum} setIsTxPending={setIsTxPending} />
         </St.TokenContainer>
 
-        {token && <Traits token={token} />}
+        {windowWidth > 500 && token && <Traits token={token} />}
       </St.PageContainer>
     </AppContainer>
   );
