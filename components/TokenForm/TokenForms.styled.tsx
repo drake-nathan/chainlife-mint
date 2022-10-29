@@ -11,6 +11,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   gap: 1.5em;
+  margin: 1em 0;
 `;
 
 export const TitleDiv = styled(SectionTitleContainer)`
@@ -24,8 +25,14 @@ export const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1em;
   padding: 0 1em;
+  max-width: 95%;
+
+  @media (max-width: 500px) {
+    flex-wrap: wrap;
+    gap: 1.5em;
+    width: 100%;
+  }
 `;
 
 export const LabelDiv = styled.div`
@@ -36,11 +43,24 @@ export const LabelDiv = styled.div`
 export const Label = styled.label``;
 
 export const Input = styled.input`
-  min-height: 30px;
-  min-width: 150px;
+  height: 100%;
+  min-width: 95%;
   padding: 0.5em;
   border: 2px solid ${(props) => props.theme.colors.textOffset};
+  border-right: none;
   border-radius: ${(props) => props.theme.borderRadius};
+  text-align: center;
+  font-size: 1.25rem;
+
+  @media (max-width: 500px) {
+    height: 65px;
+    width: 100%;
+    border-right: 2px solid ${(props) => props.theme.colors.textOffset};
+  }
+
+  :focus {
+    -moz-outline-radius: 0px;
+  }
 `;
 
 export const Button = styled(Main)``;

@@ -21,8 +21,8 @@ export const Main = styled.button`
     font-weight: 700;
   }
 
-  @media (max-width: 600px) {
+  /* @media (max-width: 600px) {
     width: 300px;
     min-width: 150px;
-  }
+  } */
 `;

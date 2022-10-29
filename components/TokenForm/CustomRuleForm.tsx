@@ -9,9 +9,10 @@ type ICustomRule = { customRule: string };
 
 interface Props {
   tokenId: number;
+  setIsTxPending: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CustomRuleForm: React.FC<Props> = ({ tokenId }) => {
+const CustomRuleForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
   const { active, account } = useWeb3React();
   const { goerliContract } = useContract();
 
@@ -36,9 +37,11 @@ const CustomRuleForm: React.FC<Props> = ({ tokenId }) => {
           customRule,
         );
 
-        console.info(tx);
+        if (tx) setIsTxPending(true);
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsTxPending(false);
       }
     }
   };
@@ -50,23 +53,22 @@ const CustomRuleForm: React.FC<Props> = ({ tokenId }) => {
   }, [errors]);
 
   return (
-    <St.Form id="custom-rule-form" onSubmit={handleSubmit(onSubmit)}>
-      <St.LabelDiv>
+    <>
+      <St.Form id="custom-rule-form" onSubmit={handleSubmit(onSubmit)}>
         <St.Input
           {...register('customRule', {
             required: { value: true, message: 'This field is required.' },
-            maxLength: { value: 23, message: 'This symbol is too long.' },
+            maxLength: { value: 23, message: 'This rule is too long, 23 chars max.' },
           })}
           id="custom-rule"
-          placeholder="Submit a custom rule"
+          placeholder="Submit a Custom Rule"
           value={customRule}
           onChange={(e) => setCustomRule(e.target.value)}
         />
-        {errorText && <St.ErrorText>{errorText}</St.ErrorText>}
-      </St.LabelDiv>
-
-      <St.Button onSubmit={handleSubmit(onSubmit)}>Submit</St.Button>
-    </St.Form>
+        <St.Button type="submit">Submit</St.Button>
+      </St.Form>
+      {errorText && <St.ErrorText>{errorText}</St.ErrorText>}
+    </>
   );
 };
 

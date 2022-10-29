@@ -8,6 +8,7 @@ export const useMintDetails = () => {
   const mintEnd = new Date('3000-01-01');
 
   const mintPrice = 0.1;
+  const shiftFee = 0.001;
   const discountPrice = 0.08;
   const maxSupply = 4096;
   const currentSupply = 14;
@@ -36,5 +37,6 @@ export const useMintDetails = () => {
     maxSupply,
     currentSupply,
     maxMint,
+    shiftFee,
   };
 };

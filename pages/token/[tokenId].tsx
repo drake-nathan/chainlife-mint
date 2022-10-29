@@ -8,9 +8,11 @@ import { getToken } from 'azureApi/fetches';
 import { useEffect, useState } from 'react';
 import { IToken } from 'azureApi/types';
 import Traits from 'components/Traits/Traits';
-import { checkIfOwner } from 'web3/web3Fetches';
+import { getOwner } from 'web3/web3Fetches';
 import { useWeb3React } from '@web3-react/core';
 import { useContract } from 'hooks/useContract';
+import LoadingVideo from 'components/LoadingVideo/LoadingVideo';
+import { equalAddresses, shortenAddress } from 'web3/web3helpers';
 import * as St from '../../styles/token.styled';
 
 const Token: NextPage = () => {
@@ -21,7 +23,10 @@ const Token: NextPage = () => {
   const tokenIdNum = Number(tokenId);
 
   const [token, setToken] = useState<IToken>();
+  const [owner, setOwner] = useState<string>();
+  const [isOwner, setIsOwner] = useState<boolean>(false);
   const [generatorUrl, setGeneratorUrl] = useState<string>();
+  const [isTxPending, setIsTxPending] = useState<boolean>(false);
 
   useEffect(() => {
     // NOTE: change slug for mainnet
@@ -38,12 +43,24 @@ const Token: NextPage = () => {
   }, [tokenId]);
 
   useEffect(() => {
-    if (tokenId && active && account) {
-      checkIfOwner(goerliContract, account, tokenIdNum).then((res) => {
-        console.log('is owner', res);
+    if (tokenId) {
+      getOwner(goerliContract, tokenIdNum).then((res) => {
+        setOwner(res);
+        if (account && active) {
+          setIsOwner(equalAddresses(account, res));
+        }
       });
     }
   }, [tokenId, account, active]);
+
+  useEffect(() => {
+    if (isTxPending) {
+      setTimeout(() => {
+        setIsTxPending(false);
+        window.location.reload();
+      }, 30000);
+    }
+  }, [isTxPending]);
 
   return (
     <AppContainer>
@@ -55,18 +72,23 @@ const Token: NextPage = () => {
       <NavBar />
 
       <St.PageContainer>
+        <St.TokenHeader>
+          <St.TokenTitle>Token #{tokenId}</St.TokenTitle>
+          {owner && <St.SubtleTitle>Owner: {shortenAddress(owner)}</St.SubtleTitle>}
+        </St.TokenHeader>
+
         <St.TokenContainer>
-          <iframe
-            height={650}
-            width={650}
-            src={generatorUrl}
-            title="generator"
-            frameBorder="0"
-          ></iframe>
-          <St.FormContainer>
-            <TokenForms tokenId={tokenIdNum} />
-          </St.FormContainer>
+          {!isTxPending ? (
+            <St.FrameContainer>
+              <iframe src={generatorUrl} title="generator" frameBorder="0"></iframe>
+            </St.FrameContainer>
+          ) : (
+            <LoadingVideo />
+          )}
+
+          <TokenForms tokenId={tokenIdNum} setIsTxPending={setIsTxPending} />
         </St.TokenContainer>
+
         {token && <Traits token={token} />}
       </St.PageContainer>
     </AppContainer>

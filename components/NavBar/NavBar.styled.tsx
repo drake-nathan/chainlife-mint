@@ -1,21 +1,19 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 export const NavContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  position: top;
-  top: 0;
-  padding-right: 30px;
-  padding-left: 30px;
+  padding: 0 3em;
   min-height: 100px;
   margin-bottom: 30px;
+
   @media (max-width: 825px) {
     flex-direction: column-reverse;
     height: fit-content;
     margin-bottom: 20px;
-    margin-top: 2rem;
+    margin-top: 2em;
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -33,9 +31,6 @@ export const MobileNavContainer = styled(NavContainer)`
   z-index: 10;
   height: 825px;
   background: ${(props) => props.theme.colors.bgMain};
-  /* @media (max-width: 500px) {
-    height:;
-  } */
 `;
 
 export const Gap = styled.div`
@@ -119,8 +114,8 @@ export const NavLinksDiv = styled.div`
 
 export const SocialsAndLinks = styled.div`
   display: flex;
-  //justify-content: space-between;
   width: 100%;
+
   @media (max-width: 1300px) {
     justify-content: space-between;
   }
@@ -153,6 +148,7 @@ export const SocialContainer = styled(NavContainer)`
   height: fit-content;
   width: fit-content;
   gap: 1.5em;
+
   @media (max-width: 1200px) {
     flex-direction: row;
   }
@@ -182,6 +178,7 @@ export const NavConnect = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+
   @media (max-width: 675px) {
     font-size: 16px;
   }

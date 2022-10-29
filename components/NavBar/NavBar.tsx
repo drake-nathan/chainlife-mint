@@ -2,7 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Squash as Hamburger } from 'hamburger-react';
 import { useWeb3React } from '@web3-react/core';
 import { useWindowSize } from 'hooks/useWindowSize';
 import ConnectDropDown from 'components/Modals/ConnectDropDown';
@@ -10,7 +9,7 @@ import ConnectModal from 'components/Modals/ConnectModal';
 import MarketsDropDown from 'components/Modals/MarketsDropDown';
 import { useEagerConnect } from 'hooks/useEagerConnect';
 import MarketsModal from 'components/Modals/MarketsModal';
-import * as IoIcons from 'react-icons/io';
+import { IoLogoYoutube } from 'react-icons/io';
 import * as St from './NavBar.styled';
 
 const NavBar: React.FC = () => {
@@ -19,7 +18,6 @@ const NavBar: React.FC = () => {
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showMarketsModal, setShowMarketsModal] = useState(false);
   const { windowWidth } = useWindowSize();
-  // const [isOpen, setOpen] = useState(false);
 
   const handleConnectClick = () => {
     setShowMarketsModal(false);
@@ -77,7 +75,7 @@ const NavBar: React.FC = () => {
             <St.NavLink href="/">
               <St.NavTitle>Chainlife</St.NavTitle>
             </St.NavLink>
-            <h5>(Testnet V 1.0)</h5>
+            <h5>(Testnet Beta V 1.0)</h5>
           </St.TitleDiv>
         </St.logoDiv>
         <St.SocialsAndLinks>
@@ -106,12 +104,12 @@ const NavBar: React.FC = () => {
               target="blank"
               rel="noreferrer"
             >
-              <IoIcons.IoLogoYoutube style={{ height: '24px', width: '24px' }} />
+              <IoLogoYoutube style={{ height: '24px', width: '24px' }} />
             </St.NavLink>
           </St.SocialContainer>
           <St.NavLinksDiv>
             <St.NavLink href="https://chainlife.gitbook.io/docs/" target="blank">
-              {windowWidth < 500 ? 'ABOUT' : 'HOW IT WORKS'}
+              DOCS
             </St.NavLink>
             <St.NavLink href="https://random.chainlife.xyz/" target="blank">
               RANDOM

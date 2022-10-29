@@ -26,14 +26,10 @@ export const checkIfSupply = async (contract: Contract, maxSupply: number) => {
   return currentSupply < maxSupply;
 };
 
-export const checkIfOwner = async (
-  contract: Contract,
-  account: string,
-  tokenId: number | string,
-) => {
+export const getOwner = async (contract: Contract, tokenId: number | string) => {
   const owner = (await contract.methods.ownerOf(tokenId).call()) as string;
 
-  return equalAddresses(owner, account);
+  return owner;
 };
 
 export const callPremint = async (
@@ -76,4 +72,16 @@ export const callCustomRule = async (
   rule: string,
 ) => {
   return await contract.methods.CUSTOM_RULE(tokenId, rule).send({ from: account });
+};
+
+export const callShiftLevels = async (
+  contract: Contract,
+  account: string,
+  tokenId: number,
+  levels: number,
+  payableAmount: number,
+) => {
+  return await contract.methods
+    .SHIFT_LEVEL(tokenId, levels)
+    .send({ from: account, value: toWei(payableAmount.toString(), 'ether') });
 };
