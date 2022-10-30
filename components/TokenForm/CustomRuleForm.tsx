@@ -57,7 +57,6 @@ const CustomRuleForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
       <St.Form id="custom-rule-form" onSubmit={handleSubmit(onSubmit)}>
         <St.Input
           {...register('customRule', {
-            required: { value: true, message: 'This field is required.' },
             maxLength: { value: 23, message: 'This rule is too long, 23 chars max.' },
           })}
           id="custom-rule"

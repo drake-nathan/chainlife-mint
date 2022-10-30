@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import * as IoIcons from 'react-icons/io5';
-import * as St from './TokenForms.styled';
 import { useRouter } from 'next/router';
+import { IoCaretForwardCircleOutline } from 'react-icons/io5';
+import * as St from './TokenForms.styled';
 
 const TokenIdForm = () => {
   const router = useRouter();
   const [tokenId, settokenId] = useState('');
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
 
     router.push(`/token/${tokenId}`);
@@ -33,10 +33,10 @@ const TokenIdForm = () => {
             value={tokenId}
             onChange={(e) => settokenId(e.target.value)}
           />
-          <St.Asterisk>* must be a number between 1 and 100.</St.Asterisk>
+          <St.Asterisk>* must be a number between 0 and 120.</St.Asterisk>
         </St.LabelDiv>
         <St.SmallButton onSubmit={handleSubmit}>
-          <IoIcons.IoCaretForwardCircleOutline />
+          <IoCaretForwardCircleOutline />
         </St.SmallButton>
       </St.Form>
     </>

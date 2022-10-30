@@ -58,8 +58,8 @@ export const Input = styled.input`
     border-right: 2px solid ${(props) => props.theme.colors.textOffset};
   }
 
-  :focus {
-    -moz-outline-radius: 0px;
+  :focus::placeholder {
+    color: transparent;
   }
 `;
 
