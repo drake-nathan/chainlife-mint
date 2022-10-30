@@ -111,7 +111,7 @@ const NavBar: React.FC = () => {
             <St.NavLink href="https://chainlife.gitbook.io/docs/" target="blank">
               DOCS
             </St.NavLink>
-            <St.NavLink href="https://random.chainlife.xyz/" target="blank">
+            <St.NavLink href="https://chainlife.art/" target="blank">
               RANDOM
             </St.NavLink>
             <St.NavConnect onClick={handleMarketsClick}>MARKETS</St.NavConnect>

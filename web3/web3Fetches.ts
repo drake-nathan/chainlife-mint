@@ -1,6 +1,5 @@
 import { Contract } from 'web3-eth-contract';
 import { toWei } from 'web3-utils';
-import { equalAddresses } from './web3helpers';
 
 export const checkIfMintActive = async (contract: Contract) => {
   const mintStage = (await contract.methods.mintStage().call()) as number;
@@ -71,7 +70,7 @@ export const callCustomRule = async (
   tokenId: number,
   rule: string,
 ) => {
-  return await contract.methods.CUSTOM_RULE(tokenId, rule).send({ from: account });
+  return await contract.methods.CUSTOM_RULE(tokenId, rule || ' ').send({ from: account });
 };
 
 export const callShiftLevels = async (
