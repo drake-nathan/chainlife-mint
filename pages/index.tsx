@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import NavBar from 'components/NavBar/NavBar';
-import * as Steps from 'helpers/worldviewInstructions';
-import { useWindowSize } from 'hooks/useWindowSize';
-import * as IoIcons from 'react-icons/io';
-import * as St from '../styles/App.styled';
 import TokenIdForm from 'components/TokenForm/TokenIdForm';
+import { IoIosExpand } from 'react-icons/io';
+import * as Steps from 'helpers/worldviewInstructions';
+import * as St from '../styles/App.styled';
 
 const Home: NextPage = () => {
-  const { windowWidth } = useWindowSize();
   const [activeStep, setActiveStep] = useState(0);
 
   return (
@@ -22,7 +20,7 @@ const Home: NextPage = () => {
       <NavBar />
       <St.WorldViewContainer>
         <St.WorldViewTitle>
-          An on-chain, generative-art-mimics-life-mimics-art collectible and evolving
+          An on-chain, generative-art-mimics-life collectible and evolving
           game-within-a-game, by{' '}
           <a
             href="https://linktr.ee/MonkMatto"
@@ -81,7 +79,7 @@ const Home: NextPage = () => {
             rel="noreferrer"
             title="Expand Worldview"
           >
-            <IoIcons.IoIosExpand />
+            <IoIosExpand />
           </St.Expand>
         </St.InstructionsContainer>
         {activeStep === 0 ? (
