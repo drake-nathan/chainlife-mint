@@ -18,7 +18,7 @@ const ShiftLevelsForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
   const { goerliContract } = useContract();
   const { shiftFee } = useMintDetails();
 
-  const [levelShift, setLevelShift] = useState<number>();
+  const [levelShift, setLevelShift] = useState<number>(0);
   const [errorText, setErrorText] = useState('');
 
   const {
@@ -32,16 +32,13 @@ const ShiftLevelsForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
       setErrorText('Must be connected to wallet');
     } else {
       if (levelShift) {
-        const payableAmount =
-          levelShift < 0 ? shiftFee * (levelShift * -1) : shiftFee * levelShift;
-
         try {
           const tx = await callShiftLevels(
             goerliContract,
             account as string,
             tokenId,
             levelShift,
-            payableAmount,
+            shiftFee,
           );
 
           if (tx) setIsTxPending(true);
@@ -71,7 +68,7 @@ const ShiftLevelsForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
           })}
           id="level-shift"
           placeholder="Submit a Level Shift"
-          value={levelShift}
+          value={levelShift || ''}
           onChange={(e) => setLevelShift(parseInt(e.target.value))}
         />
         <St.Button type="submit">Submit</St.Button>
