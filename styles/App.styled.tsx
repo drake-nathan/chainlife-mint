@@ -43,6 +43,7 @@ export const WorldViewContainer = styled.div`
   padding-top: 6rem;
   padding-bottom: 6rem;
   gap: 3rem;
+  width: 100%;
 
   p {
     cursor: pointer;
@@ -83,38 +84,12 @@ export const ViewInstructions = styled.p`
   font-size: 18px;
 `;
 
-export const StepContainer = styled.div`
-  position: absolute;
-  top: 10%;
-  z-index: 20;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: flex-start;
-  justify-content: center;
-  font-size: 16px;
-  background: rgba(244, 245, 240, 0.95);
-  max-width: 650px;
-  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  animation-name: ${FadeIn};
-  animation-duration: 1s ease-in-out;
-  @media (max-width: 550px) {
-    font-size: 14px;
-    max-width: 350px;
-  }
-`;
-
-export const Step = styled.p``;
-
 export const LeftSection = styled.div`
   @media (max-width: 750px) {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // gap: 4.5rem;
   }
 `;
 
@@ -163,13 +138,9 @@ export const Title = styled.p`
 `;
 
 export const WorldViewTitle = styled(Title)`
-  max-width: 800px;
   text-align: center;
-  padding-left: 20px;
-  padding-right: 20px;
   @media (max-width: 550px) {
-    padding-left: 40px;
-    padding-right: 40px;
+    max-width: 350px;
   }
 `;
 
@@ -196,6 +167,8 @@ export const NotesContainer = styled.div`
   text-align: left;
   padding-left: 80px;
   padding-right: 80px;
+  max-width: 1050px;
+
   @media (max-width: 600px) {
     padding-left: 40px;
     padding-right: 40px;
@@ -204,9 +177,12 @@ export const NotesContainer = styled.div`
 
 export const NotesTitle = styled(SubTitle)`
   color: ${(props) => props.theme.colors.textMain};
+  font-size: 18px;
 `;
 
-export const NotesText = styled.p``;
+export const NotesText = styled.p`
+  /* max-width: 85ch; */
+`;
 
 export const DescriptionsContainer = styled.div`
   display: flex;
@@ -215,6 +191,7 @@ export const DescriptionsContainer = styled.div`
   margin-top: 128px;
   height: 650px;
   align-items: center;
+
   @media (max-width: 1700px) {
     margin-top: 0px;
     padding-left: 2rem;
@@ -229,6 +206,7 @@ export const InfoContainer = styled.div`
   justify-content: center;
   height: 75px;
   width: 650px;
+
   @media (max-width: 750px) {
     width: 360px;
     margin-top: 3.5rem;
@@ -246,6 +224,7 @@ export const InfoText = styled.p`
   font-size: 18px;
   font-weight: 300;
   font-style: italic;
+
   @media (max-width: 750px) {
     font-size: 15px;
   }
@@ -253,9 +232,10 @@ export const InfoText = styled.p`
 
 export const FrameDiv = styled.div`
   width: 100%;
+
   iframe {
     width: 100%;
-    height: 50vh;
+    height: 55vh;
 
     @media (min-width: 1000px) {
       height: 75vh;

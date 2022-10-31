@@ -42,23 +42,22 @@ export const logoDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.3em;
   font-size: 20px;
   @media (max-width: 1300px) {
     position: absolute;
     display: flex;
     width: 100%;
     justify-content: center;
-    top: 6rem;
-    left: 0;
+    top: 8.5rem;
+    margin-left: -30px;
   }
   @media (max-width: 825px) {
     position: absolute;
     display: flex;
     width: 100%;
     justify-content: center;
-    top: 8.5rem;
-    left: 0;
+    top: 10.5rem;
 
     h1 {
       font-size: 28px;
@@ -74,8 +73,7 @@ export const logoDiv = styled.div`
     display: flex;
     width: 100%;
     justify-content: center;
-    top: 9.5rem;
-    left: 0;
+    top: 10.5rem;
   }
 `;
 

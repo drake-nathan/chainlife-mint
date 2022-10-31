@@ -14,20 +14,23 @@ const TokenForms: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
   return (
     <St.Container>
       <St.TitleDiv>
-        <St.Title
+        <St.Title>OWNER CONTROLS</St.Title>
+      </St.TitleDiv>
+      <St.SubTitleDiv>
+        <St.SubTitle
           onClick={() => setActiveSection(1)}
           className={activeSection === 1 ? '' : 'inactive'}
         >
           CUSTOM RULE
-        </St.Title>
-        <St.Title>|</St.Title>
-        <St.Title
+        </St.SubTitle>
+        <St.SubTitle>|</St.SubTitle>
+        <St.SubTitle
           onClick={() => setActiveSection(2)}
           className={activeSection === 2 ? '' : 'inactive'}
         >
           SHIFT LEVELS
-        </St.Title>
-      </St.TitleDiv>
+        </St.SubTitle>
+      </St.SubTitleDiv>
 
       {activeSection === 1 ? (
         <CustomRuleForm tokenId={tokenId} setIsTxPending={setIsTxPending} />

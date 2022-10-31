@@ -11,10 +11,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   gap: 1.5em;
-
-  .inactive {
-    color: ${(props) => props.theme.colors.textOffset};
-  }
+  margin: 1em 0;
 `;
 
 export const TitleDiv = styled(SectionTitleContainer)`
@@ -22,25 +19,7 @@ export const TitleDiv = styled(SectionTitleContainer)`
   width: 100%;
 `;
 
-export const Title = styled(DescTitle)`
-  font-weight: 500;
-`;
-
-export const SubTitleDiv = styled(TitleDiv)`
-  border-bottom: none;
-
-  @media (max-width: 500px) {
-    margin-top: -20px;
-  }
-`;
-
-export const SubTitle = styled(Title)`
-  font-size: 24px;
-  font-weight: 400;
-  @media (max-width: 500px) {
-    font-size: 18px;
-  }
-`;
+export const Title = styled(DescTitle)``;
 
 export const Form = styled.form`
   display: flex;
@@ -59,30 +38,32 @@ export const Form = styled.form`
 export const LabelDiv = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
 `;
 
 export const Label = styled.label``;
 
+export const InstructionLabel = styled(Label)`
+  padding-left: 12px;
+  padding-right: 12px;
+  text-align: center;
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.25em;
+`;
+
 export const Input = styled.input`
-  min-height: 65px;
-  min-width: 95%;
+  height: 37.5px;
+  width: 120px;
   padding: 0.5em;
   border: 3px solid ${(props) => props.theme.colors.textOffset};
-  outline: none;
-  border-radius: ${(props) => props.theme.borderRadius};
   text-align: left;
   font-size: 1.25rem;
-  margin-right: 15px;
-
-  @media (max-width: 850px) {
-    min-width: 80%;
-  }
-
-  @media (max-width: 500px) {
-    height: 65px;
-    width: 100%;
-    text-align: center;
-  }
+  outline: none;
 
   :focus::placeholder {
     color: transparent;
@@ -108,8 +89,17 @@ export const SmallButton = styled(Button)`
   min-height: 30px;
   min-width: 30px;
   height: 37px;
-  width: 37px;
-  font-size: 25px;
-  padding: 0;
-  margin-left: -10px;
+  width: 42px;
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: 0.1rem;
+  box-sizing: border-box;
+  padding: 4px;
+  background-color: ${(props) => props.theme.colors.textMain};
+  color: ${(props) => props.theme.colors.bgMain};
+
+  &:hover {
+    font-size: 19px;
+    font-weight: 400;
+  }
 `;
