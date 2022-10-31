@@ -22,7 +22,7 @@ const Home: NextPage = () => {
       <NavBar />
       <St.WorldViewContainer>
         <St.WorldViewTitle>
-          An on-chain, generative-art-mimics-life-mimics-art collectible and evolving
+          An on-chain, generative-art-mimics-life collectible and evolving
           game-within-a-game, by{' '}
           <a
             href="https://linktr.ee/MonkMatto"

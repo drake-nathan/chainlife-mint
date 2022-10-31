@@ -163,13 +163,9 @@ export const Title = styled.p`
 `;
 
 export const WorldViewTitle = styled(Title)`
-  max-width: 800px;
   text-align: center;
-  padding-left: 20px;
-  padding-right: 20px;
   @media (max-width: 550px) {
-    padding-left: 40px;
-    padding-right: 40px;
+    max-width: 350px;
   }
 `;
 
@@ -196,6 +192,8 @@ export const NotesContainer = styled.div`
   text-align: left;
   padding-left: 80px;
   padding-right: 80px;
+  //-top: 30px;
+  max-width: 1050px;
   @media (max-width: 600px) {
     padding-left: 40px;
     padding-right: 40px;
@@ -204,6 +202,7 @@ export const NotesContainer = styled.div`
 
 export const NotesTitle = styled(SubTitle)`
   color: ${(props) => props.theme.colors.textMain};
+  font-size: 18px;
 `;
 
 export const NotesText = styled.p``;
