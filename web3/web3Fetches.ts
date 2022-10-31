@@ -77,10 +77,15 @@ export const callShiftLevels = async (
   contract: Contract,
   account: string,
   tokenId: number,
-  levels: number,
-  payableAmount: number,
+  levelShift: number,
+  shiftFee: number,
 ) => {
+  const payableAmount = (
+    levelShift < 0 ? shiftFee * (levelShift * -1) : shiftFee * levelShift
+  ).toFixed(3);
+  const value = toWei(payableAmount.toString(), 'ether');
+
   return await contract.methods
-    .SHIFT_LEVEL(tokenId, levels)
-    .send({ from: account, value: toWei(payableAmount.toString(), 'ether') });
+    .SHIFT_LEVEL(tokenId, levelShift)
+    .send({ from: account, value });
 };
