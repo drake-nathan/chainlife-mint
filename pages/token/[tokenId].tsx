@@ -17,14 +17,13 @@ import { useWeb3React } from '@web3-react/core';
 import { useContract } from 'hooks/useContract';
 import LoadingVideo from 'components/LoadingVideo/LoadingVideo';
 import { equalAddresses, shortenAddress } from 'web3/web3helpers';
-import * as TfiIcons from 'react-icons/tfi';
-import * as IoIcons from 'react-icons/io';
+import { TfiNewWindow } from 'react-icons/tfi';
+import { IoIosExpand } from 'react-icons/io';
 import * as St from '../../styles/token.styled';
 import { useWindowSize } from 'hooks/useWindowSize';
 
 const Token: NextPage = () => {
   const router = useRouter();
-  const { windowWidth } = useWindowSize();
   const { account, active } = useWeb3React();
   const { goerliContract } = useContract();
   const { tokenId } = router.query;
@@ -96,7 +95,7 @@ const Token: NextPage = () => {
                 >
                   <p>esoterra</p>
                 </a>
-                <IoIcons.IoIosExpand title="View Token In A Separate Window" />
+                <IoIosExpand title="View Token In A Separate Window" />
               </St.Expand>
             </St.TokenHeader>
           </St.HeaderContainer>
@@ -121,7 +120,7 @@ const Token: NextPage = () => {
                       rel="noreferrer"
                       title="View Owner On Etherscan"
                     >
-                      <TfiIcons.TfiNewWindow />
+                      <TfiNewWindow />
                     </a>
                   </St.SubtleTitle>
                 </>
@@ -168,7 +167,7 @@ const Token: NextPage = () => {
         <St.ControlsAndTraits>
           <TokenForms tokenId={tokenIdNum} setIsTxPending={setIsTxPending} />
 
-          <Traits token={token} />
+          {token && <Traits token={token} />}
         </St.ControlsAndTraits>
       </St.PageContainer>
     </AppContainer>

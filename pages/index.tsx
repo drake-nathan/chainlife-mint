@@ -2,19 +2,24 @@ import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import NavBar from 'components/NavBar/NavBar';
+import Instructions from 'components/Instructions/Instructions';
 import TokenIdForm from 'components/TokenForm/TokenIdForm';
 import { IoIosExpand } from 'react-icons/io';
-import * as Steps from 'helpers/worldviewInstructions';
 import * as St from '../styles/App.styled';
 
 const Home: NextPage = () => {
   const [activeStep, setActiveStep] = useState(0);
 
+  const handleInstructionsClick = () => {
+    if (activeStep === 0) setActiveStep(1);
+    else setActiveStep(0);
+  };
+
   return (
     <St.AppContainer>
       <Head>
-        <title>Chainlife Mint</title>
-        <meta name="description" content="Chainlife Mint." />
+        <title>Chainlife</title>
+        <meta name="description" content="Chainlife Mint" />
       </Head>
 
       <NavBar />
@@ -36,36 +41,10 @@ const Home: NextPage = () => {
           </a>
         </St.WorldViewTitle>
         <St.WorldViewInfo>Click, drag, and scroll to navigate in 3D.</St.WorldViewInfo>
+
         <St.InstructionsContainer>
-          {activeStep !== 0 ? (
-            <St.StepContainer
-              onClick={
-                activeStep < 3
-                  ? () => setActiveStep(activeStep + 1)
-                  : () => setActiveStep(0)
-              }
-            >
-              {activeStep === 1 ? (
-                <St.Step key={Steps.step1}>{Steps.step1}</St.Step>
-              ) : activeStep === 2 ? (
-                <>
-                  <St.Step key={Steps.step2}>{Steps.step2}</St.Step>
-                  <St.Step>{Steps.step2Line2}</St.Step>
-                  <St.Step>{Steps.step2Line3}</St.Step>
-                  <St.Step>{Steps.step2Line4}</St.Step>
-                </>
-              ) : activeStep === 3 ? (
-                <>
-                  <St.Step key={Steps.step3}>{Steps.step3}</St.Step>
-                  <St.Step>{Steps.step3Line2}</St.Step>
-                  <St.Step>{Steps.step3Line3}</St.Step>
-                  <St.Step>{Steps.step3Line4}</St.Step>
-                  <St.Step>{Steps.step3Line5}</St.Step>
-                  <St.Step>{Steps.step3Line6}</St.Step>
-                </>
-              ) : null}
-            </St.StepContainer>
-          ) : null}
+          <Instructions activeStep={activeStep} setActiveStep={setActiveStep} />
+
           <St.FrameDiv>
             <iframe
               src="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
@@ -73,6 +52,7 @@ const Home: NextPage = () => {
               frameBorder="0"
             ></iframe>
           </St.FrameDiv>
+
           <St.Expand
             href="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
             target="blank"
@@ -82,11 +62,11 @@ const Home: NextPage = () => {
             <IoIosExpand />
           </St.Expand>
         </St.InstructionsContainer>
-        {activeStep === 0 ? (
-          <St.ViewInstructions onClick={() => setActiveStep(1)}>
-            Click here to view instructions.
-          </St.ViewInstructions>
-        ) : null}
+
+        <St.ViewInstructions onClick={handleInstructionsClick}>
+          Click here to view instructions.
+        </St.ViewInstructions>
+
         <TokenIdForm />
         <St.NotesContainer>
           <St.NotesTitle>A Few Notes:</St.NotesTitle>
