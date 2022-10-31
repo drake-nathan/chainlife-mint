@@ -39,7 +39,7 @@ export const LabelDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5em;
+  gap: 1em;
 `;
 
 export const Label = styled.label``;
@@ -53,12 +53,12 @@ export const InstructionLabel = styled(Label)`
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 0.25em;
+  gap: 0.35em;
 `;
 
 export const Input = styled.input`
   height: 37.5px;
-  width: 120px;
+  width: 150px;
   padding: 0.5em;
   border: 3px solid ${(props) => props.theme.colors.textOffset};
   text-align: left;

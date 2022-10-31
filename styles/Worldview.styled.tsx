@@ -139,17 +139,13 @@ export const Title = styled.p`
 
 export const WorldViewTitle = styled(Title)`
   text-align: center;
-  font-size: 20px;
   @media (max-width: 550px) {
     max-width: 350px;
-    font-size: 17px;
-    line-height: 2rem;
   }
 `;
 
 export const WorldViewInfo = styled.h1`
   text-align: center;
-  font-size: 40px;
   @media (max-width: 600px) {
     font-size: 24px;
   }
@@ -236,7 +232,6 @@ export const InfoText = styled.p`
 
 export const FrameDiv = styled.div`
   width: 100%;
-  margin-top: -18px;
 
   iframe {
     width: 100%;

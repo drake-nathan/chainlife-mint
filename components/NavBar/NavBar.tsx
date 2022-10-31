@@ -111,8 +111,11 @@ const NavBar: React.FC = () => {
             <St.NavLink href="https://chainlife.gitbook.io/docs/" target="blank">
               DOCS
             </St.NavLink>
-            <St.NavLink href="https://chainlife.art/" target="blank">
-              RANDOM
+            <St.NavLink
+              href="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
+              target="blank"
+            >
+              WORLD
             </St.NavLink>
             <St.NavConnect onClick={handleMarketsClick}>MARKETS</St.NavConnect>
             <St.NavConnect onClick={handleConnectClick}>

@@ -24,62 +24,57 @@ const Home: NextPage = () => {
 
       <NavBar />
       <St.WorldViewContainer>
+        <St.WorldViewInfo>Welcome to Chainlife!</St.WorldViewInfo>
         <St.WorldViewTitle>
-          An on-chain, generative-art-mimics-life collectible and evolving
-          game-within-a-game, by{' '}
-          <a
-            href="https://linktr.ee/MonkMatto"
-            target="blank"
-            rel="noreferrer"
-            style={{
-              textDecoration: 'underline',
-              color: '#3a3a3a',
-              fontWeight: '500',
-            }}
-          >
-            Matto.
-          </a>
+          {
+            "This is a fully random Chainlife token. Click on it to activate it, then if you'd like a list of hotkeys, press"
+          }{' '}
+          <strong>{"'H'."}</strong>
         </St.WorldViewTitle>
-        <St.WorldViewInfo>Click, drag, and scroll to navigate in 3D.</St.WorldViewInfo>
 
         <St.InstructionsContainer>
           <Instructions activeStep={activeStep} setActiveStep={setActiveStep} />
 
           <St.FrameDiv>
             <iframe
-              src="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
-              title="generator"
+              src="https://chainlife.art/"
+              title="random generator"
               frameBorder="0"
             ></iframe>
           </St.FrameDiv>
-
-          <St.Expand
-            href="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
-            target="blank"
-            rel="noreferrer"
-            title="Expand Worldview"
-          >
-            <IoIosExpand />
-          </St.Expand>
         </St.InstructionsContainer>
-
-        <St.ViewInstructions onClick={handleInstructionsClick}>
-          Click here to view instructions.
-        </St.ViewInstructions>
-
-        <TokenIdForm />
         <St.NotesContainer>
-          <St.NotesTitle>A Few Notes:</St.NotesTitle>
-          <St.NotesText>
-            When playing a Chainlife token or a Chainlife World level, press <em>H </em>
-            for on-screen help.
-          </St.NotesText>
-          <St.NotesText>
-            When playing a Chainlife World level, the ruleset defaults to the Game of
-            Life, the token style is randomized every 6 minutes, and the <em>level</em> of
-            the game matches the World level.
-          </St.NotesText>
+          <St.WorldViewTitle>
+            There is much more to Chainlife than any single token. Together, the entire
+            collection forms a 3D world. Learn more in the{' '}
+            <a
+              href="https://chainlife.gitbook.io/docs/start-here/introduction"
+              target="blank"
+              rel="noreferrer"
+              style={{
+                textDecoration: 'underline',
+                color: '#3a3a3a',
+                fontWeight: '500',
+              }}
+            >
+              docs,
+            </a>{' '}
+            or explore the{' '}
+            <a
+              href="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
+              target="blank"
+              rel="noreferrer"
+              style={{
+                textDecoration: 'underline',
+                color: '#3a3a3a',
+                fontWeight: '500',
+              }}
+            >
+              world.
+            </a>
+          </St.WorldViewTitle>
         </St.NotesContainer>
+        <TokenIdForm />
       </St.WorldViewContainer>
     </St.AppContainer>
   );

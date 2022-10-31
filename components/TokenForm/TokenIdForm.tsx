@@ -16,8 +16,7 @@ const TokenIdForm = () => {
   return (
     <>
       <St.InstructionLabel>
-        You can access a token by interacting with the <strong>Worldview </strong> above
-        or by entering an ID below.
+        Or you can access an individual Chainlife token directly by entering an ID below.
       </St.InstructionLabel>
 
       <St.Form onSubmit={handleSubmit}>
