@@ -15,6 +15,7 @@ interface Props {
 const CustomRuleForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
   const { active, account } = useWeb3React();
   const { goerliContract } = useContract();
+  const [ruleSubmitted, setRuleSubmitted] = useState<boolean>(false);
 
   const [customRule, setCustomRule] = useState('');
   const [errorText, setErrorText] = useState('');
@@ -42,8 +43,13 @@ const CustomRuleForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
         console.error(error);
       } finally {
         setIsTxPending(false);
+        setRuleSubmitted(true);
       }
     }
+  };
+
+  const handleRefresh = () => {
+    setRuleSubmitted(false);
   };
 
   useEffect(() => {
@@ -65,6 +71,9 @@ const CustomRuleForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
           onChange={(e) => setCustomRule(e.target.value)}
         />
         <St.Button type="submit">Submit</St.Button>
+        {ruleSubmitted ? (
+          <St.Refresh onClick={handleRefresh}>Refresh Rule</St.Refresh>
+        ) : null}
       </St.Form>
       {errorText && <St.ErrorText>{errorText}</St.ErrorText>}
     </>

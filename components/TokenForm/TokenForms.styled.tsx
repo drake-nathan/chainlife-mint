@@ -91,6 +91,11 @@ export const Input = styled.input`
 
 export const Button = styled(Main)``;
 
+export const Refresh = styled(Button)`
+  font-size: 22px;
+  margin-left: 4px;
+`;
+
 export const ErrorText = styled.p``;
 
 export const IdFormLabel = styled.h4`
