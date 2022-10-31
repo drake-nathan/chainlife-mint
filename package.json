@@ -11,9 +11,9 @@
     "prepare": "husky install"
   },
   "engines": {
-    "node": ">=16.14.2",
-    "npm": ">=8.15.0",
-    "yarn": ">=1.22.15"
+    "node": ">16.14.2",
+    "npm": "^8.15.0",
+    "yarn": "^1.22.15"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-0",
