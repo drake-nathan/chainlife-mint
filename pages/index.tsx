@@ -11,7 +11,7 @@ const Home: NextPage = () => {
     <St.AppContainer>
       <Head>
         <title>Chainlife</title>
-        <meta name="description" content="Chainlife Mint" />
+        <meta name="description" content="Chainlife" />
       </Head>
 
       <NavBar />

@@ -47,8 +47,7 @@ const Home: NextPage = () => {
 
           <St.FrameDiv>
             <iframe
-              // src="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
-              src="https://chainlife.art"
+              src="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
               title="random generator"
               frameBorder="0"
             ></iframe>

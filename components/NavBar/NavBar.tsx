@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useWeb3React } from '@web3-react/core';
 import { useWindowSize } from 'hooks/useWindowSize';
 import ConnectDropDown from 'components/Modals/ConnectDropDown';
@@ -111,12 +112,9 @@ const NavBar: React.FC = () => {
             <St.NavLink href="https://chainlife.gitbook.io/docs/" target="blank">
               DOCS
             </St.NavLink>
-            <St.NavLink
-              href="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
-              target="blank"
-            >
-              WORLD
-            </St.NavLink>
+            <Link href="/worldview" target="blank">
+              <St.NavLink>WORLD</St.NavLink>
+            </Link>
             <St.NavConnect onClick={handleMarketsClick}>MARKETS</St.NavConnect>
             <St.NavConnect onClick={handleConnectClick}>
               {!active ? (windowWidth < 500 ? 'CONNECT' : 'CONNECT WALLET') : 'CONNECTED'}
