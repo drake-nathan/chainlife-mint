@@ -91,6 +91,12 @@ export const NotesContainer = styled.div`
   padding-right: 80px;
   max-width: 1050px;
 
+  a {
+    color: #3a3a3a;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
   @media (max-width: 600px) {
     padding-left: 40px;
     padding-right: 40px;

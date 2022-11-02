@@ -44,25 +44,12 @@ const Home: NextPage = () => {
               href="https://chainlife.gitbook.io/docs/start-here/introduction"
               target="blank"
               rel="noreferrer"
-              style={{
-                textDecoration: 'underline',
-                color: '#3a3a3a',
-                fontWeight: '500',
-              }}
             >
               docs,
             </a>{' '}
             or explore the{' '}
             <Link href="/worldview" target="blank" rel="noreferrer">
-              <a
-                style={{
-                  textDecoration: 'underline',
-                  color: '#3a3a3a',
-                  fontWeight: '500',
-                }}
-              >
-                world.
-              </a>
+              <a>world.</a>
             </Link>
           </St.Title>
         </St.NotesContainer>
