@@ -15,28 +15,7 @@ export const AppContainer = styled.div`
   padding-bottom: 150px;
 `;
 
-export const BodyContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 60px 100px;
-  max-width: 1920px;
-  gap: 7rem;
-  width: 100%;
-
-  @media (max-width: 1700px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 3rem;
-    padding-bottom: 25px;
-  }
-`;
-
-export const WorldViewContainer = styled.div`
+export const HeroContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,76 +49,15 @@ export const InstructionsContainer = styled.div`
   }
 `;
 
-export const Expand = styled.a`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  font-size: 34px;
-  margin-bottom: -12px;
-`;
-
-export const ViewInstructions = styled.p`
-  color: ${(props) => props.theme.colors.textOffset};
-  font-weight: 500;
-  font-size: 18px;
-`;
-
-export const LeftSection = styled.div`
-  @media (max-width: 750px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-`;
-
-export const SliderAndIframeContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 7rem;
-  @media (max-width: 750px) {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-`;
-
-export const TitleAnCryptoContainer = styled.div`
-  width: 650px;
-  height: 100px;
-  padding: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  @media (max-width: 750px) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 350px;
-  }
-`;
-
-export const TitleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  @media (max-width: 750px) {
-    margin-bottom: -12px;
-    width: 350px;
-    align-items: center;
-  }
-`;
-
 export const Title = styled.p`
   color: ${(props) => props.theme.colors.textOffset};
-  font-size: 18px;
+  text-align: center;
+  font-size: 20px;
+
   @media (max-width: 500px) {
     font-size: 15px;
   }
-`;
 
-export const WorldViewTitle = styled(Title)`
-  text-align: center;
-  font-size: 20px;
   @media (max-width: 550px) {
     max-width: 350px;
     font-size: 17px;
@@ -176,61 +94,6 @@ export const NotesContainer = styled.div`
   @media (max-width: 600px) {
     padding-left: 40px;
     padding-right: 40px;
-  }
-`;
-
-export const NotesTitle = styled(SubTitle)`
-  color: ${(props) => props.theme.colors.textMain};
-  font-size: 18px;
-`;
-
-export const NotesText = styled.p`
-  /* max-width: 85ch; */
-`;
-
-export const DescriptionsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-top: 128px;
-  height: 650px;
-  align-items: center;
-
-  @media (max-width: 1700px) {
-    margin-top: 0px;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-`;
-
-export const InfoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  height: 75px;
-  width: 650px;
-
-  @media (max-width: 750px) {
-    width: 360px;
-    margin-top: 3.5rem;
-    margin-bottom: 2rem;
-    gap: 2rem;
-    flex-direction: column;
-
-    button {
-      max-width: 225px;
-    }
-  }
-`;
-
-export const InfoText = styled.p`
-  font-size: 18px;
-  font-weight: 300;
-  font-style: italic;
-
-  @media (max-width: 750px) {
-    font-size: 15px;
   }
 `;
 

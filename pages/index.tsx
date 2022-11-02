@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import NavBar from 'components/NavBar/NavBar';
-import Instructions from 'components/Instructions/Instructions';
 import TokenIdForm from 'components/TokenForm/TokenIdForm';
-import { IoIosExpand } from 'react-icons/io';
 import * as St from '../styles/App.styled';
 
 const Home: NextPage = () => {
-  const [activeStep, setActiveStep] = useState(0);
-
-  const handleInstructionsClick = () => {
-    if (activeStep === 0) setActiveStep(1);
-    else setActiveStep(0);
-  };
-
   return (
     <St.AppContainer>
       <Head>
@@ -23,18 +15,18 @@ const Home: NextPage = () => {
       </Head>
 
       <NavBar />
-      <St.WorldViewContainer>
+
+      <St.HeroContainer>
         <St.WorldViewInfo>Welcome to Chainlife!</St.WorldViewInfo>
-        <St.WorldViewTitle>
+
+        <St.Title>
           {
             "This is a fully random Chainlife token. Click on it to activate it, then if you'd like a list of hotkeys, press"
           }{' '}
           <strong>{"'H'."}</strong>
-        </St.WorldViewTitle>
+        </St.Title>
 
         <St.InstructionsContainer>
-          <Instructions activeStep={activeStep} setActiveStep={setActiveStep} />
-
           <St.FrameDiv>
             <iframe
               src="https://chainlife.art/"
@@ -43,8 +35,9 @@ const Home: NextPage = () => {
             ></iframe>
           </St.FrameDiv>
         </St.InstructionsContainer>
+
         <St.NotesContainer>
-          <St.WorldViewTitle>
+          <St.Title>
             There is much more to Chainlife than any single token. Together, the entire
             collection forms a 3D world. Learn more in the{' '}
             <a
@@ -60,22 +53,22 @@ const Home: NextPage = () => {
               docs,
             </a>{' '}
             or explore the{' '}
-            <a
-              href="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
-              target="blank"
-              rel="noreferrer"
-              style={{
-                textDecoration: 'underline',
-                color: '#3a3a3a',
-                fontWeight: '500',
-              }}
-            >
-              world.
-            </a>
-          </St.WorldViewTitle>
+            <Link href="/worldview" target="blank" rel="noreferrer">
+              <a
+                style={{
+                  textDecoration: 'underline',
+                  color: '#3a3a3a',
+                  fontWeight: '500',
+                }}
+              >
+                world.
+              </a>
+            </Link>
+          </St.Title>
         </St.NotesContainer>
+
         <TokenIdForm />
-      </St.WorldViewContainer>
+      </St.HeroContainer>
     </St.AppContainer>
   );
 };

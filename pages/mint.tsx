@@ -57,8 +57,8 @@ const Home: NextPage = () => {
   return (
     <St.AppContainer>
       <Head>
-        <title>Chainlife Mint</title>
-        <meta name="description" content="Chainlife Mint." />
+        <title>Chainlife</title>
+        <meta name="description" content="Chainlife." />
       </Head>
 
       {!showFallback ? (
