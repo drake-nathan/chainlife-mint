@@ -13,7 +13,7 @@ import { useWindowSize } from 'hooks/useWindowSize';
 import DynamicFallback from 'components/FallbackPage/DynamicFallback';
 import { MintPageContext } from 'contexts/MintPageContext';
 import { getGeneratorUrl, getSliderTokens } from 'helpers/getRandomToken';
-import * as St from '../styles/App.styled';
+import * as St from '../styles/mint.styles';
 
 const Home: NextPage = () => {
   const nodeEnv = process.env.NODE_ENV || 'production';
