@@ -11,8 +11,8 @@ export const usePreMintOwners = () => {
 
   useEffect(() => {
     if (data) {
-      const preMintOwners = parseArtBlocks(data as ArtBlocks);
-      setPreMintOwners(preMintOwners);
+      const parsedData = parseArtBlocks(data as ArtBlocks);
+      setPreMintOwners(parsedData);
     }
   }, [data]);
 
