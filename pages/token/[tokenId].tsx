@@ -5,22 +5,21 @@ import { useRouter } from 'next/router';
 import NavBar from 'components/NavBar/NavBar';
 import TokenForms from 'components/TokenForm/TokenForms';
 import { AppContainer } from '../../styles/App.styled';
-import { getToken } from 'azureApi/fetches';
+import { getToken } from 'services/azureApi/fetches';
 import { useEffect, useState } from 'react';
 import OpenSea from '../../public/openSea-logo.png';
 import LooksRare from '../../public/looksrare-logo.png';
 import X2Y2 from '../../public/Logo.png';
-import { IToken } from 'azureApi/types';
+import { IToken } from 'services/azureApi/types';
 import Traits from 'components/Traits/Traits';
-import { getOwner } from 'web3/web3Fetches';
+import { getOwner } from 'services/web3/contractInteractions';
 import { useWeb3React } from '@web3-react/core';
 import { useContract } from 'hooks/useContract';
 import LoadingVideo from 'components/LoadingVideo/LoadingVideo';
-import { equalAddresses, shortenAddress } from 'web3/web3helpers';
+import { equalAddresses, shortenAddress } from 'services/web3/web3helpers';
 import { TfiNewWindow } from 'react-icons/tfi';
 import { IoIosExpand } from 'react-icons/io';
 import * as St from '../../styles/token.styled';
-import { useWindowSize } from 'hooks/useWindowSize';
 
 const Token: NextPage = () => {
   const router = useRouter();
