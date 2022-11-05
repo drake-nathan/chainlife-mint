@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+import { getProject } from 'services/azureApi/fetches';
 
 export const useMintDetails = () => {
   const currentTime = new Date();
-  const mintStart = new Date('2023-10-17T14:22:00-0400');
-  const preSalePeriod = 2;
+  const mintStart = new Date('2023-11-01T14:22:00-0400');
+  const preSalePeriod = 9; // days
   const publicStart = new Date(mintStart.setDate(mintStart.getDate() + preSalePeriod));
   const mintEnd = new Date('3000-01-01');
 
@@ -11,11 +12,11 @@ export const useMintDetails = () => {
   const shiftFee = 0.001;
   const discountPrice = 0.08;
   const maxSupply = 4096;
-  const currentSupply = 14;
   const maxMint = 1;
 
   const [isMintLive, setIsMintLive] = useState(false);
   const [isPreMint, setIsPreMint] = useState(false);
+  const [currentSupply, setCurrentSupply] = useState<number>();
 
   useEffect(() => {
     if (currentTime >= mintStart && currentTime <= mintEnd) {
@@ -26,6 +27,15 @@ export const useMintDetails = () => {
       setIsPreMint(true);
     }
   }, [currentTime]);
+
+  useEffect(() => {
+    // NOTE: Change this to fetch the current supply from the contract
+    getProject('chainlife-testnet').then((project) => {
+      if (project && project.current_supply) {
+        setCurrentSupply(project.current_supply);
+      }
+    });
+  }, [currentSupply]);
 
   return {
     isMintLive,
