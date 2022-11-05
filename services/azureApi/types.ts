@@ -70,6 +70,7 @@ export interface IToken {
   script_type: string;
   script_inputs: IScriptInputs;
   image: string; // generation scripts
+  thumbnail_url?: string;
   image_data?: string; // not used for Chainlife
   animation_url: string; // generation script
   generator_url: string; // same as animation_url
@@ -85,6 +86,17 @@ export interface ITransaction {
   project_id: number;
   block_number: number;
   transaction_hash: string;
+  transaction_date: Date;
   event_type: string;
   token_id: number;
+}
+
+export interface IThumbnail {
+  _id?: string;
+  project_slug: 'focus' | 'enso';
+  project_id: 34 | 181;
+  token_id: number;
+  artblocks_id: string;
+  image_full: string;
+  image_thumbnail: string;
 }

@@ -112,7 +112,7 @@ const NavBar: React.FC = () => {
             <St.NavLink href="https://chainlife.gitbook.io/docs/" target="blank">
               DOCS
             </St.NavLink>
-            <Link href="/worldview" target="blank">
+            <Link href="/world" target="blank">
               <St.NavLink>WORLD</St.NavLink>
             </Link>
             <St.NavConnect onClick={handleMarketsClick}>MARKETS</St.NavConnect>

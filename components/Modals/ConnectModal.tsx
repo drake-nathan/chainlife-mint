@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
-import { Connectors, connectors } from 'web3/connectors';
+import { Connectors, connectors } from 'services/web3/connectors';
 import { switchChain } from 'components/Web3/web3Helpers';
 import * as St from './Modals.styled';
 
@@ -59,9 +59,7 @@ const ConnectModal: React.FC<Props> = ({ setShowModal }) => {
         <St.Button onClick={() => handleConnectWallet(Connectors.Injected)}>
           METAMASK
         </St.Button>
-        <St.Button
-          onClick={() => handleConnectWallet(Connectors.WalletConnect)}
-        >
+        <St.Button onClick={() => handleConnectWallet(Connectors.WalletConnect)}>
           WALLETCONNECT
         </St.Button>
         <St.Button onClick={() => handleConnectWallet(Connectors.Coinbase)}>

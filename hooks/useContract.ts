@@ -1,5 +1,5 @@
 import { AbiItem } from 'web3-utils';
-import storefrontAbi from '../web3/Chainlife.abi.json';
+import storefrontAbi from 'services/web3/Chainlife.abi.json';
 import { useWeb3 } from './useWeb3';
 
 export const useContract = () => {

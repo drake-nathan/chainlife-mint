@@ -49,7 +49,7 @@ const Home: NextPage = () => {
               docs,
             </a>{' '}
             or explore the{' '}
-            <Link href="/worldview" target="blank" rel="noreferrer">
+            <Link href="/world" target="blank" rel="noreferrer">
               <a>world.</a>
             </Link>
           </St.Title>

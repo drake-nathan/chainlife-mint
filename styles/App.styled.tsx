@@ -19,7 +19,6 @@ export const HeroContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 6rem;
   padding-bottom: 6rem;
   gap: 3rem;
   width: 100%;
@@ -38,11 +37,7 @@ export const InstructionsContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: fit-content;
-  width: 100%;
-
-  @media (max-width: 1800px) {
-    width: 80%;
-  }
+  width: 80%;
 
   @media (max-width: 500px) {
     width: 100%;
