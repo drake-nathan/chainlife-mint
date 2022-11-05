@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import NavBar from 'components/NavBar/NavBar';
 import TokenIdForm from 'components/TokenForm/TokenIdForm';
+import Web3Buttons from 'components/Web3/Web3Buttons';
 import * as St from '../styles/App.styled';
 
 const Home: NextPage = () => {
@@ -56,6 +57,7 @@ const Home: NextPage = () => {
 
         <TokenIdForm />
       </St.HeroContainer>
+      <Web3Buttons />
     </St.AppContainer>
   );
 };

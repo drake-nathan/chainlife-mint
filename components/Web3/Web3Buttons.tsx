@@ -6,6 +6,7 @@ import { useContract } from 'hooks/useContract';
 import { publicMint, presaleMint, ISuccessInfo } from './web3Helpers';
 import ConnectModal from 'components/Modals/ConnectModal';
 import BuyModal from 'components/Modals/BuyModal';
+import PremintModal from 'components/Modals/PremintModal';
 import ErrorModal from 'components/Modals/ErrorModal';
 import SuccessModal from 'components/Modals/SuccessModal';
 import * as St from '../DescriptionSections/Description.styled';
@@ -18,6 +19,7 @@ const Web3Buttons: React.FC = () => {
 
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
+  const [showPremintModal, setShowPremintModal] = useState(false);
 
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -34,13 +36,13 @@ const Web3Buttons: React.FC = () => {
   };
 
   const handleCryptoClick = async () => {
-    if (!isMintLive) {
-      return handleError('MINT IS NOT LIVE YET');
-    }
+    console.log(isPreMint);
+    console.log(isMintLive);
     if (!active) {
       setShowConnectModal(!showConnectModal);
     } else if (isPreMint) {
-      handleError('MUST BE ALLOWLISTED TO MINT DURING PRESALE');
+      setShowPremintModal(true);
+      //handleError('MUST BE ALLOWLISTED TO MINT DURING PRESALE');
     } else {
       setBuyButtonText('MINT WITH CRYPTO');
       setShowBuyModal(true);
@@ -120,6 +122,15 @@ const Web3Buttons: React.FC = () => {
 
       {showBuyModal && (
         <BuyModal
+          setShowModal={setShowBuyModal}
+          handleCryptoMint={handleCryptoMint}
+          handleError={handleError}
+          buyButtonText={buyButtonText}
+        />
+      )}
+
+      {showPremintModal && (
+        <PremintModal
           setShowModal={setShowBuyModal}
           handleCryptoMint={handleCryptoMint}
           handleError={handleError}
