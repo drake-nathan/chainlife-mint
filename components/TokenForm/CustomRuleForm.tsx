@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useContract } from 'hooks/useContract';
-import { callCustomRule } from 'web3/web3Fetches';
+import { callCustomRule } from 'services/web3/contractInteractions';
 import * as St from './TokenForms.styled';
 
 type ICustomRule = { customRule: string };

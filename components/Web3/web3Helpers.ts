@@ -7,7 +7,7 @@ import {
   callPublicMint,
   callPremint,
   callPublicMintTo,
-} from 'web3/web3Fetches';
+} from 'services/web3/contractInteractions';
 
 // mainnet urls
 const urls = {

@@ -11,7 +11,7 @@ export const getGeneratorUrl = (currentSupply: number, tokenId?: number) => {
 
   const generatorUrl = `${root}/${token}`;
   // NOTE: Make this mainnet when ready
-  return { generatorUrl, tokenId: token };
+  return { generatorUrl, tokenId: token as number };
 };
 
 export const getSliderTokens = (currentSupply: number) => {
