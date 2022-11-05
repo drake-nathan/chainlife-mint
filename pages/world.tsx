@@ -5,6 +5,7 @@ import NavBar from 'components/NavBar/NavBar';
 import Instructions from 'components/Instructions/Instructions';
 import TokenIdForm from 'components/TokenForm/TokenIdForm';
 import { IoIosExpand } from 'react-icons/io';
+import * as MdIcons from 'react-icons/md';
 import * as St from '../styles/Worldview.styled';
 
 const Home: NextPage = () => {
@@ -25,24 +26,26 @@ const Home: NextPage = () => {
       <NavBar />
       <St.WorldViewContainer>
         <St.WorldViewTitle>
-          An on-chain, generative-art-mimics-life collectible and evolving
-          game-within-a-game, by{' '}
-          <a
-            href="https://linktr.ee/MonkMatto"
-            target="blank"
-            rel="noreferrer"
-            style={{
-              textDecoration: 'underline',
-              color: '#3a3a3a',
-              fontWeight: '500',
-            }}
-          >
-            Matto.
-          </a>
+          <span style={{ color: '#3a3a3a' }}>Chainlife tokens:</span> microcosms of
+          digital life, that are interactive, evolving, and aware. <br />
+          <br /> <span style={{ color: '#3a3a3a' }}>Chainlife World:</span> an
+          ever-changing macrocosm controlled by you, that is collaborative, (also)
+          on-chain, and extendible.
         </St.WorldViewTitle>
         <St.WorldViewInfo>Click, drag, and scroll to navigate in 3D.</St.WorldViewInfo>
-
         <St.InstructionsContainer>
+          {/* <St.MobileIconContainer>
+            <St.MobileIconRow>
+              <a
+                href="https://linktr.ee/MonkMatto"
+                target="blank"
+                rel="noreferrer"
+                title="Mobile Friendly Worldview"
+              >
+                View Mobile Version <MdIcons.MdOutlineMobileFriendly className="icon" />
+              </a>
+            </St.MobileIconRow>
+          </St.MobileIconContainer> */}
           <Instructions activeStep={activeStep} setActiveStep={setActiveStep} />
 
           <St.FrameDiv>

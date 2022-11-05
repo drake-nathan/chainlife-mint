@@ -11,6 +11,8 @@ interface Props {
 const TokenForms: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
   const [activeSection, setActiveSection] = useState<1 | 2>(1);
 
+  const customRuleInfo = '';
+
   return (
     <St.Container>
       <St.TitleDiv>
@@ -31,6 +33,13 @@ const TokenForms: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
           SHIFT LEVELS
         </St.SubTitle>
       </St.SubTitleDiv>
+      <St.FormInfoContainer>
+        <St.FormInfo>
+          {activeSection === 1
+            ? 'This this this this this.'
+            : 'That that that that that.'}
+        </St.FormInfo>
+      </St.FormInfoContainer>
 
       {activeSection === 1 ? (
         <CustomRuleForm tokenId={tokenId} setIsTxPending={setIsTxPending} />

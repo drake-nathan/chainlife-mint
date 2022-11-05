@@ -105,7 +105,7 @@ const NavBar: React.FC = () => {
               target="blank"
               rel="noreferrer"
             >
-              <IoLogoYoutube style={{ height: '24px', width: '24px' }} />
+              <IoLogoYoutube id="youtube" style={{ height: '24px', width: '24px' }} />
             </St.NavLink>
           </St.SocialContainer>
           <St.NavLinksDiv>
