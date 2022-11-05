@@ -105,14 +105,14 @@ const NavBar: React.FC = () => {
               target="blank"
               rel="noreferrer"
             >
-              <IoLogoYoutube style={{ height: '24px', width: '24px' }} />
+              <IoLogoYoutube id="youtube" style={{ height: '24px', width: '24px' }} />
             </St.NavLink>
           </St.SocialContainer>
           <St.NavLinksDiv>
             <St.NavLink href="https://chainlife.gitbook.io/docs/" target="blank">
               DOCS
             </St.NavLink>
-            <Link href="/worldview" target="blank">
+            <Link href="/world" target="blank">
               <St.NavLink>WORLD</St.NavLink>
             </Link>
             <St.NavConnect onClick={handleMarketsClick}>MARKETS</St.NavConnect>

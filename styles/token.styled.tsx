@@ -71,16 +71,18 @@ export const Expand = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   width: 100%;
-  font-size: 28px;
   cursor: pointer;
-  margin-bottom: 8px;
+  color: ${(props) => props.theme.colors.textMain};
 
-  p {
-    font-size: 24px;
-    color: ${(props) => props.theme.colors.textOffset};
-    cursor: pointer;
+  .mobile {
+    margin-left: -0.3rem;
+    font-size: 25.5px;
+  }
+
+  .expand {
+    font-size: 29px;
   }
 `;
 

@@ -36,6 +36,30 @@ export const BodyContainer = styled.div`
   }
 `;
 
+export const MobileIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
+
+export const MobileIconRow = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 15px;
+  min-height: 35px;
+  width: 100%;
+  gap: 0.75rem;
+
+  @media (max-width: 500px) {
+    width: 365px;
+  }
+
+  .icon {
+    font-size: 24px;
+  }
+`;
+
 export const WorldViewContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -135,6 +159,10 @@ export const Title = styled.p`
 
 export const WorldViewTitle = styled(Title)`
   text-align: center;
+  width: 80%;
+  max-width: 850px;
+  padding-left: 40px;
+  padding-right: 40px;
   @media (max-width: 550px) {
     max-width: 350px;
   }

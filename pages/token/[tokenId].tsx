@@ -17,8 +17,10 @@ import { useWeb3React } from '@web3-react/core';
 import { useContract } from 'hooks/useContract';
 import LoadingVideo from 'components/LoadingVideo/LoadingVideo';
 import { equalAddresses, shortenAddress } from 'services/web3/web3helpers';
+import EsoterraIcon from '../../public/eso-01.svg';
 import { TfiNewWindow } from 'react-icons/tfi';
 import { IoIosExpand } from 'react-icons/io';
+import * as MdIcons from 'react-icons/md';
 import * as St from '../../styles/token.styled';
 
 const Token: NextPage = () => {
@@ -87,14 +89,29 @@ const Token: NextPage = () => {
                   `}
                   target="blank"
                   rel="noreferrer"
-                  title="openSea"
-                  style={{
-                    color: '#3a3a3a',
-                  }}
+                  title="esoterra"
+                  className="eso"
                 >
-                  <p>esoterra</p>
+                  <Image src={EsoterraIcon} width={24} height={24} alt="esoterra" />
                 </a>
-                <IoIosExpand title="View Token In A Separate Window" />
+                <a
+                  href={`https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/generator/${tokenId}`}
+                  target="blank"
+                  rel="noreferrer"
+                >
+                  <IoIosExpand
+                    title="View Token In A Separate Window"
+                    className="expand"
+                  />
+                </a>
+                <a
+                  href={`https://api.gengames.io/project/chainlife-testnet/generator-mobile/${tokenId}`}
+                  target="blank"
+                  rel="noreferrer"
+                  title="View Mobile Generator"
+                >
+                  <MdIcons.MdOutlineMobileFriendly className="mobile" />
+                </a>
               </St.Expand>
             </St.TokenHeader>
           </St.HeaderContainer>
