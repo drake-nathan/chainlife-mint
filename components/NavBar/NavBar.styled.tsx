@@ -163,6 +163,11 @@ export const NavLink = styled.a`
     color: ${(props) => props.theme.colors.hover};
     cursor: pointer;
   }
+  #youtube {
+    :hover {
+      color: ${(props) => props.theme.colors.textMain};
+    }
+  }
 `;
 
 export const MobileNavLink = styled(NavLink)`

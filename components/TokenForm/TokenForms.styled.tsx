@@ -42,6 +42,29 @@ export const SubTitle = styled(Title)`
   }
 `;
 
+export const FormInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: start;
+  margin-top: -12px;
+  margin-bottom: 12px;
+
+  @media (max-width: 500px) {
+    margin-top: -18px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+`;
+
+export const FormInfo = styled.p`
+  font-size: 16px;
+  color: ${(props) => props.theme.colors.textOffset};
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
+`;
+
 export const Form = styled.form`
   display: flex;
   justify-content: center;
