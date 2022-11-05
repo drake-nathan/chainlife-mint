@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CustomRuleForm from './CustomRuleForm';
 import ShiftLevelsForm from './ShiftLevelsForm';
+import { crText, slText } from './FormText';
 import * as St from './TokenForms.styled';
 
 interface Props {
@@ -35,9 +36,15 @@ const TokenForms: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
       </St.SubTitleDiv>
       <St.FormInfoContainer>
         <St.FormInfo>
-          {activeSection === 1
-            ? 'This this this this this.'
-            : 'That that that that that.'}
+          {activeSection === 1 ? crText : slText}{' '}
+          <a
+            href="https://chainlife.gitbook.io/docs/start-here/introduction"
+            target="blank"
+            rel="noreferrer"
+            style={{ color: '#3a3a3a', textDecoration: 'underline' }}
+          >
+            docs.
+          </a>
         </St.FormInfo>
       </St.FormInfoContainer>
 

@@ -116,3 +116,11 @@ export const FrameDiv = styled.div`
     }
   }
 `;
+
+export const CopyRightDiv = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  justify-content: center;
+  margin-bottom: 30px;
+`;
