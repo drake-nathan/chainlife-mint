@@ -1,5 +1,5 @@
 import React from 'react';
-import { IToken } from 'azureApi/types';
+import { IToken } from 'services/azureApi/types';
 import * as St from './Traits.styled';
 
 interface Props {
