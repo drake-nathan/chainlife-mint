@@ -43,6 +43,7 @@ export const useMintDetails = () => {
     mintStart,
     mintEnd,
     mintPrice,
+    publicStart,
     discountPrice,
     maxSupply,
     currentSupply,
