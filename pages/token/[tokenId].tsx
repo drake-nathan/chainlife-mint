@@ -89,7 +89,7 @@ const Token: NextPage = () => {
                   `}
                   target="blank"
                   rel="noreferrer"
-                  title="esoterra"
+                  title="View Esoterra In A Separate Window"
                   className="eso"
                 >
                   <Image src={EsoterraIcon} width={24} height={24} alt="esoterra" />

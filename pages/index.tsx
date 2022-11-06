@@ -20,9 +20,9 @@ const Home: NextPage = () => {
       <St.HeroContainer>
         <St.WorldViewInfo>Welcome to Chainlife!</St.WorldViewInfo>
 
-        <St.Title>
+        <St.Title id="main-subtitle">
           {
-            "This is a fully random Chainlife token. Click on it to activate it, then if you'd like a list of hotkeys, press"
+            "This is a fully random, but actually minted Chainlife token. Click on it to activate it, then if you'd like a list of hotkeys, press"
           }{' '}
           <strong>{"'H'."}</strong>
         </St.Title>

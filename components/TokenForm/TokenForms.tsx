@@ -41,7 +41,7 @@ const TokenForms: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
             href="https://chainlife.gitbook.io/docs/start-here/introduction"
             target="blank"
             rel="noreferrer"
-            style={{ color: '#3a3a3a', textDecoration: 'underline' }}
+            style={{ color: '#3a3a3a', textDecoration: 'underline', fontWeight: 500 }}
           >
             docs.
           </a>

@@ -59,7 +59,6 @@ export const FormInfoContainer = styled.div`
 
 export const FormInfo = styled.p`
   font-size: 16px;
-  color: ${(props) => props.theme.colors.textOffset};
   @media (max-width: 500px) {
     font-size: 14px;
   }

@@ -13,6 +13,10 @@ export const AppContainer = styled.div`
   justify-content: center;
   cursor: default;
   padding-bottom: 150px;
+
+  #main-subtitle {
+    cursor: default;
+  }
 `;
 
 export const HeroContainer = styled.div`
@@ -22,6 +26,24 @@ export const HeroContainer = styled.div`
   padding-bottom: 6rem;
   gap: 3rem;
   width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  @media (max-width: 1300px) {
+    margin-top: 5.5rem;
+
+    h1 {
+      font-size: 28px;
+    }
+  }
+
+  @media (max-width: 825px) {
+    margin-top: 7.5rem;
+
+    h1 {
+      font-size: 26px;
+    }
+  }
 
   p {
     cursor: pointer;
