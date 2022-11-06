@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
-import { useEagerConnect } from 'hooks/useEagerConnect';
 import { useMintDetails } from 'hooks/useMintDetails';
 import { useContract } from 'hooks/useContract';
+import { usePreMintOwners } from 'hooks/usePreMintOwners';
 import { publicMint, presaleMint, ISuccessInfo } from './web3Helpers';
 import ConnectModal from 'components/Modals/ConnectModal';
 import BuyModal from 'components/Modals/BuyModal';
@@ -12,9 +12,9 @@ import SuccessModal from 'components/Modals/SuccessModal';
 import * as St from '../DescriptionSections/Description.styled';
 
 const Web3Buttons: React.FC = () => {
-  useEagerConnect();
   const { active, account } = useWeb3React();
-  const { isPreMint, mintPrice, maxSupply, isMintLive } = useMintDetails();
+  const { userZenTokens } = usePreMintOwners();
+  const { isPreMint, mintPrice, maxSupply } = useMintDetails();
   const { goerliContract } = useContract();
 
   const [showConnectModal, setShowConnectModal] = useState(false);
@@ -30,7 +30,7 @@ const Web3Buttons: React.FC = () => {
   const [cryptoButtonText, setCryptoButtonText] = useState('CONNECT WALLET');
   const [buyButtonText, setBuyButtonText] = useState('MINT');
 
-  const handleError = (error: string) => {
+  const handleError = (error: string, date?: string) => {
     setErrorMessage(error);
     setShowErrorModal(true);
   };
@@ -38,12 +38,10 @@ const Web3Buttons: React.FC = () => {
   const handleCryptoClick = async () => {
     if (!active) {
       setShowConnectModal(!showConnectModal);
-    } else if (isPreMint) {
+    } else if (isPreMint && userZenTokens) {
       setShowPremintModal(!showPremintModal);
-      //handleError('MUST BE ALLOWLISTED TO MINT DURING PRESALE');
     } else {
-      setBuyButtonText('MINT WITH CRYPTO');
-      setShowBuyModal(true);
+      handleError(`MUST BE ZEN. TOKEN HOLDER TO MINT DURING ZEN. MINT`);
     }
   };
 
@@ -108,7 +106,7 @@ const Web3Buttons: React.FC = () => {
     }
 
     if (!active) {
-      setCryptoButtonText('CONNECT WALLET');
+      setCryptoButtonText('CONNECT');
       closeAllModals();
     }
   }, [active]);
@@ -128,12 +126,13 @@ const Web3Buttons: React.FC = () => {
         />
       )}
 
-      {showPremintModal && (
+      {showPremintModal && userZenTokens && (
         <PremintModal
           setShowModal={setShowPremintModal}
           handleCryptoMint={handleCryptoMint}
           handleError={handleError}
           buyButtonText={buyButtonText}
+          userZenTokens={userZenTokens}
         />
       )}
 

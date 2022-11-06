@@ -15,9 +15,11 @@ export interface ArtBlocks {
   focus: Project;
 }
 
-export interface PreMintOwner {
-  [account: string]: {
-    enso: number[];
-    focus: number[];
-  };
+export interface UserZenTokens {
+  enso: number[];
+  focus: number[];
+}
+
+export interface PreMintOwners {
+  [account: string]: UserZenTokens;
 }

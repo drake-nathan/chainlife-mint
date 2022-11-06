@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import { useMintDetails } from 'hooks/useMintDetails';
+import { UserZenTokens } from 'types/premintTypes';
 import * as PremintTokens from '../../utils/thumbnails';
 import * as St from './PremintModal.styled';
 
@@ -9,21 +10,28 @@ interface Props {
   handleCryptoMint: () => void;
   handleError: (error: string) => void;
   buyButtonText: string;
+  userZenTokens: UserZenTokens;
 }
 
 const PremintModal: React.FC<Props> = ({
   setShowModal,
   handleCryptoMint,
+  handleError,
   buyButtonText,
+  userZenTokens,
 }) => {
-  const { mintPrice } = useMintDetails();
+  const { mintPrice, discountPrice } = useMintDetails();
 
-  const [activeCollection, setActiveCollection] = useState(1);
-  const [activeEnso, setActiveEnso] = useState<Number | null>(null);
-  const [activeFocus, setActiveFocus] = useState<Number | null>(null);
+  const [activeCollection, setActiveCollection] = useState<1 | 2>(1);
+  const [activeEnso, setActiveEnso] = useState<number | null>(null);
+  const [activeFocus, setActiveFocus] = useState<number | null>(null);
+
+  const root = 'https://mattoapi.blob.core.windows.net/thumbnails';
+  const enso = { id: 34, slug: 'enso' };
+  const focus = { id: 181, slug: 'focus' };
 
   useEffect(() => {
-    if (PremintTokens.ensoURLs.length === 0) {
+    if (!userZenTokens.enso.length) {
       setActiveCollection(2);
     }
   }, []);
@@ -38,26 +46,26 @@ const PremintModal: React.FC<Props> = ({
       <St.BuyModalContainer>
         <St.UnitDiv>
           <St.UnitText style={{ color: '#fff', fontWeight: 500 }}>
-            {PremintTokens.ensoURLs.length > 0 && PremintTokens.focusURLs.length > 0
+            {userZenTokens.enso.length > 0 && userZenTokens.focus.length > 0
               ? 'CHOOSE A MATTO COLLECTION TO MINT WITH'
-              : PremintTokens.ensoURLs.length > 0 && PremintTokens.focusURLs.length === 0
+              : userZenTokens.enso.length > 0 && userZenTokens.focus.length === 0
               ? 'SELECT AN ENSO TOKEN TO MINT WITH'
               : 'SELECT A FOCUS TOKEN TO MINT WITH'}
           </St.UnitText>
           <St.Choices>
-            {PremintTokens.ensoURLs.length > 0 ? (
+            {userZenTokens.enso.length > 0 ? (
               <>
                 <St.CollectionText
                   onClick={() => setActiveCollection(1)}
                   className={activeCollection === 1 ? 'active' : ''}
                 >
-                  {PremintTokens.ensoURLs.length > 0 && PremintTokens.focusURLs.length > 0
+                  {userZenTokens.enso.length > 0 && userZenTokens.focus.length > 0
                     ? 'ENSO'
                     : ''}
                 </St.CollectionText>
                 <St.CollectionText>
                   {' '}
-                  {PremintTokens.focusURLs.length > 0 && PremintTokens.ensoURLs.length > 0
+                  {userZenTokens.focus.length > 0 && userZenTokens.enso.length > 0
                     ? '|'
                     : ''}
                 </St.CollectionText>
@@ -67,7 +75,7 @@ const PremintModal: React.FC<Props> = ({
               onClick={() => setActiveCollection(2)}
               className={activeCollection === 2 ? 'active' : ''}
             >
-              {PremintTokens.ensoURLs.length > 0 && PremintTokens.focusURLs.length > 0
+              {userZenTokens.enso.length > 0 && userZenTokens.focus.length > 0
                 ? 'FOCUS'
                 : ''}
             </St.CollectionText>
@@ -75,43 +83,53 @@ const PremintModal: React.FC<Props> = ({
         </St.UnitDiv>
         <St.ListingsWrapper>
           {activeCollection === 1
-            ? PremintTokens.ensoURLs.map((thumb) => (
+            ? userZenTokens.enso.map((token) => (
                 <St.TokenListing
-                  key={thumb.tokenId}
+                  key={token}
                   onClick={() => {
-                    setActiveEnso(thumb.tokenId);
+                    setActiveEnso(token);
                     setActiveFocus(null);
                   }}
                 >
-                  <img src={thumb.url} height={150} width={150} alt="enso" />{' '}
+                  <img
+                    src={`${root}/enso_${token}.png`}
+                    height={150}
+                    width={150}
+                    alt="enso"
+                  />{' '}
                   <St.TokenInfo>
                     <St.TokenText style={{ color: '#fff', fontWeight: 500 }}>
-                      {activeEnso === thumb.tokenId ? 'TOKEN SELECTED' : ''}
+                      {activeEnso === token ? 'TOKEN SELECTED' : ''}
                     </St.TokenText>
-                    <St.TokenText>ENSO #{thumb.tokenId}</St.TokenText>
+                    <St.TokenText>ENSO #{token}</St.TokenText>
                   </St.TokenInfo>
                 </St.TokenListing>
               ))
-            : PremintTokens.focusURLs.map((thumb) => (
+            : userZenTokens.focus.map((token) => (
                 <St.TokenListing
-                  key={thumb.tokenId}
+                  key={token}
                   onClick={() => {
-                    setActiveFocus(thumb.tokenId);
+                    setActiveFocus(token);
                     setActiveEnso(null);
                   }}
                 >
-                  <img src={thumb.url} height={150} width={150} alt="enso" />{' '}
+                  <img
+                    src={`${root}/focus_${token}.png`}
+                    height={150}
+                    width={150}
+                    alt="focus"
+                  />{' '}
                   <St.TokenInfo>
                     <St.TokenText style={{ color: '#fff', fontWeight: 500 }}>
-                      {activeFocus === thumb.tokenId ? 'TOKEN SELECTED' : ''}
+                      {activeFocus === token ? 'TOKEN SELECTED' : ''}
                     </St.TokenText>
-                    <St.TokenText>FOCUS #{thumb.tokenId}</St.TokenText>
+                    <St.TokenText>FOCUS #{token}</St.TokenText>
                   </St.TokenInfo>
                 </St.TokenListing>
               ))}
         </St.ListingsWrapper>
 
-        <St.Button onClick={() => handleCryptoMint()}>
+        <St.Button onClick={handleCryptoMint}>
           {buyButtonText}
           {activeEnso !== null
             ? `WITH ENSO #${activeEnso}`

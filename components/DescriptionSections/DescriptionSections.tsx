@@ -14,7 +14,7 @@ const DescriptionSections: React.FC = () => {
           onClick={() => setActiveSection(1)}
           className={activeSection === 1 ? '' : 'inactive'}
         >
-          ZENSALE
+          ZEN. MINT
         </St.Title>
         <St.Title>|</St.Title>
         <St.Title
