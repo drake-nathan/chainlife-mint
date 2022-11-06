@@ -22,9 +22,8 @@ const Home: NextPage = () => {
 
         <St.Title id="main-subtitle">
           {
-            "This is a fully random, but actually minted Chainlife token. Click on it to activate it, then if you'd like a list of hotkeys, press"
+            'Below is a randomly generated output from the chainlife algorithm. Click on it to activate it.'
           }{' '}
-          <strong>{"'H'."}</strong>
         </St.Title>
 
         <St.InstructionsContainer>
@@ -39,8 +38,7 @@ const Home: NextPage = () => {
 
         <St.NotesContainer>
           <St.Title>
-            There is much more to Chainlife than any single token. Together, the entire
-            collection forms a 3D world. Learn more in the{' '}
+            Chainlife is a rich and complex on-chain project. Learn more in the{' '}
             <a
               href="https://chainlife.gitbook.io/docs/start-here/introduction"
               target="blank"
@@ -48,16 +46,16 @@ const Home: NextPage = () => {
             >
               docs,
             </a>{' '}
-            or explore the{' '}
+            explore the{' '}
             <Link href="/world" target="blank" rel="noreferrer">
               <a>world.</a>
-            </Link>
+            </Link>{' '}
+            or enter a token id in the form below.
           </St.Title>
         </St.NotesContainer>
 
         <TokenIdForm />
       </St.HeroContainer>
-      <Web3Buttons />
     </St.AppContainer>
   );
 };
