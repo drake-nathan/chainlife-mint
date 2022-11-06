@@ -36,12 +36,10 @@ const Web3Buttons: React.FC = () => {
   };
 
   const handleCryptoClick = async () => {
-    console.log(isPreMint);
-    console.log(isMintLive);
     if (!active) {
       setShowConnectModal(!showConnectModal);
     } else if (isPreMint) {
-      setShowPremintModal(true);
+      setShowPremintModal(!showPremintModal);
       //handleError('MUST BE ALLOWLISTED TO MINT DURING PRESALE');
     } else {
       setBuyButtonText('MINT WITH CRYPTO');
@@ -132,7 +130,7 @@ const Web3Buttons: React.FC = () => {
 
       {showPremintModal && (
         <PremintModal
-          setShowModal={setShowBuyModal}
+          setShowModal={setShowPremintModal}
           handleCryptoMint={handleCryptoMint}
           handleError={handleError}
           buyButtonText={buyButtonText}

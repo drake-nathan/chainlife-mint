@@ -7,7 +7,7 @@ export const ModalBackground = styled.div`
   left: 0;
   top: 0;
   z-index: 30;
-  background: rgba(244, 245, 240, 0.7);
+  background: rgba(244, 245, 240, 0.85);
   backdrop-filter: blur(4px);
   cursor: pointer;
 
@@ -29,7 +29,7 @@ export const ModalContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${(props) => props.theme.colors.bgMain};
+  background: rgba(58, 58, 58, 0.7);
   border: 3px solid ${(props) => props.theme.colors.textMain};
   padding: 1.75em 1.5em;
   z-index: 40;
@@ -37,12 +37,12 @@ export const ModalContainer = styled.div`
 `;
 
 export const BuyModalContainer = styled(ModalContainer)`
-  gap: 2em;
+  gap: 2.5em;
   justify-content: space-evenly;
   min-width: 400px;
   /* min-height: 425px; */
   z-index: 20;
-  padding: 2.5em 2.5em;
+  padding: 4em 3em;
   @media (max-width: 500px) {
     min-width: 375px;
   }
@@ -50,9 +50,10 @@ export const BuyModalContainer = styled(ModalContainer)`
 
 export const ListingsWrapper = styled.div`
   height: 550px;
-  min-height: 550px;
-  background: ${(props) => props.theme.colors.textMain};
   z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   overflow-y: scroll;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
@@ -74,7 +75,15 @@ export const MsgDiv = styled.div`
 `;
 
 export const UnitDiv = styled(MsgDiv)`
-  justify-content: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+
+  .active {
+    color: ${(props) => props.theme.colors.bgMain};
+    font-weight: 500;
+  }
 `;
 
 export const LinkDiv = styled(MsgDiv)`
@@ -86,10 +95,8 @@ export const Text = styled.span`
   font-size: 1.25rem;
   font-weight: 500;
   text-align: center;
-  margin-right: -8px;
-  margin-top: 34px;
   line-height: 1.5;
-  max-width: 25ch;
+  max-width: 50ch;
   @media (max-width: 500px) {
     margin-top: 18px;
   }
@@ -116,16 +123,25 @@ export const Button = styled.button`
   min-width: 175px;
   min-height: 65px;
   border: 3px solid ${(props) => props.theme.colors.textMain};
-  background-color: ${(props) => props.theme.colors.bgMain};
-  color: ${(props) => props.theme.colors.textMain};
+  background-color: ${(props) => props.theme.colors.textMain};
+  color: ${(props) => props.theme.colors.bgMain};
   font-size: 1.25rem;
   font-weight: 500;
   padding: 0 0.5em;
   cursor: pointer;
+  transition-duration: 0.3s;
+  background-color: ${(props) => props.theme.colors.textMain};
+  color: ${(props) => props.theme.colors.bgMain};
+  box-shadow: 4px 6px 12px -2px rgba(58, 58, 58, 0.61);
+  -webkit-box-shadow: 4px 6px 12px -2px rgba(58, 58, 58, 0.61);
+  -moz-box-shadow: 4px 6px 12px -2px rgba(58, 58, 58, 0.61);
 
   :hover {
-    background-color: ${(props) => props.theme.colors.textMain};
-    color: ${(props) => props.theme.colors.bgMain};
+    box-shadow: 6px 8px 14px -2px rgba(58, 58, 58, 0.61);
+    -webkit-box-shadow: 6px 8px 14px -2px rgba(58, 58, 58, 0.61);
+    -moz-box-shadow: 6px 8px 14px -2px rgba(58, 58, 58, 0.61);
+    background-color: ${(props) => props.theme.colors.bgMain};
+    color: ${(props) => props.theme.colors.textMain};
   }
 
   @media (max-width: 500px) {
@@ -136,7 +152,59 @@ export const Button = styled.button`
 `;
 
 export const TokenListing = styled(Button)`
-  min-height: 165px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  padding: 0px;
+  min-height: 150px;
+  width: 500px;
+  border: none;
+  transition-duration: 0.3s;
+  background-color: ${(props) => props.theme.colors.textMain};
+  color: ${(props) => props.theme.colors.bgMain};
+  box-shadow: 4px 6px 12px -2px rgba(58, 58, 58, 0.61);
+  -webkit-box-shadow: 4px 6px 12px -2px rgba(58, 58, 58, 0.61);
+  -moz-box-shadow: 4px 6px 12px -2px rgba(58, 58, 58, 0.61);
+
+  :hover {
+    background: rgba(58, 58, 58, 0.7);
+    transform: scale(1.1);
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 20px;
+
+    box-shadow: 6px 8px 14px -2px rgba(58, 58, 58, 0.61);
+    -webkit-box-shadow: 6px 8px 14px -2px rgba(58, 58, 58, 0.61);
+    -moz-box-shadow: 6px 8px 14px -2px rgba(58, 58, 58, 0.61);
+  }
+`;
+
+export const Choices = styled.div`
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+`;
+
+export const TokenInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: start;
+  * {
+    :hover {
+      color: ${(props) => props.theme.colors.bgMain};
+    }
+  }
+`;
+
+export const TokenText = styled.p`
+  color: ${(props) => props.theme.colors.textOffset};
+`;
+
+export const CollectionText = styled(TokenText)`
+  font-size: 20px;
 `;
 
 export const CenterButtonDiv = styled.div`
