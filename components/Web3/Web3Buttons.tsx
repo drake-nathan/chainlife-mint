@@ -98,6 +98,7 @@ const Web3Buttons: React.FC = () => {
     setShowBuyModal(false);
     setShowErrorModal(false);
     setShowSuccessModal(false);
+    setShowPremintModal(false);
   };
 
   useEffect(() => {

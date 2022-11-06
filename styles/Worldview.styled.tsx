@@ -46,7 +46,7 @@ export const MobileIconRow = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 15px;
+  font-size: 28px;
   min-height: 35px;
   width: 100%;
   gap: 0.75rem;

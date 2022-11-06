@@ -26,26 +26,25 @@ const Home: NextPage = () => {
       <NavBar />
       <St.WorldViewContainer>
         <St.WorldViewTitle>
-          <span style={{ color: '#3a3a3a' }}>Chainlife tokens:</span> microcosms of
-          digital life, that are interactive, evolving, and aware. <br />
-          <br /> <span style={{ color: '#3a3a3a' }}>Chainlife World:</span> an
-          ever-changing macrocosm controlled by you, that is collaborative, (also)
-          on-chain, and extendible.
+          Chainlife tokens: microcosms of digital life, that are interactive, evolving,
+          and aware. <br />
+          <br /> Chainlife World: an ever-changing macrocosm controlled by you, that is
+          collaborative, (also) on-chain, and extendible.
         </St.WorldViewTitle>
         <St.WorldViewInfo>Click, drag, and scroll to navigate in 3D.</St.WorldViewInfo>
         <St.InstructionsContainer>
-          {/* <St.MobileIconContainer>
+          <St.MobileIconContainer>
             <St.MobileIconRow>
               <a
-                href="https://linktr.ee/MonkMatto"
+                href="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
                 target="blank"
                 rel="noreferrer"
-                title="Mobile Friendly Worldview"
+                title="View World In Fullscreen"
               >
-                View Mobile Version <MdIcons.MdOutlineMobileFriendly className="icon" />
+                <IoIosExpand />
               </a>
             </St.MobileIconRow>
-          </St.MobileIconContainer> */}
+          </St.MobileIconContainer>
           <Instructions activeStep={activeStep} setActiveStep={setActiveStep} />
 
           <St.FrameDiv>
@@ -55,15 +54,6 @@ const Home: NextPage = () => {
               frameBorder="0"
             ></iframe>
           </St.FrameDiv>
-
-          <St.Expand
-            href="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
-            target="blank"
-            rel="noreferrer"
-            title="Expand Worldview"
-          >
-            <IoIosExpand />
-          </St.Expand>
         </St.InstructionsContainer>
 
         <St.ViewInstructions onClick={handleInstructionsClick}>
