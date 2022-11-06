@@ -39,7 +39,7 @@ const DescriptionSections: React.FC = () => {
           {activeSection === 2 ? section2Text : section1Text}{' '}
           {activeSection === 2 ? (
             <a
-              href="https://chainlife.gitbook.io/docs/"
+              href="https://docs.chainlife.xyz/"
               target="blank"
               rel="noreferrer"
               style={{

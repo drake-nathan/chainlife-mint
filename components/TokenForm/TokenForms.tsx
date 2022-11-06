@@ -38,7 +38,7 @@ const TokenForms: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
         <St.FormInfo>
           {activeSection === 1 ? crText : slText}{' '}
           <a
-            href="https://chainlife.gitbook.io/docs/start-here/introduction"
+            href="https://docs.chainlife.xyz/start-here/introduction"
             target="blank"
             rel="noreferrer"
             style={{ color: '#3a3a3a', textDecoration: 'underline', fontWeight: 500 }}

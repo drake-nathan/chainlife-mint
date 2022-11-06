@@ -40,7 +40,7 @@ const Home: NextPage = () => {
           <St.Title>
             Chainlife is a rich and complex on-chain project. Learn more in the{' '}
             <a
-              href="https://chainlife.gitbook.io/docs/start-here/introduction"
+              href="https://docs.chainlife.xyz/start-here/introduction"
               target="blank"
               rel="noreferrer"
             >

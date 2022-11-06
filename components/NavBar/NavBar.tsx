@@ -109,7 +109,7 @@ const NavBar: React.FC = () => {
             </St.NavLink>
           </St.SocialContainer>
           <St.NavLinksDiv>
-            <St.NavLink href="https://chainlife.gitbook.io/docs/" target="blank">
+            <St.NavLink href="https://docs.chainlife.xyz/" target="blank">
               DOCS
             </St.NavLink>
             <Link href="/world" target="blank">
