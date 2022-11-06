@@ -6,11 +6,11 @@ const getRandomToken = (currentSupply: number) => {
 
 export const getGeneratorUrl = (currentSupply: number, tokenId?: number) => {
   const token = getRandomToken(currentSupply) || tokenId;
+  // NOTE: Make this mainnet when ready
   const root =
     'http://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/generator';
 
   const generatorUrl = `${root}/${token}`;
-  // NOTE: Make this mainnet when ready
   return { generatorUrl, tokenId: token as number };
 };
 

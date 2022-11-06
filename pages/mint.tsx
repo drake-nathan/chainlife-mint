@@ -21,11 +21,11 @@ type Token = { url: string; id: number };
 const Home: NextPage = () => {
   const nodeEnv = process.env.NODE_ENV || 'production';
   const { isMintLive, maxSupply, currentSupply } = useMintDetails();
-  const premint = usePreMintOwners();
+  const { error, loading, preMintOwners } = usePreMintOwners();
   const { query } = useRouter();
   const { mintPage } = useContext(MintPageContext);
   const { windowWidth } = useWindowSize();
-  const currentContract = useContract();
+  const { goerliContract } = useContract();
 
   const [sliderTokens, setSliderTokens] = useState<Token[]>([]);
   const [showFallback, setShowFallback] = useState(true);
