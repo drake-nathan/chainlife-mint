@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import NavBar from 'components/NavBar/NavBar';
@@ -10,7 +10,6 @@ import Web3Buttons from 'components/Web3/Web3Buttons';
 import { useMintDetails } from 'hooks/useMintDetails';
 import { useWindowSize } from 'hooks/useWindowSize';
 import DynamicFallback from 'components/FallbackPage/DynamicFallback';
-import { MintPageContext } from 'contexts/MintPageContext';
 import { getGeneratorUrl, getSliderThumbnails } from 'utils/getRandomToken';
 import * as St from '../styles/mint.styles';
 
@@ -20,7 +19,6 @@ const Home: NextPage = () => {
   const nodeEnv = process.env.NODE_ENV || 'production';
   const { isMintLive, maxSupply, currentSupply } = useMintDetails();
   const { query } = useRouter();
-  const { mintPage, setMintPage } = useContext(MintPageContext);
   const { windowWidth } = useWindowSize();
 
   const [sliderTokens, setSliderTokens] = useState<Token[]>([]);

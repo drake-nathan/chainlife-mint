@@ -14,15 +14,15 @@ export const checkIfPresaleActive = async (contract: Contract) => {
 };
 
 export const fetchCurrentSupply = async (contract: Contract) => {
-  const currentSupply = await contract.methods.tokensMinted().call();
+  const currentSupply = (await contract.methods.tokensMinted().call()) as string;
 
-  return currentSupply;
+  return parseInt(currentSupply);
 };
 
 export const checkIfSupply = async (contract: Contract, maxSupply: number) => {
-  const currentSupply = await contract.methods.totalSupply().call();
+  const currentSupply = (await contract.methods.tokensMinted().call()) as string;
 
-  return currentSupply < maxSupply;
+  return parseInt(currentSupply) < maxSupply;
 };
 
 export const checkIfEnsoUsed = async (contract: Contract, tokenId: number) => {
@@ -83,6 +83,14 @@ export const callCustomRule = async (
   rule: string,
 ) => {
   return await contract.methods.CUSTOM_RULE(tokenId, rule || ' ').send({ from: account });
+};
+
+export const callResetRule = async (
+  contract: Contract,
+  account: string,
+  tokenId: number,
+) => {
+  return await contract.methods.RESET_RULE(tokenId).send({ from: account });
 };
 
 export const callShiftLevels = async (

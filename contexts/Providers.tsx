@@ -1,7 +1,6 @@
 import React from 'react';
 import ThemeProvider from './ThemeProvider';
 import Web3Provider from './Web3Provider';
-import { MintPageProvider } from './MintPageContext';
 import { ApolloProvider } from '@apollo/client';
 import { client } from 'services/apollo/client';
 
@@ -13,9 +12,7 @@ const Providers: React.FC<Props> = ({ children }) => {
   return (
     <Web3Provider>
       <ApolloProvider client={client}>
-        <MintPageProvider>
-          <ThemeProvider>{children}</ThemeProvider>
-        </MintPageProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </ApolloProvider>
     </Web3Provider>
   );
