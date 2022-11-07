@@ -7,8 +7,8 @@ interface Props {
   successInfo: ISuccessInfo;
 }
 
-const ErrorModal: React.FC<Props> = ({ setShowModal, successInfo }) => {
-  const { message, etherscanLink } = successInfo;
+const SuccessModal: React.FC<Props> = ({ setShowModal, successInfo }) => {
+  const { etherscanLink, openseaLink, generatorUrl, tokenId, tokenPageUrl } = successInfo;
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -17,23 +17,39 @@ const ErrorModal: React.FC<Props> = ({ setShowModal, successInfo }) => {
   return (
     <>
       <St.ModalBackground onClick={handleCloseModal}></St.ModalBackground>
-      <St.CenterModalContainer>
-        <St.LinkDiv>
-          <St.Text>{message}</St.Text>
-          {/* <St.Link href={openseaLink} target="_blank">
-            OPENSEA
-          </St.Link> */}
-          <St.Link href={etherscanLink} target="_blank">
-            ETHERSCAN
-          </St.Link>
-        </St.LinkDiv>
+      <St.SuccessModalContainer>
+        <St.SuccessSection>
+          <St.SuccessText>SUCCESSFULLY MINTED CHAINLIFE #{tokenId}</St.SuccessText>
+          <St.SuccessText>VIEW TRANSACTION ON:</St.SuccessText>
+          <St.LinkDiv>
+            <St.Link href={openseaLink} target="_blank">
+              OPENSEA
+            </St.Link>
+            <St.Link href={etherscanLink} target="_blank">
+              ETHERSCAN
+            </St.Link>
+          </St.LinkDiv>
+        </St.SuccessSection>
+
+        <St.SuccessSection>
+          <St.SuccessText>INTERACT WITH YOUR TOKEN HERE:</St.SuccessText>
+          <St.SuccessText>(WAIT 30 SECONDS)</St.SuccessText>
+          <St.LinkDiv>
+            <St.Link href={generatorUrl} target="_blank">
+              GENERATOR
+            </St.Link>
+            <St.Link href={tokenPageUrl} target="_blank">
+              TOKEN PAGE
+            </St.Link>
+          </St.LinkDiv>
+        </St.SuccessSection>
 
         <St.LittleButtonDiv>
           <St.LittleButton onClick={handleCloseModal}>CLOSE</St.LittleButton>
         </St.LittleButtonDiv>
-      </St.CenterModalContainer>
+      </St.SuccessModalContainer>
     </>
   );
 };
 
-export default ErrorModal;
+export default SuccessModal;

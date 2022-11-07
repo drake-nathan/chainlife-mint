@@ -53,6 +53,18 @@ export const CenterModalContainer = styled(ModalContainer)`
   justify-content: center;
 `;
 
+export const SuccessModalContainer = styled(ModalContainer)`
+  padding: 2.5em 2em;
+  gap: 2.5em;
+`;
+
+export const SuccessSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+`;
+
 export const MsgDiv = styled.div`
   display: flex;
   justify-content: space-between;
@@ -64,7 +76,9 @@ export const UnitDiv = styled(MsgDiv)`
 `;
 
 export const LinkDiv = styled(MsgDiv)`
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
 `;
 
 export const Text = styled.span`
@@ -81,6 +95,13 @@ export const Text = styled.span`
   }
 `;
 
+export const SuccessText = styled.span`
+  color: ${(props) => props.theme.colors.textMain};
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: center;
+`;
+
 export const Link = styled.a`
   color: ${(props) => props.theme.colors.textMain};
   font-size: 1.25rem;
@@ -88,6 +109,7 @@ export const Link = styled.a`
   max-width: 30ch;
   text-align: center;
   line-height: 1.5;
+  text-decoration: underline;
 
   :hover {
     color: ${(props) => props.theme.colors.hover};

@@ -1,13 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
-import { useMintDetails } from 'hooks/useMintDetails';
 import { UserZenTokens } from 'types/premintTypes';
-import * as PremintTokens from '../../utils/thumbnails';
 import * as St from './PremintModal.styled';
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  handleCryptoMint: () => void;
+  handlePresaleMint: (project: number, token: number) => void;
   handleError: (error: string) => void;
   buyButtonText: string;
   userZenTokens: UserZenTokens;
@@ -15,13 +13,11 @@ interface Props {
 
 const PremintModal: React.FC<Props> = ({
   setShowModal,
-  handleCryptoMint,
+  handlePresaleMint,
   handleError,
   buyButtonText,
   userZenTokens,
 }) => {
-  const { mintPrice, discountPrice } = useMintDetails();
-
   const [activeCollection, setActiveCollection] = useState<1 | 2>(1);
   const [activeEnso, setActiveEnso] = useState<number | null>(null);
   const [activeFocus, setActiveFocus] = useState<number | null>(null);
@@ -34,15 +30,27 @@ const PremintModal: React.FC<Props> = ({
     if (!userZenTokens.enso.length) {
       setActiveCollection(2);
     }
-  }, []);
 
-  const handleCloseModal = () => {
-    setShowModal(false);
+    if (!userZenTokens.focus.length && !userZenTokens.enso.length) {
+      setShowModal(false);
+    }
+  }, [userZenTokens]);
+
+  const handleMintClick = () => {
+    const project = activeEnso ? enso.id : focus.id;
+    // const project = 94;
+    // NOTE: don't forget this
+    const token = activeEnso ? activeEnso : activeFocus;
+    if (project && token) {
+      handlePresaleMint(project, token);
+    } else {
+      handleError('PLEASE SELECT A TOKEN TO MINT WITH');
+    }
   };
 
   return (
     <>
-      <St.BuyModalBackground onClick={handleCloseModal} />
+      <St.BuyModalBackground onClick={() => setShowModal(false)} />
       <St.BuyModalContainer>
         <St.UnitDiv>
           <St.UnitText style={{ color: '#fff', fontWeight: 500 }}>
@@ -53,7 +61,7 @@ const PremintModal: React.FC<Props> = ({
               : 'SELECT A FOCUS TOKEN TO MINT WITH'}
           </St.UnitText>
           <St.Choices>
-            {userZenTokens.enso.length > 0 ? (
+            {userZenTokens.enso.length ? (
               <>
                 <St.CollectionText
                   onClick={() => setActiveCollection(1)}
@@ -75,9 +83,7 @@ const PremintModal: React.FC<Props> = ({
               onClick={() => setActiveCollection(2)}
               className={activeCollection === 2 ? 'active' : ''}
             >
-              {userZenTokens.enso.length > 0 && userZenTokens.focus.length > 0
-                ? 'FOCUS'
-                : ''}
+              {userZenTokens.enso.length && userZenTokens.focus.length ? 'FOCUS' : ''}
             </St.CollectionText>
           </St.Choices>
         </St.UnitDiv>
@@ -129,12 +135,12 @@ const PremintModal: React.FC<Props> = ({
               ))}
         </St.ListingsWrapper>
 
-        <St.Button onClick={handleCryptoMint}>
+        <St.Button onClick={handleMintClick}>
           {buyButtonText}
-          {activeEnso !== null
-            ? `WITH ENSO #${activeEnso}`
-            : activeFocus !== null
-            ? `WITH FOCUS #${activeFocus}`
+          {activeEnso
+            ? ` WITH ENSO #${activeEnso}`
+            : activeFocus
+            ? ` WITH FOCUS #${activeFocus}`
             : ''}
         </St.Button>
       </St.BuyModalContainer>

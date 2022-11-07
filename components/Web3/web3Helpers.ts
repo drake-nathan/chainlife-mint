@@ -1,30 +1,34 @@
 import React from 'react';
 import { Contract } from 'web3-eth-contract';
 import {
-  checkIfMintActive,
+  checkIfPublicMintActive,
   checkIfPresaleActive,
   checkIfSupply,
   callPublicMint,
   callPremint,
   callPublicMintTo,
+  checkIfEnsoUsed,
+  checkIfFocusUsed,
 } from 'services/web3/contractInteractions';
 
 // mainnet urls
-const urls = {
-  //  openSea: `https://opensea.io/assets/ethereum/`,
-  etherscan: `https://etherscan.io/tx/`,
-};
-
-//rinkeby urls
 // const urls = {
-//   // openSea: `https://testnets.opensea.io/assets/rinkeby/`,
-//   etherscan: `https://rinkeby.etherscan.io/tx/`,
+//   openSea: `https://opensea.io/assets/ethereum/`,
+//   etherscan: `https://etherscan.io/tx/`,
 // };
 
+//goerli urls
+const urls = {
+  openSea: `https://testnets.opensea.io/assets/goerli`,
+  etherscan: `https://goerli.etherscan.io/tx/`,
+};
+
 export interface ISuccessInfo {
-  message: string;
-  // openseaLink: string;
+  tokenId: number;
   etherscanLink: string;
+  openseaLink: string;
+  generatorUrl: string;
+  tokenPageUrl: string;
 }
 
 export const presaleMint = async (
@@ -42,10 +46,14 @@ export const presaleMint = async (
   const isPresaleActive = await checkIfPresaleActive(contract);
   if (!isPresaleActive) return handleError('MINT IS NOT ACTIVE');
 
-  const isSupplyRemaining = await checkIfSupply(contract, maxSupply);
-  if (!isSupplyRemaining) return handleError('MINT HAS SOLD OUT');
+  const checkIfZenTokenUsed = projectNumber === 34 ? checkIfEnsoUsed : checkIfFocusUsed;
+  const isZenTokenUsed = await checkIfZenTokenUsed(contract, tokenNumber);
+  if (isZenTokenUsed) return handleError('ZEN TOKEN ALREADY USED');
 
-  setBuyButtonText('MINTING...');
+  // TODO: Turn this on
+  // const isSupplyRemaining = await checkIfSupply(contract, maxSupply);
+  // if (!isSupplyRemaining) return handleError('MINT HAS SOLD OUT');
+
   const txObj = await callPremint(
     contract,
     account,
@@ -54,18 +62,25 @@ export const presaleMint = async (
     tokenNumber,
   );
   if (!txObj) return handleError('MINT FAILED');
+  console.info('txObj', txObj);
 
   const txHash = txObj.transactionHash;
   if (!txHash) return handleError('MINT FAILED');
 
+  const tokenId = txObj?.events?.Transfer?.returnValues?.tokenId as string;
+  const contractAddress = txObj?.events?.Transfer?.address as string;
+
   setBuyButtonText('MINTED');
 
   const successInfo: ISuccessInfo = {
-    message: `SUCCESSFULLY MINTED NFT`,
-    etherscanLink: `${urls.etherscan}${txHash}`,
+    tokenId: parseInt(tokenId),
+    etherscanLink: `${urls.etherscan}/${txHash}`,
+    openseaLink: `${urls.openSea}/${contractAddress}/${tokenId}`,
+    // NOTE: change this to mainnet
+    generatorUrl: `https://api.gengames.io/project/chainlife-testnet/generator/${tokenId}`,
+    tokenPageUrl: `https://chainlife.xyz/token/${tokenId}`,
   };
 
-  setShowBuyModal(false);
   handleSuccess(successInfo);
 };
 
@@ -80,13 +95,13 @@ export const publicMint = async (
   setBuyButtonText: React.Dispatch<React.SetStateAction<string>>,
   setShowBuyModal: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
-  const isMintActive = await checkIfMintActive(contract);
+  const isMintActive = await checkIfPublicMintActive(contract);
   if (!isMintActive) return handleError('MINT IS NOT ACTIVE');
 
-  const isSupplyRemaining = await checkIfSupply(contract, maxSupply);
-  if (!isSupplyRemaining) return handleError('MINT HAS SOLD OUT');
+  // TODO: Turn this on
+  // const isSupplyRemaining = await checkIfSupply(contract, maxSupply);
+  // if (!isSupplyRemaining) return handleError('MINT HAS SOLD OUT');
 
-  setBuyButtonText('MINTING...');
   const txObj = !toAddress
     ? await callPublicMint(contract, account, payableAmount)
     : await callPublicMintTo(contract, account, payableAmount, toAddress);
@@ -97,10 +112,15 @@ export const publicMint = async (
 
   setBuyButtonText('MINTED');
   const tokenId = txObj?.events?.Transfer?.returnValues?.tokenId as string;
+  const contractAddress = txObj?.events?.Transfer?.address as string;
 
   const successInfo: ISuccessInfo = {
-    message: `SUCCESSFULLY MINTED NFT`,
-    etherscanLink: `${urls.etherscan}${txHash}`,
+    tokenId: parseInt(tokenId),
+    etherscanLink: `${urls.etherscan}/${txHash}`,
+    openseaLink: `${urls.openSea}/${contractAddress}/${tokenId}`,
+    // NOTE: change this to mainnet
+    generatorUrl: `https://api.gengames.io/project/chainlife-testnet/generator/${tokenId}`,
+    tokenPageUrl: `https://chainlife.xyz/token/${tokenId}`,
   };
 
   setShowBuyModal(false);

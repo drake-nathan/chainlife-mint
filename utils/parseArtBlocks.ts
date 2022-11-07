@@ -7,7 +7,7 @@ export const parseArtBlocks = (data: ArtBlocks): PreMintOwners => {
 
   enso.tokens.forEach((token) => {
     const tokenId = parseInt(token.tokenId.slice(-3));
-    const owner = token.owner.id;
+    const owner = token.owner.id.toLowerCase();
 
     if (preMintOwners[owner]) {
       preMintOwners[owner].enso.push(tokenId);
