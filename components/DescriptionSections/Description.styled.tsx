@@ -22,6 +22,18 @@ export const ButtonContainer = styled.div`
     flex-direction: column;
     gap: 1.5em;
   }
+
+  .disabled {
+    color: ${(props) => props.theme.colors.textOffset};
+    border: 3px solid ${(props) => props.theme.colors.textOffset};
+
+    :hover {
+      color: ${(props) => props.theme.colors.textOffset};
+      background: ${(props) => props.theme.colors.bgMain};
+      border: 3px solid ${(props) => props.theme.colors.textOffset};
+      font-weight: 500;
+    }
+  }
 `;
 
 export const SectionTitleContainer = styled.div`
@@ -74,7 +86,7 @@ export const SubtleDiv = styled.div`
     &:after {
       background-image: url('/prayer_emoji_icon.png');
       background-size: 25px 25px;
-      display: inline-block;
+      display: flex;
       width: 25px;
       height: 25px;
       margin-left: 8px;
@@ -86,7 +98,7 @@ export const SubtleDiv = styled.div`
     &:after {
       background-image: url('/brain_emoji_icon.png');
       background-size: 25px 25px;
-      display: inline-block;
+      display: flex;
       width: 25px;
       height: 25px;
       margin-left: 8px;

@@ -14,7 +14,7 @@ import * as St from '../DescriptionSections/Description.styled';
 const Web3Buttons: React.FC = () => {
   const { active, account } = useWeb3React();
   const { userZenTokens, error: preMintError } = usePreMintOwners();
-  const { isPreMint, mintPrice, discountPrice, maxSupply } = useMintDetails();
+  const { isPreMint, mintPrice, discountPrice, maxSupply, isMintLive } = useMintDetails();
   const { contract } = useContract();
 
   const [showConnectModal, setShowConnectModal] = useState(false);
@@ -29,6 +29,7 @@ const Web3Buttons: React.FC = () => {
 
   const [cryptoButtonText, setCryptoButtonText] = useState('CONNECT WALLET');
   const [buyButtonText, setBuyButtonText] = useState('MINT');
+  const [mintButton, setMintButton] = useState(false);
 
   const handleError = (error: string) => {
     setErrorMessage(error);
@@ -105,12 +106,14 @@ const Web3Buttons: React.FC = () => {
   useEffect(() => {
     if (active) {
       setCryptoButtonText('MINT');
+      setMintButton(true);
       setTimeout(() => {
         setShowConnectModal(false);
       }, 2000);
     }
 
     if (!active) {
+      setMintButton(false);
       setCryptoButtonText('CONNECT');
       closeAllModals();
     }
@@ -118,7 +121,14 @@ const Web3Buttons: React.FC = () => {
 
   return (
     <St.ButtonContainer>
-      <St.Button onClick={handleCryptoClick}>{cryptoButtonText}</St.Button>
+      <St.Button
+        className={!isMintLive && mintButton ? 'disabled' : ''}
+        disabled={!isMintLive && mintButton ? true : false}
+        onClick={handleCryptoClick}
+        title={!isMintLive && mintButton ? 'Mint is not currently active' : 'Mint'}
+      >
+        {cryptoButtonText}
+      </St.Button>
 
       {showConnectModal && <ConnectModal setShowModal={setShowConnectModal} />}
 
