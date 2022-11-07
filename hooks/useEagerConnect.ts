@@ -29,5 +29,3 @@ export const useEagerConnect = () => {
 
   return tried;
 };
-
-// NOTE: listen for disconnect

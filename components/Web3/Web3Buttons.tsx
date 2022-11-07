@@ -15,7 +15,7 @@ const Web3Buttons: React.FC = () => {
   const { active, account } = useWeb3React();
   const { userZenTokens, error: preMintError } = usePreMintOwners();
   const { isPreMint, mintPrice, discountPrice, maxSupply, isMintLive } = useMintDetails();
-  const { goerliContract } = useContract();
+  const { contract } = useContract();
 
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
@@ -53,7 +53,7 @@ const Web3Buttons: React.FC = () => {
     if (account) {
       try {
         presaleMint(
-          goerliContract,
+          contract.mainnet,
           maxSupply,
           account as string,
           discountPrice,
@@ -74,7 +74,7 @@ const Web3Buttons: React.FC = () => {
   const handlePublicMint = async (toAddress?: string) => {
     try {
       publicMint(
-        goerliContract,
+        contract.mainnet,
         maxSupply,
         account as string,
         mintPrice,

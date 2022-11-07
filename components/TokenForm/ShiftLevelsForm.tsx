@@ -15,7 +15,7 @@ interface Props {
 
 const ShiftLevelsForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
   const { active, account } = useWeb3React();
-  const { goerliContract } = useContract();
+  const { contract } = useContract();
   const { shiftFee } = useMintDetails();
 
   const [levelShift, setLevelShift] = useState<number>(0);
@@ -34,7 +34,7 @@ const ShiftLevelsForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
       if (levelShift) {
         try {
           const tx = await callShiftLevels(
-            goerliContract,
+            contract.mainnet,
             account as string,
             tokenId,
             levelShift,

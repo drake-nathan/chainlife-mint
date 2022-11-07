@@ -14,7 +14,7 @@ const RPC_URLS = {
 };
 
 const injected = new InjectedConnector({
-  supportedChainIds: [1, 5],
+  supportedChainIds: [1],
 });
 
 const walletconnect = new WalletConnectConnector({
@@ -26,7 +26,7 @@ const walletconnect = new WalletConnectConnector({
 
 const coinbase = new WalletLinkConnector({
   url: RPC_URLS[1],
-  appName: 'Chainlife Mint',
+  appName: 'Chainlife',
   supportedChainIds: [1],
 });
 

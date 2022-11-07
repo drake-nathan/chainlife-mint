@@ -14,7 +14,7 @@ interface Props {
 
 const CustomRuleForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
   const { active, account } = useWeb3React();
-  const { goerliContract } = useContract();
+  const { contract } = useContract();
   const [ruleSubmitted, setRuleSubmitted] = useState<boolean>(false);
 
   const [customRule, setCustomRule] = useState('');
@@ -32,7 +32,7 @@ const CustomRuleForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
     } else {
       try {
         const tx = await callCustomRule(
-          goerliContract,
+          contract.mainnet,
           account as string,
           tokenId,
           customRule,

@@ -28,8 +28,7 @@ import * as St from '../../styles/token.styled';
 const Token: NextPage = () => {
   const router = useRouter();
   const { account, active } = useWeb3React();
-  const { goerliContract } = useContract();
-  const { currentSupply } = useMintDetails();
+  const { contract } = useContract();
   const { tokenId } = router.query;
   const tokenIdNum = Number(tokenId);
 
@@ -55,7 +54,7 @@ const Token: NextPage = () => {
 
   useEffect(() => {
     if (tokenId) {
-      getOwner(goerliContract, tokenIdNum).then((res) => {
+      getOwner(contract.mainnet, tokenIdNum).then((res) => {
         setOwner(res);
         if (account && active) {
           setIsOwner(equalAddresses(account, res));
