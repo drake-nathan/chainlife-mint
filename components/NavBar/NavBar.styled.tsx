@@ -9,7 +9,7 @@ export const NavContainer = styled.div`
   min-height: 100px;
   margin-bottom: 30px;
 
-  @media (max-width: 825px) {
+  @media (max-width: 850px) {
     flex-direction: column-reverse;
     height: fit-content;
     margin-bottom: 20px;
@@ -52,7 +52,7 @@ export const logoDiv = styled.div`
     top: 8.5rem;
     margin-left: -30px;
   }
-  @media (max-width: 825px) {
+  @media (max-width: 850px) {
     position: absolute;
     display: flex;
     width: 100%;
@@ -82,7 +82,7 @@ export const TitleDiv = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 0.5em;
-  @media (max-width: 825px) {
+  @media (max-width: 850px) {
     flex-direction: column;
     justify-content: center;
     gap: 0.1em;
@@ -104,7 +104,7 @@ export const NavLinksDiv = styled.div`
   justify-content: flex-start;
   font-size: 20px;
   font-weight: 500;
-  gap: 2.5em;
+  gap: 1.5em;
   @media (max-width: 675px) {
     font-size: 16px;
   }
@@ -121,10 +121,10 @@ export const SocialsAndLinks = styled.div`
   @media (min-width: 1300px) {
     justify-content: flex-end;
     width: 60%;
-    gap: 2.5em;
+    gap: 1.5em;
   }
 
-  @media (max-width: 825px) {
+  @media (max-width: 850px) {
     flex-direction: column;
     align-items: center;
     margin-top: -2rem;
@@ -151,7 +151,7 @@ export const SocialContainer = styled(NavContainer)`
     flex-direction: row;
   }
 
-  @media (max-width: 825px) {
+  @media (max-width: 850px) {
     margin-top: -0.75rem;
   }
 `;

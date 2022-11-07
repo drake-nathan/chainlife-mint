@@ -86,7 +86,7 @@ export const SubtleDiv = styled.div`
     &:after {
       background-image: url('/prayer_emoji_icon.png');
       background-size: 25px 25px;
-      display: inline-block;
+      display: flex;
       width: 25px;
       height: 25px;
       margin-left: 8px;
@@ -98,7 +98,7 @@ export const SubtleDiv = styled.div`
     &:after {
       background-image: url('/brain_emoji_icon.png');
       background-size: 25px 25px;
-      display: inline-block;
+      display: flex;
       width: 25px;
       height: 25px;
       margin-left: 8px;

@@ -44,6 +44,13 @@ const MarketsDropDown: React.FC<Props> = ({ setShowModal }) => {
         <a href="https://artacle.io/project/chainlife" target="_blank" rel="noreferrer">
           <St.Button id="coinbase">ARTACLE</St.Button>
         </a>
+        <a
+          href="https://etherscan.io/address/0x4e171e0f14a9046e14b93221f31acd2ec4af8429#code"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <St.Button id="coinbase">ETHERSCAN</St.Button>
+        </a>
       </St.DropDownContainer>
     </>
   );

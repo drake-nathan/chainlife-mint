@@ -6,8 +6,8 @@ export const DropDownContainer = styled.div`
   align-items: flex-start;
   width: 175px;
   position: absolute;
-  top: 85px;
-  right: 146px;
+  top: 88px;
+  right: 253px;
   gap: 0.25em;
   background-color: ${(props) => props.theme.colors.bgMain};
 `;

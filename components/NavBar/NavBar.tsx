@@ -114,10 +114,11 @@ const NavBar: React.FC = () => {
             <Link href="/world" target="blank">
               <St.NavLink>WORLD</St.NavLink>
             </Link>
+            <Link href="/mint" target="blank">
+              <St.NavLink>MINT</St.NavLink>
+            </Link>
             <St.NavConnect onClick={handleMarketsClick}>LINKS</St.NavConnect>
-            <St.NavConnect onClick={handleConnectClick}>
-              {!active ? (windowWidth < 500 ? 'MINT' : 'MINT') : 'CONNECTED'}
-            </St.NavConnect>
+            <St.NavConnect onClick={handleConnectClick}>CONNECT WALLET</St.NavConnect>
           </St.NavLinksDiv>
         </St.SocialsAndLinks>
         {showConnectModal ? renderDropDown() : renderMarketsDropDown()}
