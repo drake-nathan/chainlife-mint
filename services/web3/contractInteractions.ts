@@ -1,28 +1,40 @@
 import { Contract } from 'web3-eth-contract';
 import { toWei } from 'web3-utils';
 
-export const checkIfMintActive = async (contract: Contract) => {
-  const mintStage = (await contract.methods.mintStage().call()) as number;
+export const checkIfPublicMintActive = async (contract: Contract) => {
+  const mintStage = (await contract.methods.mintStage().call()) as string;
 
-  return mintStage === 2;
+  return mintStage === '2';
 };
 
 export const checkIfPresaleActive = async (contract: Contract) => {
-  const mintStage = (await contract.methods.mintStage().call()) as number;
+  const mintStage = (await contract.methods.mintStage().call()) as string;
 
-  return mintStage === 1;
+  return mintStage === '1';
 };
 
 export const fetchCurrentSupply = async (contract: Contract) => {
-  const currentSupply = (await contract.methods.totalSupply().call()) as number;
+  const currentSupply = await contract.methods.tokensMinted().call();
 
   return currentSupply;
 };
 
 export const checkIfSupply = async (contract: Contract, maxSupply: number) => {
-  const currentSupply = (await contract.methods.totalSupply().call()) as number;
+  const currentSupply = await contract.methods.totalSupply().call();
 
   return currentSupply < maxSupply;
+};
+
+export const checkIfEnsoUsed = async (contract: Contract, tokenId: number) => {
+  const ensoUsed = (await contract.methods.preMintWithEnso(tokenId).call()) as string;
+
+  return ensoUsed === '1';
+};
+
+export const checkIfFocusUsed = async (contract: Contract, tokenId: number) => {
+  const focusUsed = (await contract.methods.preMintWithFOCUS(tokenId).call()) as string;
+
+  return focusUsed === '1';
 };
 
 export const getOwner = async (contract: Contract, tokenId: number | string) => {

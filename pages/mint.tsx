@@ -7,9 +7,7 @@ import NavBar from 'components/NavBar/NavBar';
 import DescriptionSections from 'components/DescriptionSections/DescriptionSections';
 import Slider from 'components/Slider/Slider';
 import Web3Buttons from 'components/Web3/Web3Buttons';
-import { useContract } from 'hooks/useContract';
 import { useMintDetails } from 'hooks/useMintDetails';
-import { usePreMintOwners } from 'hooks/usePreMintOwners';
 import { useWindowSize } from 'hooks/useWindowSize';
 import DynamicFallback from 'components/FallbackPage/DynamicFallback';
 import { MintPageContext } from 'contexts/MintPageContext';
@@ -21,11 +19,9 @@ type Token = { url: string; id: number };
 const Home: NextPage = () => {
   const nodeEnv = process.env.NODE_ENV || 'production';
   const { isMintLive, maxSupply, currentSupply } = useMintDetails();
-  const { error, loading, preMintOwners } = usePreMintOwners();
   const { query } = useRouter();
-  const { mintPage } = useContext(MintPageContext);
+  const { mintPage, setMintPage } = useContext(MintPageContext);
   const { windowWidth } = useWindowSize();
-  const { goerliContract } = useContract();
 
   const [sliderTokens, setSliderTokens] = useState<Token[]>([]);
   const [showFallback, setShowFallback] = useState(true);

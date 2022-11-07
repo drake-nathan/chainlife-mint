@@ -28,6 +28,11 @@ const Token: NextPage = () => {
   const { account, active } = useWeb3React();
   const { goerliContract } = useContract();
   const { tokenId } = router.query;
+
+  if (Number.isNaN(tokenId)) {
+    router.push('/');
+  }
+
   const tokenIdNum = Number(tokenId);
 
   const [token, setToken] = useState<IToken>();

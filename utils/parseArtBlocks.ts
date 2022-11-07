@@ -1,13 +1,13 @@
-import { ArtBlocks, PreMintOwner } from 'types/premintTypes';
+import { ArtBlocks, PreMintOwners } from 'types/premintTypes';
 
-export const parseArtBlocks = (data: ArtBlocks): PreMintOwner => {
+export const parseArtBlocks = (data: ArtBlocks): PreMintOwners => {
   const { enso, focus } = data;
 
-  const preMintOwners: PreMintOwner = {};
+  const preMintOwners: PreMintOwners = {};
 
   enso.tokens.forEach((token) => {
     const tokenId = parseInt(token.tokenId.slice(-3));
-    const owner = token.owner.id;
+    const owner = token.owner.id.toLowerCase();
 
     if (preMintOwners[owner]) {
       preMintOwners[owner].enso.push(tokenId);

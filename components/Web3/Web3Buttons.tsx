@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
-import { useEagerConnect } from 'hooks/useEagerConnect';
 import { useMintDetails } from 'hooks/useMintDetails';
 import { useContract } from 'hooks/useContract';
+import { usePreMintOwners } from 'hooks/usePreMintOwners';
 import { publicMint, presaleMint, ISuccessInfo } from './web3Helpers';
 import ConnectModal from 'components/Modals/ConnectModal';
 import BuyModal from 'components/Modals/BuyModal';
@@ -12,9 +12,9 @@ import SuccessModal from 'components/Modals/SuccessModal';
 import * as St from '../DescriptionSections/Description.styled';
 
 const Web3Buttons: React.FC = () => {
-  useEagerConnect();
   const { active, account } = useWeb3React();
-  const { isPreMint, mintPrice, maxSupply, isMintLive } = useMintDetails();
+  const { userZenTokens, error: preMintError } = usePreMintOwners();
+  const { isPreMint, mintPrice, discountPrice, maxSupply } = useMintDetails();
   const { goerliContract } = useContract();
 
   const [showConnectModal, setShowConnectModal] = useState(false);
@@ -36,52 +36,53 @@ const Web3Buttons: React.FC = () => {
   };
 
   const handleCryptoClick = async () => {
-    console.log(isPreMint);
-    console.log(isMintLive);
     if (!active) {
       setShowConnectModal(!showConnectModal);
-    } else if (isPreMint) {
+    } else if (preMintError) {
+      console.error(preMintError);
+      handleError('ERROR GETTING ZEN TOKENS');
+    } else if (isPreMint && userZenTokens) {
       setShowPremintModal(true);
-      //handleError('MUST BE ALLOWLISTED TO MINT DURING PRESALE');
     } else {
-      setBuyButtonText('MINT WITH CRYPTO');
-      setShowBuyModal(true);
+      handleError(`MUST BE ZEN. TOKEN HOLDER TO MINT DURING ZEN. MINT`);
     }
   };
 
-  const handleCryptoMint = async () => {
-    const payableAmount = mintPrice;
-    const projectNumber = 34;
-    const tokenNumber = 1;
-    const toAddress = '';
-
-    try {
-      if (isPreMint) {
+  const handlePresaleMint = async (project: number, token: number) => {
+    if (account) {
+      try {
         presaleMint(
           goerliContract,
           maxSupply,
           account as string,
-          payableAmount,
-          projectNumber,
-          tokenNumber,
+          discountPrice,
+          project,
+          token,
           handleError,
           handleSuccess,
           setBuyButtonText,
           setShowBuyModal,
         );
-      } else {
-        publicMint(
-          goerliContract,
-          maxSupply,
-          account as string,
-          payableAmount,
-          toAddress,
-          handleError,
-          handleSuccess,
-          setBuyButtonText,
-          setShowBuyModal,
-        );
+      } catch (err) {
+        console.error(err);
+        handleError('Error minting token');
       }
+    }
+  };
+
+  const handlePublicMint = async (toAddress?: string) => {
+    try {
+      publicMint(
+        goerliContract,
+        maxSupply,
+        account as string,
+        mintPrice,
+        toAddress || '',
+        handleError,
+        handleSuccess,
+        setBuyButtonText,
+        setShowBuyModal,
+      );
     } catch (err) {
       console.error(err);
       handleError('Error minting token');
@@ -110,7 +111,7 @@ const Web3Buttons: React.FC = () => {
     }
 
     if (!active) {
-      setCryptoButtonText('CONNECT WALLET');
+      setCryptoButtonText('CONNECT');
       closeAllModals();
     }
   }, [active]);
@@ -124,18 +125,19 @@ const Web3Buttons: React.FC = () => {
       {showBuyModal && (
         <BuyModal
           setShowModal={setShowBuyModal}
-          handleCryptoMint={handleCryptoMint}
+          handleCryptoMint={handlePublicMint}
           handleError={handleError}
           buyButtonText={buyButtonText}
         />
       )}
 
-      {showPremintModal && (
+      {showPremintModal && userZenTokens && (
         <PremintModal
-          setShowModal={setShowBuyModal}
-          handleCryptoMint={handleCryptoMint}
+          setShowModal={setShowPremintModal}
+          handlePresaleMint={handlePresaleMint}
           handleError={handleError}
           buyButtonText={buyButtonText}
+          userZenTokens={userZenTokens}
         />
       )}
 
