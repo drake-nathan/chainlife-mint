@@ -3,12 +3,14 @@ import { getProject } from 'services/azureApi/fetches';
 
 export const useMintDetails = () => {
   const currentTime = new Date();
-  const mintStart = new Date('2022-11-01T14:22:00-0400');
-  const preSalePeriod = 9; // days
+  const mintStart = new Date('2022-11-08T14:00:00-0500');
+  const preSalePeriod = 10; // days
+  // Public start 11/18
+  // TODO: Fix public time
   const publicStart = new Date(mintStart.getTime() + preSalePeriod * 24 * 60 * 60 * 1000);
   const mintEnd = new Date('3000-01-01');
 
-  const mintPrice = 0.1;
+  const mintPrice = 0.08;
   const shiftFee = 0.001;
   const discountPrice = 0.08;
   const maxSupply = 4096;
