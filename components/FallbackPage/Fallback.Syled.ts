@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'components/NavBar/NavBar.styled';
-import {
-  SubtleText,
-  SubtleDiv,
-} from 'components/DescriptionSections/Description.styled';
+import { SubtleText, SubtleDiv } from 'components/DescriptionSections/Description.styled';
 
 export const FallbackContainer = styled.div`
   display: flex;
@@ -11,9 +8,30 @@ export const FallbackContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   padding: 1em;
-  gap: 1.5em;
+  gap: 2rem;
+`;
+
+export const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+`;
+
+export const SocialLink = styled(NavLink)`
+  color: ${(props) => props.theme.colors.textMain};
+
+  :hover {
+    color: ${(props) => props.theme.colors.hover};
+    cursor: pointer;
+  }
+  #youtube {
+    :hover {
+      color: ${(props) => props.theme.colors.textMain};
+    }
+  }
 `;
 
 export const BackArrow = styled(NavLink)`
@@ -33,14 +51,9 @@ export const Text = styled(SubtleText)`
   text-align: center;
 `;
 
-export const HDLTitle = styled.h1`
+export const CLTitle = styled.h1`
   font-size: 68px;
   text-align: center;
-  border: 3px solid white;
-  width: 80%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-bottom: 0.5em;
 
   @media (max-width: 600px) {
     font-size: 48px;

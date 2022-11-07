@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMintDetails } from 'hooks/useMintDetails';
 import { section1Text, section2Text } from './SectionText';
 import * as St from './Description.styled';
 
 const DescriptionSections: React.FC = () => {
-  const { discountPrice, mintPrice } = useMintDetails();
+  const { discountPrice, mintPrice, publicStart } = useMintDetails();
   const [activeSection, setActiveSection] = useState(1);
+
+  const curDate = new Date();
+
+  useEffect(() => {
+    if (curDate > publicStart) {
+      setActiveSection(2);
+    }
+  }, [publicStart]);
 
   return (
     <St.HeroContainer>
@@ -21,10 +29,15 @@ const DescriptionSections: React.FC = () => {
           onClick={() => setActiveSection(2)}
           className={activeSection === 2 ? '' : 'inactive'}
         >
-          PUBLIC
+          PUBLIC{' '}
         </St.Title>
       </St.SectionTitleContainer>
       <St.SubTitle>
+        {curDate < publicStart && activeSection === 2
+          ? `Starts ${publicStart.toLocaleString()}`
+          : ''}
+        <br />
+        <br />
         {activeSection === 1
           ? 'Minting wallet must hold eligible token.'
           : '1 Mint per transaction'}{' '}
@@ -39,7 +52,7 @@ const DescriptionSections: React.FC = () => {
           {activeSection === 2 ? section2Text : section1Text}{' '}
           {activeSection === 2 ? (
             <a
-              href="https://chainlife.gitbook.io/docs/"
+              href="https://docs.chainlife.xyz/"
               target="blank"
               rel="noreferrer"
               style={{

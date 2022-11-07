@@ -56,9 +56,12 @@ const Home: NextPage = () => {
           </St.FrameDiv>
         </St.InstructionsContainer>
 
-        <St.ViewInstructions onClick={handleInstructionsClick}>
+        <St.WorldViewInfo onClick={handleInstructionsClick}>
           Click here to view instructions.
-        </St.ViewInstructions>
+        </St.WorldViewInfo>
+        <St.InfoText>
+          You can directly access and individual Chainlife token by entering an ID below.
+        </St.InfoText>
 
         <TokenIdForm />
         <St.NotesContainer>

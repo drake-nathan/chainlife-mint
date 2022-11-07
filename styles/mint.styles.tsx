@@ -23,7 +23,7 @@ export const BodyContainer = styled.div`
   gap: 7rem;
   width: 100%;
 
-  @media (max-width: 1700px) {
+  @media (max-width: 1750px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -196,10 +196,12 @@ export const DescriptionsContainer = styled.div`
   height: 650px;
   align-items: center;
 
-  @media (max-width: 1700px) {
+  @media (max-width: 1750px) {
     margin-top: 0px;
     padding-left: 2rem;
     padding-right: 2rem;
+    width: 80%;
+    height: 350px;
   }
 `;
 
