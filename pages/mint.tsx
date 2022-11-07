@@ -65,7 +65,7 @@ const Home: NextPage = () => {
               {windowWidth > 1000 ? (
                 <Slider>
                   {sliderTokens.map((token) => (
-                    <div key={token.id}>
+                    <div key={token.id} onClick={() => console.log(token.id)}>
                       <img src={token.url} alt="nft" />
                     </div>
                   ))}
