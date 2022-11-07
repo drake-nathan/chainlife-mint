@@ -31,13 +31,13 @@ const NavBar: React.FC = () => {
   };
 
   const renderDropDown = () => {
-    if (windowWidth < 675 && showConnectModal === true) {
+    if (windowWidth < 850 && showConnectModal === true) {
       return (
         <>
           <ConnectModal setShowModal={setShowConnectModal} />
         </>
       );
-    } else if (windowWidth > 675 && showConnectModal === true) {
+    } else if (windowWidth > 850 && showConnectModal === true) {
       return (
         <>
           <ConnectDropDown setShowModal={setShowConnectModal} />{' '}
@@ -47,13 +47,13 @@ const NavBar: React.FC = () => {
   };
 
   const renderMarketsDropDown = () => {
-    if (windowWidth < 675 && showMarketsModal === true) {
+    if (windowWidth < 850 && showMarketsModal === true) {
       return (
         <>
           <MarketsModal setShowModal={setShowMarketsModal} />{' '}
         </>
       );
-    } else if (windowWidth > 675 && showMarketsModal === true) {
+    } else if (windowWidth > 850 && showMarketsModal === true) {
       return (
         <>
           <MarketsDropDown setShowModal={setShowMarketsModal} />
@@ -76,7 +76,6 @@ const NavBar: React.FC = () => {
             <St.NavLink href="/">
               <St.NavTitle>Chainlife</St.NavTitle>
             </St.NavLink>
-            <h5>(Testnet Beta V 1.0)</h5>
           </St.TitleDiv>
         </St.logoDiv>
         <St.SocialsAndLinks>
@@ -115,9 +114,9 @@ const NavBar: React.FC = () => {
             <Link href="/world" target="blank">
               <St.NavLink>WORLD</St.NavLink>
             </Link>
-            <St.NavConnect onClick={handleMarketsClick}>MARKETS</St.NavConnect>
+            <St.NavConnect onClick={handleMarketsClick}>LINKS</St.NavConnect>
             <St.NavConnect onClick={handleConnectClick}>
-              {!active ? (windowWidth < 500 ? 'CONNECT' : 'CONNECT WALLET') : 'CONNECTED'}
+              {!active ? (windowWidth < 500 ? 'MINT' : 'MINT') : 'CONNECTED'}
             </St.NavConnect>
           </St.NavLinksDiv>
         </St.SocialsAndLinks>

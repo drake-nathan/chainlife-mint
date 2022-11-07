@@ -104,7 +104,7 @@ export const NavLinksDiv = styled.div`
   justify-content: flex-start;
   font-size: 20px;
   font-weight: 500;
-  gap: 1.5em;
+  gap: 2.5em;
   @media (max-width: 675px) {
     font-size: 16px;
   }
@@ -121,7 +121,7 @@ export const SocialsAndLinks = styled.div`
   @media (min-width: 1300px) {
     justify-content: flex-end;
     width: 60%;
-    gap: 1.5em;
+    gap: 2.5em;
   }
 
   @media (max-width: 825px) {
