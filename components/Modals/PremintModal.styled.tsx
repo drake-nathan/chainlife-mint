@@ -157,6 +157,7 @@ export const TokenListing = styled(Button)`
   justify-content: flex-start;
   gap: 1.5rem;
   padding: 0px;
+  height: 150px;
   min-height: 150px;
   width: 500px;
   border: none;
