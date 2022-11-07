@@ -35,20 +35,20 @@ const Home: NextPage = () => {
     }
   }, [currentSupply]);
 
-  // useEffect(() => {
-  //   // NOTE: add /?showFallback=true to the url to show the fallback page in development
-  //   if (query.showFallback === 'true') {
-  //     setShowFallback(true);
-  //   } else if (
-  //     // NOTE: add /?showFallback=false to the url to hide the fallback page in production
-  //     // NOTE: also hide fallback page if mint is live in prod or anytime in dev
-  //     query.showFallback === 'false' ||
-  //     (nodeEnv === 'production' && isMintLive) ||
-  //     nodeEnv === 'development'
-  //   ) {
-  //     setShowFallback(false);
-  //   }
-  // }, [query, isMintLive, nodeEnv]);
+  useEffect(() => {
+    // NOTE: add /?showFallback=true to the url to show the fallback page in development
+    if (query.showFallback === 'true') {
+      setShowFallback(false);
+    } else if (
+      // NOTE: add /?showFallback=false to the url to hide the fallback page in production
+      // NOTE: also hide fallback page if mint is live in prod or anytime in dev
+      query.showFallback === 'false' ||
+      (nodeEnv === 'production' && isMintLive) ||
+      nodeEnv === 'development'
+    ) {
+      setShowFallback(false);
+    }
+  }, [query, isMintLive, nodeEnv]);
 
   return (
     <St.AppContainer>
