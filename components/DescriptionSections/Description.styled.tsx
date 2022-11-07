@@ -22,6 +22,18 @@ export const ButtonContainer = styled.div`
     flex-direction: column;
     gap: 1.5em;
   }
+
+  .disabled {
+    color: ${(props) => props.theme.colors.textOffset};
+    border: 3px solid ${(props) => props.theme.colors.textOffset};
+
+    :hover {
+      color: ${(props) => props.theme.colors.textOffset};
+      background: ${(props) => props.theme.colors.bgMain};
+      border: 3px solid ${(props) => props.theme.colors.textOffset};
+      font-weight: 500;
+    }
+  }
 `;
 
 export const SectionTitleContainer = styled.div`
