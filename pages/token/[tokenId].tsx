@@ -15,6 +15,7 @@ import Traits from 'components/Traits/Traits';
 import { getOwner } from 'services/web3/contractInteractions';
 import { useWeb3React } from '@web3-react/core';
 import { useContract } from 'hooks/useContract';
+import { useMintDetails } from 'hooks/useMintDetails';
 import LoadingVideo from 'components/LoadingVideo/LoadingVideo';
 import { equalAddresses, shortenAddress } from 'services/web3/web3helpers';
 import EsoterraIcon from '../../public/eso-01.svg';
@@ -27,12 +28,8 @@ const Token: NextPage = () => {
   const router = useRouter();
   const { account, active } = useWeb3React();
   const { goerliContract } = useContract();
+  const { currentSupply } = useMintDetails();
   const { tokenId } = router.query;
-
-  if (Number.isNaN(tokenId)) {
-    router.push('/');
-  }
-
   const tokenIdNum = Number(tokenId);
 
   const [token, setToken] = useState<IToken>();

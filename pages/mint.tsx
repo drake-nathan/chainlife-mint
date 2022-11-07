@@ -11,7 +11,7 @@ import { useMintDetails } from 'hooks/useMintDetails';
 import { useWindowSize } from 'hooks/useWindowSize';
 import DynamicFallback from 'components/FallbackPage/DynamicFallback';
 import { MintPageContext } from 'contexts/MintPageContext';
-import { getGeneratorUrl, getSliderTokens } from 'utils/getRandomToken';
+import { getGeneratorUrl, getSliderThumbnails } from 'utils/getRandomToken';
 import * as St from '../styles/mint.styles';
 
 type Token = { url: string; id: number };
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (currentSupply) {
-      setSliderTokens(getSliderTokens(currentSupply));
+      setSliderTokens(getSliderThumbnails(currentSupply));
       const { generatorUrl, tokenId } = getGeneratorUrl(currentSupply);
       setActiveToken({ url: generatorUrl, id: tokenId });
     }

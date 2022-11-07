@@ -14,11 +14,11 @@ export const getGeneratorUrl = (currentSupply: number, tokenId?: number) => {
   return { generatorUrl, tokenId: token as number };
 };
 
-export const getSliderTokens = (currentSupply: number) => {
-  const root = 'https://mattoapi.blob.core.windows.net/images/chainlife-testnet_';
+export const getSliderThumbnails = (currentSupply: number) => {
+  const root = 'https://mattoapi.blob.core.windows.net/thumbnails/chainlife-testnet_';
   // NOTE: Make this mainnet when ready
 
-  const maxlength = 9;
+  const maxlength = 50;
   const length = currentSupply > maxlength ? maxlength : currentSupply;
 
   const tokenIds: number[] = [];
