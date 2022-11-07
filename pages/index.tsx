@@ -28,7 +28,7 @@ const Home: NextPage = () => {
         <St.InstructionsContainer>
           <St.FrameDiv>
             <iframe
-              src="https://chainlife.art/"
+              src="https://api.gengames.io/project/chainlife-testnet/generator/9"
               title="random generator"
               frameBorder="0"
             ></iframe>
