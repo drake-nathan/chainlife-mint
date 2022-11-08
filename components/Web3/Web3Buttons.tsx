@@ -13,7 +13,7 @@ import * as St from '../DescriptionSections/Description.styled';
 
 const Web3Buttons: React.FC = () => {
   const { active, account } = useWeb3React();
-  const { userZenTokens, error: preMintError } = usePreMintOwners();
+  const { userZenTokens, error: preMintError, refetch } = usePreMintOwners();
   const { isPreMint, mintPrice, discountPrice, maxSupply, isMintLive } = useMintDetails();
   const { contract } = useContract();
 
@@ -36,34 +36,47 @@ const Web3Buttons: React.FC = () => {
     setShowErrorModal(true);
   };
 
-  const handleCryptoClick = async () => {
+  const handleMintClick = async () => {
     if (!active) {
+      // if not connected, invite user to connect
       setShowConnectModal(!showConnectModal);
     } else if (preMintError) {
+      // if error fetching pre-mint owners, show error
       console.error(preMintError);
       handleError('ERROR GETTING ZEN TOKENS');
     } else if (isPreMint && userZenTokens) {
+      // if pre-mint, and user has zen tokens, show pre-mint modal
       setShowPremintModal(true);
-    } else {
+    } else if (isPreMint && !userZenTokens) {
+      // if pre-mint, and user has no zen tokens, show error
       handleError(`MUST BE ZEN. TOKEN HOLDER TO MINT DURING ZEN. MINT`);
+    } else if (!isPreMint && isMintLive) {
+      // if public mint, and mint is live, show buy modal
+      setShowBuyModal(true);
+    } else {
+      handleError('SOMETHING IS WRONG, NGMI');
     }
   };
 
   const handlePresaleMint = async (project: number, token: number) => {
     if (account) {
       try {
-        presaleMint(
+        const successInfo = await presaleMint(
           contract.mainnet,
           maxSupply,
-          account as string,
+          account,
           discountPrice,
           project,
           token,
           handleError,
-          handleSuccess,
           setBuyButtonText,
-          setShowPremintModal,
         );
+
+        if (successInfo) {
+          setSuccessInfo(successInfo);
+          setShowPremintModal(false);
+          refetch();
+        }
       } catch (err) {
         console.error(err);
         handleError('Error minting token');
@@ -73,17 +86,20 @@ const Web3Buttons: React.FC = () => {
 
   const handlePublicMint = async (toAddress?: string) => {
     try {
-      publicMint(
+      const successInfo = await publicMint(
         contract.mainnet,
         maxSupply,
         account as string,
         mintPrice,
         toAddress || '',
         handleError,
-        handleSuccess,
         setBuyButtonText,
-        setShowBuyModal,
       );
+
+      if (successInfo) {
+        setSuccessInfo(successInfo);
+        setShowBuyModal(false);
+      }
     } catch (err) {
       console.error(err);
       handleError('Error minting token');
@@ -124,7 +140,7 @@ const Web3Buttons: React.FC = () => {
       <St.Button
         className={!isMintLive && mintButton ? 'disabled' : ''}
         disabled={!isMintLive && mintButton ? true : false}
-        onClick={handleCryptoClick}
+        onClick={handleMintClick}
         title={!isMintLive && mintButton ? 'Mint is not currently active' : 'Mint'}
       >
         {cryptoButtonText}

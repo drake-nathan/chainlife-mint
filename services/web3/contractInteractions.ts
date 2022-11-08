@@ -7,12 +7,6 @@ export const getMintPhase = async (contract: Contract) => {
   return mintStage;
 };
 
-export const checkIfPublicMintActive = async (contract: Contract) => {
-  const mintStage = (await contract.methods.mintStage().call()) as string;
-
-  return mintStage === '2';
-};
-
 export const checkIfPresaleActive = async (contract: Contract) => {
   const mintStage = (await contract.methods.mintStage().call()) as string;
 

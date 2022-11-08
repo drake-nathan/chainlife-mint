@@ -1,7 +1,7 @@
 import React from 'react';
 import { Contract } from 'web3-eth-contract';
 import {
-  checkIfPublicMintActive,
+  getMintPhase,
   checkIfPresaleActive,
   checkIfSupply,
   callPublicMint,
@@ -11,16 +11,16 @@ import {
   checkIfFocusUsed,
 } from 'services/web3/contractInteractions';
 
-// mainnet urls
+// mainnet
 const urls = {
-  openSea: `https://opensea.io/assets/ethereum/`,
-  etherscan: `https://etherscan.io/tx/`,
+  openSea: `https://opensea.io/assets/ethereum`,
+  etherscan: `https://etherscan.io/tx`,
 };
 
-//goerli urls
+//goerli
 // const urls = {
 //   openSea: `https://testnets.opensea.io/assets/goerli`,
-//   etherscan: `https://goerli.etherscan.io/tx/`,
+//   etherscan: `https://goerli.etherscan.io/tx`,
 // };
 
 export interface ISuccessInfo {
@@ -39,9 +39,7 @@ export const presaleMint = async (
   projectNumber: number,
   tokenNumber: number,
   handleError: (error: string) => void,
-  handleSuccess: (successInfo: ISuccessInfo) => void,
   setBuyButtonText: React.Dispatch<React.SetStateAction<string>>,
-  setShowPreMintModal: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
   const isPresaleActive = await checkIfPresaleActive(contract);
   if (!isPresaleActive) return handleError('MINT IS NOT ACTIVE');
@@ -79,8 +77,7 @@ export const presaleMint = async (
     tokenPageUrl: `https://chainlife.xyz/token/${tokenId}`,
   };
 
-  handleSuccess(successInfo);
-  setShowPreMintModal(false);
+  return successInfo;
 };
 
 // TODO: Check this function
@@ -91,12 +88,11 @@ export const publicMint = async (
   payableAmount: number,
   toAddress: string,
   handleError: (error: string) => void,
-  handleSuccess: (successInfo: ISuccessInfo) => void,
   setBuyButtonText: React.Dispatch<React.SetStateAction<string>>,
-  setShowBuyModal: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
-  const isMintActive = await checkIfPublicMintActive(contract);
-  if (!isMintActive) return handleError('MINT IS NOT ACTIVE');
+  const mintPhase = await getMintPhase(contract);
+  if (mintPhase === '0' || mintPhase === '1')
+    return handleError('PUBLIC MINT IS NOT ACTIVE');
 
   const isSupplyRemaining = await checkIfSupply(contract, maxSupply);
   if (!isSupplyRemaining) return handleError('MINT HAS SOLD OUT');
@@ -121,8 +117,7 @@ export const publicMint = async (
     tokenPageUrl: `https://chainlife.xyz/token/${tokenId}`,
   };
 
-  setShowBuyModal(false);
-  handleSuccess(successInfo);
+  return successInfo;
 };
 
 export const switchChain = async (chainId: string) => {
