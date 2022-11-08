@@ -25,13 +25,13 @@ export const checkIfSupply = async (contract: Contract, maxSupply: number) => {
   return parseInt(currentSupply) < maxSupply;
 };
 
-export const checkIfEnsoUsed = async (contract: Contract, tokenId: number) => {
+export const checkIfEnsoUsed = async (contract: Contract, tokenId: number | string) => {
   const ensoUsed = (await contract.methods.preMintWithEnso(tokenId).call()) as string;
 
   return ensoUsed === '1';
 };
 
-export const checkIfFocusUsed = async (contract: Contract, tokenId: number) => {
+export const checkIfFocusUsed = async (contract: Contract, tokenId: number | string) => {
   const focusUsed = (await contract.methods.preMintWithFOCUS(tokenId).call()) as string;
 
   return focusUsed === '1';

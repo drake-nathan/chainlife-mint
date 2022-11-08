@@ -36,10 +36,9 @@ const Token: NextPage = () => {
   const [owner, setOwner] = useState<string>();
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [generatorUrl, setGeneratorUrl] = useState<string>();
-  const [isTxPending, setIsTxPending] = useState<boolean>(false);
 
   useEffect(() => {
-    // NOTE: change slug for mainnet
+    // TODO: change slug for mainnet
     if (tokenId) {
       getToken('chainlife-testnet', tokenIdNum)
         .then((res) => {
@@ -54,23 +53,18 @@ const Token: NextPage = () => {
 
   useEffect(() => {
     if (tokenId) {
-      getOwner(contract.mainnet, tokenIdNum).then((res) => {
-        setOwner(res);
-        if (account && active) {
-          setIsOwner(equalAddresses(account, res));
-        }
-      });
+      try {
+        getOwner(contract.goerli, tokenIdNum).then((res) => {
+          setOwner(res);
+          if (account && active) {
+            setIsOwner(equalAddresses(account, res));
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }, [tokenId, account, active]);
-
-  useEffect(() => {
-    if (isTxPending) {
-      setTimeout(() => {
-        setIsTxPending(false);
-        window.location.reload();
-      }, 30000);
-    }
-  }, [isTxPending]);
 
   return (
     <AppContainer>
@@ -117,13 +111,11 @@ const Token: NextPage = () => {
               </St.Expand>
             </St.TokenHeader>
           </St.HeaderContainer>
-          {!isTxPending ? (
-            <St.FrameContainer>
-              <iframe src={generatorUrl} title="generator" frameBorder="0"></iframe>
-            </St.FrameContainer>
-          ) : (
-            <LoadingVideo />
-          )}
+
+          <St.FrameContainer>
+            <iframe src={generatorUrl} title="generator" frameBorder="0"></iframe>
+          </St.FrameContainer>
+
           <St.FooterContainer>
             <St.TokenFooter>
               <St.TokenTitle>Chainlife #{tokenId}</St.TokenTitle>
@@ -194,7 +186,7 @@ const Token: NextPage = () => {
           </St.FooterContainer>
         </St.TokenContainer>
         <St.ControlsAndTraits>
-          <TokenForms tokenId={tokenIdNum} setIsTxPending={setIsTxPending} />
+          <TokenForms tokenId={tokenIdNum} isOwner={isOwner} />
 
           {token && <Traits token={token} />}
         </St.ControlsAndTraits>

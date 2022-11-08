@@ -16,11 +16,12 @@ const ConnectDropDown: React.FC<Props> = ({ setShowModal }) => {
     const connector = connectors[connectorToUse];
 
     try {
-      if (connectorToUse === Connectors.Injected) {
-        if (connector.getChainId().valueOf() !== '0x1') {
-          await switchChain('0x1');
-        }
-      }
+      // TODO: uncomment this on mainnet
+      // if (connectorToUse === Connectors.Injected) {
+      //   if (connector.getChainId().valueOf() !== '0x1') {
+      //     await switchChain('0x1');
+      //   }
+      // }
       await activate(connector);
     } catch (err) {
       console.error(err);

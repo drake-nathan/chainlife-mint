@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useContract } from 'hooks/useContract';
-import { callCustomRule } from 'services/web3/contractInteractions';
+import { callCustomRule, callResetRule } from 'services/web3/contractInteractions';
 import * as St from './TokenForms.styled';
 
 type ICustomRule = { customRule: string };
 
 interface Props {
+  isOwner: boolean;
   tokenId: number;
-  setIsTxPending: React.Dispatch<React.SetStateAction<boolean>>;
+  handleError: (error: string) => void;
 }
 
-const CustomRuleForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
+const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
   const { active, account } = useWeb3React();
   const { contract } = useContract();
-  const [ruleSubmitted, setRuleSubmitted] = useState<boolean>(false);
 
   const [customRule, setCustomRule] = useState('');
   const [errorText, setErrorText] = useState('');
@@ -28,7 +28,9 @@ const CustomRuleForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
 
   const onSubmit: SubmitHandler<ICustomRule> = async () => {
     if (!active) {
-      setErrorText('Must be connected to wallet');
+      handleError('Must be connected to wallet.');
+    } else if (!isOwner) {
+      handleError('Must be owner of token.');
     } else {
       try {
         const tx = await callCustomRule(
@@ -37,32 +39,37 @@ const CustomRuleForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
           tokenId,
           customRule,
         );
-
-        if (tx) setIsTxPending(true);
       } catch (error) {
         console.error(error);
-      } finally {
-        setIsTxPending(false);
-        setRuleSubmitted(true);
+        handleError('Error setting custom rule.');
       }
     }
   };
 
-  const handleRefresh = () => {
-    setRuleSubmitted(false);
+  const handleReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+
+    try {
+      callResetRule(contract.mainnet, account as string, tokenId);
+    } catch (error) {
+      console.error(error);
+      handleError('Error resetting rule.');
+    }
   };
 
   useEffect(() => {
     if (errors.customRule && errors.customRule.message) {
       setErrorText(errors.customRule.message);
+      setTimeout(() => setErrorText(''), 3000);
     }
-  }, [errors]);
+  }, [errors.customRule]);
 
   return (
     <>
       <St.Form id="custom-rule-form" onSubmit={handleSubmit(onSubmit)}>
         <St.Input
           {...register('customRule', {
+            required: { value: true, message: 'This field is required.' },
             maxLength: { value: 23, message: 'This rule is too long, 23 chars max.' },
           })}
           id="custom-rule"
@@ -71,9 +78,7 @@ const CustomRuleForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
           onChange={(e) => setCustomRule(e.target.value)}
         />
         <St.Button type="submit">Submit</St.Button>
-        {ruleSubmitted ? (
-          <St.Refresh onClick={handleRefresh}>Refresh Rule</St.Refresh>
-        ) : null}
+        <St.Refresh onClick={(e) => handleReset(e)}>Reset Rule</St.Refresh>
       </St.Form>
       {errorText && <St.ErrorText>{errorText}</St.ErrorText>}
     </>

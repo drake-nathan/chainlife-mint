@@ -9,11 +9,12 @@ import * as St from './TokenForms.styled';
 type IShiftLevels = { levelShift: number };
 
 interface Props {
+  isOwner: boolean;
   tokenId: number;
-  setIsTxPending: React.Dispatch<React.SetStateAction<boolean>>;
+  handleError: (error: string) => void;
 }
 
-const ShiftLevelsForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
+const ShiftLevelsForm: React.FC<Props> = ({ tokenId, handleError, isOwner }) => {
   const { active, account } = useWeb3React();
   const { contract } = useContract();
   const { shiftFee } = useMintDetails();
@@ -29,7 +30,9 @@ const ShiftLevelsForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
 
   const onSubmit: SubmitHandler<IShiftLevels> = async () => {
     if (!active) {
-      setErrorText('Must be connected to wallet');
+      handleError('Must be connected to wallet');
+    } else if (!isOwner) {
+      handleError('Must be owner of token.');
     } else {
       if (levelShift) {
         try {
@@ -40,12 +43,8 @@ const ShiftLevelsForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
             levelShift,
             shiftFee,
           );
-
-          if (tx) setIsTxPending(true);
         } catch (error) {
           console.error(error);
-        } finally {
-          setIsTxPending(false);
         }
       }
     }
@@ -54,8 +53,9 @@ const ShiftLevelsForm: React.FC<Props> = ({ tokenId, setIsTxPending }) => {
   useEffect(() => {
     if (errors.levelShift && errors.levelShift.message) {
       setErrorText(errors.levelShift.message);
+      setTimeout(() => setErrorText(''), 3000);
     }
-  }, [errors]);
+  }, [errors.levelShift]);
 
   return (
     <>
