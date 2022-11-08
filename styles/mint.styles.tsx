@@ -13,6 +13,46 @@ export const AppContainer = styled.div`
   justify-content: center;
   cursor: default;
   padding-bottom: 150px;
+
+  .tool {
+    cursor: pointer;
+    position: relative;
+  }
+
+  /*== common styles for both parts of tool tip ==*/
+  .tool::after {
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .tool:hover::after {
+    opacity: 1;
+  }
+
+  /*== bubble ==*/
+
+  .tool::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(244, 245, 240, 0.85);
+    color: #3a3a3a;
+    font-size: 16px;
+    font-weight: 600;
+    content: attr(data-tip);
+    padding: 1em;
+    transition: all 0.65s;
+    //transform: scale(0.6) translateY(140px);
+    height: 35px;
+    width: 175px;
+  }
+
+  .tool:hover::after,
+  .tool:focus::after {
+    transition: all 0.65s;
+  }
 `;
 
 export const BodyContainer = styled.div`
@@ -51,6 +91,8 @@ export const WorldViewContainer = styled.div`
     animation-duration: 1s;
   }
 `;
+
+export const TokenDiv = styled.div``;
 
 export const InstructionsContainer = styled.div`
   display: flex;

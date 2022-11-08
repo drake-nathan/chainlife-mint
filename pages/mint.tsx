@@ -2,51 +2,29 @@
 import type { NextPage } from 'next';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import NavBar from 'components/NavBar/NavBar';
 import DescriptionSections from 'components/DescriptionSections/DescriptionSections';
 import Slider from 'components/Slider/Slider';
 import Web3Buttons from 'components/Web3/Web3Buttons';
 import { useMintDetails } from 'hooks/useMintDetails';
 import { useWindowSize } from 'hooks/useWindowSize';
-import DynamicFallback from 'components/FallbackPage/DynamicFallback';
-import { getGeneratorUrl, getSliderThumbnails } from 'utils/getRandomToken';
+import { getGeneratorUrl, getSliderThumbnails, Token } from 'utils/getRandomToken';
 import * as St from '../styles/mint.styles';
 
-type Token = { url: string; id: number };
-
 const Home: NextPage = () => {
-  const nodeEnv = process.env.NODE_ENV || 'production';
-  const { isMintLive, maxSupply, currentSupply } = useMintDetails();
-  const { query } = useRouter();
+  const { maxSupply, currentSupply } = useMintDetails();
   const { windowWidth } = useWindowSize();
 
   const [sliderTokens, setSliderTokens] = useState<Token[]>([]);
-  const [showFallback, setShowFallback] = useState(true);
   const [activeToken, setActiveToken] = useState<Token>();
 
   useEffect(() => {
     if (currentSupply) {
       setSliderTokens(getSliderThumbnails(currentSupply));
-      const { generatorUrl, tokenId } = getGeneratorUrl(currentSupply);
-      setActiveToken({ url: generatorUrl, id: tokenId });
+      const { genUrl, thumbUrl, id } = getGeneratorUrl(currentSupply);
+      setActiveToken({ genUrl, thumbUrl, id });
     }
   }, [currentSupply]);
-
-  useEffect(() => {
-    // NOTE: add /?showFallback=true to the url to show the fallback page in development
-    if (query.showFallback === 'true') {
-      setShowFallback(false);
-    } else if (
-      // NOTE: add /?showFallback=false to the url to hide the fallback page in production
-      // NOTE: also hide fallback page if mint is live in prod or anytime in dev
-      query.showFallback === 'false' ||
-      (nodeEnv === 'production' && isMintLive) ||
-      nodeEnv === 'development'
-    ) {
-      setShowFallback(false);
-    }
-  }, [query, isMintLive, nodeEnv]);
 
   return (
     <St.AppContainer>
@@ -62,8 +40,13 @@ const Home: NextPage = () => {
             {windowWidth > 1000 ? (
               <Slider>
                 {sliderTokens.map((token) => (
-                  <div key={token.id} onClick={() => console.log(token.id)}>
-                    <img src={token.url} alt="nft" />
+                  <div
+                    key={token.id}
+                    className="tool"
+                    data-tip={`Chainlife # ${token.id}`}
+                    onClick={() => setActiveToken({ genUrl: token.genUrl, id: token.id })}
+                  >
+                    <img src={token.thumbUrl} alt="nft" />
                   </div>
                 ))}
               </Slider>
@@ -94,7 +77,7 @@ const Home: NextPage = () => {
                       : '360'
                   }
                   width={windowWidth > 750 ? '650' : '390'}
-                  src={activeToken.url}
+                  src={activeToken.genUrl}
                   title="generator"
                   frameBorder="0"
                 ></iframe>

@@ -74,7 +74,8 @@ export const SubTitle = styled.h3`
 
 export const SubtleDiv = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
   justify-content: space-between;
   gap: 1.25em;
 
@@ -86,7 +87,7 @@ export const SubtleDiv = styled.div`
     &:after {
       background-image: url('/prayer_emoji_icon.png');
       background-size: 25px 25px;
-      display: flex;
+      display: inline-block;
       width: 25px;
       height: 25px;
       margin-left: 8px;
@@ -98,7 +99,7 @@ export const SubtleDiv = styled.div`
     &:after {
       background-image: url('/brain_emoji_icon.png');
       background-size: 25px 25px;
-      display: flex;
+      display: inline-block;
       width: 25px;
       height: 25px;
       margin-left: 8px;
