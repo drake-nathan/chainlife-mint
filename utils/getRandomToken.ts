@@ -1,7 +1,7 @@
 export interface Token {
   id: number;
   genUrl: string;
-  thumbUrl?: string;
+  thumbUrl: string;
 }
 
 const getRandomToken = (currentSupply: number): number => {
@@ -15,8 +15,7 @@ export const getGeneratorUrl = (currentSupply: number, tokenId?: number): Token 
   console.log('currentSupply', currentSupply);
   console.log('token', id);
   const root = 'http://api.gengames.io/project/chainlife/generator';
-  const thumbRoot =
-    'https://mattoapi.blob.core.windows.net/thumbnails/chainlife-testnet_';
+  const thumbRoot = 'https://mattoapi.blob.core.windows.net/thumbnails/chainlife_';
 
   const genUrl = `${root}/${id}`;
 

@@ -19,21 +19,21 @@ const MarketsModal: React.FC<Props> = ({ setShowModal }) => {
           <St.XButton src="/icons/x-icon-lg.svg" onClick={handleCloseModal} />
         </St.MsgDiv>
         <a
-          href="https://testnets.opensea.io/collection/chainlife"
+          href="https://opensea.io/collection/chainlife-by-matoo"
           target="_blank"
           rel="noreferrer"
         >
           <St.Button id="opensea">OPENSEA</St.Button>
         </a>
         <a
-          href="https://goerli.looksrare.org/collections/0x04c9E99D134565eB0F0Fef07FB70741A5b615075"
+          href="https://looksrare.org/collections/0x4E171e0F14a9046e14B93221f31Acd2EC4Af8429"
           target="_blank"
           rel="noreferrer"
         >
           <St.Button>LOOKSRARE</St.Button>
         </a>
         <a
-          href="https://goerli.x2y2.io/collection/0x04c9E99D134565eB0F0Fef07FB70741A5b615075/items"
+          href="https://x2y2.io/collection/0x4E171e0F14a9046e14B93221f31Acd2EC4Af8429/items"
           target="_blank"
           rel="noreferrer"
         >

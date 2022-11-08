@@ -16,8 +16,6 @@ import Traits from 'components/Traits/Traits';
 import { getOwner } from 'services/web3/contractInteractions';
 import { useWeb3React } from '@web3-react/core';
 import { useContract } from 'hooks/useContract';
-import { useMintDetails } from 'hooks/useMintDetails';
-import LoadingVideo from 'components/LoadingVideo/LoadingVideo';
 import { equalAddresses, shortenAddress } from 'services/web3/web3helpers';
 import EsoterraIcon from '../../public/eso-01.svg';
 import { TfiNewWindow } from 'react-icons/tfi';
@@ -53,7 +51,7 @@ const Token: NextPage = () => {
   useEffect(() => {
     if (tokenId) {
       try {
-        getOwner(contract.goerli, tokenIdNum).then((res) => {
+        getOwner(contract.mainnet, tokenIdNum).then((res) => {
           setOwner(res);
           if (account && active) {
             setIsOwner(equalAddresses(account, res));
@@ -80,7 +78,7 @@ const Token: NextPage = () => {
             <St.TokenHeader>
               <St.Expand>
                 <a
-                  href={`https://api.gengames.io/project/chainlife-testnet/esoterra/${tokenId}
+                  href={`https://api.gengames.io/project/chainlife/esoterra/${tokenId}
                   `}
                   target="blank"
                   rel="noreferrer"
@@ -90,7 +88,7 @@ const Token: NextPage = () => {
                   <Image src={EsoterraIcon} width={24} height={24} alt="esoterra" />
                 </a>
                 <a
-                  href={`https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/generator/${tokenId}`}
+                  href={`https://api.gengames.io/project/chainlife/generator/${tokenId}`}
                   target="blank"
                   rel="noreferrer"
                 >
@@ -100,7 +98,7 @@ const Token: NextPage = () => {
                   />
                 </a>
                 <a
-                  href={`https://api.gengames.io/project/chainlife-testnet/generator-mobile/${tokenId}`}
+                  href={`https://api.gengames.io/project/chainlife/generator-mobile/${tokenId}`}
                   target="blank"
                   rel="noreferrer"
                   title="View Mobile Generator"
@@ -124,7 +122,7 @@ const Token: NextPage = () => {
                   <St.SubtleTitle>
                     {' '}
                     <a
-                      href={`https://goerli.etherscan.io/address/${owner}`}
+                      href={`https://etherscan.io/address/${owner}`}
                       target="blank"
                       rel="noreferrer"
                       title="View Owner On Etherscan"
@@ -148,7 +146,7 @@ const Token: NextPage = () => {
                 <Image src={Artacle} width={28} height={28} alt="Artacle" />
               </a>
               <a
-                href={`https://goerli.x2y2.io/eth/0x04c9E99D134565eB0F0Fef07FB70741A5b615075/${tokenId}`}
+                href={`https://x2y2.io/eth/0x4E171e0F14a9046e14B93221f31Acd2EC4Af8429/${tokenId}`}
                 target="blank"
                 rel="noreferrer"
                 title="X2Y@"
@@ -159,7 +157,7 @@ const Token: NextPage = () => {
                 <Image src={X2Y2} width={28} height={28} alt="X2Y2" />
               </a>
               <a
-                href={`https://goerli.looksrare.org/collections/0x04c9E99D134565eB0F0Fef07FB70741A5b615075/${tokenId}`}
+                href={`https://looksrare.org/collections/0x4E171e0F14a9046e14B93221f31Acd2EC4Af8429/${tokenId}`}
                 target="blank"
                 rel="noreferrer"
                 title="LOOKSRARE"
@@ -170,7 +168,7 @@ const Token: NextPage = () => {
                 <Image src={LooksRare} width={28} height={28} alt="LooksRare" />
               </a>
               <a
-                href={`https://testnets.opensea.io/assets/goerli/0x04c9e99d134565eb0f0fef07fb70741a5b615075/${tokenId}`}
+                href={`https://opensea.io/assets/0x4E171e0F14a9046e14B93221f31Acd2EC4Af8429/${tokenId}`}
                 target="blank"
                 rel="noreferrer"
                 title="openSea"
