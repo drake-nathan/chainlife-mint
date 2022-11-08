@@ -30,6 +30,13 @@ const TokenIdForm = () => {
     }
   }, [errors.tokenId]);
 
+  useEffect(() => {
+    if (tokenId < 0) settokenId(0);
+    if (currentSupply) {
+      if (tokenId > currentSupply) settokenId(currentSupply);
+    }
+  }, [tokenId]);
+
   return (
     <>
       <St.Form id="token-page-form" onSubmit={handleSubmit(onSubmit)}>
@@ -43,21 +50,23 @@ const TokenIdForm = () => {
               type="number"
               {...register('tokenId', {
                 valueAsNumber: true,
-                required: { value: true, message: 'This field is required.' },
                 max: {
-                  value: currentSupply || 4096,
+                  value: currentSupply ? currentSupply - 1 : 4096,
                   message: 'Must be less than current supply.',
                 },
               })}
               id="enter-id"
-              value={tokenId || ''}
+              value={tokenId}
+              autoComplete="off"
               onChange={(e) => settokenId(parseInt(e.target.value))}
             />
             <St.SmallButton type="submit">GO</St.SmallButton>
           </St.InputContainer>
 
           {currentSupply && !errorText && (
-            <St.Asterisk>* must be a number between 0 and {currentSupply}.</St.Asterisk>
+            <St.Asterisk>
+              * must be a number between 0 and {currentSupply - 1}.
+            </St.Asterisk>
           )}
           {errorText && <St.Asterisk>{errorText}</St.Asterisk>}
         </St.LabelDiv>
