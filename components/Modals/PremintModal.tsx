@@ -22,6 +22,8 @@ const PremintModal: React.FC<Props> = ({
   const [activeEnso, setActiveEnso] = useState<number | null>(null);
   const [activeFocus, setActiveFocus] = useState<number | null>(null);
 
+  const [isFocusImgError, setIsFocusImgError] = useState<boolean>(false);
+
   const root = 'https://mattoapi.blob.core.windows.net/thumbnails';
   const enso = { id: 34, slug: 'enso' };
   const focus = { id: 181, slug: 'focus' };
@@ -118,12 +120,22 @@ const PremintModal: React.FC<Props> = ({
                     setActiveEnso(null);
                   }}
                 >
-                  <img
-                    src={`${root}/focus_${token}.png`}
-                    height={150}
-                    width={150}
-                    alt="focus"
-                  />{' '}
+                  {!isFocusImgError ? (
+                    <img
+                      src={`${root}/focus_${token}.png`}
+                      onError={() => setIsFocusImgError(true)}
+                      height={150}
+                      width={150}
+                      alt="focus"
+                    />
+                  ) : (
+                    <img
+                      src={`FOCUS-placeholder_150x.png`}
+                      height={150}
+                      width={150}
+                      alt="focus"
+                    />
+                  )}{' '}
                   <St.TokenInfo>
                     <St.TokenText style={{ color: '#fff', fontWeight: 500 }}>
                       {activeFocus === token ? 'TOKEN SELECTED' : ''}
@@ -148,3 +160,5 @@ const PremintModal: React.FC<Props> = ({
 };
 
 export default PremintModal;
+
+//FOCUS-placeholder_150x.png
