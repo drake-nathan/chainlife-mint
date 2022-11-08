@@ -1,7 +1,7 @@
 export interface Token {
   id: number;
   genUrl: string;
-  thumbUrl: string;
+  thumbUrl?: string;
 }
 
 const getRandomToken = (currentSupply: number): number => {

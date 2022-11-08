@@ -49,11 +49,17 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
   const handleReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
-    try {
-      callResetRule(contract.mainnet, account as string, tokenId);
-    } catch (error) {
-      console.error(error);
-      handleError('Error resetting rule.');
+    if (!active) {
+      handleError('Must be connected to wallet.');
+    } else if (!isOwner) {
+      handleError('Must be owner of token.');
+    } else {
+      try {
+        callResetRule(contract.mainnet, account as string, tokenId);
+      } catch (error) {
+        console.error(error);
+        handleError('Error resetting rule.');
+      }
     }
   };
 
