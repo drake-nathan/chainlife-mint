@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useMintDetails } from 'hooks/useMintDetails';
-import { section1Text, section2Text } from './SectionText';
+import { section1Text, section1AText, section2Text, section2AText } from './SectionText';
 import * as St from './Description.styled';
 
 const DescriptionSections: React.FC = () => {
@@ -47,9 +47,12 @@ const DescriptionSections: React.FC = () => {
           : `(Cost Per Mint: ${mintPrice} ETH)`}
       </St.SubTitle>
       <St.SubtleDiv>
-        <St.SubtleText className={activeSection === 1 ? 'one' : 'two'}>
+        <St.SubtleText>
           {' '}
           {activeSection === 2 ? section2Text : section1Text}{' '}
+        </St.SubtleText>
+        <St.SubtleText className={activeSection === 1 ? 'one' : 'two'}>
+          {activeSection === 2 ? section2AText : section1AText}{' '}
           {activeSection === 2 ? (
             <a
               href="https://docs.chainlife.xyz/"
