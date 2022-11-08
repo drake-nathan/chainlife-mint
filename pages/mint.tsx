@@ -2,17 +2,14 @@
 import type { NextPage } from 'next';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import NavBar from 'components/NavBar/NavBar';
 import DescriptionSections from 'components/DescriptionSections/DescriptionSections';
 import Slider from 'components/Slider/Slider';
 import Web3Buttons from 'components/Web3/Web3Buttons';
 import { useMintDetails } from 'hooks/useMintDetails';
 import { useWindowSize } from 'hooks/useWindowSize';
-import { getGeneratorUrl, getSliderThumbnails } from 'utils/getRandomToken';
+import { getGeneratorUrl, getSliderThumbnails, Token } from 'utils/getRandomToken';
 import * as St from '../styles/mint.styles';
-
-type Token = { genUrl: string; thumbUrl?: string; id: number };
 
 const Home: NextPage = () => {
   const { maxSupply, currentSupply } = useMintDetails();
@@ -24,8 +21,8 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (currentSupply) {
       setSliderTokens(getSliderThumbnails(currentSupply));
-      const { generatorUrl, thumbNailUrl, tokenId } = getGeneratorUrl(currentSupply);
-      setActiveToken({ genUrl: generatorUrl, thumbUrl: thumbNailUrl, id: tokenId });
+      const { genUrl, thumbUrl, id } = getGeneratorUrl(currentSupply);
+      setActiveToken({ genUrl, thumbUrl, id });
     }
   }, [currentSupply]);
 

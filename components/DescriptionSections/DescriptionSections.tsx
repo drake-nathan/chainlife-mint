@@ -43,8 +43,8 @@ const DescriptionSections: React.FC = () => {
           : '1 Mint per transaction'}{' '}
         <br />
         {activeSection === 1
-          ? `(Cost Per Mint: ${discountPrice} ETH)`
-          : `(Cost Per Mint: ${mintPrice} ETH)`}
+          ? `Cost Per Mint: ${discountPrice} ETH`
+          : `Cost Per Mint: ${mintPrice} ETH`}
       </St.SubTitle>
       <St.SubtleDiv>
         <St.SubtleText>

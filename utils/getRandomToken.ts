@@ -1,25 +1,31 @@
-const getRandomToken = (currentSupply: number) => {
-  const tokenId = Math.floor(Math.random() * currentSupply - 1);
+export interface Token {
+  id: number;
+  genUrl: string;
+  thumbUrl?: string;
+}
+
+const getRandomToken = (currentSupply: number): number => {
+  const tokenId = Math.floor(Math.random() * currentSupply);
 
   return tokenId;
 };
 
-export const getGeneratorUrl = (currentSupply: number, tokenId?: number) => {
-  const token = getRandomToken(currentSupply) || tokenId;
-  const root =
-    'http://matto-api-azure-func.azurewebsites.net/project/chainlife/generator';
-
+export const getGeneratorUrl = (currentSupply: number, tokenId?: number): Token => {
+  const id = getRandomToken(currentSupply) || tokenId || 0;
+  console.log('currentSupply', currentSupply);
+  console.log('token', id);
+  const root = 'http://api.gengames.io/project/chainlife/generator';
   const thumbRoot =
     'https://mattoapi.blob.core.windows.net/thumbnails/chainlife-testnet_';
 
-  const generatorUrl = `${root}/${token}`;
+  const genUrl = `${root}/${id}`;
 
-  const thumbNailUrl = `${thumbRoot}${token}`;
+  const thumbUrl = `${thumbRoot}${id}`;
 
-  return { generatorUrl, thumbNailUrl, tokenId: token as number };
+  return { genUrl, thumbUrl, id };
 };
 
-export const getSliderThumbnails = (currentSupply: number) => {
+export const getSliderThumbnails = (currentSupply: number): Token[] => {
   const root = 'https://mattoapi.blob.core.windows.net/thumbnails/chainlife_';
   const genRoot = 'http://api.gengames.io/project/chainlife/generator';
 

@@ -14,7 +14,7 @@ const RPC_URLS = {
 };
 
 const injected = new InjectedConnector({
-  supportedChainIds: [1, 5],
+  supportedChainIds: [1],
 });
 
 const walletconnect = new WalletConnectConnector({
