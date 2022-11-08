@@ -30,7 +30,7 @@ export const useMintDetails = () => {
             setIsMintLive(true);
             setIsPreMint(false);
           } else if (mintStage === '1') {
-            setIsMintLive(false);
+            setIsMintLive(true);
             setIsPreMint(true);
           } else if (mintStage === '0') {
             setIsMintLive(false);
