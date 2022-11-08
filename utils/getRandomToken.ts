@@ -6,9 +6,8 @@ const getRandomToken = (currentSupply: number) => {
 
 export const getGeneratorUrl = (currentSupply: number, tokenId?: number) => {
   const token = getRandomToken(currentSupply) || tokenId;
-  // NOTE: Make this mainnet when ready
   const root =
-    'http://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/generator';
+    'http://matto-api-azure-func.azurewebsites.net/project/chainlife/generator';
 
   const thumbRoot =
     'https://mattoapi.blob.core.windows.net/thumbnails/chainlife-testnet_';
@@ -21,10 +20,8 @@ export const getGeneratorUrl = (currentSupply: number, tokenId?: number) => {
 };
 
 export const getSliderThumbnails = (currentSupply: number) => {
-  const root = 'https://mattoapi.blob.core.windows.net/thumbnails/chainlife-testnet_';
-  // NOTE: Make this mainnet when ready
-  const genRoot =
-    'http://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/generator';
+  const root = 'https://mattoapi.blob.core.windows.net/thumbnails/chainlife_';
+  const genRoot = 'http://api.gengames.io/project/chainlife/generator';
 
   const maxlength = 50;
   const length = currentSupply > maxlength ? maxlength : currentSupply;

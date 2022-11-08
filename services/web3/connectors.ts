@@ -26,7 +26,7 @@ const walletconnect = new WalletConnectConnector({
 
 const coinbase = new WalletLinkConnector({
   url: RPC_URLS[1],
-  appName: 'Chainlife Mint',
+  appName: 'Chainlife',
   supportedChainIds: [1],
 });
 

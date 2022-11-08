@@ -34,13 +34,12 @@ const PremintModal: React.FC<Props> = ({
     if (!userZenTokens.focus.length && !userZenTokens.enso.length) {
       setShowModal(false);
     }
-  }, [userZenTokens]);
+  }, [userZenTokens.enso, userZenTokens.focus]);
 
   const handleMintClick = () => {
     const project = activeEnso ? enso.id : focus.id;
-    // const project = 94;
-    // NOTE: don't forget this
     const token = activeEnso ? activeEnso : activeFocus;
+
     if (project && token) {
       handlePresaleMint(project, token);
     } else {
