@@ -41,7 +41,7 @@ export const presaleMint = async (
   handleError: (error: string) => void,
   handleSuccess: (successInfo: ISuccessInfo) => void,
   setBuyButtonText: React.Dispatch<React.SetStateAction<string>>,
-  setShowBuyModal: React.Dispatch<React.SetStateAction<boolean>>,
+  setShowPreMintModal: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
   const isPresaleActive = await checkIfPresaleActive(contract);
   if (!isPresaleActive) return handleError('MINT IS NOT ACTIVE');
@@ -75,14 +75,15 @@ export const presaleMint = async (
     tokenId: parseInt(tokenId),
     etherscanLink: `${urls.etherscan}/${txHash}`,
     openseaLink: `${urls.openSea}/${contractAddress}/${tokenId}`,
-    // NOTE: change this to mainnet
-    generatorUrl: `https://api.gengames.io/project/chainlife-testnet/generator/${tokenId}`,
+    generatorUrl: `https://api.gengames.io/project/chainlife/generator/${tokenId}`,
     tokenPageUrl: `https://chainlife.xyz/token/${tokenId}`,
   };
 
   handleSuccess(successInfo);
+  setShowPreMintModal(false);
 };
 
+// TODO: Check this function
 export const publicMint = async (
   contract: Contract,
   maxSupply: number,

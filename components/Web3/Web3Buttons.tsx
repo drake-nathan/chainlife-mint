@@ -62,7 +62,7 @@ const Web3Buttons: React.FC = () => {
           handleError,
           handleSuccess,
           setBuyButtonText,
-          setShowBuyModal,
+          setShowPremintModal,
         );
       } catch (err) {
         console.error(err);
