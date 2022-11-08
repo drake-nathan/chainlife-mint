@@ -6,6 +6,7 @@ import NavBar from 'components/NavBar/NavBar';
 import DescriptionSections from 'components/DescriptionSections/DescriptionSections';
 import Slider from 'components/Slider/Slider';
 import Web3Buttons from 'components/Web3/Web3Buttons';
+import LoadingVideo from 'components/LoadingVideo/LoadingVideo';
 import { useMintDetails } from 'hooks/useMintDetails';
 import { useWindowSize } from 'hooks/useWindowSize';
 import { getGeneratorUrl, getSliderThumbnails, Token } from 'utils/getRandomToken';
@@ -17,6 +18,9 @@ const Home: NextPage = () => {
 
   const [sliderTokens, setSliderTokens] = useState<Token[]>([]);
   const [activeToken, setActiveToken] = useState<Token>();
+
+  // TODO: this
+  const [isTxPending, setIsTxPending] = useState(false);
 
   useEffect(() => {
     if (currentSupply) {
@@ -65,23 +69,28 @@ const Home: NextPage = () => {
                 </St.TitleContainer>
                 {windowWidth > 750 ? <Web3Buttons /> : null}
               </St.TitleAnCryptoContainer>
-              {activeToken && (
-                <iframe
-                  height={
-                    windowWidth > 750
-                      ? '650'
-                      : windowWidth >= 412
-                      ? '412'
-                      : windowWidth >= 390
-                      ? '390'
-                      : '360'
-                  }
-                  width={windowWidth > 750 ? '650' : '390'}
-                  src={activeToken.genUrl}
-                  title="generator"
-                  frameBorder="0"
-                ></iframe>
+              {isTxPending ? (
+                <LoadingVideo />
+              ) : (
+                activeToken && (
+                  <iframe
+                    height={
+                      windowWidth > 750
+                        ? '650'
+                        : windowWidth >= 412
+                        ? '412'
+                        : windowWidth >= 390
+                        ? '390'
+                        : '360'
+                    }
+                    width={windowWidth > 750 ? '650' : '390'}
+                    src={activeToken.genUrl}
+                    title="generator"
+                    frameBorder="0"
+                  ></iframe>
+                )
               )}
+
               <St.InfoContainer>
                 {windowWidth < 750 ? <Web3Buttons /> : null}
                 <St.InfoText>

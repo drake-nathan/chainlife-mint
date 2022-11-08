@@ -12,9 +12,8 @@ const getRandomToken = (currentSupply: number): number => {
 
 export const getGeneratorUrl = (currentSupply: number, tokenId?: number): Token => {
   const id = getRandomToken(currentSupply) || tokenId || 0;
-  console.log('currentSupply', currentSupply);
-  console.log('token', id);
-  const root = 'http://api.gengames.io/project/chainlife/generator';
+
+  const root = 'https://api.gengames.io/project/chainlife/generator';
   const thumbRoot = 'https://mattoapi.blob.core.windows.net/thumbnails/chainlife_';
 
   const genUrl = `${root}/${id}`;
@@ -26,7 +25,7 @@ export const getGeneratorUrl = (currentSupply: number, tokenId?: number): Token 
 
 export const getSliderThumbnails = (currentSupply: number): Token[] => {
   const root = 'https://mattoapi.blob.core.windows.net/thumbnails/chainlife_';
-  const genRoot = 'http://api.gengames.io/project/chainlife/generator';
+  const genRoot = 'https://api.gengames.io/project/chainlife/generator';
 
   const maxlength = 50;
   const length = currentSupply > maxlength ? maxlength : currentSupply;

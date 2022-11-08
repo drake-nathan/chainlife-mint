@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getProject } from 'services/azureApi/fetches';
-import { fetchCurrentSupply } from 'services/web3/contractInteractions';
+import { fetchCurrentSupply, getMintPhase } from 'services/web3/contractInteractions';
 import { useContract } from './useContract';
 
 export const useMintDetails = () => {
@@ -24,13 +23,30 @@ export const useMintDetails = () => {
   const [currentSupply, setCurrentSupply] = useState<number>();
 
   useEffect(() => {
-    if (currentTime >= mintStart && currentTime <= mintEnd) {
-      setIsMintLive(true);
-    }
+    getMintPhase(contract.mainnet)
+      .then((mintStage) => {
+        if (mintStage) {
+          if (mintStage === '2') {
+            setIsMintLive(true);
+            setIsPreMint(false);
+          } else if (mintStage === '1') {
+            setIsMintLive(false);
+            setIsPreMint(true);
+          } else if (mintStage === '0') {
+            setIsMintLive(false);
+            setIsPreMint(false);
+          } else console.error('You fucked up.');
+        } else {
+          if (currentTime >= mintStart && currentTime <= mintEnd) {
+            setIsMintLive(true);
+          }
 
-    if (currentTime >= mintStart && currentTime <= publicStart) {
-      setIsPreMint(true);
-    }
+          if (currentTime >= mintStart && currentTime <= publicStart) {
+            setIsPreMint(true);
+          }
+        }
+      })
+      .catch(console.error);
   }, [currentTime]);
 
   useEffect(() => {

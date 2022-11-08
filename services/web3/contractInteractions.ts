@@ -1,6 +1,12 @@
 import { Contract } from 'web3-eth-contract';
 import { toWei } from 'web3-utils';
 
+export const getMintPhase = async (contract: Contract) => {
+  const mintStage = (await contract.methods.mintStage().call()) as string;
+
+  return mintStage;
+};
+
 export const checkIfPublicMintActive = async (contract: Contract) => {
   const mintStage = (await contract.methods.mintStage().call()) as string;
 
