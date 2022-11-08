@@ -11,8 +11,7 @@ export const useWeb3 = () => {
 
   const { active, library } = useWeb3React();
 
-  // TODO: Change this back to mainnet
-  const web3Provider = new Web3.providers.HttpProvider(rpc[Chain.goerli]);
+  const web3Provider = new Web3.providers.HttpProvider(rpc[Chain.mainnet]);
 
   const [web3, setWeb3] = useState<Web3>(new Web3(web3Provider));
 

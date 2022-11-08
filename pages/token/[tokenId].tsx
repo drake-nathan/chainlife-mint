@@ -38,9 +38,8 @@ const Token: NextPage = () => {
   const [generatorUrl, setGeneratorUrl] = useState<string>();
 
   useEffect(() => {
-    // TODO: change slug for mainnet
     if (tokenId) {
-      getToken('chainlife-testnet', tokenIdNum)
+      getToken('chainlife', tokenIdNum)
         .then((res) => {
           if (res) {
             setToken(res);

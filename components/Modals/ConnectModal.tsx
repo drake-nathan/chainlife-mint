@@ -17,12 +17,11 @@ const ConnectModal: React.FC<Props> = ({ setShowModal }) => {
     const connector = connectors[connectorToUse];
 
     try {
-      // TODO: uncomment this on mainnet
-      // if (connectorToUse === Connectors.Injected) {
-      //   if (connector.getChainId().valueOf() !== '0x1') {
-      //     await switchChain('0x1');
-      //   }
-      // }
+      if (connectorToUse === Connectors.Injected) {
+        if (connector.getChainId().valueOf() !== '0x1') {
+          await switchChain('0x1');
+        }
+      }
       await activate(connector);
     } catch (err) {
       console.error(err);
