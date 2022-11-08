@@ -10,13 +10,21 @@ export const getGeneratorUrl = (currentSupply: number, tokenId?: number) => {
   const root =
     'http://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/generator';
 
+  const thumbRoot =
+    'https://mattoapi.blob.core.windows.net/thumbnails/chainlife-testnet_';
+
   const generatorUrl = `${root}/${token}`;
-  return { generatorUrl, tokenId: token as number };
+
+  const thumbNailUrl = `${thumbRoot}${token}`;
+
+  return { generatorUrl, thumbNailUrl, tokenId: token as number };
 };
 
 export const getSliderThumbnails = (currentSupply: number) => {
   const root = 'https://mattoapi.blob.core.windows.net/thumbnails/chainlife-testnet_';
   // NOTE: Make this mainnet when ready
+  const genRoot =
+    'http://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/generator';
 
   const maxlength = 50;
   const length = currentSupply > maxlength ? maxlength : currentSupply;
@@ -30,8 +38,9 @@ export const getSliderThumbnails = (currentSupply: number) => {
   }
 
   const sliderTokens = Array.from({ length }, (_, i) => {
-    const url = `${root}${tokenIds[i]}.png`;
-    return { url, id: tokenIds[i] };
+    const thumbUrl = `${root}${tokenIds[i]}.png`;
+    const genUrl = `${genRoot}/${tokenIds[i]}`;
+    return { thumbUrl, genUrl, id: tokenIds[i] };
   });
 
   return sliderTokens;

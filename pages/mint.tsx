@@ -14,7 +14,7 @@ import { MintPageContext } from 'contexts/MintPageContext';
 import { getGeneratorUrl, getSliderThumbnails } from 'utils/getRandomToken';
 import * as St from '../styles/mint.styles';
 
-type Token = { url: string; id: number };
+type Token = { genUrl: string; thumbUrl?: string; id: number };
 
 const Home: NextPage = () => {
   const nodeEnv = process.env.NODE_ENV || 'production';
@@ -30,8 +30,8 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (currentSupply) {
       setSliderTokens(getSliderThumbnails(currentSupply));
-      const { generatorUrl, tokenId } = getGeneratorUrl(currentSupply);
-      setActiveToken({ url: generatorUrl, id: tokenId });
+      const { generatorUrl, thumbNailUrl, tokenId } = getGeneratorUrl(currentSupply);
+      setActiveToken({ genUrl: generatorUrl, thumbUrl: thumbNailUrl, id: tokenId });
     }
   }, [currentSupply]);
 
@@ -65,8 +65,15 @@ const Home: NextPage = () => {
               {windowWidth > 1000 ? (
                 <Slider>
                   {sliderTokens.map((token) => (
-                    <div key={token.id} onClick={() => console.log(token.id)}>
-                      <img src={token.url} alt="nft" />
+                    <div
+                      key={token.id}
+                      className="tool"
+                      data-tip={`Chainlife # ${token.id}`}
+                      onClick={() =>
+                        setActiveToken({ genUrl: token.genUrl, id: token.id })
+                      }
+                    >
+                      <img src={token.thumbUrl} alt="nft" />
                     </div>
                   ))}
                 </Slider>
@@ -97,7 +104,7 @@ const Home: NextPage = () => {
                         : '360'
                     }
                     width={windowWidth > 750 ? '650' : '390'}
-                    src={activeToken.url}
+                    src={activeToken.genUrl}
                     title="generator"
                     frameBorder="0"
                   ></iframe>
