@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
         <St.InstructionsContainer>
           <St.FrameDiv>
             <iframe
-              src="https://chainlife.art/"
+              src="https://api.gengames.io/generaterandomchainlife"
               title="random generator"
               frameBorder="0"
             ></iframe>

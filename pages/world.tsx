@@ -11,6 +11,8 @@ import * as St from '../styles/Worldview.styled';
 const Home: NextPage = () => {
   const [activeStep, setActiveStep] = useState(0);
 
+  const worldviewUrl = 'https://api.gengames.io/project/chainlife/world';
+
   const handleInstructionsClick = () => {
     if (activeStep === 0) setActiveStep(1);
     else setActiveStep(0);
@@ -36,7 +38,7 @@ const Home: NextPage = () => {
           <St.MobileIconContainer>
             <St.MobileIconRow>
               <a
-                href="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
+                href={worldviewUrl}
                 target="blank"
                 rel="noreferrer"
                 title="View World In Fullscreen"
@@ -48,11 +50,7 @@ const Home: NextPage = () => {
           <Instructions activeStep={activeStep} setActiveStep={setActiveStep} />
 
           <St.FrameDiv>
-            <iframe
-              src="https://matto-api-azure-func.azurewebsites.net/project/chainlife-testnet/world"
-              title="random generator"
-              frameBorder="0"
-            ></iframe>
+            <iframe src={worldviewUrl} title="random generator" frameBorder="0"></iframe>
           </St.FrameDiv>
         </St.InstructionsContainer>
 

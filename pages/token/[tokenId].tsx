@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import OpenSea from '../../public/openSea-logo.png';
 import LooksRare from '../../public/looksrare-logo.png';
 import X2Y2 from '../../public/Logo.png';
+import Artacle from '../../public/artacle-logo.png';
 import { IToken } from 'services/azureApi/types';
 import Traits from 'components/Traits/Traits';
 import { getOwner } from 'services/web3/contractInteractions';
@@ -27,8 +28,7 @@ import * as St from '../../styles/token.styled';
 const Token: NextPage = () => {
   const router = useRouter();
   const { account, active } = useWeb3React();
-  const { goerliContract } = useContract();
-  const { currentSupply } = useMintDetails();
+  const { contract } = useContract();
   const { tokenId } = router.query;
   const tokenIdNum = Number(tokenId);
 
@@ -36,12 +36,10 @@ const Token: NextPage = () => {
   const [owner, setOwner] = useState<string>();
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [generatorUrl, setGeneratorUrl] = useState<string>();
-  const [isTxPending, setIsTxPending] = useState<boolean>(false);
 
   useEffect(() => {
-    // NOTE: change slug for mainnet
     if (tokenId) {
-      getToken('chainlife-testnet', tokenIdNum)
+      getToken('chainlife', tokenIdNum)
         .then((res) => {
           if (res) {
             setToken(res);
@@ -54,23 +52,18 @@ const Token: NextPage = () => {
 
   useEffect(() => {
     if (tokenId) {
-      getOwner(goerliContract, tokenIdNum).then((res) => {
-        setOwner(res);
-        if (account && active) {
-          setIsOwner(equalAddresses(account, res));
-        }
-      });
+      try {
+        getOwner(contract.goerli, tokenIdNum).then((res) => {
+          setOwner(res);
+          if (account && active) {
+            setIsOwner(equalAddresses(account, res));
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }, [tokenId, account, active]);
-
-  useEffect(() => {
-    if (isTxPending) {
-      setTimeout(() => {
-        setIsTxPending(false);
-        window.location.reload();
-      }, 30000);
-    }
-  }, [isTxPending]);
 
   return (
     <AppContainer>
@@ -117,13 +110,11 @@ const Token: NextPage = () => {
               </St.Expand>
             </St.TokenHeader>
           </St.HeaderContainer>
-          {!isTxPending ? (
-            <St.FrameContainer>
-              <iframe src={generatorUrl} title="generator" frameBorder="0"></iframe>
-            </St.FrameContainer>
-          ) : (
-            <LoadingVideo />
-          )}
+
+          <St.FrameContainer>
+            <iframe src={generatorUrl} title="generator" frameBorder="0"></iframe>
+          </St.FrameContainer>
+
           <St.FooterContainer>
             <St.TokenFooter>
               <St.TokenTitle>Chainlife #{tokenId}</St.TokenTitle>
@@ -146,6 +137,17 @@ const Token: NextPage = () => {
             </St.TokenFooter>
             <St.MarketLinks>
               <a
+                href={`https://artacle.io/project/chainlife/${tokenId}`}
+                target="blank"
+                rel="noreferrer"
+                title="Artacle"
+                style={{
+                  color: '#3a3a3a',
+                }}
+              >
+                <Image src={Artacle} width={28} height={28} alt="Artacle" />
+              </a>
+              <a
                 href={`https://goerli.x2y2.io/eth/0x04c9E99D134565eB0F0Fef07FB70741A5b615075/${tokenId}`}
                 target="blank"
                 rel="noreferrer"
@@ -154,7 +156,7 @@ const Token: NextPage = () => {
                   color: '#3a3a3a',
                 }}
               >
-                <Image src={X2Y2} width={28} height={28} alt="openSea" />
+                <Image src={X2Y2} width={28} height={28} alt="X2Y2" />
               </a>
               <a
                 href={`https://goerli.looksrare.org/collections/0x04c9E99D134565eB0F0Fef07FB70741A5b615075/${tokenId}`}
@@ -165,7 +167,7 @@ const Token: NextPage = () => {
                   color: '#3a3a3a',
                 }}
               >
-                <Image src={LooksRare} width={28} height={28} alt="openSea" />
+                <Image src={LooksRare} width={28} height={28} alt="LooksRare" />
               </a>
               <a
                 href={`https://testnets.opensea.io/assets/goerli/0x04c9e99d134565eb0f0fef07fb70741a5b615075/${tokenId}`}
@@ -183,7 +185,7 @@ const Token: NextPage = () => {
           </St.FooterContainer>
         </St.TokenContainer>
         <St.ControlsAndTraits>
-          <TokenForms tokenId={tokenIdNum} setIsTxPending={setIsTxPending} />
+          <TokenForms tokenId={tokenIdNum} isOwner={isOwner} />
 
           {token && <Traits token={token} />}
         </St.ControlsAndTraits>
