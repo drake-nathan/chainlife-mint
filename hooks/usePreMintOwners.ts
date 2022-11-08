@@ -8,8 +8,9 @@ import { useContract } from './useContract';
 import { checkIfEnsoUsed, checkIfFocusUsed } from 'services/web3/contractInteractions';
 
 export const usePreMintOwners = () => {
-  const { active, account } = useWeb3React();
-  // const account = '0x2ee8670d2b936985d5fb1ee968810c155d3bb9ca'; // random user with lots of tokens
+  // FIXME: add account back and comment out wallet
+  const { active } = useWeb3React();
+  const account = '0x2ee8670d2b936985d5fb1ee968810c155d3bb9ca'; // random user with lots of tokens
   // const account = '0x56ee8bD11b5A385d3d533B4c2c6E37DE78b2aAFb'; // my wallet with 1 token
   // const myTestWallet = '0x93b84B50b65342e0C0115FFdb3d1c8c5134DC1Ad';
   const { error, data, refetch } = useQuery(GET_PREMINT_OWNERS);

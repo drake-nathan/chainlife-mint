@@ -19,7 +19,8 @@ const Web3Buttons: React.FC = () => {
 
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
-  const [showPremintModal, setShowPremintModal] = useState(false);
+  // FIXME: change this back to false by default
+  const [showPremintModal, setShowPremintModal] = useState(true);
 
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -58,6 +59,11 @@ const Web3Buttons: React.FC = () => {
     }
   };
 
+  const handleSuccess = (successInfo: ISuccessInfo) => {
+    setSuccessInfo(successInfo);
+    setShowSuccessModal(true);
+  };
+
   const handlePresaleMint = async (project: number, token: number) => {
     if (account) {
       try {
@@ -73,7 +79,7 @@ const Web3Buttons: React.FC = () => {
         );
 
         if (successInfo) {
-          setSuccessInfo(successInfo);
+          handleSuccess(successInfo);
           setShowPremintModal(false);
           refetch();
         }
@@ -97,18 +103,13 @@ const Web3Buttons: React.FC = () => {
       );
 
       if (successInfo) {
-        setSuccessInfo(successInfo);
+        handleSuccess(successInfo);
         setShowBuyModal(false);
       }
     } catch (err) {
       console.error(err);
       handleError('Error minting token');
     }
-  };
-
-  const handleSuccess = (successInfo: ISuccessInfo) => {
-    setSuccessInfo(successInfo);
-    setShowSuccessModal(true);
   };
 
   const closeAllModals = () => {
@@ -131,7 +132,8 @@ const Web3Buttons: React.FC = () => {
     if (!active) {
       setMintButton(false);
       setCryptoButtonText('CONNECT');
-      closeAllModals();
+      // FIXME: uncomment this
+      // closeAllModals();
     }
   }, [active]);
 
