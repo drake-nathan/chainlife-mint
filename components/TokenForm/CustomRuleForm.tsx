@@ -49,6 +49,7 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
   const handleReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
+    setCustomRule('');
     if (!active) {
       handleError('Must be connected to wallet.');
     } else if (!isOwner) {
@@ -83,8 +84,10 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
           value={customRule}
           onChange={(e) => setCustomRule(e.target.value)}
         />
-        <St.Button type="submit">Submit</St.Button>
-        <St.Refresh onClick={(e) => handleReset(e)}>Reset Rule</St.Refresh>
+        <St.ButtonDiv>
+          <St.Button type="submit">Submit</St.Button>
+          <St.Refresh onClick={(e) => handleReset(e)}>Reset Rule</St.Refresh>
+        </St.ButtonDiv>
       </St.Form>
       {errorText && <St.ErrorText>{errorText}</St.ErrorText>}
     </>

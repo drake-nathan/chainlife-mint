@@ -70,9 +70,11 @@ export const Form = styled.form`
   align-items: center;
   padding: 0 1em;
   max-width: 95%;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1em;
 
   @media (max-width: 500px) {
-    flex-wrap: wrap;
     gap: 1.5em;
     width: 100%;
   }
@@ -87,14 +89,14 @@ export const Label = styled.label``;
 
 export const Input = styled.input`
   min-height: 65px;
-  min-width: 95%;
+  min-width: 400px;
   padding: 0.5em;
   border: 3px solid ${(props) => props.theme.colors.textOffset};
   outline: none;
   border-radius: ${(props) => props.theme.borderRadius};
   text-align: left;
   font-size: 1.25rem;
-  margin-right: 15px;
+  /* margin-right: 15px; */
 
   @media (max-width: 850px) {
     min-width: 80%;
@@ -111,11 +113,17 @@ export const Input = styled.input`
   }
 `;
 
+export const ButtonDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
+
 export const Button = styled(Main)``;
 
 export const Refresh = styled(Button)`
-  font-size: 22px;
-  margin-left: 4px;
+  margin-left: 0.5em;
 `;
 
 export const ErrorText = styled.p``;

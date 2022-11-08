@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const ModalBackground = styled.div`
-  height: 150vh;
+  height: 100vh;
   width: 100%;
-  position: absolute;
-  left: 0;
+  position: fixed;
   top: 0;
+  left: 0;
   z-index: 30;
   background: rgba(244, 245, 240, 0.7);
   backdrop-filter: blur(4px);
