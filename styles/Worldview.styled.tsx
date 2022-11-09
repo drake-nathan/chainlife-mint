@@ -69,6 +69,10 @@ export const WorldViewContainer = styled.div`
   gap: 3rem;
   width: 100%;
 
+  #wv-instructions {
+    cursor: pointer;
+  }
+
   p {
     cursor: pointer;
     animation-name: ${FadeIn};

@@ -54,7 +54,7 @@ const Home: NextPage = () => {
           </St.FrameDiv>
         </St.InstructionsContainer>
 
-        <St.WorldViewInfo onClick={handleInstructionsClick}>
+        <St.WorldViewInfo id="wv-instructions" onClick={handleInstructionsClick}>
           Click here to view instructions.
         </St.WorldViewInfo>
         <St.InfoText>
