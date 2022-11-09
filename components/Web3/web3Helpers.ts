@@ -10,6 +10,7 @@ import {
   checkIfEnsoUsed,
   checkIfFocusUsed,
 } from 'services/web3/contractInteractions';
+import { UserZenTokens } from 'types/premintTypes';
 
 // mainnet
 const urls = {
@@ -125,4 +126,29 @@ export const switchChain = async (chainId: string) => {
     method: 'wallet_switchEthereumChain',
     params: [{ chainId }],
   });
+};
+
+export const filterUserTokens = async (
+  contract: Contract,
+  usersTokens: UserZenTokens,
+): Promise<UserZenTokens> => {
+  const { enso, focus } = usersTokens;
+
+  const ensoUsedValues = await Promise.all(
+    enso.map(async (token) => {
+      const ensoUsed = await checkIfEnsoUsed(contract, token);
+      return !ensoUsed;
+    }),
+  );
+  const ensoFiltered = enso.filter((_, i) => ensoUsedValues[i]);
+
+  const focusUsedValues = await Promise.all(
+    focus.map(async (token) => {
+      const focusUsed = await checkIfFocusUsed(contract, token);
+      return !focusUsed;
+    }),
+  );
+  const focusFiltered = focus.filter((_, i) => focusUsedValues[i]);
+
+  return { enso: ensoFiltered, focus: focusFiltered };
 };

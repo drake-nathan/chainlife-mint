@@ -160,5 +160,3 @@ const PremintModal: React.FC<Props> = ({
 };
 
 export default PremintModal;
-
-//FOCUS-placeholder_150x.png

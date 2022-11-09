@@ -3,7 +3,8 @@ import { useWeb3React } from '@web3-react/core';
 import { useMintDetails } from 'hooks/useMintDetails';
 import { useContract } from 'hooks/useContract';
 import { usePreMintOwners } from 'hooks/usePreMintOwners';
-import { publicMint, presaleMint, ISuccessInfo } from './web3Helpers';
+import { UserZenTokens } from 'types/premintTypes';
+import { publicMint, presaleMint, ISuccessInfo, filterUserTokens } from './web3Helpers';
 import ConnectModal from 'components/Modals/ConnectModal';
 import BuyModal from 'components/Modals/BuyModal';
 import PremintModal from 'components/Modals/PremintModal';
@@ -13,9 +14,11 @@ import * as St from '../DescriptionSections/Description.styled';
 
 const Web3Buttons: React.FC = () => {
   const { active, account } = useWeb3React();
-  const { userZenTokens, error: preMintError, refetch } = usePreMintOwners();
   const { isPreMint, mintPrice, discountPrice, maxSupply, isMintLive } = useMintDetails();
   const { contract } = useContract();
+
+  const { userZenTokens: initialUserZenTokens, error: preMintError } = usePreMintOwners();
+  const [userZenTokens, setUserZenTokens] = useState<UserZenTokens>();
 
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
@@ -79,8 +82,12 @@ const Web3Buttons: React.FC = () => {
 
         if (successInfo) {
           handleSuccess(successInfo);
-          setShowPremintModal(false);
-          refetch();
+          // refilter zen tokens to see which was used
+          if (initialUserZenTokens) {
+            filterUserTokens(contract.mainnet, initialUserZenTokens)
+              .then((filteredUserZenTokens) => setUserZenTokens(filteredUserZenTokens))
+              .catch(console.error);
+          }
         }
       } catch (err) {
         console.error(err);
@@ -134,6 +141,14 @@ const Web3Buttons: React.FC = () => {
       closeAllModals();
     }
   }, [active]);
+
+  useEffect(() => {
+    if (initialUserZenTokens) {
+      filterUserTokens(contract.mainnet, initialUserZenTokens)
+        .then((filteredUserZenTokens) => setUserZenTokens(filteredUserZenTokens))
+        .catch(console.error);
+    }
+  }, [initialUserZenTokens]);
 
   return (
     <St.ButtonContainer>
