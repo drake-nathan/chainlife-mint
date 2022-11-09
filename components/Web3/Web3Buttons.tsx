@@ -19,8 +19,7 @@ const Web3Buttons: React.FC = () => {
 
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
-  // FIXME: change this back to false by default
-  const [showPremintModal, setShowPremintModal] = useState(true);
+  const [showPremintModal, setShowPremintModal] = useState(false);
 
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -132,8 +131,7 @@ const Web3Buttons: React.FC = () => {
     if (!active) {
       setMintButton(false);
       setCryptoButtonText('CONNECT');
-      // FIXME: uncomment this
-      // closeAllModals();
+      closeAllModals();
     }
   }, [active]);
 
