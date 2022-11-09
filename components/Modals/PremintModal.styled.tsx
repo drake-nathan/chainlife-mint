@@ -1,19 +1,15 @@
 import styled from 'styled-components';
 
 export const ModalBackground = styled.div`
-  height: 150vh;
+  height: 100vh;
   width: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: 30;
   background: rgba(244, 245, 240, 0.85);
   backdrop-filter: blur(4px);
   cursor: pointer;
-
-  @media (max-width: 500px) {
-    height: 200vh;
-  }
 `;
 
 export const BuyModalBackground = styled(ModalBackground)`
@@ -34,6 +30,9 @@ export const ModalContainer = styled.div`
   padding: 1.75em 1.5em;
   z-index: 40;
   min-width: 300px;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export const BuyModalContainer = styled(ModalContainer)`
@@ -57,6 +56,9 @@ export const ListingsWrapper = styled.div`
   overflow-y: scroll;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
+  @media (max-width: 600px) {
+    min-width: 350px;
+  }
 
   ::-webkit-scrollbar {
     display: none;
@@ -167,6 +169,9 @@ export const TokenListing = styled(Button)`
   box-shadow: 4px 6px 12px -2px rgba(58, 58, 58, 0.61);
   -webkit-box-shadow: 4px 6px 12px -2px rgba(58, 58, 58, 0.61);
   -moz-box-shadow: 4px 6px 12px -2px rgba(58, 58, 58, 0.61);
+  @media (max-width: 600px) {
+    min-width: 350px;
+  }
 
   :hover {
     background: rgba(58, 58, 58, 0.7);

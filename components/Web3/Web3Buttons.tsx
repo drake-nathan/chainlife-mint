@@ -58,6 +58,11 @@ const Web3Buttons: React.FC = () => {
     }
   };
 
+  const handleSuccess = (successInfo: ISuccessInfo) => {
+    setSuccessInfo(successInfo);
+    setShowSuccessModal(true);
+  };
+
   const handlePresaleMint = async (project: number, token: number) => {
     if (account) {
       try {
@@ -73,7 +78,7 @@ const Web3Buttons: React.FC = () => {
         );
 
         if (successInfo) {
-          setSuccessInfo(successInfo);
+          handleSuccess(successInfo);
           setShowPremintModal(false);
           refetch();
         }
@@ -97,18 +102,13 @@ const Web3Buttons: React.FC = () => {
       );
 
       if (successInfo) {
-        setSuccessInfo(successInfo);
+        handleSuccess(successInfo);
         setShowBuyModal(false);
       }
     } catch (err) {
       console.error(err);
       handleError('Error minting token');
     }
-  };
-
-  const handleSuccess = (successInfo: ISuccessInfo) => {
-    setSuccessInfo(successInfo);
-    setShowSuccessModal(true);
   };
 
   const closeAllModals = () => {
