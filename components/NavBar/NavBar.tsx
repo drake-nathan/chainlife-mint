@@ -118,7 +118,9 @@ const NavBar: React.FC = () => {
               <St.NavLink>MINT</St.NavLink>
             </Link>
             <St.NavConnect onClick={handleMarketsClick}>LINKS</St.NavConnect>
-            <St.NavConnect onClick={handleConnectClick}>CONNECT WALLET</St.NavConnect>
+            <St.NavConnect onClick={handleConnectClick}>
+              {windowWidth > 450 ? 'CONNECT WALLET' : 'CONNECT'}
+            </St.NavConnect>
           </St.NavLinksDiv>
         </St.SocialsAndLinks>
         {showConnectModal ? renderDropDown() : renderMarketsDropDown()}

@@ -256,6 +256,11 @@ export const InfoText = styled.p`
   @media (max-width: 750px) {
     font-size: 15px;
   }
+
+  @media (max-width: 500px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 export const FrameDiv = styled.div`
