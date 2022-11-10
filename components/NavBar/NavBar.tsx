@@ -118,8 +118,17 @@ const NavBar: React.FC = () => {
               <St.NavLink>MINT</St.NavLink>
             </Link>
             <St.NavConnect onClick={handleMarketsClick}>LINKS</St.NavConnect>
-            <St.NavConnect onClick={handleConnectClick}>
-              {windowWidth > 450 ? 'CONNECT WALLET' : 'CONNECT'}
+            <St.NavConnect
+              className={windowWidth > 450 && active ? 'small-connect' : ''}
+              onClick={handleConnectClick}
+            >
+              {windowWidth > 450 && !active
+                ? 'CONNECT WALLET'
+                : windowWidth < 450 && !active
+                ? 'CONNECT'
+                : windowWidth > 450 && active
+                ? 'WALLET CONNECTED'
+                : 'CONNECTED'}
             </St.NavConnect>
           </St.NavLinksDiv>
         </St.SocialsAndLinks>
