@@ -48,11 +48,15 @@ const Web3Buttons: React.FC = () => {
       console.error(preMintError);
       handleError('ERROR GETTING ZEN TOKENS');
     } else if (isPreMint && userZenTokens) {
-      // if pre-mint, and user has zen tokens, show pre-mint modal
-      setShowPremintModal(true);
-    } else if (isPreMint && !userZenTokens) {
-      // if pre-mint, and user has no zen tokens, show error
-      handleError(`MUST BE ZEN. TOKEN HOLDER TO MINT DURING ZEN. MINT`);
+      const { enso, focus } = userZenTokens;
+      if (enso.length || focus.length) {
+        // if pre-mint, and user has zen tokens, show pre-mint modal
+        setShowPremintModal(true);
+      } else {
+        handleError(
+          `NO UNUSED ZEN. TOKENS FOUND. YOU MAY HAVE ALREADY MINTED OR YOU DON'T OWN ANY ZEN TOKENS.`,
+        );
+      }
     } else if (!isPreMint && isMintLive) {
       // if public mint, and mint is live, show buy modal
       setShowBuyModal(true);
