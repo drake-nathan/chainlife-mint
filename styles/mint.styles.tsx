@@ -74,6 +74,10 @@ export const BodyContainer = styled.div`
     padding-top: 3rem;
     padding-bottom: 25px;
   }
+
+  @media (max-width: 500px) {
+    margin-bottom: 100px;
+  }
 `;
 
 export const WorldViewContainer = styled.div`
