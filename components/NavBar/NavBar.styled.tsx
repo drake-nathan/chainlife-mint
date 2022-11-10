@@ -108,6 +108,11 @@ export const NavLinksDiv = styled.div`
   @media (max-width: 675px) {
     font-size: 16px;
   }
+  @media (max-width: 500px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    gap: 1.25em;
+  }
 `;
 
 export const SocialsAndLinks = styled.div`

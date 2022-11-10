@@ -39,6 +39,16 @@ const MarketsModal: React.FC<Props> = ({ setShowModal }) => {
         >
           <St.Button>X2Y2</St.Button>
         </a>
+        <a href="https://artacle.io/project/chainlife" target="_blank" rel="noreferrer">
+          <St.Button id="coinbase">ARTACLE</St.Button>
+        </a>
+        <a
+          href="https://etherscan.io/address/0x4E171e0F14a9046e14B93221f31Acd2EC4Af8429#code"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <St.Button id="coinbase">ETHERSCAN</St.Button>
+        </a>
       </St.ModalContainer>
     </>
   );
