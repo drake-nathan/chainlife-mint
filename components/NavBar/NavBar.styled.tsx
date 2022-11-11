@@ -105,6 +105,15 @@ export const NavLinksDiv = styled.div`
   font-size: 20px;
   font-weight: 500;
   gap: 1.5em;
+
+  .small-connect {
+    font-size: 18px;
+    transform: scale(0.95, 1.1);
+    margin-top: -1px;
+    @media (max-width: 675px) {
+      font-size: 14px;
+    }
+  }
   @media (max-width: 675px) {
     font-size: 16px;
   }

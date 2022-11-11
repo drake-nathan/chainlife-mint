@@ -60,8 +60,12 @@ const Web3Buttons: React.FC = () => {
     } else if (!isPreMint && isMintLive) {
       // if public mint, and mint is live, show buy modal
       setShowBuyModal(true);
+    } else if (isPreMint) {
+      handleError(
+        'SOMETHING WENT WRONG. PLEASE CHECK THAT CONNECTED WALLET HAS ENSO OR FOCUS TOKENS.',
+      );
     } else {
-      handleError('SOMETHING IS WRONG, NGMI');
+      handleError('SOMETHING WENT WRONG.');
     }
   };
 

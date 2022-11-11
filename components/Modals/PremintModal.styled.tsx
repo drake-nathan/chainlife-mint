@@ -48,7 +48,6 @@ export const BuyModalContainer = styled(ModalContainer)`
 `;
 
 export const ListingsWrapper = styled.div`
-  height: 550px;
   z-index: 50;
   display: flex;
   flex-direction: column;
@@ -56,12 +55,26 @@ export const ListingsWrapper = styled.div`
   overflow-y: scroll;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
-  @media (max-width: 600px) {
-    min-width: 350px;
+  max-height: 550px;
+
+  @media (max-height: 850px) {
+    max-height: 400px;
+  }
+
+  @media (max-height: 750px) {
+    max-height: 300px;
+  }
+
+  @media (max-height: 650px) {
+    max-height: 200px;
   }
 
   ::-webkit-scrollbar {
     display: none;
+  }
+
+  @media (max-width: 600px) {
+    min-width: 350px;
   }
 `;
 
