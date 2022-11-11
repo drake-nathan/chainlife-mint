@@ -11,7 +11,7 @@ interface Props {
 const Slider: React.FC<Props> = ({ children }) => {
   const zoomFactor = 10;
   const slideMargin = 0;
-  const maxVisibleSlides = 6;
+  const maxVisibleSlides = 3;
   const pageTransition = 500;
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -33,8 +33,11 @@ const Slider: React.FC<Props> = ({ children }) => {
 
   // Position slider on resize
   useEffect(() => {
+    if (currentPage < 0) {
+      setCurrentPage(0);
+    }
+
     if (sliderRef && sliderRef.current) {
-      // if (currentPage === totalPages) setCurrentPage(0);
       if (currentPage > totalPages) setCurrentPage(totalPages);
       sliderRef.current.style.transform = `translate3D(0, -${
         currentPage * scrollSize
@@ -83,7 +86,8 @@ const Slider: React.FC<Props> = ({ children }) => {
     >
       <div className="button-wrapper back">
         <button
-          className={currentPage === 0 ? 'button back disabled' : 'button back'}
+          disabled={currentPage < 1 ? true : false}
+          className={currentPage < 1 ? 'button back disabled' : 'button back'}
           onClick={() => handleSlideMove(false)}
         >
           <IoIcons.IoCaretUpCircleOutline />
@@ -117,9 +121,7 @@ const Slider: React.FC<Props> = ({ children }) => {
       <div className="button-wrapper forward">
         <button
           className={
-            currentPage === totalPages
-              ? 'button forward disabled'
-              : 'button forward'
+            currentPage === totalPages ? 'button forward disabled' : 'button forward'
           }
           onClick={() => handleSlideMove(true)}
         >
