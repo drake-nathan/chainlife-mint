@@ -16,10 +16,6 @@ export const ModalBackground = styled.div`
   }
 `;
 
-export const BuyModalBackground = styled(ModalBackground)`
-  z-index: 10;
-`;
-
 export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,18 +30,6 @@ export const ModalContainer = styled.div`
   padding: 1.75em 1.5em;
   z-index: 40;
   min-width: 300px;
-`;
-
-export const BuyModalContainer = styled(ModalContainer)`
-  gap: 2em;
-  justify-content: space-evenly;
-  min-width: 400px;
-  /* min-height: 425px; */
-  z-index: 20;
-  padding: 2.5em 2.5em;
-  @media (max-width: 500px) {
-    min-width: 375px;
-  }
 `;
 
 export const CenterModalContainer = styled(ModalContainer)`
@@ -194,4 +178,29 @@ export const SubtleText = styled.span`
 
 export const UnitText = styled(Text)`
   color: ${(props) => props.theme.colors.hover};
+`;
+
+export const Input = styled.input`
+  min-height: 65px;
+  min-width: 400px;
+  padding: 0.5em;
+  border: 3px solid ${(props) => props.theme.colors.textOffset};
+  outline: none;
+  border-radius: ${(props) => props.theme.borderRadius};
+  text-align: left;
+  font-size: 1.25rem;
+
+  @media (max-width: 850px) {
+    min-width: 80%;
+  }
+
+  @media (max-width: 500px) {
+    height: 65px;
+    width: 100%;
+    text-align: center;
+  }
+
+  :focus::placeholder {
+    color: transparent;
+  }
 `;

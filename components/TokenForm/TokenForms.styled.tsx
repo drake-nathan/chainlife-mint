@@ -96,7 +96,6 @@ export const Input = styled.input`
   border-radius: ${(props) => props.theme.borderRadius};
   text-align: left;
   font-size: 1.25rem;
-  /* margin-right: 15px; */
 
   @media (max-width: 850px) {
     min-width: 80%;

@@ -6,7 +6,7 @@ import { usePreMintOwners } from 'hooks/usePreMintOwners';
 import { UserZenTokens } from 'types/premintTypes';
 import { publicMint, presaleMint, ISuccessInfo, filterUserTokens } from './web3Helpers';
 import ConnectModal from 'components/Modals/ConnectModal';
-import BuyModal from 'components/Modals/BuyModal';
+import BuyModal from 'components/Modals/BuyModal/BuyModal';
 import PremintModal from 'components/Modals/PremintModal';
 import ErrorModal from 'components/Modals/ErrorModal';
 import SuccessModal from 'components/Modals/SuccessModal';
@@ -105,24 +105,26 @@ const Web3Buttons: React.FC = () => {
   };
 
   const handlePublicMint = async (toAddress?: string) => {
-    try {
-      const successInfo = await publicMint(
-        contract.mainnet,
-        maxSupply,
-        account as string,
-        mintPrice,
-        toAddress || '',
-        handleError,
-        setBuyButtonText,
-      );
+    if (account) {
+      try {
+        const successInfo = await publicMint(
+          contract.mainnet,
+          maxSupply,
+          account,
+          mintPrice,
+          toAddress || '',
+          handleError,
+          setBuyButtonText,
+        );
 
-      if (successInfo) {
-        handleSuccess(successInfo);
-        setShowBuyModal(false);
+        if (successInfo) {
+          handleSuccess(successInfo);
+          setShowBuyModal(false);
+        }
+      } catch (err) {
+        console.error(err);
+        handleError('Error minting token');
       }
-    } catch (err) {
-      console.error(err);
-      handleError('Error minting token');
     }
   };
 
@@ -174,7 +176,7 @@ const Web3Buttons: React.FC = () => {
       {showBuyModal && (
         <BuyModal
           setShowModal={setShowBuyModal}
-          handleCryptoMint={handlePublicMint}
+          handlePublicMint={handlePublicMint}
           handleError={handleError}
           buyButtonText={buyButtonText}
         />

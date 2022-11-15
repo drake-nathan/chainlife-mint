@@ -18,36 +18,38 @@ export const useMintDetails = () => {
   const maxSupply = 4096;
   const maxMint = 1;
 
-  const [isMintLive, setIsMintLive] = useState(false);
+  // FIXME: change this back to false
+  const [isMintLive, setIsMintLive] = useState(true);
   const [isPreMint, setIsPreMint] = useState(false);
   const [currentSupply, setCurrentSupply] = useState<number>();
 
-  useEffect(() => {
-    getMintPhase(contract.mainnet)
-      .then((mintStage) => {
-        if (mintStage) {
-          if (mintStage === '2') {
-            setIsMintLive(true);
-            setIsPreMint(false);
-          } else if (mintStage === '1') {
-            setIsMintLive(true);
-            setIsPreMint(true);
-          } else if (mintStage === '0') {
-            setIsMintLive(false);
-            setIsPreMint(false);
-          } else console.error('You fucked up.');
-        } else {
-          if (currentTime >= mintStart && currentTime <= mintEnd) {
-            setIsMintLive(true);
-          }
+  // FIXME: turn this back on
+  // useEffect(() => {
+  //   getMintPhase(contract.mainnet)
+  //     .then((mintStage) => {
+  //       if (mintStage) {
+  //         if (mintStage === '2') {
+  //           setIsMintLive(true);
+  //           setIsPreMint(false);
+  //         } else if (mintStage === '1') {
+  //           setIsMintLive(true);
+  //           setIsPreMint(true);
+  //         } else if (mintStage === '0') {
+  //           setIsMintLive(false);
+  //           setIsPreMint(false);
+  //         } else console.error('You fucked up.');
+  //       } else {
+  //         if (currentTime >= mintStart && currentTime <= mintEnd) {
+  //           setIsMintLive(true);
+  //         }
 
-          if (currentTime >= mintStart && currentTime <= publicStart) {
-            setIsPreMint(true);
-          }
-        }
-      })
-      .catch(console.error);
-  }, [currentTime]);
+  //         if (currentTime >= mintStart && currentTime <= publicStart) {
+  //           setIsPreMint(true);
+  //         }
+  //       }
+  //     })
+  //     .catch(console.error);
+  // }, [currentTime]);
 
   useEffect(() => {
     try {
