@@ -1,6 +1,23 @@
 import styled from 'styled-components';
 import { Main } from 'styles/Library/Button.styled';
 import { ModalBackground } from '../Modals.styled';
+import { IoIosArrowDropdown } from 'react-icons/io';
+
+type Dropdown = { isDropdownOpen: boolean };
+
+export const DropDownIcon = styled(IoIosArrowDropdown)<Dropdown>`
+  font-size: 2.125rem;
+  cursor: pointer;
+  transform: ${({ isDropdownOpen }) =>
+    isDropdownOpen ? 'rotate(0deg)' : 'rotate(90deg)'};
+`;
+
+export const Row = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+`;
 
 export const BuyModalBackground = styled(ModalBackground)`
   z-index: 10;
@@ -19,7 +36,8 @@ export const BuyModalContainer = styled.div`
   border: 3px solid ${(props) => props.theme.colors.textMain};
   padding: 1.75em 1.5em;
   z-index: 40;
-  min-width: 300px;
+  width: 95%;
+  max-width: 500px;
 `;
 
 export const Text = styled.span`
@@ -34,6 +52,7 @@ export const Text = styled.span`
 export const Title = styled(Text)`
   font-size: 2rem;
   font-weight: 500;
+  line-height: 1;
 `;
 
 export const SubtleText = styled(Text)`
@@ -44,7 +63,8 @@ export const SubtleText = styled(Text)`
 
 export const Input = styled.input`
   min-height: 65px;
-  min-width: 300px;
+  width: 100%;
+  /* min-width: 300px; */
   padding: 0.5em;
   border: 3px solid ${(props) => props.theme.colors.textOffset};
   outline: none;
