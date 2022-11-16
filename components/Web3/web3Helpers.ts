@@ -81,7 +81,6 @@ export const presaleMint = async (
   return successInfo;
 };
 
-// TODO: Check this function
 export const publicMint = async (
   contract: Contract,
   maxSupply: number,
