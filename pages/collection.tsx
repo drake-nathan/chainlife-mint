@@ -2,6 +2,7 @@ import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import NavBar from 'components/NavBar/NavBar';
+import CollectionGrid from 'components/Collection/Grid';
 import * as St from 'styles/collection.styled';
 
 const Collection: NextPage = () => {
@@ -13,6 +14,7 @@ const Collection: NextPage = () => {
       </Head>
 
       <NavBar />
+      <CollectionGrid />
     </St.AppContainer>
   );
 };
