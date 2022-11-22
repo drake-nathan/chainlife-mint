@@ -5,15 +5,7 @@ import * as St from './Description.styled';
 
 const DescriptionSections: React.FC = () => {
   const { discountPrice, mintPrice, publicStart } = useMintDetails();
-  const [activeSection, setActiveSection] = useState(1);
-
-  const curDate = new Date();
-
-  useEffect(() => {
-    if (curDate > publicStart) {
-      setActiveSection(2);
-    }
-  }, [publicStart]);
+  const [activeSection, setActiveSection] = useState<1 | 2>(2);
 
   return (
     <St.HeroContainer>
@@ -33,9 +25,6 @@ const DescriptionSections: React.FC = () => {
         </St.Title>
       </St.SectionTitleContainer>
       <St.SubTitle>
-        {curDate < publicStart && activeSection === 2
-          ? `Starts ${publicStart.toLocaleString()}`
-          : ''}
         <br />
         <br />
         {activeSection === 1
