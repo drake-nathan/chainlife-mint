@@ -115,6 +115,7 @@ interface TokenAbbr {
 
 export interface CollectionResponse {
   hasMore: boolean;
+  skip: number;
   currentSupply: number;
   tokens: TokenAbbr[];
 }
