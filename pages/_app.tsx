@@ -3,6 +3,9 @@ import type { AppProps } from 'next/app';
 import * as MdIcons from 'react-icons/md';
 import * as st from '../styles/App.styled';
 import Providers from 'contexts/Providers';
+import LogRocket from 'logrocket';
+
+LogRocket.init('ulrycg/chainlife');
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const date = new Date();
