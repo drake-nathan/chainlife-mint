@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { CollectionResponse, IProject, IToken } from './types';
 
-const rootApiUrl = 'https://api.gengames.io';
+const rootApiUrl = process.env.NEXT_PUBLIC_API_ROOT;
+
+if (!rootApiUrl) {
+  throw new Error('NEXT_PUBLIC_API_ROOT env var is not defined');
+}
 
 export const fetchToken = async (projectSlug: string, tokenId: number | string) => {
   const url = `${rootApiUrl}/project/${projectSlug}/token/${tokenId}`;
