@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { TokenAbbr } from 'services/azureApi/types';
 import * as St from './Card.styled';
@@ -7,19 +8,25 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({ token }) => {
-  const { name, image, token_id, thumbnail_url } = token;
+  const {
+    name,
+    image,
+    token_id,
+    script_inputs: { transfer_count, level_shift },
+  } = token;
 
   return (
     <St.Container>
       <St.Wrapper>
-        <St.ImageDiv>
+        <Link href={`/token/${token_id}`}>
           <St.PreviewImage src={image} />
-        </St.ImageDiv>
-
+        </Link>
         <St.DescriptionDiv>
-          <St.Row>
-            <St.NftName>{name}</St.NftName>
-          </St.Row>
+          <Link href={`/token/${token_id}`}>
+            <St.Title>{name}</St.Title>
+          </Link>
+          <St.Text>Level Shift: {level_shift}</St.Text>
+          <St.Text>Transfer Count: {transfer_count}</St.Text>
         </St.DescriptionDiv>
       </St.Wrapper>
     </St.Container>

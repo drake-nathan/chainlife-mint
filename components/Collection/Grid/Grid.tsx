@@ -3,11 +3,11 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query';
 import { fetchCollectionTokens } from 'services/azureApi/fetches';
 import { CollectionResponse } from 'services/azureApi/types';
-import Card from './Card';
+import Card from '../Card/Card';
 import * as St from './Grid.styled';
 
 const CollectionGrid: React.FC = () => {
-  const [limit, setLimit] = useState(32);
+  const [limit, setLimit] = useState(16);
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
   const [currentLength, setCurrentLength] = useState(0);
   const [hasMore, setHasMore] = useState<boolean>(false);
@@ -38,11 +38,6 @@ const CollectionGrid: React.FC = () => {
           next={fetchNextPage}
           hasMore={hasMore}
           loader={<h1>Loading...</h1>}
-          endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
         >
           <St.Wrapper>
             {data.pages.map((page) =>

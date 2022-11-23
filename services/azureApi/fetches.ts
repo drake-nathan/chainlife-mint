@@ -22,13 +22,9 @@ export const fetchToken = async (projectSlug: string, tokenId: number | string) 
 export const fetchProject = async (projectSlug: string) => {
   const url = `${rootApiUrl}/project/${projectSlug}`;
 
-  try {
-    const { data } = await axios.get<IProject>(url);
+  const { data } = await axios.get<IProject>(url);
 
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+  return data;
 };
 
 export const fetchCollectionTokens = async (

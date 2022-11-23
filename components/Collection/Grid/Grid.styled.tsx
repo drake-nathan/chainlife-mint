@@ -5,9 +5,8 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  /* max-width: 1320px; */
   min-height: 500px;
-  padding: 0 1em;
+  /* padding: 0 1em; */
   margin-bottom: 3em;
 
   @media (max-width: 1300px) {
@@ -23,7 +22,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  gap: 1em;
+  /* gap: 1em; */
   margin-top: 30px;
 `;
 

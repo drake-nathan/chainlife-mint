@@ -111,6 +111,8 @@ export interface TokenAbbr {
   thumbnail_url: string;
   generator_url: string;
   external_url: string;
+  script_inputs: IScriptInputs;
+  attributes: IAttribute[];
 }
 
 export interface CollectionResponse {
