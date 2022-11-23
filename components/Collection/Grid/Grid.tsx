@@ -6,14 +6,18 @@ import { CollectionResponse } from 'services/azureApi/types';
 import Card from '../Card/Card';
 import * as St from './Grid.styled';
 
-const CollectionGrid: React.FC = () => {
+interface Props {
+  projectSlug: string;
+}
+
+const CollectionGrid: React.FC<Props> = ({ projectSlug }) => {
   const [limit, setLimit] = useState(16);
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
   const [currentLength, setCurrentLength] = useState(0);
   const [hasMore, setHasMore] = useState<boolean>(false);
 
   const fetchQuery = ({ pageParam: skip }: QueryFunctionContext) =>
-    fetchCollectionTokens('chainlife', limit, skip, sortDir);
+    fetchCollectionTokens(projectSlug, limit, skip, sortDir);
 
   const { error, data, fetchNextPage } = useInfiniteQuery<CollectionResponse, Error>(
     'tokens',

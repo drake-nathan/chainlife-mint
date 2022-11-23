@@ -32,13 +32,13 @@ const Collection: NextPage = () => {
         <meta name="description" content="Chainlife." />
       </Head>
       <NavBar />
-      {!project ? (
-        <h1>Project not found</h1>
-      ) : (
+      {project && projectSlug ? (
         <>
           <CollectionStats project={project} />
-          <CollectionGrid />
+          <CollectionGrid projectSlug={projectSlug as string} />
         </>
+      ) : (
+        <h1>Project not found</h1>
       )}
     </St.AppContainer>
   );
