@@ -3,6 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query';
 import { fetchCollectionTokens } from 'services/azureApi/fetches';
 import { CollectionResponse } from 'services/azureApi/types';
+import Card from './Card';
 import * as St from './Grid.styled';
 
 const CollectionGrid: React.FC = () => {
@@ -45,7 +46,7 @@ const CollectionGrid: React.FC = () => {
         >
           <St.Wrapper>
             {data.pages.map((page) =>
-              page.tokens.map((token) => <h1 key={`${token.name}`}>{token.name}</h1>),
+              page.tokens.map((token) => <Card token={token} key={token.name} />),
             )}
           </St.Wrapper>
         </InfiniteScroll>

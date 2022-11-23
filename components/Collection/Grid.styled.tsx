@@ -5,12 +5,17 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  max-width: 1320px;
-  min-height: 200px;
+  /* max-width: 1320px; */
+  min-height: 500px;
+  padding: 0 1em;
   margin-bottom: 3em;
 
-  @media (min-width: 1000px) {
-    min-height: 500px;
+  @media (max-width: 1300px) {
+    margin-top: 2em;
+  }
+
+  @media (max-width: 800px) {
+    margin-top: 3em;
   }
 `;
 

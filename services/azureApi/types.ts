@@ -101,7 +101,7 @@ export interface IThumbnail {
   image_thumbnail: string;
 }
 
-interface TokenAbbr {
+export interface TokenAbbr {
   token_id: number;
   name: string;
   project_name: string;
