@@ -24,6 +24,7 @@ jobs:
         env:
           NEXT_PUBLIC_RPC_URL_1: ${{ secrets.NEXT_PUBLIC_RPC_URL_1 }}
           NEXT_PUBLIC_RPC_URL_5: ${{ secrets.NEXT_PUBLIC_RPC_URL_5 }}
+          NEXT_PUBLIC_API_ROOT: https://api.gengames.io
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_DUNE_0A946AA0F }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
