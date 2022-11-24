@@ -3,17 +3,19 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import NavBar from 'components/NavBar/NavBar';
+import CollectionMenu from 'components/Collection/Menu/Menu';
 import CollectionGrid from 'components/Collection/Grid/Grid';
 import { IProject } from 'services/azureApi/types';
-import * as St from 'styles/collection.styled';
 import { fetchProject } from 'services/azureApi/fetches';
-import CollectionStats from 'components/Collection/Stats/Stats';
+import * as St from 'styles/collection.styled';
 
 const Collection: NextPage = () => {
   const router = useRouter();
   const { projectSlug } = router.query;
 
   const [project, setProject] = useState<IProject | null>(null);
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
+  const [sortType, setSortType] = useState<'tokenId' | 'worldLevel'>('tokenId');
 
   useEffect(() => {
     if (projectSlug) {
@@ -34,8 +36,19 @@ const Collection: NextPage = () => {
       <NavBar />
       {project && projectSlug ? (
         <>
-          <CollectionStats project={project} />
-          <CollectionGrid projectSlug={projectSlug as string} />
+          <CollectionMenu
+            project={project}
+            sortDir={sortDir}
+            setSortDir={setSortDir}
+            sortType={sortType}
+            setSortType={setSortType}
+          />
+          <CollectionGrid
+            projectSlug={projectSlug as string}
+            sortDir={sortDir}
+            setSortDir={setSortDir}
+            sortType={sortType}
+          />
         </>
       ) : (
         <h1>Project not found</h1>

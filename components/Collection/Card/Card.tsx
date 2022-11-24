@@ -26,7 +26,7 @@ const Card: React.FC<Props> = ({ token }) => {
             <St.Title>{name}</St.Title>
           </Link>
           <St.Text>Level Shift: {level_shift}</St.Text>
-          <St.Text>Transfer Count: {transfer_count}</St.Text>
+          <St.Text>Transfers: {transfer_count}</St.Text>
         </St.DescriptionDiv>
       </St.Wrapper>
     </St.Container>

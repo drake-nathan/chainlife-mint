@@ -8,22 +8,28 @@ import * as St from './Grid.styled';
 
 interface Props {
   projectSlug: string;
+  sortDir: 'asc' | 'desc';
+  setSortDir: React.Dispatch<React.SetStateAction<'asc' | 'desc'>>;
+  sortType: 'tokenId' | 'worldLevel';
 }
 
-const CollectionGrid: React.FC<Props> = ({ projectSlug }) => {
+const CollectionGrid: React.FC<Props> = ({
+  projectSlug,
+  sortDir,
+  setSortDir,
+  sortType,
+}) => {
   const [limit, setLimit] = useState(16);
-  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
   const [currentLength, setCurrentLength] = useState(0);
   const [hasMore, setHasMore] = useState<boolean>(false);
 
   const fetchQuery = ({ pageParam: skip }: QueryFunctionContext) =>
-    fetchCollectionTokens(projectSlug, limit, skip, sortDir);
+    fetchCollectionTokens(projectSlug, limit, skip, sortDir, sortType);
 
-  const { error, data, fetchNextPage } = useInfiniteQuery<CollectionResponse, Error>(
-    'tokens',
-    fetchQuery,
-    { getNextPageParam: (lastFetch) => lastFetch.skip + limit },
-  );
+  const { error, data, fetchNextPage, refetch } = useInfiniteQuery<
+    CollectionResponse,
+    Error
+  >('tokens', fetchQuery, { getNextPageParam: (lastFetch) => lastFetch.skip + limit });
 
   useEffect(() => {
     if (error) console.error(error.message);
@@ -33,6 +39,10 @@ const CollectionGrid: React.FC<Props> = ({ projectSlug }) => {
       setCurrentLength(lastPage.skip + lastPage.tokens.length);
     }
   }, [data, error]);
+
+  useEffect(() => {
+    refetch();
+  }, [sortDir, sortType]);
 
   return (
     <St.Container>

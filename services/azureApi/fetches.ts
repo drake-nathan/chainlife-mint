@@ -31,11 +31,12 @@ export const fetchCollectionTokens = async (
   projectSlug: string,
   limit: number,
   skip: number,
-  sort: 'asc' | 'desc',
+  sortDir: 'asc' | 'desc',
+  sortType: 'tokenId' | 'worldLevel',
 ) => {
   const url = `${rootApiUrl}/project/${projectSlug}/all-tokens`;
 
-  const params = { limit, skip, sort };
+  const params = { limit, skip, sortDir, sortType };
 
   const { data: tokens } = await axios.get<CollectionResponse>(url, { params });
 

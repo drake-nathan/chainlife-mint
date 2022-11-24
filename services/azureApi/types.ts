@@ -112,7 +112,6 @@ export interface TokenAbbr {
   generator_url: string;
   external_url: string;
   script_inputs: IScriptInputs;
-  attributes: IAttribute[];
 }
 
 export interface CollectionResponse {
