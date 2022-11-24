@@ -6,16 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   min-height: 500px;
-  /* padding: 0 1em; */
   margin-bottom: 3em;
-
-  @media (max-width: 1300px) {
-    margin-top: 2em;
-  }
-
-  @media (max-width: 800px) {
-    margin-top: 3em;
-  }
 `;
 
 export const Wrapper = styled.div`
