@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useMintDetails } from 'hooks/useMintDetails';
 import { isAddress } from 'web3-utils';
-import { IoIosArrowDropdown } from 'react-icons/io';
 import * as St from './BuyModal.styled';
 
 interface Props {
