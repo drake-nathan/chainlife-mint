@@ -10,15 +10,15 @@ interface Props {
 const ThemeProvider: React.FC<Props> = ({ children }) => {
   const { windowWidth } = useWindowSize();
 
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMiniCard, setIsMiniCard] = useState(false);
 
   useEffect(() => {
-    if (windowWidth < 768) setIsMobile(true);
-    else setIsMobile(false);
+    if (windowWidth < 650 && windowWidth > 390) setIsMiniCard(true);
+    else setIsMiniCard(false);
   }, [windowWidth]);
 
   return (
-    <StyledThemeProvider theme={{ ...theme, isMobile }}>{children}</StyledThemeProvider>
+    <StyledThemeProvider theme={{ ...theme, isMiniCard }}>{children}</StyledThemeProvider>
   );
 };
 
