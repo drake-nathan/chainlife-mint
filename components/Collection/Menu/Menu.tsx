@@ -26,14 +26,20 @@ const CollectionMenu: React.FC<Props> = ({
         <St.Text>Sort by:</St.Text>
         <St.TextButton
           className={sortType === 'tokenId' ? '' : 'inactive'}
-          onClick={() => setSortType('tokenId')}
+          onClick={() => {
+            if (sortType === 'worldLevel') setSortDir('asc');
+            setSortType('tokenId');
+          }}
         >
           Token ID
         </St.TextButton>
         <St.SubtleText>|</St.SubtleText>
         <St.TextButton
           className={sortType === 'worldLevel' ? '' : 'inactive'}
-          onClick={() => setSortType('worldLevel')}
+          onClick={() => {
+            if (sortType === 'tokenId') setSortDir('desc');
+            setSortType('worldLevel');
+          }}
         >
           World Level
         </St.TextButton>
