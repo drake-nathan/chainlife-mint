@@ -36,8 +36,8 @@ const Home: NextPage = () => {
         <title>Chainlife</title>
         <meta name="description" content="Chainlife." />
       </Head>
-
       <NavBar />
+
       <St.BodyContainer>
         <St.SliderAndIframeContainer>
           {windowWidth > 1000 ? (
@@ -55,7 +55,7 @@ const Home: NextPage = () => {
             </Slider>
           ) : null}
           <St.LeftSection>
-            <St.TitleAnCryptoContainer>
+            <St.TitleAndCryptoContainer>
               <St.TitleContainer>
                 <St.Title>
                   {currentSupply
@@ -67,7 +67,7 @@ const Home: NextPage = () => {
                 )}
               </St.TitleContainer>
               {windowWidth > 750 ? <Web3Buttons /> : null}
-            </St.TitleAnCryptoContainer>
+            </St.TitleAndCryptoContainer>
             {isTxPending ? (
               <LoadingVideo />
             ) : (

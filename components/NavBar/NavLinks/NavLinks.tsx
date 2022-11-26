@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { useWeb3React } from '@web3-react/core';
 import * as St from './NavLinks.styled';
 
 interface Props {
