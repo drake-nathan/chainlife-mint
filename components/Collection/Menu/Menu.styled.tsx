@@ -7,17 +7,12 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   padding: 1em 3em;
+  gap: 1em;
 
-  @media (max-width: 1300px) {
-    margin-top: 3em;
-  }
-
-  @media (max-width: 800px) {
-    margin-top: 4em;
-  }
-
-  @media (max-width: 500px) {
-    margin-top: 5em;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 1em;
+    gap: 2em;
   }
 `;
 
@@ -30,6 +25,15 @@ export const SortDiv = styled.div`
     font-weight: 500;
     color: ${({ theme }) => theme.colors.textOffset};
   }
+
+  .icon {
+    font-size: 2.125rem;
+    cursor: pointer;
+  }
+
+  @media (max-width: 400px) {
+    gap: 0.5em;
+  }
 `;
 
 export const Text = styled.span`
@@ -38,21 +42,21 @@ export const Text = styled.span`
   font-weight: 600;
 `;
 
-export const SubtleText = styled(Text)`
+export const SortText = styled(Text)`
+  @media (max-width: 400px) {
+    font-size: 1.125rem;
+  }
+`;
+
+export const SubtleText = styled(SortText)`
   color: ${(props) => props.theme.colors.textOffset};
   font-weight: 500;
 `;
 
-export const TextButton = styled(Text)`
+export const TextButton = styled(SortText)`
   cursor: pointer;
 `;
 
-export const SortIconAsc = styled(CgSortZa)`
-  font-size: 2.125rem;
-  cursor: pointer;
-`;
+export const SortIconAsc = styled(CgSortZa)``;
 
-export const SortIconDesc = styled(CgSortAz)`
-  font-size: 2.125rem;
-  cursor: pointer;
-`;
+export const SortIconDesc = styled(CgSortAz)``;

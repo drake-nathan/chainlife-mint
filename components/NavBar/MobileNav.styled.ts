@@ -15,7 +15,7 @@ export const Container = styled.div<IsOpen>`
   align-items: center;
   justify-content: space-between;
   gap: 2em;
-  padding: 3em 2em 5em;
+  padding: 3em 2em 9em;
 
   background-color: ${({ theme }) => theme.colors.bgMain};
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -25,6 +25,6 @@ export const Container = styled.div<IsOpen>`
   transition-delay: 250ms;
 
   @media (max-height: 700px) {
-    padding: 2em 2em 3em;
+    padding: 2em 2em 7em;
   }
 `;

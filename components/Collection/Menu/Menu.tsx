@@ -22,8 +22,9 @@ const CollectionMenu: React.FC<Props> = ({
   return (
     <St.Container>
       <St.Text>Total mints: {current_supply}</St.Text>
+
       <St.SortDiv>
-        <St.Text>Sort by:</St.Text>
+        <St.SortText>Sort by:</St.SortText>
         <St.TextButton
           className={sortType === 'tokenId' ? '' : 'inactive'}
           onClick={() => {
@@ -44,9 +45,9 @@ const CollectionMenu: React.FC<Props> = ({
           World Level
         </St.TextButton>
         {sortDir === 'asc' ? (
-          <St.SortIconAsc onClick={() => setSortDir('desc')} />
+          <St.SortIconAsc className="icon" onClick={() => setSortDir('desc')} />
         ) : (
-          <St.SortIconDesc onClick={() => setSortDir('asc')} />
+          <St.SortIconDesc className="icon" onClick={() => setSortDir('asc')} />
         )}
       </St.SortDiv>
     </St.Container>

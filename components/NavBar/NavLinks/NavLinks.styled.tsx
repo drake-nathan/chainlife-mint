@@ -5,6 +5,10 @@ export const NavLinksDiv = styled.div`
   align-items: center;
   ${({ theme }) => theme.isMobile && 'flex-direction: column;'}
   gap: ${({ theme }) => (theme.isMobile ? '2em' : '1.25em')};
+
+  @media (max-height: 700px) {
+    gap: 1.25em;
+  }
 `;
 
 export const NavItem = styled.span`
@@ -15,5 +19,10 @@ export const NavItem = styled.span`
   :hover {
     color: ${(props) => props.theme.colors.hover};
     cursor: pointer;
+  }
+
+  @media (max-height: 700px) {
+    font-size: 1.5rem;
+    font-weight: 500;
   }
 `;
