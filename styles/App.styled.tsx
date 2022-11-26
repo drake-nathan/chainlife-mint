@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { Main } from './Library/Button.styled';
 
 export const FadeIn = keyframes`0% {opacity: 0;}
 100% {opacity: 100;}`;
@@ -19,27 +20,21 @@ export const AppContainer = styled.div`
   }
 `;
 
-export const HeroContainer = styled.div`
+export const BodyContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 6rem;
-  gap: 3rem;
   width: 100%;
-  padding-left: 30px;
-  padding-right: 30px;
+  gap: 1em;
+  padding: 2em 2em 6em;
 
   @media (max-width: 1300px) {
-    margin-top: 5.5rem;
-
     h1 {
       font-size: 28px;
     }
   }
 
   @media (max-width: 825px) {
-    margin-top: 7.5rem;
-
     h1 {
       font-size: 26px;
     }
@@ -52,53 +47,34 @@ export const HeroContainer = styled.div`
   }
 `;
 
-export const InstructionsContainer = styled.div`
+export const TopSection = styled.div`
   display: flex;
-  position: relative;
   flex-direction: column;
   align-items: center;
+  gap: 2em;
+`;
+
+export const TitleRow = styled.div`
+  display: flex;
+  align-items: center;
   justify-content: center;
-  height: fit-content;
-  width: 80%;
+  flex-wrap: wrap;
+  gap: 2em;
+`;
 
-  @media (max-width: 500px) {
-    width: 100%;
+export const FrameDiv = styled.div`
+  /* border: 1px dashed; */
+  max-width: 95%;
+  max-height: 85vh;
+  aspect-ratio: 1/1;
+
+  iframe {
+    width: 1000px;
+    height: 1000px;
   }
 `;
 
-export const Title = styled.p`
-  color: ${(props) => props.theme.colors.textOffset};
-  text-align: center;
-  font-size: 20px;
-
-  @media (max-width: 500px) {
-    font-size: 15px;
-  }
-
-  @media (max-width: 550px) {
-    max-width: 350px;
-    font-size: 17px;
-    line-height: 2rem;
-  }
-`;
-
-export const WorldViewInfo = styled.h1`
-  text-align: center;
-  font-size: 40px;
-  @media (max-width: 600px) {
-    font-size: 24px;
-  }
-`;
-
-export const SubTitle = styled.h3`
-  @media (max-width: 500px) {
-    font-size: 14px;
-    text-align: center;
-    margin-top: 20px;
-  }
-`;
-
-export const NotesContainer = styled.div`
+export const NotesSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -120,17 +96,28 @@ export const NotesContainer = styled.div`
   }
 `;
 
-export const FrameDiv = styled.div`
-  width: 100%;
-  margin-top: -18px;
+export const Title = styled.h1`
+  text-align: center;
+  font-size: 40px;
 
-  iframe {
-    width: 100%;
-    height: 55vh;
+  @media (max-width: 600px) {
+    font-size: 24px;
+  }
+`;
 
-    @media (min-width: 1000px) {
-      height: 75vh;
-    }
+export const SubTitle = styled.p`
+  color: ${(props) => props.theme.colors.textOffset};
+  text-align: center;
+  font-size: 20px;
+
+  @media (max-width: 500px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 550px) {
+    max-width: 350px;
+    font-size: 17px;
+    line-height: 2rem;
   }
 `;
 
@@ -141,3 +128,5 @@ export const CopyRightDiv = styled.div`
   justify-content: center;
   margin-bottom: 30px;
 `;
+
+export const Button = styled(Main)``;

@@ -5,7 +5,6 @@ import NavBar from 'components/NavBar/NavBar';
 import Instructions from 'components/Instructions/Instructions';
 import TokenIdForm from 'components/TokenForm/TokenIdForm';
 import { IoIosExpand } from 'react-icons/io';
-import * as MdIcons from 'react-icons/md';
 import * as St from '../styles/Worldview.styled';
 
 const Home: NextPage = () => {
