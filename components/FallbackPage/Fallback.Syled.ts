@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'components/NavBar/NavBar.styled';
+import { NavItem } from 'components/NavBar/NavLinks/NavLinks.styled';
 import { SubtleText, SubtleDiv } from 'components/DescriptionSections/Description.styled';
 
 export const FallbackContainer = styled.div`
@@ -20,7 +20,7 @@ export const LogoContainer = styled.div`
   gap: 1rem;
 `;
 
-export const SocialLink = styled(NavLink)`
+export const SocialLink = styled(NavItem)`
   color: ${(props) => props.theme.colors.textMain};
 
   :hover {
@@ -34,12 +34,12 @@ export const SocialLink = styled(NavLink)`
   }
 `;
 
-export const BackArrow = styled(NavLink)`
+export const BackArrow = styled(NavItem)`
   font-size: 24px;
   cursor: pointer;
 `;
 
-export const BackLink = styled(NavLink)`
+export const BackLink = styled(NavItem)`
   cursor: pointer;
   margin-bottom: 3em;
 `;
@@ -63,10 +63,3 @@ export const CLTitle = styled.h1`
     font-size: 34px;
   }
 `;
-
-// export const MintCountdownDiv = styled(CountdownDiv)``;
-
-// export const MintCountdown = styled(CountdownStyled)`
-//   font-size: 30px;
-//   margin: 1em;
-// `;

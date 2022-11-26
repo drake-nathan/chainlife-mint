@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Squash as Hamburger } from 'hamburger-react';
 import { useWindowSize } from 'hooks/useWindowSize';
-import ConnectDropDown from 'components/Modals/ConnectDropDown';
+import ConnectDropDown from 'components/Modals/ConnectDropDown/ConnectDropDown';
 import MarketsDropDown from 'components/Modals/MarketsDropDown';
 import Twitter from '../../public/icons/Twitter.svg';
 import Discord from '../../public/icons/Discord-Logo-White.svg';
