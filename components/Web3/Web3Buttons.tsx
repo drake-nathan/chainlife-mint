@@ -7,7 +7,7 @@ import { UserZenTokens } from 'types/premintTypes';
 import { publicMint, presaleMint, ISuccessInfo, filterUserTokens } from './web3Helpers';
 import ConnectModal from 'components/Modals/ConnectModal';
 import BuyModal from 'components/Modals/BuyModal/BuyModal';
-import PremintModal from 'components/Modals/PremintModal';
+import PremintModal from 'components/Modals/PremintModal/PremintModal';
 import ErrorModal from 'components/Modals/ErrorModal';
 import SuccessModal from 'components/Modals/SuccessModal';
 import * as St from '../DescriptionSections/Description.styled';

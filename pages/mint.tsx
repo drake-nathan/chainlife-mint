@@ -91,7 +91,7 @@ const Home: NextPage = () => {
             )}
 
             <St.InfoContainer>
-              {windowWidth < 750 ? <Web3Buttons /> : null}
+              {windowWidth < 750 && <Web3Buttons />}
               <St.InfoText>
                 Chainlife NFTs are on-chain, generative-art, collectible and evolving
                 games, that together create an everchanging, 3D world.

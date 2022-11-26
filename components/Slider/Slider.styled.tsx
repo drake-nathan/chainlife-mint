@@ -83,7 +83,7 @@ export const SliderDiv = styled.div<SliderProps>`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  max-height: 650px;
+  max-height: 649px;
   padding-left: 15px;
   padding-right: 15px;
   transition: transform ${(props) => props.pageTransition}ms ease;
