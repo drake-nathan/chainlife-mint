@@ -6,23 +6,22 @@ export const NavContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   padding: 0 3em;
-  min-height: 100px;
-
-  @media (max-width: 1030px) {
-    flex-direction: column-reverse;
-    height: fit-content;
-    margin-bottom: 20px;
-    margin-top: 2em;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+  ${({ theme }) => !theme.isMobile && 'min-height: 100px;'}
 
   h5 {
     color: ${(props) => props.theme.colors.textOffset};
   }
+
+  @media (max-width: 1030px) {
+    ${({ theme }) => !theme.isMobile && 'flex-direction: column-reverse;'}
+    height: fit-content;
+    margin-bottom: 20px;
+    margin-top: 2em;
+    padding: ${({ theme }) => (theme.isMobile ? '0 1.5em' : '0 1em')};
+  }
 `;
 
-export const logoDiv = styled.div`
+export const LogoDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;

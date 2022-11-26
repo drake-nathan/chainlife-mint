@@ -17,7 +17,7 @@ const ThemeProvider: React.FC<Props> = ({ children }) => {
     if (windowWidth < 650 && windowWidth > 390) setIsMiniCard(true);
     else setIsMiniCard(false);
 
-    if (windowWidth > 800) setIsMobile(true);
+    if (windowWidth < 800) setIsMobile(true);
     else setIsMobile(false);
   }, [windowWidth]);
 

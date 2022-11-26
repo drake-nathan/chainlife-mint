@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Squash as Hamburger } from 'hamburger-react';
 import { useWindowSize } from 'hooks/useWindowSize';
 import { useEagerConnect } from 'hooks/useEagerConnect';
 import ConnectDropDown from 'components/Modals/ConnectDropDown/ConnectDropDown';
@@ -16,10 +18,13 @@ import * as St from './NavBar.styled';
 const NavBar: React.FC = () => {
   useEagerConnect();
   const { active } = useWeb3React();
+  const { isMobile } = useContext(ThemeContext);
+  const { windowWidth } = useWindowSize();
+
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showDisconnectModal, setShowDisconnectModal] = useState(false);
   const [showMarketsModal, setShowMarketsModal] = useState(false);
-  const { windowWidth } = useWindowSize();
+  const [showMobileNav, setShowMobileNav] = useState(false);
 
   const handleConnectClick = () => {
     setShowMarketsModal(false);
@@ -50,7 +55,7 @@ const NavBar: React.FC = () => {
 
   return (
     <St.NavContainer>
-      <St.logoDiv>
+      <St.LogoDiv>
         <Link href="/">
           <Image
             src={'/chainlife/chainlife.png'}
@@ -59,20 +64,26 @@ const NavBar: React.FC = () => {
             alt="ChainLife logo"
           />
         </Link>
+
         <St.TitleDiv>
           <Link href="/">
             <St.NavTitle>Chainlife</St.NavTitle>
           </Link>
         </St.TitleDiv>
-      </St.logoDiv>
-      <St.SocialsAndLinks>
-        <SocialIcons />
-        <NavLinks
-          handleMarketsClick={handleMarketsClick}
-          handleConnectClick={handleConnectClick}
-          active={active}
-        />
-      </St.SocialsAndLinks>
+      </St.LogoDiv>
+      {!isMobile ? (
+        <St.SocialsAndLinks>
+          <SocialIcons />
+
+          <NavLinks
+            handleMarketsClick={handleMarketsClick}
+            handleConnectClick={handleConnectClick}
+            active={active}
+          />
+        </St.SocialsAndLinks>
+      ) : (
+        <Hamburger color="#3A3A3A" toggle={setShowMobileNav} toggled={showMobileNav} />
+      )}
 
       {showConnectModal ? renderDropDown() : renderMarketsDropDown()}
 

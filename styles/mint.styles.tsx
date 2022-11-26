@@ -1,7 +1,4 @@
-import styled, { keyframes } from 'styled-components';
-
-const FadeIn = keyframes`0% {opacity: 0;}
-100% {opacity: 100;}`;
+import styled from 'styled-components';
 
 export const AppContainer = styled.div`
   width: 100%;
@@ -162,19 +159,9 @@ export const TitleContainer = styled.div`
 export const Title = styled.p`
   color: ${(props) => props.theme.colors.textOffset};
   font-size: 18px;
-
-  @media (max-width: 500px) {
-    font-size: 15px;
-  }
 `;
 
-export const SubTitle = styled.h3`
-  @media (max-width: 500px) {
-    font-size: 14px;
-    text-align: center;
-    margin-top: 20px;
-  }
-`;
+export const SubTitle = styled.h3``;
 
 export const DescriptionsContainer = styled.div`
   display: flex;

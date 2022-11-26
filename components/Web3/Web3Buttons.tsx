@@ -196,11 +196,8 @@ const Web3Buttons: React.FC = () => {
         <ErrorModal setShowModal={setShowErrorModal} message={errorMessage} />
       )}
 
-      {showSuccessModal && (
-        <SuccessModal
-          setShowModal={setShowSuccessModal}
-          successInfo={successInfo as ISuccessInfo}
-        />
+      {showSuccessModal && successInfo && (
+        <SuccessModal setShowModal={setShowSuccessModal} successInfo={successInfo} />
       )}
     </St.ButtonContainer>
   );

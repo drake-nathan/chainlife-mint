@@ -40,7 +40,7 @@ const Home: NextPage = () => {
 
       <St.BodyContainer>
         <St.SliderAndIframeContainer>
-          {windowWidth > 1000 ? (
+          {windowWidth > 1000 && (
             <Slider>
               {sliderTokens.map((token) => (
                 <div
@@ -53,7 +53,7 @@ const Home: NextPage = () => {
                 </div>
               ))}
             </Slider>
-          ) : null}
+          )}
           <St.LeftSection>
             <St.TitleAndCryptoContainer>
               <St.TitleContainer>
@@ -66,7 +66,7 @@ const Home: NextPage = () => {
                   <St.SubTitle>Showing Chainlife # {activeToken.id}</St.SubTitle>
                 )}
               </St.TitleContainer>
-              {windowWidth > 750 ? <Web3Buttons /> : null}
+              {windowWidth > 800 && <Web3Buttons />}
             </St.TitleAndCryptoContainer>
             {isTxPending ? (
               <LoadingVideo />
@@ -91,7 +91,7 @@ const Home: NextPage = () => {
             )}
 
             <St.InfoContainer>
-              {windowWidth < 750 && <Web3Buttons />}
+              {windowWidth < 800 && <Web3Buttons />}
               <St.InfoText>
                 Chainlife NFTs are on-chain, generative-art, collectible and evolving
                 games, that together create an everchanging, 3D world.

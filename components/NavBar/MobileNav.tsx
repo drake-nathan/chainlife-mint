@@ -11,36 +11,18 @@ import ClLogo from '../../public/chainlife_tree_logo.png';
 import * as St from './MobileNav.styled';
 import { useWeb3React } from '@web3-react/core';
 
-interface NavProps {
+interface Props {
   isOpen: Boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MobileNav: React.FC<NavProps> = ({ isOpen, setOpen }) => {
+const MobileNav: React.FC<Props> = ({ isOpen, setOpen }) => {
   const { active } = useWeb3React();
-  const [showConnectModal, setShowConnectModal] = useState(false);
-  const [showMarketsDropDown, setShowMarketsDropDown] = useState(false);
-
-  const { windowWidth, windowHeight } = useWindowSize();
-
-  const handleConnectClick = () => {
-    setShowMarketsDropDown(false);
-    setShowConnectModal(!showConnectModal);
-  };
-
-  const handleMarketsClick = () => {
-    setShowConnectModal(false);
-    setShowMarketsDropDown(!showMarketsDropDown);
-  };
-
-  const handleToggle = () => {
-    setOpen(!isOpen);
-  };
 
   return (
     <>
       <St.NavContainer>
-        <St.logoDiv>
+        {/* <St.logoDiv>
           <Image src={ClLogo} height={35} width={35} alt="ChainLife logo" />
           <St.NavLink href="https://linktr.ee/MonkMatto" target="blank" rel="noreferrer">
             <St.NavTitle>Chainlife</St.NavTitle>
@@ -76,7 +58,7 @@ const MobileNav: React.FC<NavProps> = ({ isOpen, setOpen }) => {
           </St.NavConnect>
         </St.NavLinksDiv>
         {showConnectModal && <ConnectDropDown setShowModal={setShowConnectModal} />}
-        {showMarketsDropDown && <MarketsDropDown setShowModal={setShowMarketsDropDown} />}
+        {showMarketsDropDown && <MarketsDropDown setShowModal={setShowMarketsDropDown} />} */}
       </St.NavContainer>
     </>
   );
