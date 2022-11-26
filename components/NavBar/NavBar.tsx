@@ -14,6 +14,7 @@ import NavLinks from './NavLinks/NavLinks';
 import DisconnectModal from 'components/Modals/DisconnectModal';
 import { useWeb3React } from '@web3-react/core';
 import * as St from './NavBar.styled';
+import MobileNav from './MobileNav';
 
 const NavBar: React.FC = () => {
   useEagerConnect();
@@ -79,10 +80,20 @@ const NavBar: React.FC = () => {
             handleMarketsClick={handleMarketsClick}
             handleConnectClick={handleConnectClick}
             active={active}
+            setShowMobileNav={setShowMobileNav}
           />
         </St.SocialsAndLinks>
       ) : (
-        <Hamburger color="#3A3A3A" toggle={setShowMobileNav} toggled={showMobileNav} />
+        <>
+          <Hamburger color="#3A3A3A" toggle={setShowMobileNav} toggled={showMobileNav} />
+
+          <MobileNav
+            isOpen={showMobileNav}
+            setIsOpen={setShowMobileNav}
+            handleMarketsClick={handleMarketsClick}
+            handleConnectClick={handleConnectClick}
+          />
+        </>
       )}
 
       {showConnectModal ? renderDropDown() : renderMarketsDropDown()}

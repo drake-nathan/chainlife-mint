@@ -4,6 +4,7 @@ export const NavContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  min-height: 50px;
   justify-content: space-between;
   padding: 0 3em;
   ${({ theme }) => !theme.isMobile && 'min-height: 100px;'}
