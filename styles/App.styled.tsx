@@ -63,9 +63,16 @@ export const TitleRow = styled.div`
 `;
 
 export const FrameDiv = styled.div`
-  width: 80%;
-  height: 1000px;
-  max-height: 85vh;
+  width: 100%;
+
+  iframe {
+    width: 100%;
+    height: 55vh;
+
+    @media (min-width: 1000px) {
+      height: 75vh;
+    }
+  }
 `;
 
 export const NotesSection = styled.div`
