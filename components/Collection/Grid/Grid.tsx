@@ -9,16 +9,10 @@ import * as St from './Grid.styled';
 interface Props {
   projectSlug: string;
   sortDir: 'asc' | 'desc';
-  setSortDir: React.Dispatch<React.SetStateAction<'asc' | 'desc'>>;
   sortType: 'tokenId' | 'worldLevel';
 }
 
-const CollectionGrid: React.FC<Props> = ({
-  projectSlug,
-  sortDir,
-  setSortDir,
-  sortType,
-}) => {
+const CollectionGrid: React.FC<Props> = ({ projectSlug, sortDir, sortType }) => {
   const [limit, setLimit] = useState(16);
   const [currentLength, setCurrentLength] = useState(0);
   const [hasMore, setHasMore] = useState<boolean>(false);

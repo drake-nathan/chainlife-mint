@@ -46,7 +46,6 @@ const Collection: NextPage = () => {
           <CollectionGrid
             projectSlug={projectSlug as string}
             sortDir={sortDir}
-            setSortDir={setSortDir}
             sortType={sortType}
           />
         </>
