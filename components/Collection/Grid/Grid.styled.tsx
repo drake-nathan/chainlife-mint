@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin-top: 30px;
+  margin-top: 2em;
 `;
 
 export const LoadingDiv = styled.div`
@@ -24,4 +24,11 @@ export const LoadingDiv = styled.div`
   margin: 1em;
 `;
 
-export const H1 = styled.h1``;
+export const H1 = styled.h1`
+  margin-top: 1.5em;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-top: 0.75em;
+  }
+`;

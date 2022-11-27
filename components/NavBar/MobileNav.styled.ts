@@ -6,7 +6,7 @@ export const Container = styled.div<IsOpen>`
   position: fixed;
   z-index: 69;
   top: 102px;
-  left: 0;
+  right: 0;
   height: calc(100vh - 102px);
   width: 100%;
 

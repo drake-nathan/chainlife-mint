@@ -20,7 +20,7 @@ const CollectionGrid: React.FC<Props> = ({ projectSlug, sortDir, sortType }) => 
   const fetchQuery = ({ pageParam: skip }: QueryFunctionContext) =>
     fetchCollectionTokens(projectSlug, limit, skip, sortDir, sortType);
 
-  const { error, data, fetchNextPage, refetch } = useInfiniteQuery<
+  const { error, data, isLoading, fetchNextPage, refetch } = useInfiniteQuery<
     CollectionResponse,
     Error
   >('tokens', fetchQuery, { getNextPageParam: (lastFetch) => lastFetch.skip + limit });
@@ -40,7 +40,7 @@ const CollectionGrid: React.FC<Props> = ({ projectSlug, sortDir, sortType }) => 
 
   return (
     <St.Container>
-      {data && (
+      {data ? (
         <InfiniteScroll
           dataLength={currentLength}
           next={fetchNextPage}
@@ -53,6 +53,10 @@ const CollectionGrid: React.FC<Props> = ({ projectSlug, sortDir, sortType }) => 
             )}
           </St.Wrapper>
         </InfiniteScroll>
+      ) : error && !isLoading ? (
+        <St.H1>Unable to fetch tokens right now.</St.H1>
+      ) : (
+        <St.H1>Loading...</St.H1>
       )}
     </St.Container>
   );

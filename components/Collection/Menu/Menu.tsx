@@ -3,7 +3,7 @@ import { IProject } from 'services/azureApi/types';
 import * as St from './Menu.styled';
 
 interface Props {
-  project: IProject;
+  project: IProject | null;
   sortDir: 'asc' | 'desc';
   setSortDir: React.Dispatch<React.SetStateAction<'asc' | 'desc'>>;
   sortType: 'tokenId' | 'worldLevel';
@@ -17,11 +17,9 @@ const CollectionMenu: React.FC<Props> = ({
   sortType,
   setSortType,
 }) => {
-  const { current_supply } = project;
-
   return (
     <St.Container>
-      <St.Text>Total mints: {current_supply}</St.Text>
+      <St.Text>Total mints: {project?.current_supply}</St.Text>
 
       <St.SortDiv>
         <St.SortText>Sort by:</St.SortText>

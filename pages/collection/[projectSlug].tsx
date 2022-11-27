@@ -34,7 +34,7 @@ const Collection: NextPage = () => {
         <meta name="description" content="Chainlife." />
       </Head>
       <NavBar />
-      {project && projectSlug ? (
+      {projectSlug && (
         <>
           <CollectionMenu
             project={project}
@@ -49,8 +49,6 @@ const Collection: NextPage = () => {
             sortType={sortType}
           />
         </>
-      ) : (
-        <h1>Project not found</h1>
       )}
     </St.AppContainer>
   );
