@@ -23,8 +23,8 @@ const Home: NextPage = () => {
         <title>Chainlife</title>
         <meta name="description" content="Chainlife." />
       </Head>
-
       <NavBar />
+
       <St.WorldViewContainer>
         <St.WorldViewTitle>
           Chainlife tokens: microcosms of digital life, that are interactive, evolving,

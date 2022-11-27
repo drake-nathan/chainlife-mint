@@ -3,6 +3,7 @@ import { ThemeContext } from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Squash as Hamburger } from 'hamburger-react';
+import { useWeb3React } from '@web3-react/core';
 import { useWindowSize } from 'hooks/useWindowSize';
 import { useEagerConnect } from 'hooks/useEagerConnect';
 import ConnectDropDown from 'components/Modals/ConnectDropDown/ConnectDropDown';
@@ -12,9 +13,8 @@ import SocialIcons from './SocialIcons/SocialIcons';
 import MarketsModal from 'components/Modals/MarketsModal';
 import NavLinks from './NavLinks/NavLinks';
 import DisconnectModal from 'components/Modals/DisconnectModal';
-import { useWeb3React } from '@web3-react/core';
-import * as St from './NavBar.styled';
 import MobileNav from './MobileNav';
+import * as St from './NavBar.styled';
 
 const NavBar: React.FC = () => {
   useEagerConnect();
@@ -57,14 +57,12 @@ const NavBar: React.FC = () => {
   return (
     <St.NavContainer>
       <St.LogoDiv>
-        <Link href="/">
-          <Image
-            src={'/chainlife/chainlife.png'}
-            height={50}
-            width={50}
-            alt="ChainLife logo"
-          />
-        </Link>
+        <Image
+          src={'/chainlife/chainlife.png'}
+          height={50}
+          width={50}
+          alt="ChainLife logo"
+        />
 
         <St.TitleDiv>
           <Link href="/">

@@ -63,15 +63,9 @@ export const TitleRow = styled.div`
 `;
 
 export const FrameDiv = styled.div`
-  /* border: 1px dashed; */
-  max-width: 95%;
+  width: 80%;
+  height: 1000px;
   max-height: 85vh;
-  aspect-ratio: 1/1;
-
-  iframe {
-    width: 1000px;
-    height: 1000px;
-  }
 `;
 
 export const NotesSection = styled.div`
