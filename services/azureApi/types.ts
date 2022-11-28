@@ -112,6 +112,7 @@ export interface TokenAbbr {
   generator_url: string;
   external_url: string;
   script_inputs: IScriptInputs;
+  world_level?: number;
 }
 
 export interface CollectionResponse {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useCardLimit } from 'hooks/useSlideLimit';
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query';
 import { fetchCollectionTokens } from 'services/azureApi/fetches';
 import { CollectionResponse } from 'services/azureApi/types';
@@ -13,7 +14,8 @@ interface Props {
 }
 
 const CollectionGrid: React.FC<Props> = ({ projectSlug, sortDir, sortType }) => {
-  const [limit, setLimit] = useState(16);
+  const { limit } = useCardLimit();
+
   const [currentLength, setCurrentLength] = useState(0);
   const [hasMore, setHasMore] = useState<boolean>(false);
 
