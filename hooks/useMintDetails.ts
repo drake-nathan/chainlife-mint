@@ -3,6 +3,7 @@ import { fetchCurrentSupply, getMintPhase } from 'services/web3/contractInteract
 import { useContract } from './useContract';
 
 export const useMintDetails = () => {
+  const isDev = process.env.NODE_ENV === 'development';
   const { contract } = useContract();
 
   const currentTime = new Date();

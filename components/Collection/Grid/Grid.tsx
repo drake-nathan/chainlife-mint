@@ -1,43 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { QueryFunctionContext, useInfiniteQuery } from 'react-query';
-import { fetchCollectionTokens } from 'services/azureApi/fetches';
+import { InfiniteData } from 'react-query';
 import { CollectionResponse } from 'services/azureApi/types';
 import Card from '../Card/Card';
 import * as St from './Grid.styled';
 
 interface Props {
-  projectSlug: string;
-  sortDir: 'asc' | 'desc';
-  sortType: 'tokenId' | 'worldLevel';
+  data: InfiniteData<CollectionResponse> | undefined;
+  currentLength: number;
+  hasMore: boolean;
+  fetchNextPage: () => void;
+  error: Error | null;
+  isLoading: boolean;
 }
 
-const CollectionGrid: React.FC<Props> = ({ projectSlug, sortDir, sortType }) => {
-  const limit = 20;
-  const [currentLength, setCurrentLength] = useState(0);
-  const [hasMore, setHasMore] = useState<boolean>(false);
-
-  const fetchQuery = ({ pageParam: skip }: QueryFunctionContext) =>
-    fetchCollectionTokens(projectSlug, limit, skip, sortDir, sortType);
-
-  const { error, data, isLoading, fetchNextPage, refetch } = useInfiniteQuery<
-    CollectionResponse,
-    Error
-  >('tokens', fetchQuery, { getNextPageParam: (lastFetch) => lastFetch.skip + limit });
-
-  useEffect(() => {
-    if (error) console.error(error.message);
-    if (data) {
-      const lastPage = data.pages[data.pages.length - 1];
-      setHasMore(lastPage.hasMore);
-      setCurrentLength(lastPage.skip + lastPage.tokens.length);
-    }
-  }, [data, error]);
-
-  useEffect(() => {
-    refetch();
-  }, [sortDir, sortType]);
-
+const CollectionGrid: React.FC<Props> = ({
+  data,
+  currentLength,
+  hasMore,
+  fetchNextPage,
+  error,
+  isLoading,
+}) => {
   return (
     <St.Container>
       {data ? (

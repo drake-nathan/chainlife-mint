@@ -33,10 +33,11 @@ export const fetchCollectionTokens = async (
   skip: number,
   sortDir: 'asc' | 'desc',
   sortType: 'tokenId' | 'worldLevel',
+  tokenId: number | null,
 ) => {
   const url = `${rootApiUrl}/project/${projectSlug}/all-tokens`;
 
-  const params = { limit, skip, sortDir, sortType };
+  const params = { limit, skip, sortDir, sortType, tokenId };
 
   const { data: tokens } = await axios.get<CollectionResponse>(url, { params });
 

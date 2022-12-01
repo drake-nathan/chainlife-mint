@@ -1,5 +1,6 @@
 import React from 'react';
 import { IProject } from 'services/azureApi/types';
+import TokenSearch from './TokenSearch';
 import * as St from './Menu.styled';
 
 interface Props {
@@ -8,6 +9,9 @@ interface Props {
   setSortDir: React.Dispatch<React.SetStateAction<'asc' | 'desc'>>;
   sortType: 'tokenId' | 'worldLevel';
   setSortType: React.Dispatch<React.SetStateAction<'tokenId' | 'worldLevel'>>;
+  tokenSearchId: number | null;
+  setTokenSearchId: React.Dispatch<React.SetStateAction<number | null>>;
+  refetch: () => void;
 }
 
 const CollectionMenu: React.FC<Props> = ({
@@ -16,10 +20,20 @@ const CollectionMenu: React.FC<Props> = ({
   setSortDir,
   sortType,
   setSortType,
+  tokenSearchId,
+  setTokenSearchId,
+  refetch,
 }) => {
   return (
     <St.Container>
-      <St.Text>Total mints: {project?.current_supply}</St.Text>
+      <St.LeftDiv>
+        <St.Text>Total mints: {project?.current_supply}</St.Text>
+        <TokenSearch
+          tokenId={tokenSearchId}
+          setTokenId={setTokenSearchId}
+          refetch={refetch}
+        />
+      </St.LeftDiv>
 
       <St.SortDiv>
         <St.SortText>Sort by:</St.SortText>

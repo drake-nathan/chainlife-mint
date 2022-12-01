@@ -12,7 +12,7 @@
     "prepare": "husky install"
   },
   "engines": {
-    "node": "^16.14.2",
+    "node": "^18",
     "npm": "^8.15.0",
     "yarn": "^1.22.15"
   },

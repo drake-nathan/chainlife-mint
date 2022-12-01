@@ -21,7 +21,7 @@ export const NavItem = styled.span`
     cursor: pointer;
   }
 
-  @media (max-height: 700px) {
+  @media (max-height: 700px) and (max-width: 500px) {
     font-size: 1.5rem;
     font-weight: 500;
   }
