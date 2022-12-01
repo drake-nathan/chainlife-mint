@@ -27,12 +27,9 @@ const DescriptionSections: React.FC = () => {
       <St.SubTitle>
         <br />
         <br />
+        {activeSection === 1 ? 'Zen. Mint has closed.' : '1 Mint per transaction'} <br />
         {activeSection === 1
-          ? 'Minting wallet must hold eligible token.'
-          : '1 Mint per transaction'}{' '}
-        <br />
-        {activeSection === 1
-          ? `Cost Per Mint: ${discountPrice} ETH`
+          ? `Token IDs 0 - 123 are Zen. Mints.`
           : `Cost Per Mint: ${mintPrice} ETH`}
       </St.SubTitle>
       <St.SubtleDiv>
