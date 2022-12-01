@@ -33,12 +33,7 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
       handleError('Must be owner of token.');
     } else {
       try {
-        const tx = await callCustomRule(
-          contract.mainnet,
-          account as string,
-          tokenId,
-          customRule,
-        );
+        const tx = await callCustomRule(contract, account as string, tokenId, customRule);
       } catch (error) {
         console.error(error);
         handleError('Error setting custom rule.');
@@ -56,7 +51,7 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
       handleError('Must be owner of token.');
     } else {
       try {
-        callResetRule(contract.mainnet, account as string, tokenId);
+        callResetRule(contract, account as string, tokenId);
       } catch (error) {
         console.error(error);
         handleError('Error resetting rule.');

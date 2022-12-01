@@ -51,7 +51,7 @@ const Token: NextPage = () => {
   useEffect(() => {
     if (tokenId) {
       try {
-        getOwner(contract.mainnet, tokenIdNum).then((res) => {
+        getOwner(contract, tokenIdNum).then((res) => {
           setOwner(res);
           if (account && active) {
             setIsOwner(equalAddresses(account, res));

@@ -78,7 +78,7 @@ const Web3Buttons: React.FC = () => {
     if (account) {
       try {
         const successInfo = await presaleMint(
-          contract.mainnet,
+          contract,
           maxSupply,
           account,
           discountPrice,
@@ -92,7 +92,7 @@ const Web3Buttons: React.FC = () => {
           handleSuccess(successInfo);
           // refilter zen tokens to see which was used
           if (initialUserZenTokens) {
-            filterUserTokens(contract.mainnet, initialUserZenTokens)
+            filterUserTokens(contract, initialUserZenTokens)
               .then((filteredUserZenTokens) => setUserZenTokens(filteredUserZenTokens))
               .catch(console.error);
           }
@@ -108,7 +108,7 @@ const Web3Buttons: React.FC = () => {
     if (account) {
       try {
         const successInfo = await publicMint(
-          contract.mainnet,
+          contract,
           maxSupply,
           account,
           mintPrice,
@@ -154,7 +154,7 @@ const Web3Buttons: React.FC = () => {
 
   useEffect(() => {
     if (initialUserZenTokens) {
-      filterUserTokens(contract.mainnet, initialUserZenTokens)
+      filterUserTokens(contract, initialUserZenTokens)
         .then((filteredUserZenTokens) => setUserZenTokens(filteredUserZenTokens))
         .catch(console.error);
     }

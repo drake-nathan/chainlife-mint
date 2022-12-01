@@ -5,13 +5,14 @@ import NavBar from 'components/NavBar/NavBar';
 import CollectionMenu from 'components/Collection/Menu/Menu';
 import CollectionGrid from 'components/Collection/Grid/Grid';
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query';
-import { CollectionResponse, IProject } from 'services/azureApi/types';
+import { Chain, CollectionResponse, IProject } from 'services/azureApi/types';
 import { fetchCollectionTokens, fetchProject } from 'services/azureApi/fetches';
 import * as St from 'styles/collection.styled';
+import { useChain } from 'hooks/useChain';
 
 const Collection: NextPage = () => {
-  const isDev = process.env.NODE_ENV === 'development';
-  const chainlifeSlug = isDev ? 'chainlife-testnet' : 'chainlife';
+  const { chainId } = useChain();
+  const chainlifeSlug = chainId === Chain.goerli ? 'chainlife-testnet' : 'chainlife';
 
   const [project, setProject] = useState<IProject | null>(null);
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
