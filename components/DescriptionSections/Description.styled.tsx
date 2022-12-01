@@ -10,32 +10,6 @@ export const HeroContainer = styled.div`
   gap: 1.5em;
 `;
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: 0.5em;
-  gap: 1em;
-  width: 35%;
-  max-width: 450px;
-  @media (max-width: 600px) {
-    flex-direction: column;
-    gap: 1.5em;
-  }
-
-  .disabled {
-    color: ${(props) => props.theme.colors.textOffset};
-    border: 3px solid ${(props) => props.theme.colors.textOffset};
-
-    :hover {
-      color: ${(props) => props.theme.colors.textOffset};
-      background: ${(props) => props.theme.colors.bgMain};
-      border: 3px solid ${(props) => props.theme.colors.textOffset};
-      font-weight: 500;
-    }
-  }
-`;
-
 export const SectionTitleContainer = styled.div`
   display: flex;
   align-items: center;
@@ -48,7 +22,7 @@ export const SectionTitleContainer = styled.div`
     color: ${(props) => props.theme.colors.textOffset};
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     justify-content: center;
   }
 `;
@@ -111,9 +85,37 @@ export const SubtleDiv = styled.div`
 export const SubtleText = styled.span`
   color: ${(props) => props.theme.colors.textOffset};
   font-size: 18px;
+
   @media (max-width: 500px) {
     font-size: 15px;
   }
 `;
 
 export const Button = styled(Main)``;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 0.5em;
+  gap: 1em;
+  width: 35%;
+  max-width: 450px;
+
+  @media (max-width: 750px) {
+    flex-direction: column;
+    gap: 1.5em;
+  }
+
+  .disabled {
+    color: ${(props) => props.theme.colors.textOffset};
+    border: 3px solid ${(props) => props.theme.colors.textOffset};
+
+    :hover {
+      color: ${(props) => props.theme.colors.textOffset};
+      background: ${(props) => props.theme.colors.bgMain};
+      border: 3px solid ${(props) => props.theme.colors.textOffset};
+      font-weight: 500;
+    }
+  }
+`;

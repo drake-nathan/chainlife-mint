@@ -1,28 +1,45 @@
 import axios from 'axios';
-import { IProject, IToken } from './types';
+import { CollectionResponse, IProject, IToken } from './types';
 
-const rootUrl = 'https://api.gengames.io';
+const rootApiUrl = process.env.NEXT_PUBLIC_API_ROOT;
 
-export const getToken = async (projectSlug: string, tokenId: number | string) => {
-  const url = `${rootUrl}/project/${projectSlug}/token/${tokenId}`;
+if (!rootApiUrl) {
+  throw new Error('NEXT_PUBLIC_API_ROOT env var is not defined');
+}
+
+export const fetchToken = async (projectSlug: string, tokenId: number | string) => {
+  const url = `${rootApiUrl}/project/${projectSlug}/token/${tokenId}`;
 
   try {
-    const { data } = await axios.get(url);
+    const { data } = await axios.get<IToken>(url);
 
-    return data as IToken;
+    return data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const getProject = async (projectSlug: string) => {
-  const url = `${rootUrl}/project/${projectSlug}`;
+export const fetchProject = async (projectSlug: string) => {
+  const url = `${rootApiUrl}/project/${projectSlug}`;
 
-  try {
-    const { data } = await axios.get(url);
+  const { data } = await axios.get<IProject>(url);
 
-    return data as IProject;
-  } catch (error) {
-    console.error(error);
-  }
+  return data;
+};
+
+export const fetchCollectionTokens = async (
+  projectSlug: string,
+  limit: number,
+  skip: number,
+  sortDir: 'asc' | 'desc',
+  sortType: 'tokenId' | 'worldLevel',
+  tokenId: number | null,
+) => {
+  const url = `${rootApiUrl}/project/${projectSlug}/all-tokens`;
+
+  const params = { limit, skip, sortDir, sortType, tokenId };
+
+  const { data: tokens } = await axios.get<CollectionResponse>(url, { params });
+
+  return tokens;
 };

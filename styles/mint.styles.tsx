@@ -1,7 +1,4 @@
-import styled, { keyframes } from 'styled-components';
-
-export const FadeIn = keyframes`0% {opacity: 0;}
-100% {opacity: 100;}`;
+import styled from 'styled-components';
 
 export const AppContainer = styled.div`
   width: 100%;
@@ -68,10 +65,10 @@ export const BodyContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
+    gap: 3em;
     padding-left: 0px;
     padding-right: 0px;
-    padding-top: 3rem;
+    padding-top: 0;
     padding-bottom: 25px;
   }
 
@@ -80,54 +77,15 @@ export const BodyContainer = styled.div`
   }
 `;
 
-export const WorldViewContainer = styled.div`
+export const SliderAndIframeContainer = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-  gap: 3rem;
-  width: 100%;
+  gap: 7em;
 
-  p {
-    cursor: pointer;
-    animation-name: ${FadeIn};
-    animation-duration: 1s;
+  @media (max-width: 750px) {
+    flex-direction: column;
+    gap: 1.5em;
   }
-`;
-
-export const TokenDiv = styled.div``;
-
-export const InstructionsContainer = styled.div`
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: fit-content;
-  width: 100%;
-
-  @media (max-width: 1800px) {
-    width: 80%;
-  }
-
-  @media (max-width: 500px) {
-    width: 100%;
-  }
-`;
-
-export const Expand = styled.a`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  font-size: 34px;
-  margin-bottom: -12px;
-`;
-
-export const ViewInstructions = styled.p`
-  color: ${(props) => props.theme.colors.textOffset};
-  font-weight: 500;
-  font-size: 18px;
 `;
 
 export const LeftSection = styled.div`
@@ -136,118 +94,6 @@ export const LeftSection = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-`;
-
-export const SliderAndIframeContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 7rem;
-  @media (max-width: 750px) {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-`;
-
-export const TitleAnCryptoContainer = styled.div`
-  width: 650px;
-  height: 100px;
-  padding: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  @media (max-width: 750px) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 350px;
-  }
-`;
-
-export const TitleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  @media (max-width: 750px) {
-    margin-bottom: -12px;
-    width: 350px;
-    align-items: center;
-  }
-`;
-
-export const Title = styled.p`
-  color: ${(props) => props.theme.colors.textOffset};
-  font-size: 18px;
-  @media (max-width: 500px) {
-    font-size: 15px;
-  }
-`;
-
-export const WorldViewTitle = styled(Title)`
-  text-align: center;
-  font-size: 20px;
-  @media (max-width: 550px) {
-    max-width: 350px;
-    font-size: 17px;
-    line-height: 2rem;
-  }
-`;
-
-export const WorldViewInfo = styled.h1`
-  text-align: center;
-  font-size: 40px;
-  @media (max-width: 600px) {
-    font-size: 24px;
-  }
-`;
-
-export const SubTitle = styled.h3`
-  @media (max-width: 500px) {
-    font-size: 14px;
-    text-align: center;
-    margin-top: 20px;
-  }
-`;
-
-export const NotesContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: flex-start;
-  text-align: left;
-  padding-left: 80px;
-  padding-right: 80px;
-  max-width: 1050px;
-
-  @media (max-width: 600px) {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-`;
-
-export const NotesTitle = styled(SubTitle)`
-  color: ${(props) => props.theme.colors.textMain};
-  font-size: 18px;
-`;
-
-export const NotesText = styled.p`
-  /* max-width: 85ch; */
-`;
-
-export const DescriptionsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-top: 128px;
-  height: 650px;
-  align-items: center;
-
-  @media (max-width: 1750px) {
-    margin-top: 0px;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    width: 80%;
-    height: 350px;
   }
 `;
 
@@ -282,16 +128,54 @@ export const InfoText = styled.p`
   }
 `;
 
-export const FrameDiv = styled.div`
-  width: 100%;
-  margin-top: -18px;
+export const TitleAndCryptoContainer = styled.div`
+  width: 650px;
+  height: 100px;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 
-  iframe {
-    width: 100%;
-    height: 55vh;
+  @media (max-width: 750px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+  }
+`;
 
-    @media (min-width: 1000px) {
-      height: 75vh;
-    }
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (max-width: 750px) {
+    margin-bottom: -12px;
+    width: 350px;
+    align-items: center;
+  }
+`;
+
+export const Title = styled.p`
+  color: ${(props) => props.theme.colors.textOffset};
+  font-size: 18px;
+`;
+
+export const SubTitle = styled.h3``;
+
+export const DescriptionsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 128px;
+  height: 650px;
+  align-items: center;
+
+  @media (max-width: 1750px) {
+    margin-top: 0px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 80%;
+    height: 350px;
   }
 `;

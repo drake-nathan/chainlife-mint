@@ -10,6 +10,21 @@
   animation: fadein 1.5s; */
 }
 
+html,
+body {
+  overflow-x: hidden;
+  background-color: #f4f5f0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1 h2 h3 h4 h5 h6 {
+  cursor: default;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
@@ -57,19 +72,4 @@
   to {
     opacity: 1;
   }
-}
-
-html,
-body {
-  overflow-x: hidden;
-  background-color: #f4f5f0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-h1 h2 h3 h4 h5 h6 {
-  cursor: default;
 }

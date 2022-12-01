@@ -5,7 +5,6 @@ import NavBar from 'components/NavBar/NavBar';
 import Instructions from 'components/Instructions/Instructions';
 import TokenIdForm from 'components/TokenForm/TokenIdForm';
 import { IoIosExpand } from 'react-icons/io';
-import * as MdIcons from 'react-icons/md';
 import * as St from '../styles/Worldview.styled';
 
 const Home: NextPage = () => {
@@ -24,8 +23,8 @@ const Home: NextPage = () => {
         <title>Chainlife</title>
         <meta name="description" content="Chainlife." />
       </Head>
-
       <NavBar />
+
       <St.WorldViewContainer>
         <St.WorldViewTitle>
           Chainlife tokens: microcosms of digital life, that are interactive, evolving,

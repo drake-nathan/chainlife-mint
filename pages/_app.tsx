@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import * as MdIcons from 'react-icons/md';
-import * as st from '../styles/App.styled';
+import { MdCopyright } from 'react-icons/md';
+import * as St from '../styles/App.styled';
 import Providers from 'contexts/Providers';
 import LogRocket from 'logrocket';
 
@@ -14,10 +14,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <Providers>
       <Component {...pageProps} />
-      <st.CopyRightDiv>
-        <MdIcons.MdCopyright /> Matto {year}
-      </st.CopyRightDiv>
-      <st.CopyRightDiv>
+      <St.CopyRightDiv>
+        <MdCopyright /> Matto {year}
+      </St.CopyRightDiv>
+      <St.CopyRightDiv>
         <em
           style={{
             fontSize: '12px',
@@ -40,7 +40,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             terms.
           </a>
         </em>
-      </st.CopyRightDiv>
+      </St.CopyRightDiv>
     </Providers>
   );
 };

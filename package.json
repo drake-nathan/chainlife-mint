@@ -12,7 +12,7 @@
     "prepare": "husky install"
   },
   "engines": {
-    "node": "^16.14.2",
+    "node": "^18",
     "npm": "^8.15.0",
     "yarn": "^1.22.15"
   },
@@ -33,7 +33,9 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.38.0",
     "react-icons": "^4.4.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-is": "^18.2.0",
+    "react-query": "^3.39.2",
     "styled-components": "^5.3.5",
     "web3": "^1.7.5",
     "web3-eth-contract": "^1.7.5",

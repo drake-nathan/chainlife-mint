@@ -16,27 +16,32 @@ const Home: NextPage = () => {
 
       <NavBar />
 
-      <St.HeroContainer>
-        <St.WorldViewInfo>Welcome to Chainlife!</St.WorldViewInfo>
+      <St.BodyContainer>
+        <St.TopSection>
+          <St.TitleRow>
+            <St.Title>Welcome to Chainlife!</St.Title>
 
-        <St.Title id="main-subtitle">
-          {
-            'Below is a randomly generated output from the chainlife algorithm. Click on it to activate it.'
-          }{' '}
-        </St.Title>
+            <Link href="/mint">
+              <St.Button>Mint Here</St.Button>
+            </Link>
+          </St.TitleRow>
 
-        <St.InstructionsContainer>
-          <St.FrameDiv>
-            <iframe
-              src="https://api.gengames.io/generaterandomchainlife"
-              title="random generator"
-              frameBorder="0"
-            ></iframe>
-          </St.FrameDiv>
-        </St.InstructionsContainer>
+          <St.SubTitle id="main-subtitle">
+            Below is a randomly generated output from the chainlife algorithm. Click on it
+            to activate it.
+          </St.SubTitle>
+        </St.TopSection>
 
-        <St.NotesContainer>
-          <St.Title>
+        <St.FrameDiv>
+          <iframe
+            src="https://api.gengames.io/generaterandomchainlife"
+            title="random generator"
+            frameBorder="0"
+          ></iframe>
+        </St.FrameDiv>
+
+        <St.NotesSection>
+          <St.SubTitle>
             Chainlife is a rich and complex on-chain project. Learn more in the{' '}
             <a
               href="https://docs.chainlife.xyz/start-here/introduction"
@@ -50,11 +55,11 @@ const Home: NextPage = () => {
               <a>world,</a>
             </Link>{' '}
             or enter a token id in the form below.
-          </St.Title>
-        </St.NotesContainer>
+          </St.SubTitle>
+        </St.NotesSection>
 
         <TokenIdForm />
-      </St.HeroContainer>
+      </St.BodyContainer>
     </St.AppContainer>
   );
 };

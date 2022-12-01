@@ -37,7 +37,7 @@ const ShiftLevelsForm: React.FC<Props> = ({ tokenId, handleError, isOwner }) => 
       if (levelShift) {
         try {
           const tx = await callShiftLevels(
-            contract.mainnet,
+            contract,
             account as string,
             tokenId,
             levelShift,

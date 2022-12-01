@@ -7,7 +7,7 @@ import { UserZenTokens } from 'types/premintTypes';
 import { publicMint, presaleMint, ISuccessInfo, filterUserTokens } from './web3Helpers';
 import ConnectModal from 'components/Modals/ConnectModal';
 import BuyModal from 'components/Modals/BuyModal/BuyModal';
-import PremintModal from 'components/Modals/PremintModal';
+import PremintModal from 'components/Modals/PremintModal/PremintModal';
 import ErrorModal from 'components/Modals/ErrorModal';
 import SuccessModal from 'components/Modals/SuccessModal';
 import * as St from '../DescriptionSections/Description.styled';
@@ -78,7 +78,7 @@ const Web3Buttons: React.FC = () => {
     if (account) {
       try {
         const successInfo = await presaleMint(
-          contract.mainnet,
+          contract,
           maxSupply,
           account,
           discountPrice,
@@ -92,7 +92,7 @@ const Web3Buttons: React.FC = () => {
           handleSuccess(successInfo);
           // refilter zen tokens to see which was used
           if (initialUserZenTokens) {
-            filterUserTokens(contract.mainnet, initialUserZenTokens)
+            filterUserTokens(contract, initialUserZenTokens)
               .then((filteredUserZenTokens) => setUserZenTokens(filteredUserZenTokens))
               .catch(console.error);
           }
@@ -108,7 +108,7 @@ const Web3Buttons: React.FC = () => {
     if (account) {
       try {
         const successInfo = await publicMint(
-          contract.mainnet,
+          contract,
           maxSupply,
           account,
           mintPrice,
@@ -154,7 +154,7 @@ const Web3Buttons: React.FC = () => {
 
   useEffect(() => {
     if (initialUserZenTokens) {
-      filterUserTokens(contract.mainnet, initialUserZenTokens)
+      filterUserTokens(contract, initialUserZenTokens)
         .then((filteredUserZenTokens) => setUserZenTokens(filteredUserZenTokens))
         .catch(console.error);
     }
@@ -196,11 +196,8 @@ const Web3Buttons: React.FC = () => {
         <ErrorModal setShowModal={setShowErrorModal} message={errorMessage} />
       )}
 
-      {showSuccessModal && (
-        <SuccessModal
-          setShowModal={setShowSuccessModal}
-          successInfo={successInfo as ISuccessInfo}
-        />
+      {showSuccessModal && successInfo && (
+        <SuccessModal setShowModal={setShowSuccessModal} successInfo={successInfo} />
       )}
     </St.ButtonContainer>
   );

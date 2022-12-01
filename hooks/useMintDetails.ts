@@ -23,7 +23,7 @@ export const useMintDetails = () => {
   const [currentSupply, setCurrentSupply] = useState<number>();
 
   useEffect(() => {
-    getMintPhase(contract.mainnet)
+    getMintPhase(contract)
       .then((mintStage) => {
         if (mintStage) {
           if (mintStage === '2') {
@@ -51,7 +51,7 @@ export const useMintDetails = () => {
 
   useEffect(() => {
     try {
-      fetchCurrentSupply(contract.mainnet).then((supply) => {
+      fetchCurrentSupply(contract).then((supply) => {
         if (supply) {
           setCurrentSupply(supply);
         }

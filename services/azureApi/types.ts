@@ -100,3 +100,24 @@ export interface IThumbnail {
   image_full: string;
   image_thumbnail: string;
 }
+
+export interface TokenAbbr {
+  token_id: number;
+  name: string;
+  project_name: string;
+  project_slug: string;
+  artist: string;
+  image: string;
+  thumbnail_url: string;
+  generator_url: string;
+  external_url: string;
+  script_inputs: IScriptInputs;
+  world_level?: number;
+}
+
+export interface CollectionResponse {
+  hasMore: boolean;
+  skip: number;
+  currentSupply: number;
+  tokens: TokenAbbr[];
+}

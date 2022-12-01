@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import NavBar from 'components/NavBar/NavBar';
 import TokenForms from 'components/TokenForm/TokenForms';
 import { AppContainer } from '../../styles/App.styled';
-import { getToken } from 'services/azureApi/fetches';
+import { fetchToken } from 'services/azureApi/fetches';
 import { useEffect, useState } from 'react';
 import OpenSea from '../../public/openSea-logo.png';
 import LooksRare from '../../public/looksrare-logo.png';
@@ -37,7 +37,7 @@ const Token: NextPage = () => {
 
   useEffect(() => {
     if (tokenId) {
-      getToken('chainlife', tokenIdNum)
+      fetchToken('chainlife', tokenIdNum)
         .then((res) => {
           if (res) {
             setToken(res);
@@ -51,7 +51,7 @@ const Token: NextPage = () => {
   useEffect(() => {
     if (tokenId) {
       try {
-        getOwner(contract.mainnet, tokenIdNum).then((res) => {
+        getOwner(contract, tokenIdNum).then((res) => {
           setOwner(res);
           if (account && active) {
             setIsOwner(equalAddresses(account, res));

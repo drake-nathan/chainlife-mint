@@ -15,24 +15,23 @@ export const AppContainer = styled.div`
   padding-bottom: 150px;
 `;
 
-export const BodyContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 60px 100px;
-  max-width: 1920px;
-  gap: 7rem;
+export const WorldViewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  gap: 3rem;
   width: 100%;
 
-  @media (max-width: 1700px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 3rem;
-    padding-bottom: 25px;
+  #wv-instructions {
+    cursor: pointer;
+  }
+
+  p {
+    cursor: pointer;
+    animation-name: ${FadeIn};
+    animation-duration: 1s;
   }
 `;
 
@@ -57,26 +56,6 @@ export const MobileIconRow = styled.div`
 
   .icon {
     font-size: 24px;
-  }
-`;
-
-export const WorldViewContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-  gap: 3rem;
-  width: 100%;
-
-  #wv-instructions {
-    cursor: pointer;
-  }
-
-  p {
-    cursor: pointer;
-    animation-name: ${FadeIn};
-    animation-duration: 1s;
   }
 `;
 
