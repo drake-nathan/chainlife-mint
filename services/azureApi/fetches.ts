@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CollectionResponse, IProject, IToken } from './types';
+import { CollectionResponse, IProject, IToken, TxCounts } from './types';
 
 const rootApiUrl = process.env.NEXT_PUBLIC_API_ROOT;
 
@@ -42,4 +42,12 @@ export const fetchCollectionTokens = async (
   const { data: tokens } = await axios.get<CollectionResponse>(url, { params });
 
   return tokens;
+};
+
+export const fetchTxCounts = async (projectSlug: string): Promise<TxCounts> => {
+  const url = `${rootApiUrl}/project/${projectSlug}/txcount`;
+
+  const { data } = await axios.get<TxCounts>(url);
+
+  return data;
 };

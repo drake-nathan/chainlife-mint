@@ -121,3 +121,11 @@ export interface CollectionResponse {
   currentSupply: number;
   tokens: TokenAbbr[];
 }
+
+export interface TxCounts {
+  total: number;
+  mints: number;
+  transfers: number;
+  customRules: number;
+  levelShifts: number;
+}
