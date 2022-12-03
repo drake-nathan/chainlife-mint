@@ -35,7 +35,9 @@ const CollectionMenu: React.FC<Props> = ({
   }, [project]);
 
   const totalOffsets = 40_000;
-  const offsetsRemaining = txCounts?.total ? totalOffsets - txCounts.total : totalOffsets;
+  const offsetsRemaining = project?.tx_count
+    ? totalOffsets - project.tx_count
+    : totalOffsets;
 
   return (
     <St.Container>
@@ -59,7 +61,7 @@ const CollectionMenu: React.FC<Props> = ({
         </St.Stat>
         <St.Stat>
           Collection Transactions:&nbsp;{' '}
-          {txCounts?.total && intlNumberFormat(txCounts?.total)}
+          {project?.tx_count && intlNumberFormat(project?.tx_count)}
         </St.Stat>
         <St.Stat>
           Carbon Offsets Remaining:&nbsp; {intlNumberFormat(offsetsRemaining)}
