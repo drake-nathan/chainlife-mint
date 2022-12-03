@@ -106,6 +106,7 @@ export const TextButton = styled.span`
 
   :hover {
     color: ${(props) => props.theme.colors.textMain};
+    font-weight: 600;
   }
 
   @media (max-width: 400px) {

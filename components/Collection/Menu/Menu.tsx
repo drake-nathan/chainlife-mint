@@ -34,6 +34,9 @@ const CollectionMenu: React.FC<Props> = ({
     }
   }, [project]);
 
+  const totalOffsets = 40_000;
+  const offsetsRemaining = txCounts?.total ? totalOffsets - txCounts.total : totalOffsets;
+
   return (
     <St.Container>
       <St.StatsDiv>
@@ -41,10 +44,6 @@ const CollectionMenu: React.FC<Props> = ({
         <St.Stat>
           {project?.current_supply && intlNumberFormat(project?.current_supply)} /{' '}
           {intlNumberFormat(4096)}&nbsp; Tokens Minted
-        </St.Stat>
-        <St.Stat>
-          Collection Transactions:&nbsp;{' '}
-          {txCounts?.total && intlNumberFormat(txCounts?.total)}
         </St.Stat>
         <St.Stat>
           Level Shifts:&nbsp;{' '}
@@ -57,6 +56,13 @@ const CollectionMenu: React.FC<Props> = ({
         <St.Stat>
           Token Transfers:&nbsp;{' '}
           {txCounts?.transfers && intlNumberFormat(txCounts?.transfers)}
+        </St.Stat>
+        <St.Stat>
+          Collection Transactions:&nbsp;{' '}
+          {txCounts?.total && intlNumberFormat(txCounts?.total)}
+        </St.Stat>
+        <St.Stat>
+          Carbon Offsets Remaining:&nbsp; {intlNumberFormat(offsetsRemaining)}
         </St.Stat>
       </St.StatsDiv>
 
