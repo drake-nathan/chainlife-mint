@@ -14,7 +14,7 @@ export const AppContainer = styled.div`
 
 export const ArtistContainer = styled.div`
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -308,5 +308,19 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "2fb1da48-3728-4f1e-9006-d7fd1f76efb5",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://api.opensea.io/api/v1/collection/texture-and-hues",
+    "url": "https://api.opensea.io/api/v1/collection/texture-and-hues",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-12-04T05:00:49.494Z",
+    "modified": "2022-12-04T05:00:49.494Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
