@@ -8,7 +8,7 @@ import { QueryFunctionContext, useInfiniteQuery } from 'react-query';
 import { Chain, CollectionResponse, IProject } from 'services/azureApi/types';
 import { fetchCollectionTokens, fetchProject } from 'services/azureApi/fetches';
 import { useChain } from 'hooks/useChain';
-import * as St from 'styles/collection.styled';
+import * as St from 'styles/tokens.styled';
 
 const Collection: NextPage = () => {
   const { chainId } = useChain();

@@ -21,7 +21,7 @@ const NavLinks: React.FC<Props> = ({
         <St.NavItem onClick={() => setShowMobileNav(false)}>MINT</St.NavItem>
       </Link>
 
-      <Link href="/collection">
+      <Link href="/tokens">
         <St.NavItem onClick={() => setShowMobileNav(false)}>TOKENS</St.NavItem>
       </Link>
 
