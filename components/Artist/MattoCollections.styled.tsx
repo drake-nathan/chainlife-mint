@@ -12,28 +12,27 @@ export const TitleBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid ${(props) => props.theme.colors.textOffset};
+  margin-bottom: 1.5em;
 `;
 
 export const Title = styled.h2`
-  font-weight: 400;
+  font-weight: 500;
 `;
 
 export const CollectionContainer = styled.div`
   width: 100%;
-  height: 300px;
+  /* height: 300px; */
   display: flex;
   align-items: center;
-  overflow: hidden;
+  overflow-x: scroll;
   background: rgba(0, 0, 0, 0.8);
-  padding: 2em;
+  padding: 2em 2em 1em 2em;
   gap: 2em;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 `;
 
 export const CollectionCard = styled.div`
-  position: relative;
-  height: 100%;
-  aspect-ratio: 1/1;
   transition-duration: 400ms;
 
   :hover {
@@ -42,19 +41,16 @@ export const CollectionCard = styled.div`
 `;
 
 export const Thumbnail = styled.img`
-  height: 100%;
+  height: 225px;
   width: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
 `;
 
 export const TitleDiv = styled.div`
-  position: absolute;
   top: 10px;
   left: 10px;
   padding: 0.25em 0.5em;
-  border-radius: 1px;
-  background-color: rgba(0, 0, 0, 0.6);
 `;
 
 export const CollectionName = styled.span`

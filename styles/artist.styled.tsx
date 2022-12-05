@@ -34,6 +34,7 @@ export const HeroSection = styled.div`
   display: flex;
   align-items: center;
   gap: 4em;
+  padding: 0 1em;
 `;
 
 export const Title = styled.h1`

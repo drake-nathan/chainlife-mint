@@ -11,12 +11,19 @@ const MattoCollections: React.FC = () => {
 
       <St.CollectionContainer>
         {collections.map((collection) => (
-          <St.CollectionCard key={collection.name}>
-            <St.Thumbnail src={collection.image} />
-            <St.TitleDiv>
-              <St.CollectionName>{collection.name}</St.CollectionName>
-            </St.TitleDiv>
-          </St.CollectionCard>
+          <a
+            href={`https://opensea.io/collection/${collection.openSeaSlug}`}
+            target="_blank"
+            rel="noreferrer"
+            key={collection.name}
+          >
+            <St.CollectionCard>
+              <St.Thumbnail src={collection.image} />
+              <St.TitleDiv>
+                <St.CollectionName>{collection.name}</St.CollectionName>
+              </St.TitleDiv>
+            </St.CollectionCard>
+          </a>
         ))}
       </St.CollectionContainer>
     </St.Container>

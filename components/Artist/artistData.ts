@@ -14,6 +14,13 @@ interface Collection {
 
 export const collections: Collection[] = [
   {
+    name: 'Chainlife',
+    image: 'https://mattoapi.blob.core.windows.net/thumbnails/chainlife-testnet_0.png',
+    maxSupply: 4_096,
+    mintable: true,
+    openSeaSlug: 'chainlife-by-matto',
+  },
+  {
     name: 'Blonks',
     image: '/collections/blonks.png',
     maxSupply: 4_444,
