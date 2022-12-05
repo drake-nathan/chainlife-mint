@@ -26,6 +26,7 @@ export interface IProject {
   description: string;
   maximum_supply: number;
   current_supply?: number;
+  tx_count?: number;
   collection_name: string;
   collection_image: string;
   collection_description: string;
@@ -120,4 +121,12 @@ export interface CollectionResponse {
   skip: number;
   currentSupply: number;
   tokens: TokenAbbr[];
+}
+
+export interface TxCounts {
+  total: number;
+  mints: number;
+  transfers: number;
+  customRules: number;
+  levelShifts: number;
 }

@@ -10,6 +10,7 @@ export const DropDownContainer = styled.div`
   right: 180px;
   gap: 0.25em;
   background-color: ${(props) => props.theme.colors.bgMain};
+  z-index: 1;
 `;
 
 export const TopButtonContainer = styled.div`

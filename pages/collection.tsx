@@ -7,8 +7,8 @@ import CollectionGrid from 'components/Collection/Grid/Grid';
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query';
 import { Chain, CollectionResponse, IProject } from 'services/azureApi/types';
 import { fetchCollectionTokens, fetchProject } from 'services/azureApi/fetches';
-import * as St from 'styles/collection.styled';
 import { useChain } from 'hooks/useChain';
+import * as St from 'styles/collection.styled';
 
 const Collection: NextPage = () => {
   const { chainId } = useChain();
