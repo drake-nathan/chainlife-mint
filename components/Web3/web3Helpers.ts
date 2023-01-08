@@ -74,7 +74,7 @@ export const presaleMint = async (
     tokenId: parseInt(tokenId),
     etherscanLink: `${urls.etherscan}/${txHash}`,
     openseaLink: `${urls.openSea}/${contractAddress}/${tokenId}`,
-    generatorUrl: `https://api.gengames.io/project/chainlife/generator/${tokenId}`,
+    generatorUrl: `https://api.substratum.art/project/chainlife/generator/${tokenId}`,
     tokenPageUrl: `https://chainlife.xyz/token/${tokenId}`,
   };
 
@@ -113,7 +113,7 @@ export const publicMint = async (
     tokenId: parseInt(tokenId),
     etherscanLink: `${urls.etherscan}/${txHash}`,
     openseaLink: `${urls.openSea}/${contractAddress}/${tokenId}`,
-    generatorUrl: `https://api.gengames.io/project/chainlife/generator/${tokenId}`,
+    generatorUrl: `https://api.substratum.art/project/chainlife/generator/${tokenId}`,
     tokenPageUrl: `https://chainlife.xyz/token/${tokenId}`,
   };
 

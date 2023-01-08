@@ -10,7 +10,7 @@ import * as St from '../styles/Worldview.styled';
 const Home: NextPage = () => {
   const [activeStep, setActiveStep] = useState(0);
 
-  const worldviewUrl = 'https://api.gengames.io/project/chainlife/world';
+  const worldviewUrl = 'https://api.substratum.art/project/chainlife/world';
 
   const handleInstructionsClick = () => {
     if (activeStep === 0) setActiveStep(1);

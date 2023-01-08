@@ -78,7 +78,7 @@ const Token: NextPage = () => {
             <St.TokenHeader>
               <St.Expand>
                 <a
-                  href={`https://api.gengames.io/project/chainlife/esoterra/${tokenId}
+                  href={`https://api.substratum.art/project/chainlife/generator/${tokenId}?esoterra=true
                   `}
                   target="blank"
                   rel="noreferrer"
@@ -88,7 +88,7 @@ const Token: NextPage = () => {
                   <Image src={EsoterraIcon} width={24} height={24} alt="esoterra" />
                 </a>
                 <a
-                  href={`https://api.gengames.io/project/chainlife/generator/${tokenId}`}
+                  href={`https://api.substratum.art/project/chainlife/generator/${tokenId}`}
                   target="blank"
                   rel="noreferrer"
                 >
@@ -98,7 +98,7 @@ const Token: NextPage = () => {
                   />
                 </a>
                 <a
-                  href={`https://api.gengames.io/project/chainlife/generator-mobile/${tokenId}`}
+                  href={`https://api.substratum.art/project/chainlife/generator/${tokenId}?mobile=true`}
                   target="blank"
                   rel="noreferrer"
                   title="View Mobile Generator"
