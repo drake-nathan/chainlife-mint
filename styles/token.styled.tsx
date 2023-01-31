@@ -16,9 +16,11 @@ export const PageContainer = styled.div`
   padding: 60px;
   padding-top: 100px;
   padding-bottom: 100px;
+
   @media (max-width: 1300px) {
     margin-top: 5.5rem;
   }
+
   @media (max-width: 750px) {
     padding: 20px;
     padding-top: 20px;
@@ -26,6 +28,7 @@ export const PageContainer = styled.div`
     width: 95vw;
     margin-top: 8.5rem;
   }
+
   @media (max-width: 600px) {
     background: none;
     box-shadow: none;

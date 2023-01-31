@@ -11,7 +11,7 @@ import OpenSea from '../../public/openSea-logo.png';
 import LooksRare from '../../public/looksrare-logo.png';
 import X2Y2 from '../../public/Logo.png';
 import Artacle from '../../public/artacle-logo.png';
-import { IToken } from 'services/azureApi/types';
+import type { IToken } from 'services/azureApi/types';
 import Traits from 'components/Traits/Traits';
 import { getOwner } from 'services/web3/contractInteractions';
 import { useWeb3React } from '@web3-react/core';
@@ -20,7 +20,8 @@ import { equalAddresses, shortenAddress } from 'services/web3/web3helpers';
 import EsoterraIcon from '../../public/eso-01.svg';
 import { TfiNewWindow } from 'react-icons/tfi';
 import { IoIosExpand } from 'react-icons/io';
-import * as MdIcons from 'react-icons/md';
+import { MdOutlineMobileFriendly } from 'react-icons/md';
+import { RiImage2Line } from 'react-icons/ri';
 import * as St from '../../styles/token.styled';
 
 const Token: NextPage = () => {
@@ -50,16 +51,14 @@ const Token: NextPage = () => {
 
   useEffect(() => {
     if (tokenId) {
-      try {
-        getOwner(contract, tokenIdNum).then((res) => {
+      getOwner(contract, tokenIdNum)
+        .then((res) => {
           setOwner(res);
           if (account && active) {
             setIsOwner(equalAddresses(account, res));
           }
-        });
-      } catch (error) {
-        console.error(error);
-      }
+        })
+        .catch(console.error);
     }
   }, [tokenId, account, active]);
 
@@ -78,16 +77,6 @@ const Token: NextPage = () => {
             <St.TokenHeader>
               <St.Expand>
                 <a
-                  href={`https://api.substratum.art/project/chainlife/generator/${tokenId}?esoterra=true
-                  `}
-                  target="blank"
-                  rel="noreferrer"
-                  title="View Esoterra In A Separate Window"
-                  className="eso"
-                >
-                  <Image src={EsoterraIcon} width={24} height={24} alt="esoterra" />
-                </a>
-                <a
                   href={`https://api.substratum.art/project/chainlife/generator/${tokenId}`}
                   target="blank"
                   rel="noreferrer"
@@ -98,12 +87,31 @@ const Token: NextPage = () => {
                   />
                 </a>
                 <a
+                  href={`https://api.substratum.art/project/chainlife/generator/${tokenId}?esoterra=true
+                  `}
+                  target="blank"
+                  rel="noreferrer"
+                  title="View Esoterra In A Separate Window"
+                  className="eso"
+                >
+                  <Image src={EsoterraIcon} width={24} height={24} alt="esoterra" />
+                </a>
+                <a
+                  href={`https://api.substratum.art/project/chainlife/generator/${tokenId}?painting=true
+                  `}
+                  target="blank"
+                  rel="noreferrer"
+                  title="View Painting In A Separate Window"
+                >
+                  <RiImage2Line className="expand" />
+                </a>
+                <a
                   href={`https://api.substratum.art/project/chainlife/generator/${tokenId}?mobile=true`}
                   target="blank"
                   rel="noreferrer"
                   title="View Mobile Generator"
                 >
-                  <MdIcons.MdOutlineMobileFriendly className="mobile" />
+                  <MdOutlineMobileFriendly className="mobile" />
                 </a>
               </St.Expand>
             </St.TokenHeader>
