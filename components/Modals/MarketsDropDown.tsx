@@ -15,14 +15,17 @@ const MarketsDropDown: React.FC<Props> = ({ setShowModal }) => {
     <St.DropDownContainer>
       <St.TopButtonContainer>
         <IoCaretUpCircleOutline className="up-arrow" onClick={handleCloseModal} />
-        <a
-          href="https://opensea.io/collection/chainlife-by-matto"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <St.Button id="opensea">OPENSEA</St.Button>
+        <a href="https://matto.xyz/" target="_blank" rel="noreferrer">
+          <St.Button id="opensea">ARTIST</St.Button>
         </a>
       </St.TopButtonContainer>
+      <a
+        href="https://opensea.io/collection/chainlife-by-matto"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <St.Button>OPENSEA</St.Button>
+      </a>
       <a
         href="https://looksrare.org/collections/0x4E171e0F14a9046e14B93221f31Acd2EC4Af8429"
         target="_blank"

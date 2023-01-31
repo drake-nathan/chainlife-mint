@@ -18,8 +18,11 @@ const MarketsModal: React.FC<Props> = ({ setShowModal }) => {
           <St.Text>Find Chainlife On</St.Text>
           <St.XButton src="/icons/x-icon-lg.svg" onClick={handleCloseModal} />
         </St.MsgDiv>
+        <a href="https://matto.xyz" target="_blank" rel="noreferrer">
+          <St.Button id="opensea">ARTIST</St.Button>
+        </a>
         <a
-          href="https://opensea.io/collection/chainlife-by-matoo"
+          href="https://opensea.io/collection/chainlife-by-matto"
           target="_blank"
           rel="noreferrer"
         >
