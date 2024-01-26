@@ -34,7 +34,7 @@ const Home: NextPage = () => {
 
         <St.FrameDiv>
           <iframe
-            src="https://api.substratum.art/generaterandomchainlife"
+            src="https://chainlife.art/"
             title="random generator"
             frameBorder="0"
           ></iframe>
