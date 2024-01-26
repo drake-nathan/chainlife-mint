@@ -1,11 +1,11 @@
 {
   "name": "chainlife-mint",
-  "version": "0.5.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "devstart": "next dev",
-    "build": "next build && rm -rf ./.next/cache",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --pretty --noEmit",
