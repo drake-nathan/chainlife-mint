@@ -1,10 +1,10 @@
-import React from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import NavBar from 'components/NavBar/NavBar';
-import MattoCollections from 'components/Artist/MattoCollections';
-import { bio } from 'components/Artist/artistData';
-import * as St from 'styles/artist.styled';
+import React from "react";
+import type { NextPage } from "next";
+import Head from "next/head";
+import NavBar from "components/NavBar/NavBar";
+import MattoCollections from "components/Artist/MattoCollections";
+import { bio } from "components/Artist/artistData";
+import * as St from "styles/artist.styled";
 
 const Collection: NextPage = () => {
   return (

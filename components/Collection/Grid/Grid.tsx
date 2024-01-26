@@ -1,9 +1,9 @@
-import React from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { InfiniteData } from 'react-query';
-import { CollectionResponse } from 'services/azureApi/types';
-import Card from '../Card/Card';
-import * as St from './Grid.styled';
+import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { InfiniteData } from "react-query";
+import { CollectionResponse } from "services/azureApi/types";
+import Card from "../Card/Card";
+import * as St from "./Grid.styled";
 
 interface Props {
   data: InfiniteData<CollectionResponse> | undefined;
@@ -33,7 +33,9 @@ const CollectionGrid: React.FC<Props> = ({
         >
           <St.Wrapper>
             {data.pages.map((page) =>
-              page.tokens.map((token) => <Card token={token} key={token.name} />),
+              page.tokens.map((token) => (
+                <Card token={token} key={token.name} />
+              )),
             )}
           </St.Wrapper>
         </InfiniteScroll>

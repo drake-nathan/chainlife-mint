@@ -1,10 +1,10 @@
-import React from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Link from 'next/link';
-import NavBar from 'components/NavBar/NavBar';
-import TokenIdForm from 'components/TokenForm/TokenIdForm';
-import * as St from '../styles/App.styled';
+import React from "react";
+import type { NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
+import NavBar from "components/NavBar/NavBar";
+import TokenIdForm from "components/TokenForm/TokenIdForm";
+import * as St from "../styles/App.styled";
 
 const Home: NextPage = () => {
   return (
@@ -27,8 +27,8 @@ const Home: NextPage = () => {
           </St.TitleRow>
 
           <St.SubTitle id="main-subtitle">
-            Below is a randomly generated output from the chainlife algorithm. Click on it
-            to activate it.
+            Below is a randomly generated output from the chainlife algorithm.
+            Click on it to activate it.
           </St.SubTitle>
         </St.TopSection>
 
@@ -42,18 +42,18 @@ const Home: NextPage = () => {
 
         <St.NotesSection>
           <St.SubTitle>
-            Chainlife is a rich and complex on-chain project. Learn more in the{' '}
+            Chainlife is a rich and complex on-chain project. Learn more in the{" "}
             <a
               href="https://docs.chainlife.xyz/start-here/introduction"
               target="blank"
               rel="noreferrer"
             >
               docs,
-            </a>{' '}
-            explore the{' '}
+            </a>{" "}
+            explore the{" "}
             <Link href="/world" target="blank" rel="noreferrer">
               <a>world,</a>
-            </Link>{' '}
+            </Link>{" "}
             or enter a token id in the form below.
           </St.SubTitle>
         </St.NotesSection>

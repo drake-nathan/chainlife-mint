@@ -1,28 +1,28 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import NavBar from 'components/NavBar/NavBar';
-import TokenForms from 'components/TokenForm/TokenForms';
-import { AppContainer } from '../../styles/App.styled';
-import { fetchToken } from 'services/azureApi/fetches';
-import { useEffect, useState } from 'react';
-import OpenSea from '../../public/openSea-logo.png';
-import LooksRare from '../../public/looksrare-logo.png';
-import X2Y2 from '../../public/Logo.png';
-import Artacle from '../../public/artacle-logo.png';
-import type { IToken } from 'services/azureApi/types';
-import Traits from 'components/Traits/Traits';
-import { getOwner } from 'services/web3/contractInteractions';
-import { useWeb3React } from '@web3-react/core';
-import { useContract } from 'hooks/useContract';
-import { equalAddresses, shortenAddress } from 'services/web3/web3helpers';
-import EsoterraIcon from '../../public/eso-01.svg';
-import { TfiNewWindow } from 'react-icons/tfi';
-import { IoIosExpand } from 'react-icons/io';
-import { MdOutlineMobileFriendly } from 'react-icons/md';
-import { RiImage2Line } from 'react-icons/ri';
-import * as St from '../../styles/token.styled';
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import NavBar from "components/NavBar/NavBar";
+import TokenForms from "components/TokenForm/TokenForms";
+import { AppContainer } from "../../styles/App.styled";
+import { fetchToken } from "services/azureApi/fetches";
+import { useEffect, useState } from "react";
+import OpenSea from "../../public/openSea-logo.png";
+import LooksRare from "../../public/looksrare-logo.png";
+import X2Y2 from "../../public/Logo.png";
+import Artacle from "../../public/artacle-logo.png";
+import type { IToken } from "services/azureApi/types";
+import Traits from "components/Traits/Traits";
+import { getOwner } from "services/web3/contractInteractions";
+import { useWeb3React } from "@web3-react/core";
+import { useContract } from "hooks/useContract";
+import { equalAddresses, shortenAddress } from "services/web3/web3helpers";
+import EsoterraIcon from "../../public/eso-01.svg";
+import { TfiNewWindow } from "react-icons/tfi";
+import { IoIosExpand } from "react-icons/io";
+import { MdOutlineMobileFriendly } from "react-icons/md";
+import { RiImage2Line } from "react-icons/ri";
+import * as St from "../../styles/token.styled";
 
 const Token: NextPage = () => {
   const router = useRouter();
@@ -38,7 +38,7 @@ const Token: NextPage = () => {
 
   useEffect(() => {
     if (tokenId) {
-      fetchToken('chainlife', tokenIdNum)
+      fetchToken("chainlife", tokenIdNum)
         .then((res) => {
           if (res) {
             setToken(res);
@@ -94,7 +94,12 @@ const Token: NextPage = () => {
                   title="View Esoterra In A Separate Window"
                   className="eso"
                 >
-                  <Image src={EsoterraIcon} width={24} height={24} alt="esoterra" />
+                  <Image
+                    src={EsoterraIcon}
+                    width={24}
+                    height={24}
+                    alt="esoterra"
+                  />
                 </a>
                 <a
                   href={`https://api.substratum.art/project/chainlife/generator/${tokenId}?painting=true
@@ -118,7 +123,11 @@ const Token: NextPage = () => {
           </St.HeaderContainer>
 
           <St.FrameContainer>
-            <iframe src={generatorUrl} title="generator" frameBorder="0"></iframe>
+            <iframe
+              src={generatorUrl}
+              title="generator"
+              frameBorder="0"
+            ></iframe>
           </St.FrameContainer>
 
           <St.FooterContainer>
@@ -126,9 +135,11 @@ const Token: NextPage = () => {
               <St.TokenTitle>Chainlife #{tokenId}</St.TokenTitle>
               {owner && (
                 <>
-                  <St.SubtleTitle>Owner: {shortenAddress(owner)}</St.SubtleTitle>
                   <St.SubtleTitle>
-                    {' '}
+                    Owner: {shortenAddress(owner)}
+                  </St.SubtleTitle>
+                  <St.SubtleTitle>
+                    {" "}
                     <a
                       href={`https://etherscan.io/address/${owner}`}
                       target="blank"
@@ -148,7 +159,7 @@ const Token: NextPage = () => {
                 rel="noreferrer"
                 title="Artacle"
                 style={{
-                  color: '#3a3a3a',
+                  color: "#3a3a3a",
                 }}
               >
                 <Image src={Artacle} width={28} height={28} alt="Artacle" />
@@ -159,7 +170,7 @@ const Token: NextPage = () => {
                 rel="noreferrer"
                 title="X2Y@"
                 style={{
-                  color: '#3a3a3a',
+                  color: "#3a3a3a",
                 }}
               >
                 <Image src={X2Y2} width={28} height={28} alt="X2Y2" />
@@ -170,7 +181,7 @@ const Token: NextPage = () => {
                 rel="noreferrer"
                 title="LOOKSRARE"
                 style={{
-                  color: '#3a3a3a',
+                  color: "#3a3a3a",
                 }}
               >
                 <Image src={LooksRare} width={28} height={28} alt="LooksRare" />
@@ -181,7 +192,7 @@ const Token: NextPage = () => {
                 rel="noreferrer"
                 title="openSea"
                 style={{
-                  color: '#3a3a3a',
+                  color: "#3a3a3a",
                 }}
               >
                 <Image src={OpenSea} width={28} height={28} alt="openSea" />

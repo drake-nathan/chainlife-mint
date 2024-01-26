@@ -1,6 +1,6 @@
-import React from 'react';
-import { IoCaretUpCircleOutline } from 'react-icons/io5';
-import * as St from './MarketsDropDown.styled';
+import React from "react";
+import { IoCaretUpCircleOutline } from "react-icons/io5";
+import * as St from "./MarketsDropDown.styled";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,7 +14,10 @@ const MarketsDropDown: React.FC<Props> = ({ setShowModal }) => {
   return (
     <St.DropDownContainer>
       <St.TopButtonContainer>
-        <IoCaretUpCircleOutline className="up-arrow" onClick={handleCloseModal} />
+        <IoCaretUpCircleOutline
+          className="up-arrow"
+          onClick={handleCloseModal}
+        />
         <a href="https://matto.xyz/" target="_blank" rel="noreferrer">
           <St.Button id="opensea">ARTIST</St.Button>
         </a>
@@ -40,7 +43,11 @@ const MarketsDropDown: React.FC<Props> = ({ setShowModal }) => {
       >
         <St.Button>X2Y2</St.Button>
       </a>
-      <a href="https://artacle.io/project/chainlife" target="_blank" rel="noreferrer">
+      <a
+        href="https://artacle.io/project/chainlife"
+        target="_blank"
+        rel="noreferrer"
+      >
         <St.Button id="coinbase">ARTACLE</St.Button>
       </a>
       <a

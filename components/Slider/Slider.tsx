@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import SliderItem from './SliderItem';
-import * as IoIcons from 'react-icons/io5';
-import * as St from './Slider.styled';
-import { numberOfSlides } from './sliderHelpers';
+import React, { useState, useEffect, useRef } from "react";
+import SliderItem from "./SliderItem";
+import * as IoIcons from "react-icons/io5";
+import * as St from "./Slider.styled";
+import { numberOfSlides } from "./sliderHelpers";
 
 interface Props {
   children?: any;
@@ -48,9 +48,9 @@ const Slider: React.FC<Props> = ({ children }) => {
   // Have to disable hover effect on slides when flipping page
   // Otherwise it will look ugly when mouse hovers over the slides
   const disableHoverEffect = () => {
-    if (sliderRef.current) sliderRef.current.style.pointerEvents = 'none';
+    if (sliderRef.current) sliderRef.current.style.pointerEvents = "none";
     setTimeout(() => {
-      if (sliderRef.current) sliderRef.current.style.pointerEvents = 'all';
+      if (sliderRef.current) sliderRef.current.style.pointerEvents = "all";
     }, pageTransition);
   };
 
@@ -65,7 +65,7 @@ const Slider: React.FC<Props> = ({ children }) => {
   };
 
   const handleMouseOver = (id: number) => {
-    if (id % visibleSlides === 1) setTransformValue('0%'); // left
+    if (id % visibleSlides === 1) setTransformValue("0%"); // left
     if (id % visibleSlides === 0) setTransformValue(`0%`); // right
   };
 
@@ -74,8 +74,8 @@ const Slider: React.FC<Props> = ({ children }) => {
   };
 
   const assignSlideClass = (index: number, visibleSlides: number) => {
-    const classes = ['right', 'left'];
-    return classes[index % visibleSlides] || '';
+    const classes = ["right", "left"];
+    return classes[index % visibleSlides] || "";
   };
 
   return (
@@ -87,7 +87,7 @@ const Slider: React.FC<Props> = ({ children }) => {
       <div className="button-wrapper back">
         <button
           disabled={currentPage < 1 ? true : false}
-          className={currentPage < 1 ? 'button back disabled' : 'button back'}
+          className={currentPage < 1 ? "button back disabled" : "button back"}
           onClick={() => handleSlideMove(false)}
         >
           <IoIcons.IoCaretUpCircleOutline />
@@ -121,7 +121,9 @@ const Slider: React.FC<Props> = ({ children }) => {
       <div className="button-wrapper forward">
         <button
           className={
-            currentPage === totalPages ? 'button forward disabled' : 'button forward'
+            currentPage === totalPages
+              ? "button forward disabled"
+              : "button forward"
           }
           onClick={() => handleSlideMove(true)}
         >

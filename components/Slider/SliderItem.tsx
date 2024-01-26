@@ -1,5 +1,5 @@
-import React from 'react';
-import * as St from './SliderItem.styled';
+import React from "react";
+import * as St from "./SliderItem.styled";
 
 interface Props {
   slideClass: string;

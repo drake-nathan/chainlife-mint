@@ -1,5 +1,5 @@
-import React from 'react';
-import { Contract } from 'web3-eth-contract';
+import React from "react";
+import { Contract } from "web3-eth-contract";
 import {
   getMintPhase,
   checkIfPresaleActive,
@@ -9,8 +9,8 @@ import {
   callPublicMintTo,
   checkIfEnsoUsed,
   checkIfFocusUsed,
-} from 'services/web3/contractInteractions';
-import { UserZenTokens } from 'types/premintTypes';
+} from "services/web3/contractInteractions";
+import { UserZenTokens } from "types/premintTypes";
 
 // mainnet
 const urls = {
@@ -43,14 +43,15 @@ export const presaleMint = async (
   setBuyButtonText: React.Dispatch<React.SetStateAction<string>>,
 ) => {
   const isPresaleActive = await checkIfPresaleActive(contract);
-  if (!isPresaleActive) return handleError('MINT IS NOT ACTIVE');
+  if (!isPresaleActive) return handleError("MINT IS NOT ACTIVE");
 
-  const checkIfZenTokenUsed = projectNumber === 34 ? checkIfEnsoUsed : checkIfFocusUsed;
+  const checkIfZenTokenUsed =
+    projectNumber === 34 ? checkIfEnsoUsed : checkIfFocusUsed;
   const isZenTokenUsed = await checkIfZenTokenUsed(contract, tokenNumber);
-  if (isZenTokenUsed) return handleError('ZEN TOKEN ALREADY USED');
+  if (isZenTokenUsed) return handleError("ZEN TOKEN ALREADY USED");
 
   const isSupplyRemaining = await checkIfSupply(contract, maxSupply);
-  if (!isSupplyRemaining) return handleError('MINT HAS SOLD OUT');
+  if (!isSupplyRemaining) return handleError("MINT HAS SOLD OUT");
 
   const txObj = await callPremint(
     contract,
@@ -59,16 +60,16 @@ export const presaleMint = async (
     projectNumber,
     tokenNumber,
   );
-  if (!txObj) return handleError('MINT FAILED');
-  console.info('txObj', txObj);
+  if (!txObj) return handleError("MINT FAILED");
+  console.info("txObj", txObj);
 
   const txHash = txObj.transactionHash;
-  if (!txHash) return handleError('MINT FAILED');
+  if (!txHash) return handleError("MINT FAILED");
 
   const tokenId = txObj?.events?.Transfer?.returnValues?.tokenId as string;
   const contractAddress = txObj?.events?.Transfer?.address as string;
 
-  setBuyButtonText('MINTED');
+  setBuyButtonText("MINTED");
 
   const successInfo: ISuccessInfo = {
     tokenId: parseInt(tokenId),
@@ -91,21 +92,21 @@ export const publicMint = async (
   setBuyButtonText: React.Dispatch<React.SetStateAction<string>>,
 ) => {
   const mintPhase = await getMintPhase(contract);
-  if (mintPhase === '0' || mintPhase === '1')
-    return handleError('PUBLIC MINT IS NOT ACTIVE');
+  if (mintPhase === "0" || mintPhase === "1")
+    return handleError("PUBLIC MINT IS NOT ACTIVE");
 
   const isSupplyRemaining = await checkIfSupply(contract, maxSupply);
-  if (!isSupplyRemaining) return handleError('MINT HAS SOLD OUT');
+  if (!isSupplyRemaining) return handleError("MINT HAS SOLD OUT");
 
   const txObj = !toAddress
     ? await callPublicMint(contract, account, payableAmount)
     : await callPublicMintTo(contract, account, payableAmount, toAddress);
-  if (!txObj) return handleError('MINT FAILED');
+  if (!txObj) return handleError("MINT FAILED");
 
   const txHash = txObj.transactionHash;
-  if (!txHash) return handleError('MINT FAILED');
+  if (!txHash) return handleError("MINT FAILED");
 
-  setBuyButtonText('MINTED');
+  setBuyButtonText("MINTED");
   const tokenId = txObj?.events?.Transfer?.returnValues?.tokenId as string;
   const contractAddress = txObj?.events?.Transfer?.address as string;
 
@@ -122,7 +123,7 @@ export const publicMint = async (
 
 export const switchChain = async (chainId: string) => {
   await window.ethereum?.request({
-    method: 'wallet_switchEthereumChain',
+    method: "wallet_switchEthereumChain",
     params: [{ chainId }],
   });
 };

@@ -1,6 +1,6 @@
-import React from 'react';
-import { IToken } from 'services/azureApi/types';
-import * as St from './Traits.styled';
+import React from "react";
+import { IToken } from "services/azureApi/types";
+import * as St from "./Traits.styled";
 
 interface Props {
   token: IToken;

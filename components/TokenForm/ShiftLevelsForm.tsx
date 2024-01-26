@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useWeb3React } from '@web3-react/core';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { useContract } from 'hooks/useContract';
-import { callShiftLevels } from 'services/web3/contractInteractions';
-import { useMintDetails } from 'hooks/useMintDetails';
-import * as St from './TokenForms.styled';
+import React, { useEffect, useState } from "react";
+import { useWeb3React } from "@web3-react/core";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useContract } from "hooks/useContract";
+import { callShiftLevels } from "services/web3/contractInteractions";
+import { useMintDetails } from "hooks/useMintDetails";
+import * as St from "./TokenForms.styled";
 
 type IShiftLevels = { levelShift: number };
 
@@ -14,13 +14,17 @@ interface Props {
   handleError: (error: string) => void;
 }
 
-const ShiftLevelsForm: React.FC<Props> = ({ tokenId, handleError, isOwner }) => {
+const ShiftLevelsForm: React.FC<Props> = ({
+  tokenId,
+  handleError,
+  isOwner,
+}) => {
   const { active, account } = useWeb3React();
   const { contract } = useContract();
   const { shiftFee } = useMintDetails();
 
   const [levelShift, setLevelShift] = useState<number>(0);
-  const [errorText, setErrorText] = useState('');
+  const [errorText, setErrorText] = useState("");
 
   const {
     register,
@@ -30,9 +34,9 @@ const ShiftLevelsForm: React.FC<Props> = ({ tokenId, handleError, isOwner }) => 
 
   const onSubmit: SubmitHandler<IShiftLevels> = async () => {
     if (!active) {
-      handleError('Must be connected to wallet');
+      handleError("Must be connected to wallet");
     } else if (!isOwner) {
-      handleError('Must be owner of token.');
+      handleError("Must be owner of token.");
     } else {
       if (levelShift) {
         try {
@@ -53,7 +57,7 @@ const ShiftLevelsForm: React.FC<Props> = ({ tokenId, handleError, isOwner }) => 
   useEffect(() => {
     if (errors.levelShift && errors.levelShift.message) {
       setErrorText(errors.levelShift.message);
-      setTimeout(() => setErrorText(''), 3000);
+      setTimeout(() => setErrorText(""), 3000);
     }
   }, [errors.levelShift]);
 
@@ -62,13 +66,13 @@ const ShiftLevelsForm: React.FC<Props> = ({ tokenId, handleError, isOwner }) => 
       <St.Form id="level-shift-form" onSubmit={handleSubmit(onSubmit)}>
         <St.Input
           type="number"
-          {...register('levelShift', {
+          {...register("levelShift", {
             valueAsNumber: true,
-            required: { value: true, message: 'This field is required.' },
+            required: { value: true, message: "This field is required." },
           })}
           id="level-shift"
           placeholder="Submit a Level Shift"
-          value={levelShift || ''}
+          value={levelShift || ""}
           onChange={(e) => setLevelShift(parseInt(e.target.value))}
         />
         <St.Button type="submit">Submit</St.Button>

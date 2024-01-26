@@ -1,4 +1,7 @@
-export const numberOfSlides = (maxVisibleSlides: number, windowWidth: number) => {
+export const numberOfSlides = (
+  maxVisibleSlides: number,
+  windowWidth: number,
+) => {
   if (windowWidth > 1800) return 3;
   if (windowWidth > 1500) return maxVisibleSlides;
   if (windowWidth > 1100) return 3;

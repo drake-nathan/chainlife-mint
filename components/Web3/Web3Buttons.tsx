@@ -1,23 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { useWeb3React } from '@web3-react/core';
-import { useMintDetails } from 'hooks/useMintDetails';
-import { useContract } from 'hooks/useContract';
-import { usePreMintOwners } from 'hooks/usePreMintOwners';
-import { UserZenTokens } from 'types/premintTypes';
-import { publicMint, presaleMint, ISuccessInfo, filterUserTokens } from './web3Helpers';
-import ConnectModal from 'components/Modals/ConnectModal';
-import BuyModal from 'components/Modals/BuyModal/BuyModal';
-import PremintModal from 'components/Modals/PremintModal/PremintModal';
-import ErrorModal from 'components/Modals/ErrorModal';
-import SuccessModal from 'components/Modals/SuccessModal';
-import * as St from '../DescriptionSections/Description.styled';
+import React, { useEffect, useState } from "react";
+import { useWeb3React } from "@web3-react/core";
+import { useMintDetails } from "hooks/useMintDetails";
+import { useContract } from "hooks/useContract";
+import { usePreMintOwners } from "hooks/usePreMintOwners";
+import { UserZenTokens } from "types/premintTypes";
+import {
+  publicMint,
+  presaleMint,
+  ISuccessInfo,
+  filterUserTokens,
+} from "./web3Helpers";
+import ConnectModal from "components/Modals/ConnectModal";
+import BuyModal from "components/Modals/BuyModal/BuyModal";
+import PremintModal from "components/Modals/PremintModal/PremintModal";
+import ErrorModal from "components/Modals/ErrorModal";
+import SuccessModal from "components/Modals/SuccessModal";
+import * as St from "../DescriptionSections/Description.styled";
 
 const Web3Buttons: React.FC = () => {
   const { active, account } = useWeb3React();
-  const { isPreMint, mintPrice, discountPrice, maxSupply, isMintLive } = useMintDetails();
+  const { isPreMint, mintPrice, discountPrice, maxSupply, isMintLive } =
+    useMintDetails();
   const { contract } = useContract();
 
-  const { userZenTokens: initialUserZenTokens, error: preMintError } = usePreMintOwners();
+  const { userZenTokens: initialUserZenTokens, error: preMintError } =
+    usePreMintOwners();
   const [userZenTokens, setUserZenTokens] = useState<UserZenTokens>();
 
   const [showConnectModal, setShowConnectModal] = useState(false);
@@ -25,13 +32,13 @@ const Web3Buttons: React.FC = () => {
   const [showPremintModal, setShowPremintModal] = useState(false);
 
   const [showErrorModal, setShowErrorModal] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [successInfo, setSuccessInfo] = useState<ISuccessInfo>();
 
-  const [cryptoButtonText, setCryptoButtonText] = useState('CONNECT WALLET');
-  const [buyButtonText, setBuyButtonText] = useState('MINT');
+  const [cryptoButtonText, setCryptoButtonText] = useState("CONNECT WALLET");
+  const [buyButtonText, setBuyButtonText] = useState("MINT");
   const [mintButton, setMintButton] = useState(false);
 
   const handleError = (error: string) => {
@@ -46,7 +53,7 @@ const Web3Buttons: React.FC = () => {
     } else if (preMintError) {
       // if error fetching pre-mint owners, show error
       console.error(preMintError);
-      handleError('ERROR GETTING ZEN TOKENS');
+      handleError("ERROR GETTING ZEN TOKENS");
     } else if (isPreMint && userZenTokens) {
       const { enso, focus } = userZenTokens;
       if (enso.length || focus.length) {
@@ -62,10 +69,10 @@ const Web3Buttons: React.FC = () => {
       setShowBuyModal(true);
     } else if (isPreMint) {
       handleError(
-        'SOMETHING WENT WRONG. PLEASE CHECK THAT CONNECTED WALLET HAS ENSO OR FOCUS TOKENS.',
+        "SOMETHING WENT WRONG. PLEASE CHECK THAT CONNECTED WALLET HAS ENSO OR FOCUS TOKENS.",
       );
     } else {
-      handleError('SOMETHING WENT WRONG.');
+      handleError("SOMETHING WENT WRONG.");
     }
   };
 
@@ -93,13 +100,15 @@ const Web3Buttons: React.FC = () => {
           // refilter zen tokens to see which was used
           if (initialUserZenTokens) {
             filterUserTokens(contract, initialUserZenTokens)
-              .then((filteredUserZenTokens) => setUserZenTokens(filteredUserZenTokens))
+              .then((filteredUserZenTokens) =>
+                setUserZenTokens(filteredUserZenTokens),
+              )
               .catch(console.error);
           }
         }
       } catch (err) {
         console.error(err);
-        handleError('Error minting token');
+        handleError("Error minting token");
       }
     }
   };
@@ -112,7 +121,7 @@ const Web3Buttons: React.FC = () => {
           maxSupply,
           account,
           mintPrice,
-          toAddress || '',
+          toAddress || "",
           handleError,
           setBuyButtonText,
         );
@@ -123,7 +132,7 @@ const Web3Buttons: React.FC = () => {
         }
       } catch (err) {
         console.error(err);
-        handleError('Error minting token');
+        handleError("Error minting token");
       }
     }
   };
@@ -138,7 +147,7 @@ const Web3Buttons: React.FC = () => {
 
   useEffect(() => {
     if (active) {
-      setCryptoButtonText('MINT');
+      setCryptoButtonText("MINT");
       setMintButton(true);
       setTimeout(() => {
         setShowConnectModal(false);
@@ -147,7 +156,7 @@ const Web3Buttons: React.FC = () => {
 
     if (!active) {
       setMintButton(false);
-      setCryptoButtonText('CONNECT');
+      setCryptoButtonText("CONNECT");
       closeAllModals();
     }
   }, [active]);
@@ -155,7 +164,9 @@ const Web3Buttons: React.FC = () => {
   useEffect(() => {
     if (initialUserZenTokens) {
       filterUserTokens(contract, initialUserZenTokens)
-        .then((filteredUserZenTokens) => setUserZenTokens(filteredUserZenTokens))
+        .then((filteredUserZenTokens) =>
+          setUserZenTokens(filteredUserZenTokens),
+        )
         .catch(console.error);
     }
   }, [initialUserZenTokens]);
@@ -163,10 +174,12 @@ const Web3Buttons: React.FC = () => {
   return (
     <St.ButtonContainer>
       <St.Button
-        className={!isMintLive && mintButton ? 'disabled' : ''}
+        className={!isMintLive && mintButton ? "disabled" : ""}
         disabled={!isMintLive && mintButton ? true : false}
         onClick={handleMintClick}
-        title={!isMintLive && mintButton ? 'Mint is not currently active' : 'Mint'}
+        title={
+          !isMintLive && mintButton ? "Mint is not currently active" : "Mint"
+        }
       >
         {cryptoButtonText}
       </St.Button>
@@ -197,7 +210,10 @@ const Web3Buttons: React.FC = () => {
       )}
 
       {showSuccessModal && successInfo && (
-        <SuccessModal setShowModal={setShowSuccessModal} successInfo={successInfo} />
+        <SuccessModal
+          setShowModal={setShowSuccessModal}
+          successInfo={successInfo}
+        />
       )}
     </St.ButtonContainer>
   );

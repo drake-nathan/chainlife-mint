@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { SliderItemDiv } from './SliderItem.styled';
+import styled from "styled-components";
+import { SliderItemDiv } from "./SliderItem.styled";
 
 type SliderWrapperProps = {
   zoomFactor: number;
@@ -28,7 +28,7 @@ export const SliderWrapper = styled.div<SliderWrapperProps>`
   // margin-top: 2rem;
   width: 225px;
   // height: 906px;
-  padding: ${(props) => (props.zoomFactor / props.visibleSlides) * 0.7 + '%'} 0;
+  padding: ${(props) => (props.zoomFactor / props.visibleSlides) * 0.7 + "%"} 0;
   // margin-bottom: 2em;
 
   .button-wrapper {

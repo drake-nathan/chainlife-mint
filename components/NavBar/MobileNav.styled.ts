@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 type IsOpen = { isOpen: boolean };
 
@@ -20,7 +20,8 @@ export const Container = styled.div<IsOpen>`
   background-color: ${({ theme }) => theme.colors.bgMain};
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
-  transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(+100vw)')};
+  transform: ${({ isOpen }) =>
+    isOpen ? "translateX(0)" : "translateX(+100vw)"};
   transition-duration: 400ms;
   transition-delay: 250ms;
 

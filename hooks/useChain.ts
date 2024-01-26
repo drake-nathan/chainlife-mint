@@ -1,4 +1,4 @@
-import { Chain } from 'services/azureApi/types';
+import { Chain } from "services/azureApi/types";
 
 export const useChain = () => {
   const chainId = Chain.mainnet;

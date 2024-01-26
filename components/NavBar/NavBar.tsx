@@ -1,20 +1,20 @@
-import React, { useState, useContext } from 'react';
-import { ThemeContext } from 'styled-components';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Squash as Hamburger } from 'hamburger-react';
-import { useWeb3React } from '@web3-react/core';
-import { useWindowSize } from 'hooks/useWindowSize';
-import { useEagerConnect } from 'hooks/useEagerConnect';
-import ConnectDropDown from 'components/Modals/ConnectDropDown/ConnectDropDown';
-import ConnectModal from 'components/Modals/ConnectModal';
-import MarketsDropDown from 'components/Modals/MarketsDropDown';
-import SocialIcons from './SocialIcons/SocialIcons';
-import MarketsModal from 'components/Modals/MarketsModal';
-import NavLinks from './NavLinks/NavLinks';
-import DisconnectModal from 'components/Modals/DisconnectModal';
-import MobileNav from './MobileNav';
-import * as St from './NavBar.styled';
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "styled-components";
+import Image from "next/image";
+import Link from "next/link";
+import { Squash as Hamburger } from "hamburger-react";
+import { useWeb3React } from "@web3-react/core";
+import { useWindowSize } from "hooks/useWindowSize";
+import { useEagerConnect } from "hooks/useEagerConnect";
+import ConnectDropDown from "components/Modals/ConnectDropDown/ConnectDropDown";
+import ConnectModal from "components/Modals/ConnectModal";
+import MarketsDropDown from "components/Modals/MarketsDropDown";
+import SocialIcons from "./SocialIcons/SocialIcons";
+import MarketsModal from "components/Modals/MarketsModal";
+import NavLinks from "./NavLinks/NavLinks";
+import DisconnectModal from "components/Modals/DisconnectModal";
+import MobileNav from "./MobileNav";
+import * as St from "./NavBar.styled";
 
 const NavBar: React.FC = () => {
   useEagerConnect();
@@ -58,7 +58,7 @@ const NavBar: React.FC = () => {
     <St.NavContainer>
       <St.LogoDiv>
         <Image
-          src={'/chainlife/chainlife.png'}
+          src={"/chainlife/chainlife.png"}
           height={50}
           width={50}
           alt="ChainLife logo"
@@ -83,7 +83,11 @@ const NavBar: React.FC = () => {
         </St.SocialsAndLinks>
       ) : (
         <>
-          <Hamburger color="#3A3A3A" toggle={setShowMobileNav} toggled={showMobileNav} />
+          <Hamburger
+            color="#3A3A3A"
+            toggle={setShowMobileNav}
+            toggled={showMobileNav}
+          />
 
           <MobileNav
             isOpen={showMobileNav}
@@ -96,7 +100,9 @@ const NavBar: React.FC = () => {
 
       {showConnectModal ? renderDropDown() : renderMarketsDropDown()}
 
-      {showDisconnectModal && <DisconnectModal setShowModal={setShowDisconnectModal} />}
+      {showDisconnectModal && (
+        <DisconnectModal setShowModal={setShowDisconnectModal} />
+      )}
     </St.NavContainer>
   );
 };

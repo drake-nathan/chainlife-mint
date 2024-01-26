@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useMintDetails } from 'hooks/useMintDetails';
-import { isAddress } from 'web3-utils';
-import * as St from './BuyModal.styled';
+import React, { useState } from "react";
+import { useMintDetails } from "hooks/useMintDetails";
+import { isAddress } from "web3-utils";
+import * as St from "./BuyModal.styled";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,7 +18,7 @@ const BuyModal: React.FC<Props> = ({
 }) => {
   const { mintPrice } = useMintDetails();
 
-  const [toAddress, setToAddress] = useState('');
+  const [toAddress, setToAddress] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleCloseModal = () => setShowModal(false);
@@ -35,7 +35,7 @@ const BuyModal: React.FC<Props> = ({
   const handleDropdownClick = () => {
     if (isDropdownOpen) {
       setIsDropdownOpen(false);
-      setToAddress('');
+      setToAddress("");
     } else {
       setIsDropdownOpen(true);
     }

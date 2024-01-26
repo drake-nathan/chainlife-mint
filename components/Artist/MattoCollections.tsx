@@ -1,6 +1,6 @@
-import React from 'react';
-import { collections } from './artistData';
-import * as St from './MattoCollections.styled';
+import React from "react";
+import { collections } from "./artistData";
+import * as St from "./MattoCollections.styled";
 
 const MattoCollections: React.FC = () => {
   return (

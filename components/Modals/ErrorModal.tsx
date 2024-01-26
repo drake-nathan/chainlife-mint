@@ -1,5 +1,5 @@
-import React from 'react';
-import * as St from './Modals.styled';
+import React from "react";
+import * as St from "./Modals.styled";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;

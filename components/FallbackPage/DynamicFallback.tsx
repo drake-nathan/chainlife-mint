@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const DynamicFallback = dynamic(() => import('./FallbackPage'), {
+const DynamicFallback = dynamic(() => import("./FallbackPage"), {
   ssr: false,
 });
 

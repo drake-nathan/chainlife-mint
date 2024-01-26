@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_PREMINT_OWNERS } from 'services/apollo/queries';
-import { ArtBlocks, PreMintOwners, UserZenTokens } from 'types/premintTypes';
-import { parseArtBlocks } from 'utils/parseArtBlocks';
-import { useWeb3React } from '@web3-react/core';
+import { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
+import { GET_PREMINT_OWNERS } from "services/apollo/queries";
+import { ArtBlocks, PreMintOwners, UserZenTokens } from "types/premintTypes";
+import { parseArtBlocks } from "utils/parseArtBlocks";
+import { useWeb3React } from "@web3-react/core";
 
 export const usePreMintOwners = () => {
   const { active, account } = useWeb3React();

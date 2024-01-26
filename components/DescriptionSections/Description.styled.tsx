@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Main } from 'styles/Library/Button.styled';
+import styled from "styled-components";
+import { Main } from "styles/Library/Button.styled";
 
 export const HeroContainer = styled.div`
   display: flex;
@@ -59,25 +59,25 @@ export const SubtleDiv = styled.div`
 
   .one {
     &:after {
-      background-image: url('/prayer_emoji_icon.png');
+      background-image: url("/prayer_emoji_icon.png");
       background-size: 25px 25px;
       display: inline-block;
       width: 25px;
       height: 25px;
       margin-left: 8px;
-      content: '';
+      content: "";
     }
   }
 
   .two {
     &:after {
-      background-image: url('/brain_emoji_icon.png');
+      background-image: url("/brain_emoji_icon.png");
       background-size: 25px 25px;
       display: inline-block;
       width: 25px;
       height: 25px;
       margin-left: 8px;
-      content: '';
+      content: "";
     }
   }
 `;

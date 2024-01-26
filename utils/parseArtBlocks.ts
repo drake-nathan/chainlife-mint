@@ -1,4 +1,4 @@
-import { ArtBlocks, PreMintOwners } from 'types/premintTypes';
+import { ArtBlocks, PreMintOwners } from "types/premintTypes";
 
 export const parseArtBlocks = (data: ArtBlocks): PreMintOwners => {
   const { enso, focus } = data;

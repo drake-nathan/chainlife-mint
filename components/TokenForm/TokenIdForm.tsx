@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import * as St from './IdForm.Styled';
-import { useMintDetails } from 'hooks/useMintDetails';
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useForm, SubmitHandler } from "react-hook-form";
+import * as St from "./IdForm.Styled";
+import { useMintDetails } from "hooks/useMintDetails";
 
 type IToken = { tokenId: number };
 
@@ -11,7 +11,7 @@ const TokenIdForm = () => {
   const { currentSupply } = useMintDetails();
 
   const [tokenId, settokenId] = useState<number>(0);
-  const [errorText, setErrorText] = useState('');
+  const [errorText, setErrorText] = useState("");
 
   const {
     register,
@@ -26,7 +26,7 @@ const TokenIdForm = () => {
   useEffect(() => {
     if (errors.tokenId && errors.tokenId.message) {
       setErrorText(errors.tokenId.message);
-      setTimeout(() => setErrorText(''), 3000);
+      setTimeout(() => setErrorText(""), 3000);
     }
   }, [errors.tokenId]);
 
@@ -48,11 +48,11 @@ const TokenIdForm = () => {
           <St.InputContainer>
             <St.Input
               type="number"
-              {...register('tokenId', {
+              {...register("tokenId", {
                 valueAsNumber: true,
                 max: {
                   value: currentSupply ? currentSupply - 1 : 4096,
-                  message: 'Must be less than current supply.',
+                  message: "Must be less than current supply.",
                 },
               })}
               id="enter-id"

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { SectionTitleContainer } from 'components/DescriptionSections/Description.styled';
-import { Title } from '../TokenForm/TokenForms.styled';
+import styled from "styled-components";
+import { SectionTitleContainer } from "components/DescriptionSections/Description.styled";
+import { Title } from "../TokenForm/TokenForms.styled";
 
 export const Container = styled.div`
   display: flex;

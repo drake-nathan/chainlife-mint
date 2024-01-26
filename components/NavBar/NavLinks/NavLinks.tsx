@@ -1,6 +1,6 @@
-import React from 'react';
-import Link from 'next/link';
-import * as St from './NavLinks.styled';
+import React from "react";
+import Link from "next/link";
+import * as St from "./NavLinks.styled";
 
 interface Props {
   handleMarketsClick: () => void;
@@ -48,7 +48,7 @@ const NavLinks: React.FC<Props> = ({
           handleConnectClick();
         }}
       >
-        {!active ? 'CONNECT' : 'CONNECTED'}
+        {!active ? "CONNECT" : "CONNECTED"}
       </St.NavItem>
     </St.NavLinksDiv>
   );

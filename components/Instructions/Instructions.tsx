@@ -1,6 +1,6 @@
-import React from 'react';
-import { instructions } from './steps';
-import * as St from './Instructions.styled';
+import React from "react";
+import { instructions } from "./steps";
+import * as St from "./Instructions.styled";
 
 interface Props {
   activeStep: number;

@@ -1,8 +1,8 @@
-import React from 'react';
-import { useWeb3React } from '@web3-react/core';
-import * as St from './MobileNav.styled';
-import NavLinks from './NavLinks/NavLinks';
-import SocialIcons from './SocialIcons/SocialIcons';
+import React from "react";
+import { useWeb3React } from "@web3-react/core";
+import * as St from "./MobileNav.styled";
+import NavLinks from "./NavLinks/NavLinks";
+import SocialIcons from "./SocialIcons/SocialIcons";
 
 interface Props {
   isOpen: boolean;

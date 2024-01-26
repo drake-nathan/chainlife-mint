@@ -1,6 +1,6 @@
-import React from 'react';
-import { useWeb3React } from '@web3-react/core';
-import * as St from './Modals.styled';
+import React from "react";
+import { useWeb3React } from "@web3-react/core";
+import * as St from "./Modals.styled";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,7 +28,9 @@ const DisconnectModal: React.FC<Props> = ({ setShowModal }) => {
         </St.MsgDiv>
 
         <St.LittleButtonDiv>
-          <St.LittleButton onClick={handleDisconnectWallet}>Yes</St.LittleButton>
+          <St.LittleButton onClick={handleDisconnectWallet}>
+            Yes
+          </St.LittleButton>
           <St.LittleButton onClick={handleCloseModal}>No</St.LittleButton>
         </St.LittleButtonDiv>
 

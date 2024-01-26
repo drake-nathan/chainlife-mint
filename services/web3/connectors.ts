@@ -1,6 +1,6 @@
-import { InjectedConnector } from '@web3-react/injected-connector';
-import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
-import { WalletLinkConnector } from '@web3-react/walletlink-connector';
+import { InjectedConnector } from "@web3-react/injected-connector";
+import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
+import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 
 export enum Connectors {
   Injected,
@@ -20,13 +20,13 @@ const injected = new InjectedConnector({
 const walletconnect = new WalletConnectConnector({
   rpc: RPC_URLS,
   chainId: 1,
-  bridge: 'https://bridge.walletconnect.org',
+  bridge: "https://bridge.walletconnect.org",
   qrcode: true,
 });
 
 const coinbase = new WalletLinkConnector({
   url: RPC_URLS[1],
-  appName: 'Chainlife',
+  appName: "Chainlife",
   supportedChainIds: [1],
 });
 

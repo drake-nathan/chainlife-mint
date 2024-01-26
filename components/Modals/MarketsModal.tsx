@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import * as St from './Modals.styled';
+import React, { useEffect, useState } from "react";
+import * as St from "./Modals.styled";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -42,7 +42,11 @@ const MarketsModal: React.FC<Props> = ({ setShowModal }) => {
         >
           <St.Button>X2Y2</St.Button>
         </a>
-        <a href="https://artacle.io/project/chainlife" target="_blank" rel="noreferrer">
+        <a
+          href="https://artacle.io/project/chainlife"
+          target="_blank"
+          rel="noreferrer"
+        >
           <St.Button id="coinbase">ARTACLE</St.Button>
         </a>
         <a

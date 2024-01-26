@@ -1,12 +1,12 @@
 export enum ProjectId {
   chainlifeTestnet,
   chainlifeMainnet,
-  '100x10x1a',
+  "100x10x1a",
 }
 
 export enum Chain {
-  mainnet = 'mainnet',
-  goerli = 'goerli',
+  mainnet = "mainnet",
+  goerli = "goerli",
 }
 
 export interface IRoyaltyInfo {
@@ -94,7 +94,7 @@ export interface ITransaction {
 
 export interface IThumbnail {
   _id?: string;
-  project_slug: 'focus' | 'enso';
+  project_slug: "focus" | "enso";
   project_id: 34 | 181;
   token_id: number;
   artblocks_id: string;

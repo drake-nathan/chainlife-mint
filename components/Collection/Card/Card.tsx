@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { TokenAbbr } from 'services/azureApi/types';
-import * as St from './Card.styled';
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { TokenAbbr } from "services/azureApi/types";
+import * as St from "./Card.styled";
 
 interface Props {
   token: TokenAbbr;

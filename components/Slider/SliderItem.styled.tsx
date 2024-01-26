@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 type Props = {
   zoomFactor: number;
@@ -36,14 +36,14 @@ export const SliderItemDiv = styled.div<Props>`
   }
 
   :hover ~ * {
-    transform: translateY(${(props) => props.zoomFactor / 2 + '%'}) !important;
+    transform: translateY(${(props) => props.zoomFactor / 2 + "%"}) !important;
   }
 
   &.left {
     transform-origin: top;
 
     :hover ~ * {
-      transform: translateY(${(props) => props.zoomFactor + '%'}) !important;
+      transform: translateY(${(props) => props.zoomFactor + "%"}) !important;
     }
   }
 
@@ -69,7 +69,7 @@ export const Reflection = styled.div`
   }
 
   &:after {
-    content: '';
+    content: "";
     background: linear-gradient(to top, rgba(0, 0, 0, 0.7), black);
     height: 325px;
     width: 100%;

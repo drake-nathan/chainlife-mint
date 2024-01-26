@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import { Main } from 'styles/Library/Button.styled';
+import styled from "styled-components";
+import { Main } from "styles/Library/Button.styled";
 import {
   SectionTitleContainer,
   Title as DescTitle,
-} from '../DescriptionSections/Description.styled';
+} from "../DescriptionSections/Description.styled";
 
 export const Container = styled.div`
   display: flex;

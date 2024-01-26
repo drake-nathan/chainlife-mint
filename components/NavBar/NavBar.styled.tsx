@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const NavContainer = styled.div`
   display: flex;
@@ -7,18 +7,18 @@ export const NavContainer = styled.div`
   min-height: 50px;
   justify-content: space-between;
   padding: 0 3em;
-  ${({ theme }) => !theme.isMobile && 'min-height: 100px;'}
+  ${({ theme }) => !theme.isMobile && "min-height: 100px;"}
 
   h5 {
     color: ${(props) => props.theme.colors.textOffset};
   }
 
   @media (max-width: 1030px) {
-    ${({ theme }) => !theme.isMobile && 'flex-direction: column-reverse;'}
+    ${({ theme }) => !theme.isMobile && "flex-direction: column-reverse;"}
     height: fit-content;
     margin-bottom: 20px;
     margin-top: 2em;
-    padding: ${({ theme }) => (theme.isMobile ? '0 1.5em' : '0 1em')};
+    padding: ${({ theme }) => (theme.isMobile ? "0 1.5em" : "0 1em")};
   }
 `;
 

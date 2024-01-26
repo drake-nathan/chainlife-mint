@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
-import { UserZenTokens } from 'types/premintTypes';
-import * as St from './PremintModal.styled';
+import React, { useState, useEffect } from "react";
+import { UserZenTokens } from "types/premintTypes";
+import * as St from "./PremintModal.styled";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,9 +24,9 @@ const PremintModal: React.FC<Props> = ({
 
   const [isFocusImgError, setIsFocusImgError] = useState<boolean>(false);
 
-  const root = 'https://mattoapi.blob.core.windows.net/thumbnails';
-  const enso = { id: 34, slug: 'enso' };
-  const focus = { id: 181, slug: 'focus' };
+  const root = "https://mattoapi.blob.core.windows.net/thumbnails";
+  const enso = { id: 34, slug: "enso" };
+  const focus = { id: 181, slug: "focus" };
 
   useEffect(() => {
     if (!userZenTokens.enso.length) {
@@ -45,7 +45,7 @@ const PremintModal: React.FC<Props> = ({
     if (project && token) {
       handlePresaleMint(project, token);
     } else {
-      handleError('PLEASE SELECT A TOKEN TO MINT WITH');
+      handleError("PLEASE SELECT A TOKEN TO MINT WITH");
     }
   };
 
@@ -54,37 +54,42 @@ const PremintModal: React.FC<Props> = ({
       <St.BuyModalBackground onClick={() => setShowModal(false)} />
       <St.BuyModalContainer>
         <St.UnitDiv>
-          <St.UnitText style={{ color: '#fff', fontWeight: 500 }}>
+          <St.UnitText style={{ color: "#fff", fontWeight: 500 }}>
             {userZenTokens.enso.length > 0 && userZenTokens.focus.length > 0
-              ? 'CHOOSE A MATTO COLLECTION TO MINT WITH'
-              : userZenTokens.enso.length > 0 && userZenTokens.focus.length === 0
-              ? 'SELECT AN ENSO TOKEN TO MINT WITH'
-              : 'SELECT A FOCUS TOKEN TO MINT WITH'}
+              ? "CHOOSE A MATTO COLLECTION TO MINT WITH"
+              : userZenTokens.enso.length > 0 &&
+                  userZenTokens.focus.length === 0
+                ? "SELECT AN ENSO TOKEN TO MINT WITH"
+                : "SELECT A FOCUS TOKEN TO MINT WITH"}
           </St.UnitText>
           <St.Choices>
             {userZenTokens.enso.length ? (
               <>
                 <St.CollectionText
                   onClick={() => setActiveCollection(1)}
-                  className={activeCollection === 1 ? 'active' : ''}
+                  className={activeCollection === 1 ? "active" : ""}
                 >
-                  {userZenTokens.enso.length > 0 && userZenTokens.focus.length > 0
-                    ? 'ENSO'
-                    : ''}
+                  {userZenTokens.enso.length > 0 &&
+                  userZenTokens.focus.length > 0
+                    ? "ENSO"
+                    : ""}
                 </St.CollectionText>
                 <St.CollectionText>
-                  {' '}
-                  {userZenTokens.focus.length > 0 && userZenTokens.enso.length > 0
-                    ? '|'
-                    : ''}
+                  {" "}
+                  {userZenTokens.focus.length > 0 &&
+                  userZenTokens.enso.length > 0
+                    ? "|"
+                    : ""}
                 </St.CollectionText>
               </>
-            ) : null}{' '}
+            ) : null}{" "}
             <St.CollectionText
               onClick={() => setActiveCollection(2)}
-              className={activeCollection === 2 ? 'active' : ''}
+              className={activeCollection === 2 ? "active" : ""}
             >
-              {userZenTokens.enso.length && userZenTokens.focus.length ? 'FOCUS' : ''}
+              {userZenTokens.enso.length && userZenTokens.focus.length
+                ? "FOCUS"
+                : ""}
             </St.CollectionText>
           </St.Choices>
         </St.UnitDiv>
@@ -103,10 +108,10 @@ const PremintModal: React.FC<Props> = ({
                     height={150}
                     width={150}
                     alt="enso"
-                  />{' '}
+                  />{" "}
                   <St.TokenInfo>
-                    <St.TokenText style={{ color: '#fff', fontWeight: 500 }}>
-                      {activeEnso === token ? 'TOKEN SELECTED' : ''}
+                    <St.TokenText style={{ color: "#fff", fontWeight: 500 }}>
+                      {activeEnso === token ? "TOKEN SELECTED" : ""}
                     </St.TokenText>
                     <St.TokenText>ENSO #{token}</St.TokenText>
                   </St.TokenInfo>
@@ -135,10 +140,10 @@ const PremintModal: React.FC<Props> = ({
                       width={150}
                       alt="focus"
                     />
-                  )}{' '}
+                  )}{" "}
                   <St.TokenInfo>
-                    <St.TokenText style={{ color: '#fff', fontWeight: 500 }}>
-                      {activeFocus === token ? 'TOKEN SELECTED' : ''}
+                    <St.TokenText style={{ color: "#fff", fontWeight: 500 }}>
+                      {activeFocus === token ? "TOKEN SELECTED" : ""}
                     </St.TokenText>
                     <St.TokenText>FOCUS #{token}</St.TokenText>
                   </St.TokenInfo>
@@ -151,8 +156,8 @@ const PremintModal: React.FC<Props> = ({
           {activeEnso
             ? ` WITH ENSO #${activeEnso}`
             : activeFocus
-            ? ` WITH FOCUS #${activeFocus}`
-            : ''}
+              ? ` WITH FOCUS #${activeFocus}`
+              : ""}
         </St.Button>
       </St.BuyModalContainer>
     </>

@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { Main } from 'styles/Library/Button.styled';
-import { ModalBackground } from '../Modals.styled';
-import { IoIosArrowDropdown } from 'react-icons/io';
+import styled from "styled-components";
+import { Main } from "styles/Library/Button.styled";
+import { ModalBackground } from "../Modals.styled";
+import { IoIosArrowDropdown } from "react-icons/io";
 
 type Dropdown = { isDropdownOpen: boolean };
 
@@ -9,7 +9,7 @@ export const DropDownIcon = styled(IoIosArrowDropdown)<Dropdown>`
   font-size: 2.125rem;
   cursor: pointer;
   transform: ${({ isDropdownOpen }) =>
-    isDropdownOpen ? 'rotate(0deg)' : 'rotate(90deg)'};
+    isDropdownOpen ? "rotate(0deg)" : "rotate(90deg)"};
 `;
 
 export const Row = styled.div`

@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useWeb3React } from '@web3-react/core';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { useContract } from 'hooks/useContract';
-import { callCustomRule, callResetRule } from 'services/web3/contractInteractions';
-import * as St from './TokenForms.styled';
+import React, { useEffect, useState } from "react";
+import { useWeb3React } from "@web3-react/core";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useContract } from "hooks/useContract";
+import {
+  callCustomRule,
+  callResetRule,
+} from "services/web3/contractInteractions";
+import * as St from "./TokenForms.styled";
 
 type ICustomRule = { customRule: string };
 
@@ -17,8 +20,8 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
   const { active, account } = useWeb3React();
   const { contract } = useContract();
 
-  const [customRule, setCustomRule] = useState('');
-  const [errorText, setErrorText] = useState('');
+  const [customRule, setCustomRule] = useState("");
+  const [errorText, setErrorText] = useState("");
 
   const {
     register,
@@ -28,15 +31,20 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
 
   const onSubmit: SubmitHandler<ICustomRule> = async () => {
     if (!active) {
-      handleError('Must be connected to wallet.');
+      handleError("Must be connected to wallet.");
     } else if (!isOwner) {
-      handleError('Must be owner of token.');
+      handleError("Must be owner of token.");
     } else {
       try {
-        const tx = await callCustomRule(contract, account as string, tokenId, customRule);
+        const tx = await callCustomRule(
+          contract,
+          account as string,
+          tokenId,
+          customRule,
+        );
       } catch (error) {
         console.error(error);
-        handleError('Error setting custom rule.');
+        handleError("Error setting custom rule.");
       }
     }
   };
@@ -44,17 +52,17 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
   const handleReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
-    setCustomRule('');
+    setCustomRule("");
     if (!active) {
-      handleError('Must be connected to wallet.');
+      handleError("Must be connected to wallet.");
     } else if (!isOwner) {
-      handleError('Must be owner of token.');
+      handleError("Must be owner of token.");
     } else {
       try {
         callResetRule(contract, account as string, tokenId);
       } catch (error) {
         console.error(error);
-        handleError('Error resetting rule.');
+        handleError("Error resetting rule.");
       }
     }
   };
@@ -62,7 +70,7 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
   useEffect(() => {
     if (errors.customRule && errors.customRule.message) {
       setErrorText(errors.customRule.message);
-      setTimeout(() => setErrorText(''), 3000);
+      setTimeout(() => setErrorText(""), 3000);
     }
   }, [errors.customRule]);
 
@@ -70,9 +78,12 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
     <>
       <St.Form id="custom-rule-form" onSubmit={handleSubmit(onSubmit)}>
         <St.Input
-          {...register('customRule', {
-            required: { value: true, message: 'This field is required.' },
-            maxLength: { value: 23, message: 'This rule is too long, 23 chars max.' },
+          {...register("customRule", {
+            required: { value: true, message: "This field is required." },
+            maxLength: {
+              value: 23,
+              message: "This rule is too long, 23 chars max.",
+            },
           })}
           id="custom-rule"
           placeholder="Submit a Custom Rule"
