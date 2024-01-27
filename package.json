@@ -11,9 +11,6 @@
     "typecheck": "tsc --pretty --noEmit",
     "prepare": "husky install"
   },
-  "engines": {
-    "node": "^20"
-  },
   "dependencies": {
     "@apollo/client": "^3.8.10",
     "@babel/core": "^7.23.9",
