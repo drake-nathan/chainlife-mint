@@ -7,12 +7,12 @@ import "../styles/globals.css";
 import Providers from "contexts/Providers";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const date = new Date();
-  const year = date.getFullYear();
+  const year = new Date().getFullYear();
 
   return (
     <Providers>
       <Component {...pageProps} />
+
       <St.CopyRightDiv>
         <MdCopyright /> Matto {year}
       </St.CopyRightDiv>

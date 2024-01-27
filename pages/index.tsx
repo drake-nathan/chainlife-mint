@@ -54,7 +54,7 @@ const Home: NextPage = () => {
             </a>{" "}
             explore the{" "}
             <Link href="/world" rel="noreferrer" target="blank">
-              <a>world,</a>
+              <span>world,</span>
             </Link>{" "}
             or enter a token id in the form below.
           </St.SubTitle>
