@@ -12,7 +12,7 @@
     "prepare": "husky install"
   },
   "engines": {
-    "node": "^18"
+    "node": "^20"
   },
   "dependencies": {
     "@apollo/client": "^3.8.10",
