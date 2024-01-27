@@ -1,28 +1,33 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { NextPage } from "next";
+
+import { useWeb3React } from "@web3-react/core";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import NavBar from "components/NavBar/NavBar";
-import TokenForms from "components/TokenForm/TokenForms";
-import { AppContainer } from "../../styles/App.styled";
-import { fetchToken } from "services/azureApi/fetches";
 import { useEffect, useState } from "react";
-import OpenSea from "../../public/openSea-logo.png";
-import LooksRare from "../../public/looksrare-logo.png";
-import X2Y2 from "../../public/Logo.png";
-import Artacle from "../../public/artacle-logo.png";
-import type { IToken } from "services/azureApi/types";
-import Traits from "components/Traits/Traits";
-import { getOwner } from "services/web3/contractInteractions";
-import { useWeb3React } from "@web3-react/core";
-import { useContract } from "hooks/useContract";
-import { equalAddresses, shortenAddress } from "services/web3/web3helpers";
-import EsoterraIcon from "../../public/eso-01.svg";
-import { TfiNewWindow } from "react-icons/tfi";
 import { IoIosExpand } from "react-icons/io";
 import { MdOutlineMobileFriendly } from "react-icons/md";
 import { RiImage2Line } from "react-icons/ri";
+import { TfiNewWindow } from "react-icons/tfi";
+
+import type { IToken } from "services/azureApi/types";
+
+import X2Y2 from "../../public/Logo.png";
+import Artacle from "../../public/artacle-logo.png";
+import EsoterraIcon from "../../public/eso-01.svg";
+import LooksRare from "../../public/looksrare-logo.png";
+import OpenSea from "../../public/openSea-logo.png";
+import { AppContainer } from "../../styles/App.styled";
 import * as St from "../../styles/token.styled";
+import NavBar from "components/NavBar/NavBar";
+import TokenForms from "components/TokenForm/TokenForms";
+import Traits from "components/Traits/Traits";
+import { useContract } from "hooks/useContract";
+import { fetchToken } from "services/azureApi/fetches";
+import { getOwner } from "services/web3/contractInteractions";
+import { equalAddresses, shortenAddress } from "services/web3/web3helpers";
 
 const Token: NextPage = () => {
   const router = useRouter();
@@ -42,12 +47,12 @@ const Token: NextPage = () => {
         .then((res) => {
           if (res) {
             setToken(res);
-            setGeneratorUrl(res?.generator_url);
+            setGeneratorUrl(res.generator_url);
           }
         })
         .catch(console.error);
     }
-  }, [tokenId]);
+  }, [tokenId, tokenIdNum]);
 
   useEffect(() => {
     if (tokenId) {
@@ -60,13 +65,13 @@ const Token: NextPage = () => {
         })
         .catch(console.error);
     }
-  }, [tokenId, account, active]);
+  }, [tokenId, account, active, contract, tokenIdNum]);
 
   return (
     <AppContainer>
       <Head>
         <title>Chainlife</title>
-        <meta name="description" content="Chainlife Token." />
+        <meta content="Chainlife Token." name="description" />
       </Head>
 
       <NavBar />
@@ -78,42 +83,42 @@ const Token: NextPage = () => {
               <St.Expand>
                 <a
                   href={`https://api.substratum.art/project/chainlife/generator/${tokenId}`}
-                  target="blank"
                   rel="noreferrer"
+                  target="blank"
                 >
                   <IoIosExpand
-                    title="View Token In A Separate Window"
                     className="expand"
+                    title="View Token In A Separate Window"
                   />
                 </a>
                 <a
+                  className="eso"
                   href={`https://api.substratum.art/project/chainlife/generator/${tokenId}?esoterra=true
                   `}
-                  target="blank"
                   rel="noreferrer"
+                  target="blank"
                   title="View Esoterra In A Separate Window"
-                  className="eso"
                 >
                   <Image
+                    alt="esoterra"
+                    height={24}
                     src={EsoterraIcon}
                     width={24}
-                    height={24}
-                    alt="esoterra"
                   />
                 </a>
                 <a
                   href={`https://api.substratum.art/project/chainlife/generator/${tokenId}?painting=true
                   `}
-                  target="blank"
                   rel="noreferrer"
+                  target="blank"
                   title="View Painting In A Separate Window"
                 >
                   <RiImage2Line className="expand" />
                 </a>
                 <a
                   href={`https://api.substratum.art/project/chainlife/generator/${tokenId}?mobile=true`}
-                  target="blank"
                   rel="noreferrer"
+                  target="blank"
                   title="View Mobile Generator"
                 >
                   <MdOutlineMobileFriendly className="mobile" />
@@ -124,9 +129,9 @@ const Token: NextPage = () => {
 
           <St.FrameContainer>
             <iframe
+              frameBorder="0"
               src={generatorUrl}
               title="generator"
-              frameBorder="0"
             ></iframe>
           </St.FrameContainer>
 
@@ -142,8 +147,8 @@ const Token: NextPage = () => {
                     {" "}
                     <a
                       href={`https://etherscan.io/address/${owner}`}
-                      target="blank"
                       rel="noreferrer"
+                      target="blank"
                       title="View Owner On Etherscan"
                     >
                       <TfiNewWindow />
@@ -155,54 +160,54 @@ const Token: NextPage = () => {
             <St.MarketLinks>
               <a
                 href={`https://artacle.io/project/chainlife/${tokenId}`}
-                target="blank"
                 rel="noreferrer"
-                title="Artacle"
                 style={{
                   color: "#3a3a3a",
                 }}
+                target="blank"
+                title="Artacle"
               >
-                <Image src={Artacle} width={28} height={28} alt="Artacle" />
+                <Image alt="Artacle" height={28} src={Artacle} width={28} />
               </a>
               <a
                 href={`https://x2y2.io/eth/0x4E171e0F14a9046e14B93221f31Acd2EC4Af8429/${tokenId}`}
-                target="blank"
                 rel="noreferrer"
-                title="X2Y@"
                 style={{
                   color: "#3a3a3a",
                 }}
+                target="blank"
+                title="X2Y@"
               >
-                <Image src={X2Y2} width={28} height={28} alt="X2Y2" />
+                <Image alt="X2Y2" height={28} src={X2Y2} width={28} />
               </a>
               <a
                 href={`https://looksrare.org/collections/0x4E171e0F14a9046e14B93221f31Acd2EC4Af8429/${tokenId}`}
-                target="blank"
                 rel="noreferrer"
-                title="LOOKSRARE"
                 style={{
                   color: "#3a3a3a",
                 }}
+                target="blank"
+                title="LOOKSRARE"
               >
-                <Image src={LooksRare} width={28} height={28} alt="LooksRare" />
+                <Image alt="LooksRare" height={28} src={LooksRare} width={28} />
               </a>
               <a
                 href={`https://opensea.io/assets/0x4E171e0F14a9046e14B93221f31Acd2EC4Af8429/${tokenId}`}
-                target="blank"
                 rel="noreferrer"
-                title="openSea"
                 style={{
                   color: "#3a3a3a",
                 }}
+                target="blank"
+                title="openSea"
               >
-                <Image src={OpenSea} width={28} height={28} alt="openSea" />
+                <Image alt="openSea" height={28} src={OpenSea} width={28} />
               </a>
               <St.TokenTitle>Markets</St.TokenTitle>
             </St.MarketLinks>
           </St.FooterContainer>
         </St.TokenContainer>
         <St.ControlsAndTraits>
-          <TokenForms tokenId={tokenIdNum} isOwner={isOwner} />
+          <TokenForms isOwner={isOwner} tokenId={tokenIdNum} />
 
           {token && <Traits token={token} />}
         </St.ControlsAndTraits>

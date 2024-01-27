@@ -1,30 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { useMintDetails } from "hooks/useMintDetails";
-import {
-  section1Text,
-  section1AText,
-  section2Text,
-  section2AText,
-} from "./SectionText";
+import React, { useState } from "react";
+
 import * as St from "./Description.styled";
+import {
+  section1AText,
+  section1Text,
+  section2AText,
+  section2Text,
+} from "./SectionText";
+import { useMintDetails } from "hooks/useMintDetails";
 
 const DescriptionSections: React.FC = () => {
-  const { discountPrice, mintPrice, publicStart } = useMintDetails();
+  const { mintPrice } = useMintDetails();
   const [activeSection, setActiveSection] = useState<1 | 2>(2);
 
   return (
     <St.HeroContainer>
       <St.SectionTitleContainer>
         <St.Title
-          onClick={() => setActiveSection(1)}
           className={activeSection === 1 ? "" : "inactive"}
+          onClick={() => setActiveSection(1)}
         >
           ZEN. MINT
         </St.Title>
         <St.Title>|</St.Title>
         <St.Title
-          onClick={() => setActiveSection(2)}
           className={activeSection === 2 ? "" : "inactive"}
+          onClick={() => setActiveSection(2)}
         >
           PUBLIC{" "}
         </St.Title>
@@ -50,13 +51,13 @@ const DescriptionSections: React.FC = () => {
           {activeSection === 2 ? (
             <a
               href="https://docs.chainlife.xyz/"
-              target="blank"
               rel="noreferrer"
               style={{
-                textDecoration: "underline",
                 color: "#3a3a3a",
                 fontWeight: "500",
+                textDecoration: "underline",
               }}
+              target="blank"
             >
               docs.
             </a>

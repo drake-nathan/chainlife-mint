@@ -1,6 +1,7 @@
 import React from "react";
-import { instructions } from "./steps";
+
 import * as St from "./Instructions.styled";
+import { instructions } from "./steps";
 
 interface Props {
   activeStep: number;

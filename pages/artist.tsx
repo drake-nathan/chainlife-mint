@@ -1,9 +1,11 @@
-import React from "react";
 import type { NextPage } from "next";
+
 import Head from "next/head";
-import NavBar from "components/NavBar/NavBar";
+import React from "react";
+
 import MattoCollections from "components/Artist/MattoCollections";
 import { bio } from "components/Artist/artistData";
+import NavBar from "components/NavBar/NavBar";
 import * as St from "styles/artist.styled";
 
 const Collection: NextPage = () => {
@@ -11,7 +13,7 @@ const Collection: NextPage = () => {
     <St.AppContainer>
       <Head>
         <title>Chainlife</title>
-        <meta name="description" content="Chainlife." />
+        <meta content="Chainlife." name="description" />
       </Head>
       <NavBar />
 
@@ -21,7 +23,7 @@ const Collection: NextPage = () => {
         </St.TitleSection>
 
         <St.HeroSection>
-          <St.MattoImg src="/matto.jpeg" alt="Matto" />
+          <St.MattoImg alt="Matto" src="/matto.jpeg" />
 
           <St.BioText>{bio}</St.BioText>
         </St.HeroSection>

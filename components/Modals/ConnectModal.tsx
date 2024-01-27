@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
-import { Connectors, connectors } from "services/web3/connectors";
-import { switchChain } from "components/Web3/web3Helpers";
+import React, { useEffect, useState } from "react";
+
 import * as St from "./Modals.styled";
+import { switchChain } from "components/Web3/web3Helpers";
+import { Connectors, connectors } from "services/web3/connectors";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -51,20 +52,24 @@ const ConnectModal: React.FC<Props> = ({ setShowModal }) => {
       <St.ModalContainer>
         <St.MsgDiv>
           <St.Text>{txMsg ? txMsg : "CHOOSE CONNECT METHOD"}</St.Text>
-          <St.XButton src="/icons/x-icon-lg.svg" onClick={handleCloseModal} />
+          <St.XButton onClick={handleCloseModal} src="/icons/x-icon-lg.svg" />
         </St.MsgDiv>
 
         <St.SubtleText>[ SET WALLET TO ETHEREUM NETWORK ]</St.SubtleText>
 
-        <St.Button onClick={() => handleConnectWallet(Connectors.Injected)}>
+        <St.Button
+          onClick={() => void handleConnectWallet(Connectors.Injected)}
+        >
           METAMASK
         </St.Button>
         <St.Button
-          onClick={() => handleConnectWallet(Connectors.WalletConnect)}
+          onClick={() => void handleConnectWallet(Connectors.WalletConnect)}
         >
           WALLETCONNECT
         </St.Button>
-        <St.Button onClick={() => handleConnectWallet(Connectors.Coinbase)}>
+        <St.Button
+          onClick={() => void handleConnectWallet(Connectors.Coinbase)}
+        >
           COINBASE
         </St.Button>
       </St.ModalContainer>

@@ -1,26 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
-import { UserZenTokens } from "types/premintTypes";
+import type { UserZenTokens } from "types/premintTypes";
+
+import React, { useEffect, useState } from "react";
+
 import * as St from "./PremintModal.styled";
 
 interface Props {
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  handlePresaleMint: (project: number, token: number) => void;
-  handleError: (error: string) => void;
   buyButtonText: string;
+  handleError: (error: string) => void;
+  handlePresaleMint: (project: number, token: number) => void;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   userZenTokens: UserZenTokens;
 }
 
 const PremintModal: React.FC<Props> = ({
-  setShowModal,
-  handlePresaleMint,
-  handleError,
   buyButtonText,
+  handleError,
+  handlePresaleMint,
+  setShowModal,
   userZenTokens,
 }) => {
   const [activeCollection, setActiveCollection] = useState<1 | 2>(1);
-  const [activeEnso, setActiveEnso] = useState<number | null>(null);
-  const [activeFocus, setActiveFocus] = useState<number | null>(null);
+  const [activeEnso, setActiveEnso] = useState<null | number>(null);
+  const [activeFocus, setActiveFocus] = useState<null | number>(null);
 
   const [isFocusImgError, setIsFocusImgError] = useState<boolean>(false);
 
@@ -36,7 +38,7 @@ const PremintModal: React.FC<Props> = ({
     if (!userZenTokens.focus.length && !userZenTokens.enso.length) {
       setShowModal(false);
     }
-  }, [userZenTokens.enso, userZenTokens.focus]);
+  }, [setShowModal, userZenTokens.enso, userZenTokens.focus]);
 
   const handleMintClick = () => {
     const project = activeEnso ? enso.id : focus.id;
@@ -66,8 +68,8 @@ const PremintModal: React.FC<Props> = ({
             {userZenTokens.enso.length ? (
               <>
                 <St.CollectionText
-                  onClick={() => setActiveCollection(1)}
                   className={activeCollection === 1 ? "active" : ""}
+                  onClick={() => setActiveCollection(1)}
                 >
                   {userZenTokens.enso.length > 0 &&
                   userZenTokens.focus.length > 0
@@ -84,8 +86,8 @@ const PremintModal: React.FC<Props> = ({
               </>
             ) : null}{" "}
             <St.CollectionText
-              onClick={() => setActiveCollection(2)}
               className={activeCollection === 2 ? "active" : ""}
+              onClick={() => setActiveCollection(2)}
             >
               {userZenTokens.enso.length && userZenTokens.focus.length
                 ? "FOCUS"
@@ -104,10 +106,10 @@ const PremintModal: React.FC<Props> = ({
                   }}
                 >
                   <img
-                    src={`${root}/enso_${token}.png`}
-                    height={150}
-                    width={150}
                     alt="enso"
+                    height={150}
+                    src={`${root}/enso_${token}.png`}
+                    width={150}
                   />{" "}
                   <St.TokenInfo>
                     <St.TokenText style={{ color: "#fff", fontWeight: 500 }}>
@@ -127,18 +129,18 @@ const PremintModal: React.FC<Props> = ({
                 >
                   {!isFocusImgError ? (
                     <img
-                      src={`${root}/focus_${token}.png`}
-                      onError={() => setIsFocusImgError(true)}
-                      height={150}
-                      width={150}
                       alt="focus"
+                      height={150}
+                      onError={() => setIsFocusImgError(true)}
+                      src={`${root}/focus_${token}.png`}
+                      width={150}
                     />
                   ) : (
                     <img
-                      src={`FOCUS-placeholder_150x.png`}
-                      height={150}
-                      width={150}
                       alt="focus"
+                      height={150}
+                      src={`FOCUS-placeholder_150x.png`}
+                      width={150}
                     />
                   )}{" "}
                   <St.TokenInfo>

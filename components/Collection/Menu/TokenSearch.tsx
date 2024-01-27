@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useMintDetails } from "hooks/useMintDetails";
+import { type SubmitHandler, useForm } from "react-hook-form";
+
 import * as St from "./TokenSearch.styled";
+import { useMintDetails } from "hooks/useMintDetails";
 
 type IToken = { tokenId: number };
 
 interface Props {
-  tokenId: number | null;
-  setTokenId: React.Dispatch<React.SetStateAction<number | null>>;
   refetch: () => void;
+  setTokenId: React.Dispatch<React.SetStateAction<null | number>>;
+  tokenId: null | number;
 }
 
-const TokenSearch: React.FC<Props> = ({ tokenId, setTokenId, refetch }) => {
+const TokenSearch: React.FC<Props> = ({ refetch, setTokenId, tokenId }) => {
   const { currentSupply, maxSupply } = useMintDetails();
   const maxToken = currentSupply ? currentSupply - 1 : maxSupply - 1;
 
   const [errorText, setErrorText] = useState("");
 
   const {
-    register,
-    handleSubmit,
     formState: { errors },
+    handleSubmit,
+    register,
   } = useForm<IToken>();
 
   const onSubmit: SubmitHandler<IToken> = () => {
@@ -44,32 +45,32 @@ const TokenSearch: React.FC<Props> = ({ tokenId, setTokenId, refetch }) => {
       setErrorText("Min Token ID is 0");
       setTokenId(0);
     } else if (Number.isNaN(tokenId)) setTokenId(null);
-  }, [tokenId]);
+  }, [currentSupply, maxToken, setTokenId, tokenId]);
 
   return (
     <>
       {errorText && <St.ErrorText>{errorText}</St.ErrorText>}
-      <St.Form id="token-page-form" onSubmit={handleSubmit(onSubmit)}>
+      <St.Form id="token-page-form" onSubmit={void handleSubmit(onSubmit)}>
         <St.Input
           type="number"
           {...register("tokenId", {
-            valueAsNumber: true,
             max: {
-              value: currentSupply ? currentSupply - 1 : maxSupply,
               message: "Must be less than current supply.",
+              value: currentSupply ? currentSupply - 1 : maxSupply,
             },
+            valueAsNumber: true,
           })}
-          id="enter-id"
-          value={tokenId || tokenId === 0 ? tokenId : ""}
           autoComplete="off"
-          onChange={(e) => setTokenId(parseInt(e.target.value))}
-          placeholder="Token ID Search"
+          id="enter-id"
           onBlur={() => {
-            if (tokenId === null || (tokenId === undefined && tokenId !== 0)) {
+            if (tokenId === null || tokenId !== 0) {
               setTokenId(null);
               refetch();
             }
           }}
+          onChange={(e) => setTokenId(parseInt(e.target.value))}
+          placeholder="Token ID Search"
+          value={tokenId || tokenId === 0 ? tokenId : ""}
         />
       </St.Form>
     </>

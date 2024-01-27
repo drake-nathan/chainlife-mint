@@ -1,12 +1,13 @@
 import React from "react";
+
 import * as St from "./Modals.styled";
 
 interface Props {
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   message: string;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ErrorModal: React.FC<Props> = ({ setShowModal, message }) => {
+const ErrorModal: React.FC<Props> = ({ message, setShowModal }) => {
   const handleCloseModal = () => {
     setShowModal(false);
   };

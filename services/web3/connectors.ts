@@ -18,20 +18,20 @@ const injected = new InjectedConnector({
 });
 
 const walletconnect = new WalletConnectConnector({
-  rpc: RPC_URLS,
-  chainId: 1,
   bridge: "https://bridge.walletconnect.org",
+  chainId: 1,
   qrcode: true,
+  rpc: RPC_URLS,
 });
 
 const coinbase = new WalletLinkConnector({
-  url: RPC_URLS[1],
   appName: "Chainlife",
   supportedChainIds: [1],
+  url: RPC_URLS[1],
 });
 
 export const connectors = {
+  [Connectors.Coinbase]: coinbase,
   [Connectors.Injected]: injected,
   [Connectors.WalletConnect]: walletconnect,
-  [Connectors.Coinbase]: coinbase,
 };

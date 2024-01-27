@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import SliderItem from "./SliderItem";
+import React, { useEffect, useRef, useState } from "react";
 import * as IoIcons from "react-icons/io5";
+
 import * as St from "./Slider.styled";
+import SliderItem from "./SliderItem";
 import { numberOfSlides } from "./sliderHelpers";
 
 interface Props {
-  children?: any;
+  children?: React.ReactNode[];
 }
 
 const Slider: React.FC<Props> = ({ children }) => {
@@ -22,13 +23,14 @@ const Slider: React.FC<Props> = ({ children }) => {
 
   const visibleSlides = numberOfSlides(maxVisibleSlides, scrollSize);
   // Pages start at 0, therefore -1 at the end here
-  const totalPages: number = Math.ceil(children.length / visibleSlides) - 1;
+  const totalPages: number =
+    Math.ceil(children?.length ?? 0 / visibleSlides) - 1;
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
       setScrollSize(entries[0].contentRect.height);
     });
-    resizeObserver.observe(sliderRef.current!);
+    resizeObserver.observe(sliderRef.current as HTMLElement);
   }, [sliderRef]);
 
   // Position slider on resize
@@ -37,7 +39,7 @@ const Slider: React.FC<Props> = ({ children }) => {
       setCurrentPage(0);
     }
 
-    if (sliderRef && sliderRef.current) {
+    if (sliderRef.current) {
       if (currentPage > totalPages) setCurrentPage(totalPages);
       sliderRef.current.style.transform = `translate3D(0, -${
         currentPage * scrollSize
@@ -80,14 +82,14 @@ const Slider: React.FC<Props> = ({ children }) => {
 
   return (
     <St.SliderWrapper
-      zoomFactor={zoomFactor}
-      visibleSlides={visibleSlides}
       slideMargin={slideMargin}
+      visibleSlides={visibleSlides}
+      zoomFactor={zoomFactor}
     >
       <div className="button-wrapper back">
         <button
-          disabled={currentPage < 1 ? true : false}
           className={currentPage < 1 ? "button back disabled" : "button back"}
+          disabled={currentPage < 1 ? true : false}
           onClick={() => handleSlideMove(false)}
         >
           <IoIcons.IoCaretUpCircleOutline />
@@ -95,23 +97,23 @@ const Slider: React.FC<Props> = ({ children }) => {
       </div>
       <St.InnerWrapper>
         <St.SliderDiv
-          visibleSlides={visibleSlides}
-          transformValue={transformValue}
-          zoomFactor={zoomFactor}
-          slideMargin={slideMargin}
           pageTransition={pageTransition}
           ref={sliderRef}
+          slideMargin={slideMargin}
+          transformValue={transformValue}
+          visibleSlides={visibleSlides}
+          zoomFactor={zoomFactor}
         >
-          {children.map((child: any, i: number) => (
+          {children?.map((child, i) => (
             <SliderItem
+              callback={handleMouseOver}
+              callbackOut={handleMouseOut}
+              id={i + 1}
               key={i}
+              slideClass={assignSlideClass(i + 1, visibleSlides)}
               slideMargin={slideMargin}
               visibleSlides={visibleSlides}
               zoomFactor={zoomFactor}
-              slideClass={assignSlideClass(i + 1, visibleSlides)}
-              id={i + 1}
-              callback={handleMouseOver}
-              callbackOut={handleMouseOut}
             >
               {child}
             </SliderItem>

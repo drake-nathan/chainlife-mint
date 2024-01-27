@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { useContract } from "./useContract";
 import {
   fetchCurrentSupply,
   getMintPhase,
 } from "services/web3/contractInteractions";
-import { useContract } from "./useContract";
 
 export const useMintDetails = () => {
   const { contract } = useContract();
@@ -52,11 +53,12 @@ export const useMintDetails = () => {
         }
       })
       .catch(console.error);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTime]);
 
   useEffect(() => {
     try {
-      fetchCurrentSupply(contract).then((supply) => {
+      void fetchCurrentSupply(contract).then((supply) => {
         if (supply) {
           setCurrentSupply(supply);
         }
@@ -64,19 +66,20 @@ export const useMintDetails = () => {
     } catch (error) {
       console.error(error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSupply]);
 
   return {
+    currentSupply,
+    discountPrice,
     isMintLive,
     isPreMint,
-    mintStart,
+    maxMint,
+    maxSupply,
     mintEnd,
     mintPrice,
+    mintStart,
     publicStart,
-    discountPrice,
-    maxSupply,
-    currentSupply,
-    maxMint,
     shiftFee,
   };
 };

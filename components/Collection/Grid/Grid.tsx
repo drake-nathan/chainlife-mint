@@ -1,25 +1,28 @@
+import type { InfiniteData } from "react-query";
+
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { InfiniteData } from "react-query";
-import { CollectionResponse } from "services/azureApi/types";
+
+import type { CollectionResponse } from "services/azureApi/types";
+
 import Card from "../Card/Card";
 import * as St from "./Grid.styled";
 
 interface Props {
-  data: InfiniteData<CollectionResponse> | undefined;
   currentLength: number;
-  hasMore: boolean;
-  fetchNextPage: () => void;
+  data: InfiniteData<CollectionResponse> | undefined;
   error: Error | null;
+  fetchNextPage: () => void;
+  hasMore: boolean;
   isLoading: boolean;
 }
 
 const CollectionGrid: React.FC<Props> = ({
-  data,
   currentLength,
-  hasMore,
-  fetchNextPage,
+  data,
   error,
+  fetchNextPage,
+  hasMore,
   isLoading,
 }) => {
   return (
@@ -27,14 +30,14 @@ const CollectionGrid: React.FC<Props> = ({
       {data ? (
         <InfiniteScroll
           dataLength={currentLength}
-          next={fetchNextPage}
           hasMore={hasMore}
           loader={<h1>Loading...</h1>}
+          next={fetchNextPage}
         >
           <St.Wrapper>
             {data.pages.map((page) =>
               page.tokens.map((token) => (
-                <Card token={token} key={token.name} />
+                <Card key={token.name} token={token} />
               )),
             )}
           </St.Wrapper>

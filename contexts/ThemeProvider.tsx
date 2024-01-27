@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
-import { useWindowSize } from "hooks/useWindowSize";
+
 import { theme } from "../styles/theme";
+import { useWindowSize } from "hooks/useWindowSize";
 
 interface Props {
   children: React.ReactNode;
@@ -22,7 +23,7 @@ const ThemeProvider: React.FC<Props> = ({ children }) => {
   }, [windowWidth]);
 
   return (
-    <StyledThemeProvider theme={{ ...theme, isMobile, isMiniCard }}>
+    <StyledThemeProvider theme={{ ...theme, isMiniCard, isMobile }}>
       {children}
     </StyledThemeProvider>
   );

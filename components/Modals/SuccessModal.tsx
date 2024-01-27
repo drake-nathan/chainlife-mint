@@ -1,5 +1,7 @@
 import React from "react";
-import { ISuccessInfo } from "components/Web3/web3Helpers";
+
+import type { ISuccessInfo } from "components/Web3/web3Helpers";
+
 import * as St from "./Modals.styled";
 
 interface Props {
@@ -8,7 +10,7 @@ interface Props {
 }
 
 const SuccessModal: React.FC<Props> = ({ setShowModal, successInfo }) => {
-  const { etherscanLink, openseaLink, generatorUrl, tokenId, tokenPageUrl } =
+  const { etherscanLink, generatorUrl, openseaLink, tokenId, tokenPageUrl } =
     successInfo;
 
   const handleCloseModal = () => {

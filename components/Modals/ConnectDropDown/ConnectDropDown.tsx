@@ -1,16 +1,17 @@
-import React from "react";
 import { useWeb3React } from "@web3-react/core";
-import { Connectors, connectors } from "services/web3/connectors";
-import { switchChain } from "components/Web3/web3Helpers";
+import React from "react";
 import * as IoIcons from "react-icons/io5";
+
 import * as St from "./ConnectDropDown.styled";
+import { switchChain } from "components/Web3/web3Helpers";
+import { Connectors, connectors } from "services/web3/connectors";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ConnectDropDown: React.FC<Props> = ({ setShowModal }) => {
-  const { activate, active } = useWeb3React();
+  const { activate } = useWeb3React();
 
   const handleConnectWallet = async (connectorToUse: Connectors) => {
     const connector = connectors[connectorToUse];
@@ -43,19 +44,19 @@ const ConnectDropDown: React.FC<Props> = ({ setShowModal }) => {
           />
           <St.Button
             id="metamask"
-            onClick={() => handleConnectWallet(Connectors.Injected)}
+            onClick={() => void handleConnectWallet(Connectors.Injected)}
           >
             METAMASK
           </St.Button>
         </St.TopButtonContainer>
         <St.Button
-          onClick={() => handleConnectWallet(Connectors.WalletConnect)}
+          onClick={() => void handleConnectWallet(Connectors.WalletConnect)}
         >
           WALLETCONNECT
         </St.Button>
         <St.Button
           id="coinbase"
-          onClick={() => handleConnectWallet(Connectors.Coinbase)}
+          onClick={() => void handleConnectWallet(Connectors.Coinbase)}
         >
           COINBASE
         </St.Button>

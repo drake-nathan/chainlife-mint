@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useForm, SubmitHandler } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { type SubmitHandler, useForm } from "react-hook-form";
+
 import * as St from "./IdForm.Styled";
 import { useMintDetails } from "hooks/useMintDetails";
 
@@ -14,13 +15,13 @@ const TokenIdForm = () => {
   const [errorText, setErrorText] = useState("");
 
   const {
-    register,
-    handleSubmit,
     formState: { errors },
+    handleSubmit,
+    register,
   } = useForm<IToken>();
 
   const onSubmit: SubmitHandler<IToken> = () => {
-    router.push(`/token/${tokenId}`);
+    void router.push(`/token/${tokenId}`);
   };
 
   useEffect(() => {
@@ -35,11 +36,11 @@ const TokenIdForm = () => {
     if (currentSupply) {
       if (tokenId > currentSupply) settokenId(currentSupply);
     }
-  }, [tokenId]);
+  }, [currentSupply, tokenId]);
 
   return (
     <>
-      <St.Form id="token-page-form" onSubmit={handleSubmit(onSubmit)}>
+      <St.Form id="token-page-form" onSubmit={void handleSubmit(onSubmit)}>
         <St.LabelDiv>
           <St.Label htmlFor="enter-id">
             <St.IdFormLabel>Enter Token Id</St.IdFormLabel>
@@ -49,16 +50,16 @@ const TokenIdForm = () => {
             <St.Input
               type="number"
               {...register("tokenId", {
-                valueAsNumber: true,
                 max: {
-                  value: currentSupply ? currentSupply - 1 : 4096,
                   message: "Must be less than current supply.",
+                  value: currentSupply ? currentSupply - 1 : 4096,
                 },
+                valueAsNumber: true,
               })}
-              id="enter-id"
-              value={tokenId}
               autoComplete="off"
+              id="enter-id"
               onChange={(e) => settokenId(parseInt(e.target.value))}
+              value={tokenId}
             />
             <St.SmallButton type="submit">GO</St.SmallButton>
           </St.InputContainer>

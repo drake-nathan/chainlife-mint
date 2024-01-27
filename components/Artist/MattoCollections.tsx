@@ -1,6 +1,7 @@
 import React from "react";
-import { collections } from "./artistData";
+
 import * as St from "./MattoCollections.styled";
+import { collections } from "./artistData";
 
 const MattoCollections: React.FC = () => {
   return (
@@ -13,9 +14,9 @@ const MattoCollections: React.FC = () => {
         {collections.map((collection) => (
           <a
             href={`https://opensea.io/collection/${collection.openSeaSlug}`}
-            target="_blank"
-            rel="noreferrer"
             key={collection.name}
+            rel="noreferrer"
+            target="_blank"
           >
             <St.CollectionCard>
               <St.Thumbnail src={collection.image} />

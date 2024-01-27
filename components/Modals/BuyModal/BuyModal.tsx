@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import { useMintDetails } from "hooks/useMintDetails";
 import { isAddress } from "web3-utils";
+
 import * as St from "./BuyModal.styled";
+import { useMintDetails } from "hooks/useMintDetails";
 
 interface Props {
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  handlePublicMint: (toAddress?: string) => void;
-  handleError: (error: string) => void;
   buyButtonText: string;
+  handleError: (error: string) => void;
+  handlePublicMint: (toAddress?: string) => void;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const BuyModal: React.FC<Props> = ({
-  setShowModal,
-  handlePublicMint,
-  handleError,
   buyButtonText,
+  handleError,
+  handlePublicMint,
+  setShowModal,
 }) => {
   const { mintPrice } = useMintDetails();
 
@@ -57,10 +58,10 @@ const BuyModal: React.FC<Props> = ({
         </St.Row>
         {isDropdownOpen && (
           <St.Input
-            type="text"
-            placeholder="Paste optional wallet addres to mint to"
-            value={toAddress}
             onChange={(e) => setToAddress(e.target.value.toLowerCase())}
+            placeholder="Paste optional wallet addres to mint to"
+            type="text"
+            value={toAddress}
           />
         )}
       </St.BuyModalContainer>

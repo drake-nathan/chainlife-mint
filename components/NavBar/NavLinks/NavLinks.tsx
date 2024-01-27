@@ -1,18 +1,19 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
+
 import * as St from "./NavLinks.styled";
 
 interface Props {
-  handleMarketsClick: () => void;
-  handleConnectClick: () => void;
   active: boolean;
+  handleConnectClick: () => void;
+  handleMarketsClick: () => void;
   setShowMobileNav: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const NavLinks: React.FC<Props> = ({
-  handleMarketsClick,
-  handleConnectClick,
   active,
+  handleConnectClick,
+  handleMarketsClick,
   setShowMobileNav,
 }) => {
   return (

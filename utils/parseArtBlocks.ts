@@ -1,4 +1,4 @@
-import { ArtBlocks, PreMintOwners } from "types/premintTypes";
+import type { ArtBlocks, PreMintOwners } from "types/premintTypes";
 
 export const parseArtBlocks = (data: ArtBlocks): PreMintOwners => {
   const { enso, focus } = data;
@@ -9,28 +9,14 @@ export const parseArtBlocks = (data: ArtBlocks): PreMintOwners => {
     const tokenId = parseInt(token.tokenId.slice(-3));
     const owner = token.owner.id.toLowerCase();
 
-    if (preMintOwners[owner]) {
-      preMintOwners[owner].enso.push(tokenId);
-    } else {
-      preMintOwners[owner] = {
-        enso: [tokenId],
-        focus: [],
-      };
-    }
+    preMintOwners[owner].enso.push(tokenId);
   });
 
   focus.tokens.forEach((token) => {
     const tokenId = parseInt(token.tokenId.slice(-3));
     const owner = token.owner.id;
 
-    if (preMintOwners[owner]) {
-      preMintOwners[owner].focus.push(tokenId);
-    } else {
-      preMintOwners[owner] = {
-        enso: [],
-        focus: [tokenId],
-      };
-    }
+    preMintOwners[owner].focus.push(tokenId);
   });
 
   return preMintOwners;

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 type Props = {
-  zoomFactor: number;
+  className: string;
   slideMargin: number;
   visibleSlides: number;
-  className: string;
+  zoomFactor: number;
 };
 
 export const SliderItemDiv = styled.div<Props>`

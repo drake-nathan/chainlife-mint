@@ -1,9 +1,10 @@
-import React from "react";
 import Image from "next/image";
-import { useWindowSize } from "hooks/useWindowSize";
-import { IoLogoYoutube } from "react-icons/io";
-import * as St from "./Fallback.Syled";
 import Link from "next/link";
+import React from "react";
+import { IoLogoYoutube } from "react-icons/io";
+
+import * as St from "./Fallback.Syled";
+import { useWindowSize } from "hooks/useWindowSize";
 
 const FallbackPage: React.FC = () => {
   const { windowWidth } = useWindowSize();
@@ -13,42 +14,42 @@ const FallbackPage: React.FC = () => {
       <St.FallbackContainer>
         <St.LogoContainer>
           <Image
-            src={"/chainlife/chainlife.png"}
-            height={windowWidth > 600 ? "60" : "40"}
-            width={windowWidth > 600 ? "60" : "40"}
             alt="ChainLife logo"
+            height={windowWidth > 600 ? "60" : "40"}
+            src={"/chainlife/chainlife.png"}
+            width={windowWidth > 600 ? "60" : "40"}
           />
           <St.CLTitle>Chainlife</St.CLTitle>
         </St.LogoContainer>
         <St.LogoContainer>
           <a
             href="https://twitter.com/MonkMatto"
-            target="blank"
             rel="noreferrer"
+            target="blank"
           >
             <Image
-              src={"/icons/Twitter.svg"}
-              height={21}
-              width={21}
               alt="logo"
+              height={21}
+              src={"/icons/Twitter.svg"}
+              width={21}
             />
           </a>
           <a
             href="https://discord.com/invite/AQDwjAa3g2"
-            target="blank"
             rel="noreferrer"
+            target="blank"
           >
             <Image
-              src={"/icons/Discord-Logo-White.svg"}
-              height={24}
-              width={24}
               alt="logo"
+              height={24}
+              src={"/icons/Discord-Logo-White.svg"}
+              width={24}
             />
           </a>
           <a
             href="https://www.youtube.com/channel/UCZGHO8oZZcvgdXVyDv-majg/featured"
-            target="blank"
             rel="noreferrer"
+            target="blank"
           >
             <IoLogoYoutube
               id="youtube"

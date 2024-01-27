@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useContract } from "hooks/useContract";
-import { callShiftLevels } from "services/web3/contractInteractions";
-import { useMintDetails } from "hooks/useMintDetails";
+import React, { useEffect, useState } from "react";
+import { type SubmitHandler, useForm } from "react-hook-form";
+
 import * as St from "./TokenForms.styled";
+import { useContract } from "hooks/useContract";
+import { useMintDetails } from "hooks/useMintDetails";
+import { callShiftLevels } from "services/web3/contractInteractions";
 
 type IShiftLevels = { levelShift: number };
 
 interface Props {
+  handleError: (error: string) => void;
   isOwner: boolean;
   tokenId: number;
-  handleError: (error: string) => void;
 }
 
 const ShiftLevelsForm: React.FC<Props> = ({
-  tokenId,
   handleError,
   isOwner,
+  tokenId,
 }) => {
-  const { active, account } = useWeb3React();
+  const { account, active } = useWeb3React();
   const { contract } = useContract();
   const { shiftFee } = useMintDetails();
 
@@ -27,9 +28,9 @@ const ShiftLevelsForm: React.FC<Props> = ({
   const [errorText, setErrorText] = useState("");
 
   const {
-    register,
-    handleSubmit,
     formState: { errors },
+    handleSubmit,
+    register,
   } = useForm<IShiftLevels>();
 
   const onSubmit: SubmitHandler<IShiftLevels> = async () => {
@@ -40,7 +41,7 @@ const ShiftLevelsForm: React.FC<Props> = ({
     } else {
       if (levelShift) {
         try {
-          const tx = await callShiftLevels(
+          await callShiftLevels(
             contract,
             account as string,
             tokenId,
@@ -63,17 +64,17 @@ const ShiftLevelsForm: React.FC<Props> = ({
 
   return (
     <>
-      <St.Form id="level-shift-form" onSubmit={handleSubmit(onSubmit)}>
+      <St.Form id="level-shift-form" onSubmit={void handleSubmit(onSubmit)}>
         <St.Input
           type="number"
           {...register("levelShift", {
+            required: { message: "This field is required.", value: true },
             valueAsNumber: true,
-            required: { value: true, message: "This field is required." },
           })}
           id="level-shift"
+          onChange={(e) => setLevelShift(parseInt(e.target.value))}
           placeholder="Submit a Level Shift"
           value={levelShift || ""}
-          onChange={(e) => setLevelShift(parseInt(e.target.value))}
         />
         <St.Button type="submit">Submit</St.Button>
       </St.Form>

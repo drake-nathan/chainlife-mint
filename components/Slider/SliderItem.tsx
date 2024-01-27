@@ -1,35 +1,36 @@
 import React from "react";
+
 import * as St from "./SliderItem.styled";
 
 interface Props {
-  slideClass: string;
-  zoomFactor: number;
-  id: number;
   callback: (id: number) => void;
   callbackOut: () => void;
+  children: React.ReactNode;
+  id: number;
+  slideClass: string;
   slideMargin: number;
   visibleSlides: number;
-  children: React.ReactNode;
+  zoomFactor: number;
 }
 
 const SliderItem: React.FC<Props> = ({
-  slideMargin,
-  visibleSlides,
-  zoomFactor,
-  slideClass,
-  id,
   callback,
   callbackOut,
   children,
+  id,
+  slideClass,
+  slideMargin,
+  visibleSlides,
+  zoomFactor,
 }) => (
   <>
     <St.SliderItemDiv
-      zoomFactor={zoomFactor}
+      className={slideClass}
+      onMouseOut={callbackOut}
+      onMouseOver={() => callback(id)}
       slideMargin={slideMargin}
       visibleSlides={visibleSlides}
-      className={slideClass}
-      onMouseOver={() => callback(id)}
-      onMouseOut={callbackOut}
+      zoomFactor={zoomFactor}
     >
       {children}
     </St.SliderItemDiv>

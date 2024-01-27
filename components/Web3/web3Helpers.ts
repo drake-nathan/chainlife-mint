@@ -1,34 +1,31 @@
-import React from "react";
-import { Contract } from "web3-eth-contract";
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import type React from "react";
+import type { UserZenTokens } from "types/premintTypes";
+import type { Contract } from "web3-eth-contract";
+
 import {
-  getMintPhase,
-  checkIfPresaleActive,
-  checkIfSupply,
-  callPublicMint,
   callPremint,
+  callPublicMint,
   callPublicMintTo,
   checkIfEnsoUsed,
   checkIfFocusUsed,
+  checkIfPresaleActive,
+  checkIfSupply,
+  getMintPhase,
 } from "services/web3/contractInteractions";
-import { UserZenTokens } from "types/premintTypes";
 
 // mainnet
 const urls = {
-  openSea: `https://opensea.io/assets/ethereum`,
   etherscan: `https://etherscan.io/tx`,
+  openSea: `https://opensea.io/assets/ethereum`,
 };
 
-//goerli
-// const urls = {
-//   openSea: `https://testnets.opensea.io/assets/goerli`,
-//   etherscan: `https://goerli.etherscan.io/tx`,
-// };
-
 export interface ISuccessInfo {
-  tokenId: number;
   etherscanLink: string;
-  openseaLink: string;
   generatorUrl: string;
+  openseaLink: string;
+  tokenId: number;
   tokenPageUrl: string;
 }
 
@@ -43,15 +40,24 @@ export const presaleMint = async (
   setBuyButtonText: React.Dispatch<React.SetStateAction<string>>,
 ) => {
   const isPresaleActive = await checkIfPresaleActive(contract);
-  if (!isPresaleActive) return handleError("MINT IS NOT ACTIVE");
+  if (!isPresaleActive) {
+    handleError("MINT IS NOT ACTIVE");
+    return;
+  }
 
   const checkIfZenTokenUsed =
     projectNumber === 34 ? checkIfEnsoUsed : checkIfFocusUsed;
   const isZenTokenUsed = await checkIfZenTokenUsed(contract, tokenNumber);
-  if (isZenTokenUsed) return handleError("ZEN TOKEN ALREADY USED");
+  if (isZenTokenUsed) {
+    handleError("ZEN TOKEN ALREADY USED");
+    return;
+  }
 
   const isSupplyRemaining = await checkIfSupply(contract, maxSupply);
-  if (!isSupplyRemaining) return handleError("MINT HAS SOLD OUT");
+  if (!isSupplyRemaining) {
+    handleError("MINT HAS SOLD OUT");
+    return;
+  }
 
   const txObj = await callPremint(
     contract,
@@ -60,11 +66,17 @@ export const presaleMint = async (
     projectNumber,
     tokenNumber,
   );
-  if (!txObj) return handleError("MINT FAILED");
+  if (!txObj) {
+    handleError("MINT FAILED");
+    return;
+  }
   console.info("txObj", txObj);
 
   const txHash = txObj.transactionHash;
-  if (!txHash) return handleError("MINT FAILED");
+  if (!txHash) {
+    handleError("MINT FAILED");
+    return;
+  }
 
   const tokenId = txObj?.events?.Transfer?.returnValues?.tokenId as string;
   const contractAddress = txObj?.events?.Transfer?.address as string;
@@ -72,10 +84,10 @@ export const presaleMint = async (
   setBuyButtonText("MINTED");
 
   const successInfo: ISuccessInfo = {
-    tokenId: parseInt(tokenId),
     etherscanLink: `${urls.etherscan}/${txHash}`,
-    openseaLink: `${urls.openSea}/${contractAddress}/${tokenId}`,
     generatorUrl: `https://api.substratum.art/project/chainlife/generator/${tokenId}`,
+    openseaLink: `${urls.openSea}/${contractAddress}/${tokenId}`,
+    tokenId: parseInt(tokenId),
     tokenPageUrl: `https://chainlife.xyz/token/${tokenId}`,
   };
 
@@ -92,29 +104,40 @@ export const publicMint = async (
   setBuyButtonText: React.Dispatch<React.SetStateAction<string>>,
 ) => {
   const mintPhase = await getMintPhase(contract);
-  if (mintPhase === "0" || mintPhase === "1")
-    return handleError("PUBLIC MINT IS NOT ACTIVE");
+  if (mintPhase === "0" || mintPhase === "1") {
+    handleError("PUBLIC MINT IS NOT ACTIVE");
+    return;
+  }
 
   const isSupplyRemaining = await checkIfSupply(contract, maxSupply);
-  if (!isSupplyRemaining) return handleError("MINT HAS SOLD OUT");
+  if (!isSupplyRemaining) {
+    handleError("MINT HAS SOLD OUT");
+    return;
+  }
 
   const txObj = !toAddress
     ? await callPublicMint(contract, account, payableAmount)
     : await callPublicMintTo(contract, account, payableAmount, toAddress);
-  if (!txObj) return handleError("MINT FAILED");
+  if (!txObj) {
+    handleError("MINT FAILED");
+    return;
+  }
 
   const txHash = txObj.transactionHash;
-  if (!txHash) return handleError("MINT FAILED");
+  if (!txHash) {
+    handleError("MINT FAILED");
+    return;
+  }
 
   setBuyButtonText("MINTED");
   const tokenId = txObj?.events?.Transfer?.returnValues?.tokenId as string;
   const contractAddress = txObj?.events?.Transfer?.address as string;
 
   const successInfo: ISuccessInfo = {
-    tokenId: parseInt(tokenId),
     etherscanLink: `${urls.etherscan}/${txHash}`,
-    openseaLink: `${urls.openSea}/${contractAddress}/${tokenId}`,
     generatorUrl: `https://api.substratum.art/project/chainlife/generator/${tokenId}`,
+    openseaLink: `${urls.openSea}/${contractAddress}/${tokenId}`,
+    tokenId: parseInt(tokenId),
     tokenPageUrl: `https://chainlife.xyz/token/${tokenId}`,
   };
 

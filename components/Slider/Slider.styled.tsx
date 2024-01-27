@@ -1,19 +1,21 @@
 import styled from "styled-components";
+
 import { SliderItemDiv } from "./SliderItem.styled";
 
 type SliderWrapperProps = {
-  zoomFactor: number;
-  visibleSlides: number;
   slideMargin: number;
+  visibleSlides: number;
+  zoomFactor: number;
 };
 
 type SliderProps = {
-  visibleSlides: number;
-  transformValue: string;
-  zoomFactor: number;
-  slideMargin: number;
   pageTransition: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ref: any;
+  slideMargin: number;
+  transformValue: string;
+  visibleSlides: number;
+  zoomFactor: number;
 };
 
 export const SliderWrapper = styled.div<SliderWrapperProps>`
@@ -25,11 +27,8 @@ export const SliderWrapper = styled.div<SliderWrapperProps>`
   flex-direction: column;
   margin-top: 30px;
   gap: 30px;
-  // margin-top: 2rem;
   width: 225px;
-  // height: 906px;
   padding: ${(props) => (props.zoomFactor / props.visibleSlides) * 0.7 + "%"} 0;
-  // margin-bottom: 2em;
 
   .button-wrapper {
     display: flex;
@@ -91,7 +90,4 @@ export const SliderDiv = styled.div<SliderProps>`
   :hover ${SliderItemDiv} {
     transform: translateY(${(props) => props.transformValue});
   }
-  //::-webkit-scrollbar {
-  //display: none;
-  // }
 `;

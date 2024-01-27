@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { NextPage } from "next";
+
 import Head from "next/head";
-import NavBar from "components/NavBar/NavBar";
-import CollectionMenu from "components/Collection/Menu/Menu";
+import React, { useEffect, useState } from "react";
+import { type QueryFunctionContext, useInfiniteQuery } from "react-query";
+
 import CollectionGrid from "components/Collection/Grid/Grid";
-import { QueryFunctionContext, useInfiniteQuery } from "react-query";
-import { Chain, CollectionResponse, IProject } from "services/azureApi/types";
-import { fetchCollectionTokens, fetchProject } from "services/azureApi/fetches";
+import CollectionMenu from "components/Collection/Menu/Menu";
+import NavBar from "components/NavBar/NavBar";
 import { useChain } from "hooks/useChain";
+import { fetchCollectionTokens, fetchProject } from "services/azureApi/fetches";
+import {
+  Chain,
+  type CollectionResponse,
+  type IProject,
+} from "services/azureApi/types";
 import * as St from "styles/tokens.styled";
 
 const Collection: NextPage = () => {
@@ -18,7 +26,7 @@ const Collection: NextPage = () => {
   const [project, setProject] = useState<IProject | null>(null);
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
   const [sortType, setSortType] = useState<"tokenId" | "worldLevel">("tokenId");
-  const [tokenSearchId, setTokenSearchId] = useState<number | null>(null);
+  const [tokenSearchId, setTokenSearchId] = useState<null | number>(null);
   const [currentLength, setCurrentLength] = useState(0);
   const [hasMore, setHasMore] = useState<boolean>(false);
   const limit = 20;
@@ -27,13 +35,13 @@ const Collection: NextPage = () => {
     fetchCollectionTokens(
       chainlifeSlug,
       limit,
-      skip,
+      skip as number,
       sortDir,
       sortType,
       tokenSearchId,
     );
 
-  const { error, data, isLoading, fetchNextPage, refetch } = useInfiniteQuery<
+  const { data, error, fetchNextPage, isLoading, refetch } = useInfiniteQuery<
     CollectionResponse,
     Error
   >("tokens", fetchQuery, {
@@ -41,11 +49,7 @@ const Collection: NextPage = () => {
   });
 
   useEffect(() => {
-    fetchProject("chainlife")
-      .then((res) => {
-        if (res) setProject(res);
-      })
-      .catch(console.error);
+    fetchProject("chainlife").then(setProject).catch(console.error);
   }, []);
 
   useEffect(() => {
@@ -58,33 +62,33 @@ const Collection: NextPage = () => {
   }, [data, error]);
 
   useEffect(() => {
-    refetch();
-  }, [sortDir, sortType]);
+    void refetch();
+  }, [refetch, sortDir, sortType]);
 
   return (
     <St.AppContainer>
       <Head>
         <title>Chainlife</title>
-        <meta name="description" content="Chainlife." />
+        <meta content="Chainlife." name="description" />
       </Head>
       <NavBar />
 
       <CollectionMenu
         project={project}
-        sortDir={sortDir}
+        refetch={refetch as any}
         setSortDir={setSortDir}
-        sortType={sortType}
         setSortType={setSortType}
-        tokenSearchId={tokenSearchId}
         setTokenSearchId={setTokenSearchId}
-        refetch={refetch}
+        sortDir={sortDir}
+        sortType={sortType}
+        tokenSearchId={tokenSearchId}
       />
       <CollectionGrid
-        data={data}
         currentLength={currentLength}
-        hasMore={hasMore}
-        fetchNextPage={fetchNextPage}
+        data={data}
         error={error}
+        fetchNextPage={fetchNextPage as any}
+        hasMore={hasMore}
         isLoading={isLoading}
       />
     </St.AppContainer>

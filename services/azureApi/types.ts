@@ -5,128 +5,128 @@ export enum ProjectId {
 }
 
 export enum Chain {
-  mainnet = "mainnet",
   goerli = "goerli",
+  mainnet = "mainnet",
 }
 
 export interface IRoyaltyInfo {
-  artist_address: string;
   additional_payee?: string;
   additional_payee_bps?: number;
+  artist_address: string;
   royalty_fee_by_id: number;
 }
 
 export interface IProject {
   _id: ProjectId;
-  project_name: string;
-  project_slug: string;
   artist: string;
   artist_address: string; // also RoyaltyInfo
-  royalty_info: IRoyaltyInfo;
-  description: string;
-  maximum_supply: number;
-  current_supply?: number;
-  tx_count?: number;
-  collection_name: string;
-  collection_image: string;
+  chain: Chain;
   collection_description: string;
-  mintable: boolean;
-  script_type: string;
-  website: string;
+  collection_image: string;
+  collection_name: string;
+  contract_address: string;
+  creation_block: number;
+  current_supply?: number;
+  description: string;
+  events: string[];
   external_url: string;
   license: string;
-  contract_address: string;
-  chain: Chain;
-  events: string[];
-  creation_block: number;
+  maximum_supply: number;
+  mintable: boolean;
+  project_name: string;
+  project_slug: string;
+  royalty_info: IRoyaltyInfo;
+  script_type: string;
+  tx_count?: number;
+  website: string;
 }
 
 export interface IAttribute {
   trait_type: string;
-  value: string | number;
+  value: number | string;
 }
 
 export interface IScriptInputs {
-  token_id: number;
-  token_entropy: string;
   current_owner: string;
-  previous_owner: string;
-  transfer_count: number;
   custom_rule: string;
   level_shift: number;
+  previous_owner: string;
+  token_entropy: string;
+  token_id: number;
+  transfer_count: number;
 }
 
 export interface IToken {
   _id?: string; // made by db
-  token_id: number; // get from blockchain
+  animation_url: string; // generation script
+  artist: string; // project
+  artist_address: string; // project
+  aspect_ratio: number;
+  attributes: IAttribute[]; // script
+  collection_name: string; // project
+  description: string; // project
+  external_url: string; // project
+  generator_url: string; // same as animation_url
+  image: string; // generation scripts
+  image_data?: string; // not used for Chainlife
+  license: string; // project*
   name: string; // projectname + tokenId 'Chainlife 9'
   project_id: number; // project
   project_name: string; // project
   project_slug: string; // project
-  artist: string; // project
-  artist_address: string; // project
-  description: string; // project
-  collection_name: string; // project
-  aspect_ratio: number;
-  script_type: string;
-  script_inputs: IScriptInputs;
-  image: string; // generation scripts
-  thumbnail_url?: string;
-  image_data?: string; // not used for Chainlife
-  animation_url: string; // generation script
-  generator_url: string; // same as animation_url
-  website: string; // project
-  external_url: string; // project
-  license: string; // project*
   royalty_info: IRoyaltyInfo; // project
-  attributes: IAttribute[]; // script
+  script_inputs: IScriptInputs;
+  script_type: string;
+  thumbnail_url?: string;
+  token_id: number; // get from blockchain
+  website: string; // project
 }
 
 export interface ITransaction {
   _id?: string;
-  project_id: number;
   block_number: number;
-  transaction_hash: string;
-  transaction_date: Date;
   event_type: string;
+  project_id: number;
   token_id: number;
+  transaction_date: Date;
+  transaction_hash: string;
 }
 
 export interface IThumbnail {
   _id?: string;
-  project_slug: "focus" | "enso";
-  project_id: 34 | 181;
-  token_id: number;
   artblocks_id: string;
   image_full: string;
   image_thumbnail: string;
+  project_id: 34 | 181;
+  project_slug: "enso" | "focus";
+  token_id: number;
 }
 
 export interface TokenAbbr {
-  token_id: number;
+  artist: string;
+  external_url: string;
+  generator_url: string;
+  image: string;
   name: string;
   project_name: string;
   project_slug: string;
-  artist: string;
-  image: string;
-  thumbnail_url: string;
-  generator_url: string;
-  external_url: string;
   script_inputs: IScriptInputs;
+  thumbnail_url: string;
+  token_id: number;
   world_level?: number;
 }
 
 export interface CollectionResponse {
+  currentSupply: number;
   hasMore: boolean;
   skip: number;
-  currentSupply: number;
   tokens: TokenAbbr[];
 }
 
 export interface TxCounts {
-  total: number;
-  mints: number;
-  transfers: number;
   customRules: number;
   levelShifts: number;
+  mints: number;
+  total: number;
+  transfers: number;
 }

@@ -3,59 +3,59 @@ export const bio = `
 `;
 
 interface Collection {
-  name: string;
+  currentSupply?: number;
+  description?: string;
   image: string;
   maxSupply: number;
-  currentSupply?: number;
   mintable: boolean;
+  name: string;
   openSeaSlug: string;
-  description?: string;
 }
 
 export const collections: Collection[] = [
   {
-    name: "Chainlife",
     image:
       "https://mattoapi.blob.core.windows.net/thumbnails/chainlife-testnet_0.png",
     maxSupply: 4_096,
     mintable: true,
+    name: "Chainlife",
     openSeaSlug: "chainlife-by-matto",
   },
   {
-    name: "Blonks",
+    currentSupply: 4_444,
     image: "/collections/blonks.png",
     maxSupply: 4_444,
-    currentSupply: 4_444,
     mintable: false,
+    name: "Blonks",
     openSeaSlug: "blonks",
   },
   {
-    name: "Ensō",
+    currentSupply: 1_000,
     image: "/collections/enso.jpeg",
     maxSupply: 1_000,
-    currentSupply: 1_000,
     mintable: false,
+    name: "Ensō",
     openSeaSlug: "enso-by-matto",
   },
   {
-    name: "FOCUS",
     image: "/collections/focus.png",
     maxSupply: 1_000,
     mintable: true,
+    name: "FOCUS",
     openSeaSlug: "focus-by-matto",
   },
   {
-    name: "deFOCUSed",
     image: "/collections/defocused.png",
     maxSupply: 1_000,
     mintable: true,
+    name: "deFOCUSed",
     openSeaSlug: "defocused",
   },
   {
-    name: "Texture and Hues",
     image: "/collections/texture.svg",
     maxSupply: 1_000,
     mintable: true,
+    name: "Texture and Hues",
     openSeaSlug: "texture-and-hues",
   },
 ];

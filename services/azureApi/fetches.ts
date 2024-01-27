@@ -1,5 +1,6 @@
 import axios from "axios";
-import { CollectionResponse, IProject, IToken, TxCounts } from "./types";
+
+import type { CollectionResponse, IProject, IToken, TxCounts } from "./types";
 
 const rootApiUrl = process.env.NEXT_PUBLIC_API_ROOT;
 
@@ -36,7 +37,7 @@ export const fetchCollectionTokens = async (
   skip: number,
   sortDir: "asc" | "desc",
   sortType: "tokenId" | "worldLevel",
-  tokenId: number | null,
+  tokenId: null | number,
 ) => {
   const url = `${rootApiUrl}/project/${projectSlug}/all-tokens`;
 

@@ -1,32 +1,33 @@
-import React, { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
-import { useForm, SubmitHandler } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { type SubmitHandler, useForm } from "react-hook-form";
+
+import * as St from "./TokenForms.styled";
 import { useContract } from "hooks/useContract";
 import {
   callCustomRule,
   callResetRule,
 } from "services/web3/contractInteractions";
-import * as St from "./TokenForms.styled";
 
 type ICustomRule = { customRule: string };
 
 interface Props {
+  handleError: (error: string) => void;
   isOwner: boolean;
   tokenId: number;
-  handleError: (error: string) => void;
 }
 
-const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
-  const { active, account } = useWeb3React();
+const CustomRuleForm: React.FC<Props> = ({ handleError, isOwner, tokenId }) => {
+  const { account, active } = useWeb3React();
   const { contract } = useContract();
 
   const [customRule, setCustomRule] = useState("");
   const [errorText, setErrorText] = useState("");
 
   const {
-    register,
-    handleSubmit,
     formState: { errors },
+    handleSubmit,
+    register,
   } = useForm<ICustomRule>();
 
   const onSubmit: SubmitHandler<ICustomRule> = async () => {
@@ -36,12 +37,8 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
       handleError("Must be owner of token.");
     } else {
       try {
-        const tx = await callCustomRule(
-          contract,
-          account as string,
-          tokenId,
-          customRule,
-        );
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        await callCustomRule(contract, account as string, tokenId, customRule);
       } catch (error) {
         console.error(error);
         handleError("Error setting custom rule.");
@@ -49,7 +46,7 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
     }
   };
 
-  const handleReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     setCustomRule("");
@@ -59,7 +56,7 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
       handleError("Must be owner of token.");
     } else {
       try {
-        callResetRule(contract, account as string, tokenId);
+        void callResetRule(contract, account as string, tokenId);
       } catch (error) {
         console.error(error);
         handleError("Error resetting rule.");
@@ -76,19 +73,19 @@ const CustomRuleForm: React.FC<Props> = ({ isOwner, tokenId, handleError }) => {
 
   return (
     <>
-      <St.Form id="custom-rule-form" onSubmit={handleSubmit(onSubmit)}>
+      <St.Form id="custom-rule-form" onSubmit={void handleSubmit(onSubmit)}>
         <St.Input
           {...register("customRule", {
-            required: { value: true, message: "This field is required." },
             maxLength: {
-              value: 23,
               message: "This rule is too long, 23 chars max.",
+              value: 23,
             },
+            required: { message: "This field is required.", value: true },
           })}
           id="custom-rule"
+          onChange={(e) => setCustomRule(e.target.value)}
           placeholder="Submit a Custom Rule"
           value={customRule}
-          onChange={(e) => setCustomRule(e.target.value)}
         />
         <St.ButtonDiv>
           <St.Button type="submit">Submit</St.Button>

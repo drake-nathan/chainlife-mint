@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import { Main } from "styles/Library/Button.styled";
-import { ModalBackground } from "../Modals.styled";
 import { IoIosArrowDropdown } from "react-icons/io";
+import styled from "styled-components";
+
+import { ModalBackground } from "../Modals.styled";
+import { Main } from "styles/Library/Button.styled";
 
 type Dropdown = { isDropdownOpen: boolean };
 

@@ -1,4 +1,8 @@
-import { Contract } from "web3-eth-contract";
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+import type { Contract } from "web3-eth-contract";
+
 import { toWei } from "web3-utils";
 
 export const getMintPhase = async (contract: Contract) => {

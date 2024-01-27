@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
 import { useWeb3React } from "@web3-react/core";
+import { useEffect, useState } from "react";
+
 import { connectors } from "services/web3/connectors";
 
 export const useEagerConnect = () => {
@@ -8,7 +9,7 @@ export const useEagerConnect = () => {
   const [tried, setTried] = useState(false);
 
   useEffect(() => {
-    injected.isAuthorized().then((isAuthorized: boolean) => {
+    void injected.isAuthorized().then((isAuthorized: boolean) => {
       if (isAuthorized) {
         activate(injected, undefined, true).catch((error) => {
           setTried(true);
@@ -18,6 +19,7 @@ export const useEagerConnect = () => {
         setTried(true);
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // intentionally only running on mount (make sure it's only mounted once :))
 
   // if the connection worked, wait until we get confirmation of that to flip the flag

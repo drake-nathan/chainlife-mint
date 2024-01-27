@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { Main } from "styles/Library/Button.styled";
+
 import {
-  SectionTitleContainer,
   Title as DescTitle,
+  SectionTitleContainer,
 } from "../DescriptionSections/Description.styled";
+import { Main } from "styles/Library/Button.styled";
 
 export const Container = styled.div`
   display: flex;

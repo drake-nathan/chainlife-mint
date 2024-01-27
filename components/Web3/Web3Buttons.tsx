@@ -1,29 +1,31 @@
-import React, { useEffect, useState } from "react";
+import type { UserZenTokens } from "types/premintTypes";
+
 import { useWeb3React } from "@web3-react/core";
-import { useMintDetails } from "hooks/useMintDetails";
-import { useContract } from "hooks/useContract";
-import { usePreMintOwners } from "hooks/usePreMintOwners";
-import { UserZenTokens } from "types/premintTypes";
-import {
-  publicMint,
-  presaleMint,
-  ISuccessInfo,
-  filterUserTokens,
-} from "./web3Helpers";
-import ConnectModal from "components/Modals/ConnectModal";
-import BuyModal from "components/Modals/BuyModal/BuyModal";
-import PremintModal from "components/Modals/PremintModal/PremintModal";
-import ErrorModal from "components/Modals/ErrorModal";
-import SuccessModal from "components/Modals/SuccessModal";
+import React, { useEffect, useState } from "react";
+
 import * as St from "../DescriptionSections/Description.styled";
+import {
+  type ISuccessInfo,
+  filterUserTokens,
+  presaleMint,
+  publicMint,
+} from "./web3Helpers";
+import BuyModal from "components/Modals/BuyModal/BuyModal";
+import ConnectModal from "components/Modals/ConnectModal";
+import ErrorModal from "components/Modals/ErrorModal";
+import PremintModal from "components/Modals/PremintModal/PremintModal";
+import SuccessModal from "components/Modals/SuccessModal";
+import { useContract } from "hooks/useContract";
+import { useMintDetails } from "hooks/useMintDetails";
+import { usePreMintOwners } from "hooks/usePreMintOwners";
 
 const Web3Buttons: React.FC = () => {
-  const { active, account } = useWeb3React();
-  const { isPreMint, mintPrice, discountPrice, maxSupply, isMintLive } =
+  const { account, active } = useWeb3React();
+  const { discountPrice, isMintLive, isPreMint, maxSupply, mintPrice } =
     useMintDetails();
   const { contract } = useContract();
 
-  const { userZenTokens: initialUserZenTokens, error: preMintError } =
+  const { error: preMintError, userZenTokens: initialUserZenTokens } =
     usePreMintOwners();
   const [userZenTokens, setUserZenTokens] = useState<UserZenTokens>();
 
@@ -46,7 +48,7 @@ const Web3Buttons: React.FC = () => {
     setShowErrorModal(true);
   };
 
-  const handleMintClick = async () => {
+  const handleMintClick = () => {
     if (!active) {
       // if not connected, invite user to connect
       setShowConnectModal(!showConnectModal);
@@ -169,7 +171,7 @@ const Web3Buttons: React.FC = () => {
         )
         .catch(console.error);
     }
-  }, [initialUserZenTokens]);
+  }, [contract, initialUserZenTokens]);
 
   return (
     <St.ButtonContainer>
@@ -188,25 +190,27 @@ const Web3Buttons: React.FC = () => {
 
       {showBuyModal && (
         <BuyModal
-          setShowModal={setShowBuyModal}
-          handlePublicMint={handlePublicMint}
-          handleError={handleError}
           buyButtonText={buyButtonText}
+          handleError={handleError}
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+          handlePublicMint={void handlePublicMint as any}
+          setShowModal={setShowBuyModal}
         />
       )}
 
       {showPremintModal && userZenTokens && (
         <PremintModal
-          setShowModal={setShowPremintModal}
-          handlePresaleMint={handlePresaleMint}
-          handleError={handleError}
           buyButtonText={buyButtonText}
+          handleError={handleError}
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+          handlePresaleMint={void handlePresaleMint as any}
+          setShowModal={setShowPremintModal}
           userZenTokens={userZenTokens}
         />
       )}
 
       {showErrorModal && (
-        <ErrorModal setShowModal={setShowErrorModal} message={errorMessage} />
+        <ErrorModal message={errorMessage} setShowModal={setShowErrorModal} />
       )}
 
       {showSuccessModal && successInfo && (

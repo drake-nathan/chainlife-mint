@@ -1,8 +1,8 @@
 interface Token {
-  tokenId: string;
   owner: {
     id: string;
   };
+  tokenId: string;
 }
 
 interface Project {

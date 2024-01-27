@@ -1,36 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next";
-import { useState, useEffect } from "react";
+
 import Head from "next/head";
-import NavBar from "components/NavBar/NavBar";
+import { useEffect, useState } from "react";
+
+import * as St from "../styles/mint.styles";
 import DescriptionSections from "components/DescriptionSections/DescriptionSections";
+import LoadingVideo from "components/LoadingVideo/LoadingVideo";
+import NavBar from "components/NavBar/NavBar";
 import Slider from "components/Slider/Slider";
 import Web3Buttons from "components/Web3/Web3Buttons";
-import LoadingVideo from "components/LoadingVideo/LoadingVideo";
 import { useMintDetails } from "hooks/useMintDetails";
 import { useWindowSize } from "hooks/useWindowSize";
 import {
+  type Token,
   getGeneratorUrl,
   getSliderThumbnails,
-  Token,
 } from "utils/getRandomToken";
-import * as St from "../styles/mint.styles";
 
 const Home: NextPage = () => {
-  const { maxSupply, currentSupply } = useMintDetails();
+  const { currentSupply, maxSupply } = useMintDetails();
   const { windowWidth } = useWindowSize();
 
   const [sliderTokens, setSliderTokens] = useState<Token[]>([]);
   const [activeToken, setActiveToken] = useState<Token>();
 
   // TODO: this
-  const [isTxPending, setIsTxPending] = useState(false);
+  const [isTxPending] = useState(false);
 
   useEffect(() => {
     if (currentSupply) {
       setSliderTokens(getSliderThumbnails(currentSupply));
-      const { genUrl, thumbUrl, id } = getGeneratorUrl(currentSupply);
-      setActiveToken({ genUrl, thumbUrl, id });
+      const { genUrl, id, thumbUrl } = getGeneratorUrl(currentSupply);
+      setActiveToken({ genUrl, id, thumbUrl });
     }
   }, [currentSupply]);
 
@@ -38,7 +40,7 @@ const Home: NextPage = () => {
     <St.AppContainer>
       <Head>
         <title>Chainlife</title>
-        <meta name="description" content="Chainlife." />
+        <meta content="Chainlife." name="description" />
       </Head>
       <NavBar />
 
@@ -48,14 +50,14 @@ const Home: NextPage = () => {
             <Slider>
               {sliderTokens.map((token) => (
                 <div
-                  key={token.id}
                   className="tool"
                   data-tip={`Chainlife # ${token.id}`}
+                  key={token.id}
                   onClick={() =>
                     setActiveToken({ genUrl: token.genUrl, id: token.id })
                   }
                 >
-                  <img src={token.thumbUrl} alt="nft" />
+                  <img alt="nft" src={token.thumbUrl} />
                 </div>
               ))}
             </Slider>
@@ -81,6 +83,7 @@ const Home: NextPage = () => {
             ) : (
               activeToken && (
                 <iframe
+                  frameBorder="0"
                   height={
                     windowWidth > 750
                       ? "650"
@@ -90,10 +93,9 @@ const Home: NextPage = () => {
                           ? "390"
                           : "360"
                   }
-                  width={windowWidth > 750 ? "650" : "390"}
                   src={activeToken.genUrl}
                   title="generator"
-                  frameBorder="0"
+                  width={windowWidth > 750 ? "650" : "390"}
                 ></iframe>
               )
             )}

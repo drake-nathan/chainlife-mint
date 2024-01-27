@@ -1,11 +1,13 @@
-import React, { useState } from "react";
 import type { NextPage } from "next";
+
 import Head from "next/head";
-import NavBar from "components/NavBar/NavBar";
-import Instructions from "components/Instructions/Instructions";
-import TokenIdForm from "components/TokenForm/TokenIdForm";
+import React, { useState } from "react";
 import { IoIosExpand } from "react-icons/io";
+
 import * as St from "../styles/Worldview.styled";
+import Instructions from "components/Instructions/Instructions";
+import NavBar from "components/NavBar/NavBar";
+import TokenIdForm from "components/TokenForm/TokenIdForm";
 
 const Home: NextPage = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -21,7 +23,7 @@ const Home: NextPage = () => {
     <St.AppContainer>
       <Head>
         <title>Chainlife</title>
-        <meta name="description" content="Chainlife." />
+        <meta content="Chainlife." name="description" />
       </Head>
       <NavBar />
 
@@ -40,8 +42,8 @@ const Home: NextPage = () => {
             <St.MobileIconRow>
               <a
                 href={worldviewUrl}
-                target="blank"
                 rel="noreferrer"
+                target="blank"
                 title="View World In Fullscreen"
               >
                 <IoIosExpand />
@@ -52,9 +54,9 @@ const Home: NextPage = () => {
 
           <St.FrameDiv>
             <iframe
+              frameBorder="0"
               src={worldviewUrl}
               title="random generator"
-              frameBorder="0"
             ></iframe>
           </St.FrameDiv>
         </St.InstructionsContainer>

@@ -1,6 +1,8 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { TokenAbbr } from "services/azureApi/types";
+import React from "react";
+
+import type { TokenAbbr } from "services/azureApi/types";
+
 import * as St from "./Card.styled";
 
 interface Props {
@@ -9,10 +11,10 @@ interface Props {
 
 const Card: React.FC<Props> = ({ token }) => {
   const {
-    name,
     image,
+    name,
+    script_inputs: { level_shift, transfer_count },
     token_id,
-    script_inputs: { transfer_count, level_shift },
   } = token;
 
   return (

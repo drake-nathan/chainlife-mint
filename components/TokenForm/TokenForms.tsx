@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+
 import CustomRuleForm from "./CustomRuleForm";
-import ShiftLevelsForm from "./ShiftLevelsForm";
-import ErrorModal from "components/Modals/ErrorModal";
 import { crText, slText } from "./FormText";
+import ShiftLevelsForm from "./ShiftLevelsForm";
 import * as St from "./TokenForms.styled";
+import ErrorModal from "components/Modals/ErrorModal";
 
 interface Props {
   isOwner: boolean;
@@ -28,15 +29,15 @@ const TokenForms: React.FC<Props> = ({ isOwner, tokenId }) => {
         </St.TitleDiv>
         <St.SubTitleDiv>
           <St.SubTitle
-            onClick={() => setActiveSection(1)}
             className={activeSection === 1 ? "" : "inactive"}
+            onClick={() => setActiveSection(1)}
           >
             CUSTOM RULE
           </St.SubTitle>
           <St.SubTitle>|</St.SubTitle>
           <St.SubTitle
-            onClick={() => setActiveSection(2)}
             className={activeSection === 2 ? "" : "inactive"}
+            onClick={() => setActiveSection(2)}
           >
             SHIFT LEVELS
           </St.SubTitle>
@@ -46,13 +47,13 @@ const TokenForms: React.FC<Props> = ({ isOwner, tokenId }) => {
             {activeSection === 1 ? crText : slText}{" "}
             <a
               href="https://docs.chainlife.xyz/start-here/introduction"
-              target="blank"
               rel="noreferrer"
               style={{
                 color: "#3a3a3a",
-                textDecoration: "underline",
                 fontWeight: 500,
+                textDecoration: "underline",
               }}
+              target="blank"
             >
               docs.
             </a>
@@ -60,21 +61,21 @@ const TokenForms: React.FC<Props> = ({ isOwner, tokenId }) => {
         </St.FormInfoContainer>
         {activeSection === 1 ? (
           <CustomRuleForm
+            handleError={handleError}
             isOwner={isOwner}
             tokenId={tokenId}
-            handleError={handleError}
           />
         ) : (
           <ShiftLevelsForm
-            tokenId={tokenId}
             handleError={handleError}
             isOwner={isOwner}
+            tokenId={tokenId}
           />
         )}
       </St.Container>
 
       {showErrorModal && (
-        <ErrorModal setShowModal={setShowErrorModal} message={errorMessage} />
+        <ErrorModal message={errorMessage} setShowModal={setShowErrorModal} />
       )}
     </>
   );

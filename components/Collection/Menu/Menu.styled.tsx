@@ -1,5 +1,5 @@
+import { CgSortAz, CgSortZa } from "react-icons/cg";
 import styled from "styled-components";
-import { CgSortZa, CgSortAz } from "react-icons/cg";
 
 export const Container = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
 export interface Token {
-  id: number;
   genUrl: string;
+  id: number;
   thumbUrl?: string;
 }
 
@@ -24,7 +24,7 @@ export const getGeneratorUrl = (
 
   const thumbUrl = `${thumbRoot}${id}`;
 
-  return { genUrl, thumbUrl, id };
+  return { genUrl, id, thumbUrl };
 };
 
 export const getSliderThumbnails = (currentSupply: number): Token[] => {
@@ -45,7 +45,7 @@ export const getSliderThumbnails = (currentSupply: number): Token[] => {
   const sliderTokens = Array.from({ length }, (_, i) => {
     const thumbUrl = `${root}${tokenIds[i]}.png`;
     const genUrl = `${genRoot}/${tokenIds[i]}`;
-    return { thumbUrl, genUrl, id: tokenIds[i] };
+    return { genUrl, id: tokenIds[i], thumbUrl };
   });
 
   return sliderTokens;

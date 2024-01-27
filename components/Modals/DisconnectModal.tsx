@@ -1,5 +1,6 @@
-import React from "react";
 import { useWeb3React } from "@web3-react/core";
+import React from "react";
+
 import * as St from "./Modals.styled";
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 const DisconnectModal: React.FC<Props> = ({ setShowModal }) => {
   const { deactivate } = useWeb3React();
 
-  const handleDisconnectWallet = async () => {
+  const handleDisconnectWallet = () => {
     deactivate();
     setShowModal(false);
   };
@@ -24,7 +25,7 @@ const DisconnectModal: React.FC<Props> = ({ setShowModal }) => {
       <St.CenterModalContainer>
         <St.MsgDiv>
           <St.Text>Would you like to disconnect?</St.Text>
-          <St.XButton src="/icons/x-icon-lg.svg" onClick={handleCloseModal} />
+          <St.XButton onClick={handleCloseModal} src="/icons/x-icon-lg.svg" />
         </St.MsgDiv>
 
         <St.LittleButtonDiv>

@@ -1,12 +1,14 @@
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
+
 import { MdCopyright } from "react-icons/md";
+
 import * as St from "../styles/App.styled";
+import "../styles/globals.css";
 import Providers from "contexts/Providers";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const date = new Date();
-  let year = date.getFullYear();
+  const year = date.getFullYear();
 
   return (
     <Providers>
@@ -17,8 +19,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <St.CopyRightDiv>
         <em
           style={{
-            fontSize: "12px",
             color: "#9c9c9c",
+            fontSize: "12px",
             marginTop: "-15px",
             paddingLeft: "15px",
             paddingRight: "15px",
@@ -29,14 +31,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           agree to the{" "}
           <a
             href="https://chainlife.gitbook.io/docs/legal/terms"
-            title="Chainlife Terms"
             rel="noreferrer"
-            target="blank"
             style={{
-              textDecoration: "underline",
-              fontWeight: 500,
               color: "#3a3a3a",
+              fontWeight: 500,
+              textDecoration: "underline",
             }}
+            target="blank"
+            title="Chainlife Terms"
           >
             terms.
           </a>

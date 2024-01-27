@@ -1,5 +1,7 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Web3ReactProvider } from "@web3-react/core";
+import React from "react";
 import Web3 from "web3";
 
 interface Props {
