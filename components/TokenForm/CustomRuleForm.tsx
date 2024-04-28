@@ -37,7 +37,7 @@ const CustomRuleForm: React.FC<Props> = ({ handleError, isOwner, tokenId }) => {
       handleError("Must be owner of token.");
     } else {
       try {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+         
         await callCustomRule(contract, account as string, tokenId, customRule);
       } catch (error) {
         console.error(error);

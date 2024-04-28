@@ -16,5 +16,5 @@ const Instagram = ({ height, width }: { height: number; width: number }) => {
       />
     </svg>
   );
-}
+};
 export default Instagram;
