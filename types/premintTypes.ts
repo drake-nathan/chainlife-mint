@@ -20,6 +20,4 @@ export interface UserZenTokens {
   focus: number[];
 }
 
-export interface PreMintOwners {
-  [account: string]: UserZenTokens;
-}
+export type PreMintOwners = Record<string, UserZenTokens>;

@@ -108,7 +108,7 @@ const PremintModal: React.FC<Props> = ({
                   <img
                     alt="enso"
                     height={150}
-                    src={`${root}/enso_${token}.png`}
+                    src={`${root}/enso_${token.toString()}.png`}
                     width={150}
                   />{" "}
                   <St.TokenInfo>
@@ -132,7 +132,7 @@ const PremintModal: React.FC<Props> = ({
                       alt="focus"
                       height={150}
                       onError={() => setIsFocusImgError(true)}
-                      src={`${root}/focus_${token}.png`}
+                      src={`${root}/focus_${token.toString()}.png`}
                       width={150}
                     />
                   ) : (
@@ -156,9 +156,9 @@ const PremintModal: React.FC<Props> = ({
         <St.Button onClick={handleMintClick}>
           {buyButtonText}
           {activeEnso
-            ? ` WITH ENSO #${activeEnso}`
+            ? ` WITH ENSO #${activeEnso.toString()}`
             : activeFocus
-              ? ` WITH FOCUS #${activeFocus}`
+              ? ` WITH FOCUS #${activeFocus.toString()}`
               : ""}
         </St.Button>
       </St.BuyModalContainer>

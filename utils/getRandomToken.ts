@@ -14,7 +14,7 @@ export const getGeneratorUrl = (
   currentSupply: number,
   tokenId?: number,
 ): Token => {
-  const id = getRandomToken(currentSupply) || tokenId || 0;
+  const id = (getRandomToken(currentSupply) || tokenId) ?? 0;
 
   const root = "https://api.substratum.art/project/chainlife/generator";
   const thumbRoot =

@@ -7,7 +7,9 @@ import { useContract } from "hooks/useContract";
 import { useMintDetails } from "hooks/useMintDetails";
 import { callShiftLevels } from "services/web3/contractInteractions";
 
-type IShiftLevels = { levelShift: number };
+interface IShiftLevels {
+  levelShift: number;
+}
 
 interface Props {
   handleError: (error: string) => void;
@@ -56,7 +58,7 @@ const ShiftLevelsForm: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    if (errors.levelShift && errors.levelShift.message) {
+    if (errors.levelShift?.message) {
       setErrorText(errors.levelShift.message);
       setTimeout(() => setErrorText(""), 3000);
     }

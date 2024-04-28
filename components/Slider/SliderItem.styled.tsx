@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-type Props = {
+interface Props {
   className: string;
   slideMargin: number;
   visibleSlides: number;
   zoomFactor: number;
-};
+}
 
 export const SliderItemDiv = styled.div<Props>`
   margin: 0 ${(props) => props.slideMargin}px;

@@ -39,7 +39,7 @@ const DescriptionSections: React.FC = () => {
         <br />
         {activeSection === 1
           ? `Token IDs 0 - 123 are Zen. Mints.`
-          : `Cost Per Mint: ${mintPrice} ETH`}
+          : `Cost Per Mint: ${mintPrice.toString()} ETH`}
       </St.SubTitle>
       <St.SubtleDiv>
         <St.SubtleText>

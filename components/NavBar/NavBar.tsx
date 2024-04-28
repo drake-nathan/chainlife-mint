@@ -2,8 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import { Squash as Hamburger } from "hamburger-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext, useState } from "react";
-import { ThemeContext } from "styled-components";
+import React, { useState } from "react";
 
 import MobileNav from "./MobileNav";
 import * as St from "./NavBar.styled";
@@ -20,8 +19,9 @@ import { useWindowSize } from "hooks/useWindowSize";
 const NavBar: React.FC = () => {
   useEagerConnect();
   const { active } = useWeb3React();
-  const { isMobile } = useContext(ThemeContext);
   const { windowWidth } = useWindowSize();
+
+  const isMobile = windowWidth < 850;
 
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showDisconnectModal, setShowDisconnectModal] = useState(false);

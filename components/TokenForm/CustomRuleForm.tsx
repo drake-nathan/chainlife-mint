@@ -9,7 +9,9 @@ import {
   callResetRule,
 } from "services/web3/contractInteractions";
 
-type ICustomRule = { customRule: string };
+interface ICustomRule {
+  customRule: string;
+}
 
 interface Props {
   handleError: (error: string) => void;
@@ -37,7 +39,6 @@ const CustomRuleForm: React.FC<Props> = ({ handleError, isOwner, tokenId }) => {
       handleError("Must be owner of token.");
     } else {
       try {
-         
         await callCustomRule(contract, account as string, tokenId, customRule);
       } catch (error) {
         console.error(error);
@@ -65,7 +66,7 @@ const CustomRuleForm: React.FC<Props> = ({ handleError, isOwner, tokenId }) => {
   };
 
   useEffect(() => {
-    if (errors.customRule && errors.customRule.message) {
+    if (errors.customRule?.message) {
       setErrorText(errors.customRule.message);
       setTimeout(() => setErrorText(""), 3000);
     }

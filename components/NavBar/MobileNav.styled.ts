@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-type IsOpen = { isOpen: boolean };
+interface IsOpen {
+  isOpen: boolean;
+}
 
 export const Container = styled.div<IsOpen>`
   position: fixed;

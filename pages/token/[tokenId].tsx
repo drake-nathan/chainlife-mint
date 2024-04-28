@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { NextPage } from "next";
 
@@ -50,6 +49,7 @@ const Token: NextPage = () => {
             setGeneratorUrl(res.generator_url);
           }
         })
+        // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
         .catch(console.error);
     }
   }, [tokenId, tokenIdNum]);
@@ -63,6 +63,7 @@ const Token: NextPage = () => {
             setIsOwner(equalAddresses(account, res));
           }
         })
+        // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
         .catch(console.error);
     }
   }, [tokenId, account, active, contract, tokenIdNum]);

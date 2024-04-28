@@ -105,6 +105,7 @@ const Web3Buttons: React.FC = () => {
               .then((filteredUserZenTokens) =>
                 setUserZenTokens(filteredUserZenTokens),
               )
+              // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
               .catch(console.error);
           }
         }
@@ -123,7 +124,7 @@ const Web3Buttons: React.FC = () => {
           maxSupply,
           account,
           mintPrice,
-          toAddress || "",
+          toAddress ?? "",
           handleError,
           setBuyButtonText,
         );
@@ -169,6 +170,7 @@ const Web3Buttons: React.FC = () => {
         .then((filteredUserZenTokens) =>
           setUserZenTokens(filteredUserZenTokens),
         )
+        // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
         .catch(console.error);
     }
   }, [contract, initialUserZenTokens]);

@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { ModalBackground } from "../Modals.styled";
 import { Main } from "styles/Library/Button.styled";
 
-type Dropdown = { isDropdownOpen: boolean };
+interface Dropdown {
+  isDropdownOpen: boolean;
+}
 
 export const DropDownIcon = styled(IoIosArrowDropdown)<Dropdown>`
   font-size: 2.125rem;

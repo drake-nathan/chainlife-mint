@@ -20,11 +20,11 @@ const Card: React.FC<Props> = ({ token }) => {
   return (
     <St.Container>
       <St.Wrapper>
-        <Link href={`/token/${token_id}`}>
+        <Link href={`/token/${token_id.toString()}`}>
           <St.PreviewImage src={image} />
         </Link>
         <St.DescriptionDiv>
-          <Link href={`/token/${token_id}`}>
+          <Link href={`/token/${token_id.toString()}`}>
             <St.Title>{name}</St.Title>
           </Link>
           <St.Text>Level Shift: {level_shift}</St.Text>

@@ -23,7 +23,9 @@ const Instructions: React.FC<Props> = ({ activeStep, setActiveStep }) => {
         >
           {activeStep > 0 &&
             instructions[activeStep - 1].map((line, l) => (
-              <St.Step key={`${activeStep}.${l + 1}`}>{line}</St.Step>
+              <St.Step key={`${activeStep.toString()}.${l + 1}`}>
+                {line}
+              </St.Step>
             ))}
         </St.StepContainer>
       )}

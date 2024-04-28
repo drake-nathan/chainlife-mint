@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 import { SliderItemDiv } from "./SliderItem.styled";
 
-type SliderWrapperProps = {
+interface SliderWrapperProps {
   slideMargin: number;
   visibleSlides: number;
   zoomFactor: number;
-};
+}
 
-type SliderProps = {
+interface SliderProps {
   pageTransition: number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ref: any;
@@ -16,7 +16,7 @@ type SliderProps = {
   transformValue: string;
   visibleSlides: number;
   zoomFactor: number;
-};
+}
 
 export const SliderWrapper = styled.div<SliderWrapperProps>`
   // overflow: hidden;

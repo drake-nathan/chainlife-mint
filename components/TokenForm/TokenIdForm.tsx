@@ -5,7 +5,9 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import * as St from "./IdForm.Styled";
 import { useMintDetails } from "hooks/useMintDetails";
 
-type IToken = { tokenId: number };
+interface IToken {
+  tokenId: number;
+}
 
 const TokenIdForm = () => {
   const router = useRouter();
@@ -25,7 +27,7 @@ const TokenIdForm = () => {
   };
 
   useEffect(() => {
-    if (errors.tokenId && errors.tokenId.message) {
+    if (errors.tokenId?.message) {
       setErrorText(errors.tokenId.message);
       setTimeout(() => setErrorText(""), 3000);
     }
