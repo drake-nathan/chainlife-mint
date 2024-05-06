@@ -5,14 +5,14 @@ import { ModalBackground } from "../Modals.styled";
 import { Main } from "styles/Library/Button.styled";
 
 interface Dropdown {
-  isDropdownOpen: boolean;
+  $isDropdownOpen: boolean;
 }
 
 export const DropDownIcon = styled(IoIosArrowDropdown)<Dropdown>`
   font-size: 2.125rem;
   cursor: pointer;
-  transform: ${({ isDropdownOpen }) =>
-    isDropdownOpen ? "rotate(0deg)" : "rotate(90deg)"};
+  transform: ${({ $isDropdownOpen }) =>
+    $isDropdownOpen ? "rotate(0deg)" : "rotate(90deg)"};
 `;
 
 export const Row = styled.div`
@@ -67,7 +67,6 @@ export const SubtleText = styled(Text)`
 export const Input = styled.input`
   min-height: 65px;
   width: 100%;
-  /* min-width: 300px; */
   padding: 0.5em;
   border: 3px solid ${(props) => props.theme.colors.textOffset};
   outline: none;

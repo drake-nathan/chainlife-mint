@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 
 import * as St from "../styles/mint.styles";
 import DescriptionSections from "components/DescriptionSections/DescriptionSections";
-import LoadingVideo from "components/LoadingVideo/LoadingVideo";
 import NavBar from "components/NavBar/NavBar";
 import Slider from "components/Slider/Slider";
 import Web3Buttons from "components/Web3/Web3Buttons";
@@ -20,13 +19,11 @@ import {
 
 const Home: NextPage = () => {
   const { currentSupply, maxSupply } = useMintDetails();
+
   const { windowWidth } = useWindowSize();
 
   const [sliderTokens, setSliderTokens] = useState<Token[]>([]);
   const [activeToken, setActiveToken] = useState<Token>();
-
-  // TODO: this
-  const [isTxPending] = useState(false);
 
   useEffect(() => {
     if (currentSupply) {
@@ -78,26 +75,22 @@ const Home: NextPage = () => {
               </St.TitleContainer>
               {windowWidth > 800 && <Web3Buttons />}
             </St.TitleAndCryptoContainer>
-            {isTxPending ? (
-              <LoadingVideo />
-            ) : (
-              activeToken && (
-                <iframe
-                  frameBorder="0"
-                  height={
-                    windowWidth > 750
-                      ? "650"
-                      : windowWidth >= 412
-                        ? "412"
-                        : windowWidth >= 390
-                          ? "390"
-                          : "360"
-                  }
-                  src={activeToken.genUrl}
-                  title="generator"
-                  width={windowWidth > 750 ? "650" : "390"}
-                ></iframe>
-              )
+            {activeToken && (
+              <iframe
+                frameBorder="0"
+                height={
+                  windowWidth > 750
+                    ? "650"
+                    : windowWidth >= 412
+                      ? "412"
+                      : windowWidth >= 390
+                        ? "390"
+                        : "360"
+                }
+                src={activeToken.genUrl}
+                title="generator"
+                width={windowWidth > 750 ? "650" : "390"}
+              ></iframe>
             )}
 
             <St.InfoContainer>

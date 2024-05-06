@@ -7,7 +7,7 @@ import { useMintDetails } from "hooks/useMintDetails";
 interface Props {
   buyButtonText: string;
   handleError: (error: string) => void;
-  handlePublicMint: (toAddress?: string) => void;
+  handlePublicMint: (toAddress?: string) => Promise<void>;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -29,7 +29,7 @@ const BuyModal: React.FC<Props> = ({
     if (toAddress && !isAddressValid) {
       handleError("Invalid 'to' address.");
     } else {
-      handlePublicMint(toAddress);
+      void handlePublicMint(toAddress);
     }
   };
 
@@ -52,7 +52,7 @@ const BuyModal: React.FC<Props> = ({
         <St.Row>
           <St.Text>Mint to a different wallet?</St.Text>
           <St.DropDownIcon
-            isDropdownOpen={isDropdownOpen}
+            $isDropdownOpen={isDropdownOpen}
             onClick={handleDropdownClick}
           />
         </St.Row>
