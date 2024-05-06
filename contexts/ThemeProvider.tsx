@@ -24,7 +24,8 @@ const ThemeProvider: React.FC<Props> = ({ children }) => {
 
   return (
     <StyledThemeProvider theme={{ ...theme, isMiniCard, isMobile }}>
-      {children}
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      {children as any}
     </StyledThemeProvider>
   );
 };

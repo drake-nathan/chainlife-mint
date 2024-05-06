@@ -116,7 +116,7 @@ const Web3Buttons: React.FC = () => {
         <BuyModal
           buyButtonText={buyButtonText}
           handleError={handleError}
-          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+           
           handlePublicMint={handlePublicMint}
           setShowModal={setShowBuyModal}
         />
