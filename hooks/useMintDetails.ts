@@ -8,10 +8,10 @@ export const useMintDetails = () => {
   const isMintLive = useIsMintLive(contract);
   const currentSupply = useCurrentSupply(contract);
 
-  const mintPrice = 0.08;
-  const discountPrice = 0.08;
-  const shiftFee = 0.001;
-  const maxSupply = 4096;
+  const mintPrice = 0.0275;
+  const discountPrice = 0.0275;
+  const shiftFee = 0.0001;
+  const maxSupply = 1024;
   const maxMint = 1;
 
   return {
