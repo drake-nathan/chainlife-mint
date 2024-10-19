@@ -50,7 +50,7 @@ const CollectionMenu: React.FC<Props> = ({
         <St.Title>Collection Stats</St.Title>
         <St.Stat>
           {project?.current_supply && intlNumberFormat(project.current_supply)}{" "}
-          / {intlNumberFormat(4096)}&nbsp; Tokens Minted
+          / {intlNumberFormat(1024)}&nbsp; Tokens Minted
         </St.Stat>
         <St.Stat>
           Level Shifts:&nbsp;{" "}
