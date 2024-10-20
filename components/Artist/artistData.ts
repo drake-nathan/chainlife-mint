@@ -1,5 +1,5 @@
 export const bio = `
-  Matto - Shinkai (he/him) is a Buddhist artist, activist, collector, developer, educator, filmmaker, game designer, novelist, and poet. His art has always focused on human elements, either through movement, form, or action. He is an advocate for compassionate living, LGBT rights, equality for all, and environmental protection. Matto - Shinkai lives in North Carolina with his two partners and their dogs.
+  Matto - Shinkai (he/him) is a Buddhist artist and author. His art has always focused on human elements, either through movement, form, or action. He is an advocate for compassionate living, LGBT rights, equality for all, and environmental protection. Matto - Shinkai lives in North Carolina with his two partners and their dogs.
 `;
 
 interface Collection {
@@ -16,7 +16,7 @@ export const collections: Collection[] = [
   {
     image:
       "https://mattoapi.blob.core.windows.net/thumbnails/chainlife-testnet_0.png",
-    maxSupply: 4_096,
+    maxSupply: 1_024,
     mintable: true,
     name: "Chainlife",
     openSeaSlug: "chainlife-by-matto",
@@ -38,23 +38,24 @@ export const collections: Collection[] = [
     openSeaSlug: "enso-by-matto",
   },
   {
+    currentSupply: 567,
     image: "/collections/focus.png",
-    maxSupply: 1_000,
-    mintable: true,
+    maxSupply: 567,
+    mintable: false,
     name: "FOCUS",
     openSeaSlug: "focus-by-matto",
   },
   {
     image: "/collections/defocused.png",
-    maxSupply: 1_000,
+    maxSupply: 567,
     mintable: true,
     name: "deFOCUSed",
     openSeaSlug: "defocused",
   },
   {
     image: "/collections/texture.svg",
-    maxSupply: 1_000,
-    mintable: true,
+    maxSupply: 256,
+    mintable: false,
     name: "Texture and Hues",
     openSeaSlug: "texture-and-hues",
   },
