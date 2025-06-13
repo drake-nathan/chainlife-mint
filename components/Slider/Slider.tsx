@@ -40,7 +40,9 @@ const Slider: React.FC<Props> = ({ children }) => {
     }
 
     if (sliderRef.current) {
-      if (currentPage > totalPages) setCurrentPage(totalPages);
+      if (currentPage > totalPages) {
+        setCurrentPage(totalPages);
+      }
       sliderRef.current.style.transform = `translate3D(0, -${
         currentPage * scrollSize
       }px, 0)`;
@@ -50,9 +52,13 @@ const Slider: React.FC<Props> = ({ children }) => {
   // Have to disable hover effect on slides when flipping page
   // Otherwise it will look ugly when mouse hovers over the slides
   const disableHoverEffect = () => {
-    if (sliderRef.current) sliderRef.current.style.pointerEvents = "none";
+    if (sliderRef.current) {
+      sliderRef.current.style.pointerEvents = "none";
+    }
     setTimeout(() => {
-      if (sliderRef.current) sliderRef.current.style.pointerEvents = "all";
+      if (sliderRef.current) {
+        sliderRef.current.style.pointerEvents = "all";
+      }
     }, pageTransition);
   };
 
@@ -60,15 +66,20 @@ const Slider: React.FC<Props> = ({ children }) => {
     disableHoverEffect();
     setCurrentPage(currentPage + (forward ? 1 : -1));
 
-    if (sliderRef.current)
+    if (sliderRef.current) {
       sliderRef.current.style.transform = `translate3D(0, -${
         (currentPage + (forward ? 1 : -1)) * scrollSize
       }px, 0)`;
+    }
   };
 
   const handleMouseOver = (id: number) => {
-    if (id % visibleSlides === 1) setTransformValue("0%"); // left
-    if (id % visibleSlides === 0) setTransformValue(`0%`); // right
+    if (id % visibleSlides === 1) {
+      setTransformValue("0%");
+    } // left
+    if (id % visibleSlides === 0) {
+      setTransformValue(`0%`);
+    } // right
   };
 
   const handleMouseOut = () => {
@@ -123,9 +134,9 @@ const Slider: React.FC<Props> = ({ children }) => {
       <div className="button-wrapper forward">
         <button
           className={
-            currentPage === totalPages
-              ? "button forward disabled"
-              : "button forward"
+            currentPage === totalPages ?
+              "button forward disabled"
+            : "button forward"
           }
           onClick={() => handleSlideMove(true)}
         >

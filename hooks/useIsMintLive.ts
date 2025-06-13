@@ -9,7 +9,9 @@ export const useIsMintLive = (contract: Contract): boolean => {
     getMintPhase(contract),
   );
 
-  if (error) throw new Error("Error fetching mint stage", { cause: error });
+  if (error) {
+    throw new Error("Error fetching mint stage", { cause: error });
+  }
 
   return data === "1" || data === "2";
 };

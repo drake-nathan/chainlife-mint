@@ -34,9 +34,13 @@ const TokenIdForm = () => {
   }, [errors.tokenId]);
 
   useEffect(() => {
-    if (tokenId < 0) settokenId(0);
+    if (tokenId < 0) {
+      settokenId(0);
+    }
     if (currentSupply) {
-      if (tokenId > currentSupply) settokenId(currentSupply);
+      if (tokenId > currentSupply) {
+        settokenId(currentSupply);
+      }
     }
   }, [currentSupply, tokenId]);
 

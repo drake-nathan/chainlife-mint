@@ -10,7 +10,9 @@ export const useCurrentSupply = (contract: Contract): number | undefined => {
     () => fetchCurrentSupply(contract),
   );
 
-  if (error) throw new Error("Error fetching mint stage", { cause: error });
+  if (error) {
+    throw new Error("Error fetching mint stage", { cause: error });
+  }
 
   return currentSupply;
 };

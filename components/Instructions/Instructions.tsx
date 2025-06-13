@@ -16,9 +16,9 @@ const Instructions: React.FC<Props> = ({ activeStep, setActiveStep }) => {
       {activeStep > 0 && (
         <St.StepContainer
           onClick={
-            activeStep < maxSteps
-              ? () => setActiveStep(activeStep + 1)
-              : () => setActiveStep(0)
+            activeStep < maxSteps ?
+              () => setActiveStep(activeStep + 1)
+            : () => setActiveStep(0)
           }
         >
           {activeStep > 0 &&

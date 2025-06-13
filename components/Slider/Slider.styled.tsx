@@ -32,22 +32,22 @@ export const SliderWrapper = styled.div<SliderWrapperProps>`
 
   .button-wrapper {
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 48px;
+    align-items: center;
     box-sizing: border-box;
+    width: 48px;
   }
 
   .button {
-    background: none;
+    transition: all 0.7s;
+    cursor: pointer;
+    outline: none;
     border: 0;
+    background: none;
     width: 48px;
     height: fit-content;
     color: ${(props) => props.theme.colors.textMain};
     font-size: 3.5rem;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.7s;
     user-select: none;
     :hover {
       opacity: 0.5;
@@ -55,8 +55,8 @@ export const SliderWrapper = styled.div<SliderWrapperProps>`
   }
 
   .disabled {
-    color: ${(props) => props.theme.colors.textOffset};
     cursor: default;
+    color: ${(props) => props.theme.colors.textOffset};
     :hover {
       opacity: 1;
     }

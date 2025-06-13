@@ -53,10 +53,12 @@ const Collection: NextPage = () => {
     fetchProject("chainlife").then(setProject).catch(console.error);
   }, []);
 
+  const lastPage = data?.pages[data.pages.length - 1];
   useEffect(() => {
-    if (error) console.error(error.message);
+    if (error) {
+      console.error(error.message);
+    }
     if (data) {
-      const lastPage = data.pages[data.pages.length - 1];
       setHasMore(lastPage.hasMore);
       setCurrentLength(lastPage.skip + lastPage.tokens.length);
     }

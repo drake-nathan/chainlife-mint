@@ -28,8 +28,8 @@ export const SocialLink = styled(NavItem)`
   color: ${(props) => props.theme.colors.textMain};
 
   :hover {
-    color: ${(props) => props.theme.colors.hover};
     cursor: pointer;
+    color: ${(props) => props.theme.colors.hover};
   }
   #youtube {
     :hover {

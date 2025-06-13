@@ -53,8 +53,8 @@ export const FormInfoContainer = styled.div`
 
   @media (max-width: 500px) {
     margin-top: -18px;
-    padding-left: 30px;
     padding-right: 30px;
+    padding-left: 30px;
   }
 `;
 
@@ -103,8 +103,8 @@ export const Input = styled.input`
   }
 
   @media (max-width: 500px) {
-    height: 65px;
     width: 100%;
+    height: 65px;
     text-align: center;
   }
 

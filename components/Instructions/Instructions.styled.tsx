@@ -21,8 +21,8 @@ export const StepContainer = styled.div`
   animation-name: ${FadeIn};
   animation-duration: 1s ease-in-out;
   @media (max-width: 550px) {
-    font-size: 14px;
     max-width: 350px;
+    font-size: 14px;
   }
 `;
 

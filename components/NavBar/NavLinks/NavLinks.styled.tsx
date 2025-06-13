@@ -17,12 +17,12 @@ export const NavItem = styled.span`
   color: ${(props) => props.theme.colors.textMain};
 
   :hover {
-    color: ${(props) => props.theme.colors.hover};
     cursor: pointer;
+    color: ${(props) => props.theme.colors.hover};
   }
 
   @media (max-height: 700px) and (max-width: 500px) {
-    font-size: 1.5rem;
     font-weight: 500;
+    font-size: 1.5rem;
   }
 `;

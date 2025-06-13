@@ -33,13 +33,13 @@ const DescriptionSections: React.FC = () => {
       <St.SubTitle>
         <br />
         <br />
-        {activeSection === 1
-          ? "Zen. Mint has closed."
-          : "1 Mint per transaction"}{" "}
+        {activeSection === 1 ?
+          "Zen. Mint has closed."
+        : "1 Mint per transaction"}{" "}
         <br />
-        {activeSection === 1
-          ? `Token IDs 0 - 123 are Zen. Mints.`
-          : `Cost Per Mint: ${mintPrice.toString()} ETH`}
+        {activeSection === 1 ?
+          `Token IDs 0 - 123 are Zen. Mints.`
+        : `Cost Per Mint: ${mintPrice.toString()} ETH`}
       </St.SubTitle>
       <St.SubtleDiv>
         <St.SubtleText>
@@ -48,7 +48,7 @@ const DescriptionSections: React.FC = () => {
         </St.SubtleText>
         <St.SubtleText className={activeSection === 1 ? "one" : "two"}>
           {activeSection === 2 ? section2AText : section1AText}{" "}
-          {activeSection === 2 ? (
+          {activeSection === 2 ?
             <a
               href="https://docs.chainlife.xyz/"
               rel="noreferrer"
@@ -61,7 +61,7 @@ const DescriptionSections: React.FC = () => {
             >
               docs.
             </a>
-          ) : null}
+          : null}
         </St.SubtleText>
       </St.SubtleDiv>
     </St.HeroContainer>

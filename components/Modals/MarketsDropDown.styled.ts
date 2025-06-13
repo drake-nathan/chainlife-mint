@@ -27,28 +27,28 @@ export const TopButtonContainer = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: ${(props) => props.theme.colors.textMain};
-    background: ${(props) => props.theme.colors.bgMain};
     border: none;
+    background: ${(props) => props.theme.colors.bgMain};
+    color: ${(props) => props.theme.colors.textMain};
   }
 
   .up-arrow {
-    color: inherit;
-    background: inherit;
-    border: none;
     margin-right: 12px;
+    border: none;
+    background: inherit;
     min-width: 25px;
+    color: inherit;
   }
 
   button {
-    color: inherit;
-    background: inherit;
     border: none;
+    background: inherit;
+    color: inherit;
   }
 
   #opensea {
-    width: 100%;
     margin-left: -8px;
+    width: 100%;
   }
 `;
 
@@ -68,9 +68,9 @@ export const Button = styled.button`
   width: 175px;
 
   :hover {
-    color: ${(props) => props.theme.colors.textMain};
-    background-color: ${(props) => props.theme.colors.bgMain};
     border: none;
+    background-color: ${(props) => props.theme.colors.bgMain};
+    color: ${(props) => props.theme.colors.textMain};
   }
 
   @media (max-width: 500px) {

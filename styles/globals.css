@@ -12,8 +12,8 @@
 
 html,
 body {
-  overflow-x: hidden;
   background-color: #f4f5f0;
+  overflow-x: hidden;
 }
 
 a {

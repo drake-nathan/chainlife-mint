@@ -100,7 +100,7 @@ export const SmallButton = styled(Button)`
   color: ${(props) => props.theme.colors.bgMain};
 
   &:hover {
-    font-size: 19px;
     font-weight: 400;
+    font-size: 19px;
   }
 `;

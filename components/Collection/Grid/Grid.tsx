@@ -27,7 +27,7 @@ const CollectionGrid: React.FC<Props> = ({
 }) => {
   return (
     <St.Container>
-      {data ? (
+      {data ?
         <InfiniteScroll
           dataLength={currentLength}
           hasMore={hasMore}
@@ -42,11 +42,9 @@ const CollectionGrid: React.FC<Props> = ({
             )}
           </St.Wrapper>
         </InfiniteScroll>
-      ) : error && !isLoading ? (
+      : error && !isLoading ?
         <St.H1>Unable to fetch tokens right now.</St.H1>
-      ) : (
-        <St.H1>Loading...</St.H1>
-      )}
+      : <St.H1>Loading...</St.H1>}
     </St.Container>
   );
 };

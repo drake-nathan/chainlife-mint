@@ -9,13 +9,13 @@ export const Container = styled.div`
   gap: ${({ theme }) => (theme.isMobile ? "3em" : "1.75em")};
 
   .icon {
-    font-size: ${({ theme }) => (theme.isMobile ? "2rem" : "1.5rem")};
-    color: ${(props) => props.theme.colors.textMain};
     vertical-align: bottom;
+    color: ${(props) => props.theme.colors.textMain};
+    font-size: ${({ theme }) => (theme.isMobile ? "2rem" : "1.5rem")};
 
     :hover {
-      color: ${(props) => props.theme.colors.hover};
       cursor: pointer;
+      color: ${(props) => props.theme.colors.hover};
     }
   }
 `;

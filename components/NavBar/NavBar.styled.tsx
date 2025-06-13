@@ -16,8 +16,8 @@ export const NavContainer = styled.div`
   @media (max-width: 1030px) {
     ${({ theme }) => !theme.isMobile && "flex-direction: column-reverse;"}
     height: fit-content;
-    margin-bottom: 20px;
     margin-top: 2em;
+    margin-bottom: 20px;
     padding: ${({ theme }) => (theme.isMobile ? "0 1.5em" : "0 1em")};
   }
 `;
@@ -39,8 +39,8 @@ export const TitleDiv = styled.div`
 
 export const NavTitle = styled.h1`
   :hover {
-    color: ${(props) => props.theme.colors.hover};
     cursor: pointer;
+    color: ${(props) => props.theme.colors.hover};
   }
 `;
 

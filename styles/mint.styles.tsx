@@ -12,16 +12,16 @@ export const AppContainer = styled.div`
   padding-bottom: 150px;
 
   .tool {
-    cursor: pointer;
     position: relative;
+    cursor: pointer;
   }
 
   /*== common styles for both parts of tool tip ==*/
   .tool::after {
-    opacity: 0;
     position: absolute;
-    bottom: 0;
     right: 0;
+    bottom: 0;
+    opacity: 0;
   }
 
   .tool:hover::after {
@@ -32,18 +32,18 @@ export const AppContainer = styled.div`
 
   .tool::after {
     display: flex;
-    align-items: center;
     justify-content: center;
-    background: rgba(244, 245, 240, 0.85);
-    color: #3a3a3a;
-    font-size: 16px;
-    font-weight: 600;
-    content: attr(data-tip);
-    padding: 1em;
+    align-items: center;
     transition: all 0.65s;
+    background: rgba(244, 245, 240, 0.85);
+    padding: 1em;
+    width: 175px;
     //transform: scale(0.6) translateY(140px);
     height: 35px;
-    width: 175px;
+    content: attr(data-tip);
+    color: #3a3a3a;
+    font-weight: 600;
+    font-size: 16px;
   }
 
   .tool:hover::after,
@@ -63,13 +63,13 @@ export const BodyContainer = styled.div`
   @media (max-width: 1750px) {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 3em;
-    padding-left: 0px;
-    padding-right: 0px;
     padding-top: 0;
+    padding-right: 0px;
     padding-bottom: 25px;
+    padding-left: 0px;
   }
 
   @media (max-width: 500px) {
@@ -92,8 +92,8 @@ export const LeftSection = styled.div`
   @media (max-width: 750px) {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -106,11 +106,11 @@ export const InfoContainer = styled.div`
   width: 650px;
 
   @media (max-width: 750px) {
-    width: 360px;
+    flex-direction: column;
+    gap: 2rem;
     margin-top: 3.5rem;
     margin-bottom: 2rem;
-    gap: 2rem;
-    flex-direction: column;
+    width: 360px;
 
     button {
       max-width: 225px;
@@ -150,9 +150,9 @@ export const TitleContainer = styled.div`
   align-items: flex-start;
 
   @media (max-width: 750px) {
+    align-items: center;
     margin-bottom: -12px;
     width: 350px;
-    align-items: center;
   }
 `;
 
@@ -173,8 +173,8 @@ export const DescriptionsContainer = styled.div`
 
   @media (max-width: 1750px) {
     margin-top: 0px;
-    padding-left: 2rem;
     padding-right: 2rem;
+    padding-left: 2rem;
     width: 80%;
     height: 350px;
   }

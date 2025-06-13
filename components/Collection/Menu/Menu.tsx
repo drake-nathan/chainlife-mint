@@ -40,9 +40,8 @@ const CollectionMenu: React.FC<Props> = ({
   }, [project]);
 
   const totalOffsets = 40_000;
-  const offsetsRemaining = project?.tx_count
-    ? totalOffsets - project.tx_count
-    : totalOffsets;
+  const offsetsRemaining =
+    project?.tx_count ? totalOffsets - project.tx_count : totalOffsets;
 
   return (
     <St.Container>
@@ -84,7 +83,9 @@ const CollectionMenu: React.FC<Props> = ({
           <St.TextButton
             className={sortType === "tokenId" ? "" : "inactive"}
             onClick={() => {
-              if (sortType === "worldLevel") setSortDir("asc");
+              if (sortType === "worldLevel") {
+                setSortDir("asc");
+              }
               setSortType("tokenId");
             }}
           >
@@ -94,24 +95,31 @@ const CollectionMenu: React.FC<Props> = ({
           <St.TextButton
             className={sortType === "worldLevel" ? "" : "inactive"}
             onClick={() => {
-              if (sortType === "tokenId") setSortDir("desc");
+              if (sortType === "tokenId") {
+                setSortDir("desc");
+              }
               setSortType("worldLevel");
             }}
           >
             World Level
           </St.TextButton>
           <St.SortButton>
-            {sortDir === "asc" ? (
+            {sortDir === "asc" ?
               <St.SortIconAsc
                 className="icon"
-                onClick={() => setSortDir("desc")}
+                onClick={() => {
+                  setSortDir("desc");
+                  refetch();
+                }}
               />
-            ) : (
-              <St.SortIconDesc
+            : <St.SortIconDesc
                 className="icon"
-                onClick={() => setSortDir("asc")}
+                onClick={() => {
+                  setSortDir("asc");
+                  refetch();
+                }}
               />
-            )}
+            }
           </St.SortButton>
         </St.SortDiv>
       </St.RightDiv>

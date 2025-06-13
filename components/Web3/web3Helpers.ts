@@ -45,8 +45,9 @@ export const publicMint = async (
     return;
   }
 
-  const txObj = !toAddress
-    ? await callPublicMint(contract, account, payableAmount)
+  const txObj =
+    !toAddress ?
+      await callPublicMint(contract, account, payableAmount)
     : await callPublicMintTo(contract, account, payableAmount, toAddress);
   if (!txObj) {
     handleError("MINT FAILED");

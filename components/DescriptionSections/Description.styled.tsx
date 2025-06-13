@@ -60,24 +60,24 @@ export const SubtleDiv = styled.div`
 
   .one {
     &:after {
+      display: inline-block;
+      margin-left: 8px;
       background-image: url("/prayer_emoji_icon.png");
       background-size: 25px 25px;
-      display: inline-block;
       width: 25px;
       height: 25px;
-      margin-left: 8px;
       content: "";
     }
   }
 
   .two {
     &:after {
+      display: inline-block;
+      margin-left: 8px;
       background-image: url("/brain_emoji_icon.png");
       background-size: 25px 25px;
-      display: inline-block;
       width: 25px;
       height: 25px;
-      margin-left: 8px;
       content: "";
     }
   }
@@ -109,13 +109,13 @@ export const ButtonContainer = styled.div`
   }
 
   .disabled {
-    color: ${(props) => props.theme.colors.textOffset};
     border: 3px solid ${(props) => props.theme.colors.textOffset};
+    color: ${(props) => props.theme.colors.textOffset};
 
     :hover {
-      color: ${(props) => props.theme.colors.textOffset};
-      background: ${(props) => props.theme.colors.bgMain};
       border: 3px solid ${(props) => props.theme.colors.textOffset};
+      background: ${(props) => props.theme.colors.bgMain};
+      color: ${(props) => props.theme.colors.textOffset};
       font-weight: 500;
     }
   }

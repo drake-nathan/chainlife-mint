@@ -29,9 +29,9 @@ export const WorldViewContainer = styled.div`
   }
 
   p {
-    cursor: pointer;
-    animation-name: ${FadeIn};
     animation-duration: 1s;
+    animation-name: ${FadeIn};
+    cursor: pointer;
   }
 `;
 
@@ -91,8 +91,8 @@ export const LeftSection = styled.div`
   @media (max-width: 750px) {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -126,9 +126,9 @@ export const TitleContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   @media (max-width: 750px) {
+    align-items: center;
     margin-bottom: -12px;
     width: 350px;
-    align-items: center;
   }
 `;
 
@@ -160,9 +160,9 @@ export const WorldViewInfo = styled.h1`
 
 export const SubTitle = styled.h3`
   @media (max-width: 500px) {
+    margin-top: 20px;
     font-size: 14px;
     text-align: center;
-    margin-top: 20px;
   }
 `;
 
@@ -177,8 +177,8 @@ export const NotesContainer = styled.div`
   max-width: 1050px;
 
   @media (max-width: 600px) {
-    padding-left: 40px;
     padding-right: 40px;
+    padding-left: 40px;
   }
 `;
 
@@ -201,8 +201,8 @@ export const DescriptionsContainer = styled.div`
 
   @media (max-width: 1700px) {
     margin-top: 0px;
-    padding-left: 2rem;
     padding-right: 2rem;
+    padding-left: 2rem;
   }
 `;
 
@@ -215,11 +215,11 @@ export const InfoContainer = styled.div`
   width: 650px;
 
   @media (max-width: 750px) {
-    width: 360px;
+    flex-direction: column;
+    gap: 2rem;
     margin-top: 3.5rem;
     margin-bottom: 2rem;
-    gap: 2rem;
-    flex-direction: column;
+    width: 360px;
 
     button {
       max-width: 225px;
@@ -237,8 +237,8 @@ export const InfoText = styled.p`
   }
 
   @media (max-width: 500px) {
-    padding-left: 20px;
     padding-right: 20px;
+    padding-left: 20px;
   }
 `;
 

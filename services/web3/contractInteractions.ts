@@ -118,8 +118,9 @@ export const callShiftLevels = async (
   shiftFee: number,
 ) => {
   const payableAmount = (
-    levelShift < 0 ? shiftFee * (levelShift * -1) : shiftFee * levelShift
-  ).toFixed(3);
+    levelShift < 0 ?
+      shiftFee * (levelShift * -1)
+    : shiftFee * levelShift).toFixed(3);
   const value = toWei(payableAmount.toString(), "ether");
 
   return await contract.methods

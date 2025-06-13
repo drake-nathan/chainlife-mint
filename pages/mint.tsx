@@ -63,9 +63,9 @@ const Home: NextPage = () => {
             <St.TitleAndCryptoContainer>
               <St.TitleContainer>
                 <St.Title>
-                  {currentSupply
-                    ? `${currentSupply} of ${maxSupply} minted`
-                    : `${maxSupply} max supply.`}
+                  {currentSupply ?
+                    `${currentSupply} of ${maxSupply} minted`
+                  : `${maxSupply} max supply.`}
                 </St.Title>
                 {activeToken && (
                   <St.SubTitle>
@@ -79,13 +79,12 @@ const Home: NextPage = () => {
               <iframe
                 frameBorder="0"
                 height={
-                  windowWidth > 750
-                    ? "650"
-                    : windowWidth >= 412
-                      ? "412"
-                      : windowWidth >= 390
-                        ? "390"
-                        : "360"
+                  windowWidth > 750 ? "650"
+                  : windowWidth >= 412 ?
+                    "412"
+                  : windowWidth >= 390 ?
+                    "390"
+                  : "360"
                 }
                 src={activeToken.genUrl}
                 title="generator"

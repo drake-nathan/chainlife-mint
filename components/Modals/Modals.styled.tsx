@@ -160,8 +160,8 @@ export const PlusMinusButton = styled(Button)`
   font-size: 30px;
 
   :disabled {
-    color: ${(props) => props.theme.colors.textOffset};
     border-color: ${(props) => props.theme.colors.textOffset};
+    color: ${(props) => props.theme.colors.textOffset};
 
     :hover {
       background: none;
@@ -195,8 +195,8 @@ export const Input = styled.input`
   }
 
   @media (max-width: 500px) {
-    height: 65px;
     width: 100%;
+    height: 65px;
     text-align: center;
   }
 

@@ -15,8 +15,11 @@ const Home: NextPage = () => {
   const worldviewUrl = "https://api.substratum.art/project/chainlife/world";
 
   const handleInstructionsClick = () => {
-    if (activeStep === 0) setActiveStep(1);
-    else setActiveStep(0);
+    if (activeStep === 0) {
+      setActiveStep(1);
+    } else {
+      setActiveStep(0);
+    }
   };
 
   return (

@@ -30,8 +30,11 @@ const NavBar: React.FC = () => {
 
   const handleConnectClick = () => {
     setShowMarketsModal(false);
-    if (!active) setShowConnectModal(!showConnectModal);
-    else setShowDisconnectModal(true);
+    if (!active) {
+      setShowConnectModal(!showConnectModal);
+    } else {
+      setShowDisconnectModal(true);
+    }
   };
 
   const handleMarketsClick = () => {
@@ -71,7 +74,7 @@ const NavBar: React.FC = () => {
           </Link>
         </St.TitleDiv>
       </St.LogoDiv>
-      {!isMobile ? (
+      {!isMobile ?
         <St.SocialsAndLinks>
           <SocialIcons />
 
@@ -82,8 +85,7 @@ const NavBar: React.FC = () => {
             setShowMobileNav={setShowMobileNav}
           />
         </St.SocialsAndLinks>
-      ) : (
-        <>
+      : <>
           <Hamburger
             color="#3A3A3A"
             toggle={setShowMobileNav}
@@ -97,7 +99,7 @@ const NavBar: React.FC = () => {
             setIsOpen={setShowMobileNav}
           />
         </>
-      )}
+      }
 
       {showConnectModal ? renderDropDown() : renderMarketsDropDown()}
 

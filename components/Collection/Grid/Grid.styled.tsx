@@ -27,7 +27,7 @@ export const H1 = styled.h1`
   margin-top: 1.5em;
 
   @media (max-width: 768px) {
-    font-size: 1.5rem;
     margin-top: 0.75em;
+    font-size: 1.5rem;
   }
 `;

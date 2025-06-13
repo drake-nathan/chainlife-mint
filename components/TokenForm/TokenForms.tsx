@@ -59,19 +59,18 @@ const TokenForms: React.FC<Props> = ({ isOwner, tokenId }) => {
             </a>
           </St.FormInfo>
         </St.FormInfoContainer>
-        {activeSection === 1 ? (
+        {activeSection === 1 ?
           <CustomRuleForm
             handleError={handleError}
             isOwner={isOwner}
             tokenId={tokenId}
           />
-        ) : (
-          <ShiftLevelsForm
+        : <ShiftLevelsForm
             handleError={handleError}
             isOwner={isOwner}
             tokenId={tokenId}
           />
-        )}
+        }
       </St.Container>
 
       {showErrorModal && (

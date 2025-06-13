@@ -117,8 +117,8 @@ export const Row = styled.div`
   }
 
   :first-child {
-    border-bottom: 3px solid ${(props) => props.theme.colors.textMain};
     border-right: 3px solid ${(props) => props.theme.colors.textMain};
+    border-bottom: 3px solid ${(props) => props.theme.colors.textMain};
   }
   :last-child {
     border-bottom: 3px solid ${(props) => props.theme.colors.textMain};

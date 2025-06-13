@@ -116,7 +116,6 @@ const Web3Buttons: React.FC = () => {
         <BuyModal
           buyButtonText={buyButtonText}
           handleError={handleError}
-           
           handlePublicMint={handlePublicMint}
           setShowModal={setShowBuyModal}
         />

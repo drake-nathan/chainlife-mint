@@ -22,20 +22,20 @@ export const PageContainer = styled.div`
   }
 
   @media (max-width: 750px) {
+    margin-top: 8.5rem;
     padding: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
     width: 95vw;
-    margin-top: 8.5rem;
   }
 
   @media (max-width: 600px) {
-    background: none;
+    margin-bottom: 0px;
     box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
+    background: none;
     width: 100vw;
-    margin-bottom: 0px;
   }
 `;
 

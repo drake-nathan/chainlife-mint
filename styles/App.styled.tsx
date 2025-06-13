@@ -42,9 +42,9 @@ export const BodyContainer = styled.div`
   }
 
   p {
-    cursor: pointer;
-    animation-name: ${FadeIn};
     animation-duration: 1s;
+    animation-name: ${FadeIn};
+    cursor: pointer;
   }
 `;
 
@@ -88,13 +88,13 @@ export const NotesSection = styled.div`
 
   a {
     color: #3a3a3a;
-    text-decoration: underline;
     font-weight: 500;
+    text-decoration: underline;
   }
 
   @media (max-width: 600px) {
-    padding-left: 40px;
     padding-right: 40px;
+    padding-left: 40px;
   }
 `;
 

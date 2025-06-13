@@ -26,9 +26,9 @@ export const SliderItemDiv = styled.div<Props>`
     );
 
   img {
-    height: 100%;
-    width: 100%;
     box-sizing: border-box;
+    width: 100%;
+    height: 100%;
   }
 
   :hover {
@@ -69,12 +69,12 @@ export const Reflection = styled.div`
   }
 
   &:after {
-    content: "";
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), black);
-    height: 325px;
-    width: 100%;
-    margin-top: -325px;
     position: absolute;
     z-index: 2;
+    margin-top: -325px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), black);
+    width: 100%;
+    height: 325px;
+    content: "";
   }
 `;

@@ -11,13 +11,12 @@ const LoadingVideo: React.FC = () => {
     <St.Video
       autoPlay
       height={
-        windowWidth > 750
-          ? "650"
-          : windowWidth >= 412
-            ? "412"
-            : windowWidth >= 390
-              ? "390"
-              : "360"
+        windowWidth > 750 ? "650"
+        : windowWidth >= 412 ?
+          "412"
+        : windowWidth >= 390 ?
+          "390"
+        : "360"
       }
       loop
       width={windowWidth > 750 ? "650" : "390"}

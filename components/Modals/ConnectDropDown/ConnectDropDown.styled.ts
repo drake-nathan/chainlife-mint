@@ -27,26 +27,26 @@ export const TopButtonContainer = styled.div`
   }
 
   &:hover {
-    color: ${(props) => props.theme.colors.textMain};
-    background: ${(props) => props.theme.colors.bgMain};
     border: none;
+    background: ${(props) => props.theme.colors.bgMain};
+    color: ${(props) => props.theme.colors.textMain};
   }
 
   .up-arrow {
-    color: inherit;
-    background: inherit;
-    border: none;
     margin-left: 4px;
+    border: none;
+    background: inherit;
+    color: inherit;
     @media (max-width: 500px) {
-      min-width: 25px;
       padding: 0px;
+      min-width: 25px;
     }
   }
 
   button {
-    color: inherit;
-    background: inherit;
     border: none;
+    background: inherit;
+    color: inherit;
   }
 `;
 
@@ -65,9 +65,9 @@ export const Button = styled.button`
   cursor: pointer;
 
   :hover {
-    color: ${(props) => props.theme.colors.textMain};
-    background-color: ${(props) => props.theme.colors.bgMain};
     border: none;
+    background-color: ${(props) => props.theme.colors.bgMain};
+    color: ${(props) => props.theme.colors.textMain};
   }
 
   @media (max-width: 500px) {

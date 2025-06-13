@@ -46,7 +46,9 @@ const TokenSearch: React.FC<Props> = ({ refetch, setTokenId, tokenId }) => {
     } else if (tokenId && tokenId < 0) {
       setErrorText("Min Token ID is 0");
       setTokenId(0);
-    } else if (Number.isNaN(tokenId)) setTokenId(null);
+    } else if (Number.isNaN(tokenId)) {
+      setTokenId(null);
+    }
   }, [currentSupply, maxToken, setTokenId, tokenId]);
 
   return (

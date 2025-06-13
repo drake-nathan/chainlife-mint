@@ -12,8 +12,8 @@ export const Container = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
-    padding: 1em;
     gap: 2em;
+    padding: 1em;
   }
 `;
 
@@ -50,13 +50,13 @@ export const SortDiv = styled.div`
   gap: 0.75em;
 
   .inactive {
-    font-weight: 500;
     color: ${({ theme }) => theme.colors.textOffset};
+    font-weight: 500;
   }
 
   .icon {
-    font-size: 2.125rem;
     cursor: pointer;
+    font-size: 2.125rem;
 
     @media (max-width: 768px) {
       font-size: 1.875rem;
