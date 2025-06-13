@@ -1,8 +1,8 @@
+import { useMintDetails } from "hooks/useMintDetails";
 import React, { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
 import * as St from "./TokenSearch.styled";
-import { useMintDetails } from "hooks/useMintDetails";
 
 interface IToken {
   tokenId: number;
@@ -33,15 +33,19 @@ const TokenSearch: React.FC<Props> = ({ refetch, setTokenId, tokenId }) => {
   useEffect(() => {
     if (errors.tokenId?.message) {
       setErrorText(errors.tokenId.message);
-      setTimeout(() => setErrorText(""), 3000);
+      setTimeout(() => {
+        setErrorText("");
+      }, 3000);
     } else if (errorText) {
-      setTimeout(() => setErrorText(""), 3000);
+      setTimeout(() => {
+        setErrorText("");
+      }, 3000);
     }
   }, [errors.tokenId, errorText]);
 
   useEffect(() => {
     if (currentSupply && tokenId && tokenId > maxToken) {
-      setErrorText("Max Token ID is " + maxToken.toString());
+      setErrorText(`Max Token ID is ${maxToken.toString()}`);
       setTokenId(currentSupply - 1);
     } else if (tokenId && tokenId < 0) {
       setErrorText("Min Token ID is 0");
@@ -53,7 +57,9 @@ const TokenSearch: React.FC<Props> = ({ refetch, setTokenId, tokenId }) => {
 
   return (
     <>
-      {errorText && <St.ErrorText>{errorText}</St.ErrorText>}
+      {errorText ?
+        <St.ErrorText>{errorText}</St.ErrorText>
+      : null}
       <St.Form id="token-page-form" onSubmit={void handleSubmit(onSubmit)}>
         <St.Input
           type="number"
@@ -72,7 +78,9 @@ const TokenSearch: React.FC<Props> = ({ refetch, setTokenId, tokenId }) => {
               refetch();
             }
           }}
-          onChange={(e) => setTokenId(parseInt(e.target.value))}
+          onChange={(e) => {
+            setTokenId(parseInt(e.target.value));
+          }}
           placeholder="Token ID Search"
           value={tokenId ?? ""}
         />

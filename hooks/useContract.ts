@@ -1,10 +1,11 @@
 import type { AbiItem } from "web3-utils";
 
-import { useChain } from "./useChain";
-import { useWeb3 } from "./useWeb3";
 import { Chain } from "services/azureApi/types";
 import goerliAbi from "services/web3/abi/ChainlifeGoerli.abi.json";
 import mainnetAbi from "services/web3/abi/ChainlifeMainnet.abi.json";
+
+import { useChain } from "./useChain";
+import { useWeb3 } from "./useWeb3";
 
 export const useContract = () => {
   const { chainId } = useChain();

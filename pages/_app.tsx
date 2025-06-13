@@ -1,10 +1,10 @@
 import type { AppProps } from "next/app";
 
+import Providers from "contexts/Providers";
 import { MdCopyright } from "react-icons/md";
 
-import * as St from "../styles/App.styled";
 import "../styles/globals.css";
-import Providers from "contexts/Providers";
+import * as St from "../styles/App.styled";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const year = new Date().getFullYear();

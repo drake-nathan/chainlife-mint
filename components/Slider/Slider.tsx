@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import * as IoIcons from "react-icons/io5";
 
 import * as St from "./Slider.styled";
-import SliderItem from "./SliderItem";
 import { numberOfSlides } from "./sliderHelpers";
+import SliderItem from "./SliderItem";
 
 interface Props {
   children?: React.ReactNode[];
 }
 
-const Slider: React.FC<Props> = ({ children }) => {
+const Slider = ({ children }: Props) => {
   const zoomFactor = 10;
   const slideMargin = 0;
   const maxVisibleSlides = 3;
@@ -100,8 +100,11 @@ const Slider: React.FC<Props> = ({ children }) => {
       <div className="button-wrapper back">
         <button
           className={currentPage < 1 ? "button back disabled" : "button back"}
-          disabled={currentPage < 1 ? true : false}
-          onClick={() => handleSlideMove(false)}
+          disabled={currentPage < 1}
+          onClick={() => {
+            handleSlideMove(false);
+          }}
+          type="button"
         >
           <IoIcons.IoCaretUpCircleOutline />
         </button>
@@ -120,6 +123,7 @@ const Slider: React.FC<Props> = ({ children }) => {
               callback={handleMouseOver}
               callbackOut={handleMouseOut}
               id={i + 1}
+              // eslint-disable-next-line react/no-array-index-key
               key={i}
               slideClass={assignSlideClass(i + 1, visibleSlides)}
               slideMargin={slideMargin}
@@ -138,7 +142,10 @@ const Slider: React.FC<Props> = ({ children }) => {
               "button forward disabled"
             : "button forward"
           }
-          onClick={() => handleSlideMove(true)}
+          onClick={() => {
+            handleSlideMove(true);
+          }}
+          type="button"
         >
           <IoIcons.IoCaretDownCircleOutline />
         </button>

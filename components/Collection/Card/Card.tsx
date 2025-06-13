@@ -1,7 +1,7 @@
+import type { TokenAbbr } from "services/azureApi/types";
+
 import Link from "next/link";
 import React from "react";
-
-import type { TokenAbbr } from "services/azureApi/types";
 
 import * as St from "./Card.styled";
 

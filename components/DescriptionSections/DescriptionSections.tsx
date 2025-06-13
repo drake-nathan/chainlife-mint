@@ -1,3 +1,4 @@
+import { useMintDetails } from "hooks/useMintDetails";
 import React, { useState } from "react";
 
 import * as St from "./Description.styled";
@@ -7,7 +8,6 @@ import {
   section2AText,
   section2Text,
 } from "./SectionText";
-import { useMintDetails } from "hooks/useMintDetails";
 
 const DescriptionSections: React.FC = () => {
   const { mintPrice } = useMintDetails();
@@ -18,14 +18,18 @@ const DescriptionSections: React.FC = () => {
       <St.SectionTitleContainer>
         <St.Title
           className={activeSection === 1 ? "" : "inactive"}
-          onClick={() => setActiveSection(1)}
+          onClick={() => {
+            setActiveSection(1);
+          }}
         >
           ZEN. MINT
         </St.Title>
         <St.Title>|</St.Title>
         <St.Title
           className={activeSection === 2 ? "" : "inactive"}
-          onClick={() => setActiveSection(2)}
+          onClick={() => {
+            setActiveSection(2);
+          }}
         >
           PUBLIC{" "}
         </St.Title>

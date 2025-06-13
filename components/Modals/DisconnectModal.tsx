@@ -21,7 +21,7 @@ const DisconnectModal: React.FC<Props> = ({ setShowModal }) => {
 
   return (
     <>
-      <St.ModalBackground onClick={handleCloseModal}></St.ModalBackground>
+      <St.ModalBackground onClick={handleCloseModal} />
       <St.CenterModalContainer>
         <St.MsgDiv>
           <St.Text>Would you like to disconnect?</St.Text>

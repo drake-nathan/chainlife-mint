@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 
+import Instructions from "components/Instructions/Instructions";
+import NavBar from "components/NavBar/NavBar";
+import TokenIdForm from "components/TokenForm/TokenIdForm";
 import Head from "next/head";
 import React, { useState } from "react";
 import { IoIosExpand } from "react-icons/io";
 
 import * as St from "../styles/Worldview.styled";
-import Instructions from "components/Instructions/Instructions";
-import NavBar from "components/NavBar/NavBar";
-import TokenIdForm from "components/TokenForm/TokenIdForm";
 
 const Home: NextPage = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -60,7 +60,7 @@ const Home: NextPage = () => {
               frameBorder="0"
               src={worldviewUrl}
               title="random generator"
-            ></iframe>
+            />
           </St.FrameDiv>
         </St.InstructionsContainer>
 

@@ -1,13 +1,13 @@
 import { useWeb3React } from "@web3-react/core";
+import { useContract } from "hooks/useContract";
 import React, { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-
-import * as St from "./TokenForms.styled";
-import { useContract } from "hooks/useContract";
 import {
   callCustomRule,
   callResetRule,
 } from "services/web3/contractInteractions";
+
+import * as St from "./TokenForms.styled";
 
 interface ICustomRule {
   customRule: string;
@@ -68,7 +68,9 @@ const CustomRuleForm: React.FC<Props> = ({ handleError, isOwner, tokenId }) => {
   useEffect(() => {
     if (errors.customRule?.message) {
       setErrorText(errors.customRule.message);
-      setTimeout(() => setErrorText(""), 3000);
+      setTimeout(() => {
+        setErrorText("");
+      }, 3000);
     }
   }, [errors.customRule]);
 
@@ -84,16 +86,26 @@ const CustomRuleForm: React.FC<Props> = ({ handleError, isOwner, tokenId }) => {
             required: { message: "This field is required.", value: true },
           })}
           id="custom-rule"
-          onChange={(e) => setCustomRule(e.target.value)}
+          onChange={(e) => {
+            setCustomRule(e.target.value);
+          }}
           placeholder="Submit a Custom Rule"
           value={customRule}
         />
         <St.ButtonDiv>
           <St.Button type="submit">Submit</St.Button>
-          <St.Refresh onClick={(e) => handleReset(e)}>Reset Rule</St.Refresh>
+          <St.Refresh
+            onClick={(e) => {
+              handleReset(e);
+            }}
+          >
+            Reset Rule
+          </St.Refresh>
         </St.ButtonDiv>
       </St.Form>
-      {errorText && <St.ErrorText>{errorText}</St.ErrorText>}
+      {errorText ?
+        <St.ErrorText>{errorText}</St.ErrorText>
+      : null}
     </>
   );
 };

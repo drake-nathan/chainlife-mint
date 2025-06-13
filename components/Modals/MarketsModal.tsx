@@ -13,7 +13,7 @@ const MarketsModal: React.FC<Props> = ({ setShowModal }) => {
 
   return (
     <>
-      <St.ModalBackground onClick={handleCloseModal}></St.ModalBackground>
+      <St.ModalBackground onClick={handleCloseModal} />
       <St.ModalContainer>
         <St.MsgDiv>
           <St.Text>Find Chainlife On</St.Text>

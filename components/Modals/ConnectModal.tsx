@@ -1,9 +1,9 @@
 import { useWeb3React } from "@web3-react/core";
+import { switchChain } from "components/Web3/web3Helpers";
 import React, { useEffect, useState } from "react";
+import { Connectors, connectors } from "services/web3/connectors";
 
 import * as St from "./Modals.styled";
-import { switchChain } from "components/Web3/web3Helpers";
-import { Connectors, connectors } from "services/web3/connectors";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,7 +48,7 @@ const ConnectModal: React.FC<Props> = ({ setShowModal }) => {
 
   return (
     <>
-      <St.ModalBackground onClick={handleCloseModal}></St.ModalBackground>
+      <St.ModalBackground onClick={handleCloseModal} />
       <St.ModalContainer>
         <St.MsgDiv>
           <St.Text>{txMsg ? txMsg : "CHOOSE CONNECT METHOD"}</St.Text>

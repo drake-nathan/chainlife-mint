@@ -1,14 +1,14 @@
 import { useWeb3React } from "@web3-react/core";
-import React, { useEffect, useState } from "react";
-
-import * as St from "../DescriptionSections/Description.styled";
-import { type ISuccessInfo, publicMint } from "./web3Helpers";
 import BuyModal from "components/Modals/BuyModal/BuyModal";
 import ConnectModal from "components/Modals/ConnectModal";
 import ErrorModal from "components/Modals/ErrorModal";
 import SuccessModal from "components/Modals/SuccessModal";
 import { useContract } from "hooks/useContract";
 import { useMintDetails } from "hooks/useMintDetails";
+import React, { useEffect, useState } from "react";
+
+import * as St from "../DescriptionSections/Description.styled";
+import { type ISuccessInfo, publicMint } from "./web3Helpers";
 
 const Web3Buttons: React.FC = () => {
   const { account, active } = useWeb3React();
@@ -101,7 +101,7 @@ const Web3Buttons: React.FC = () => {
     <St.ButtonContainer>
       <St.Button
         className={!isMintLive && mintButton ? "disabled" : ""}
-        disabled={!isMintLive && mintButton ? true : false}
+        disabled={Boolean(!isMintLive && mintButton)}
         onClick={handleMintClick}
         title={
           !isMintLive && mintButton ? "Mint is not currently active" : "Mint"
@@ -110,27 +110,29 @@ const Web3Buttons: React.FC = () => {
         {cryptoButtonText}
       </St.Button>
 
-      {showConnectModal && <ConnectModal setShowModal={setShowConnectModal} />}
+      {showConnectModal ?
+        <ConnectModal setShowModal={setShowConnectModal} />
+      : null}
 
-      {showBuyModal && (
+      {showBuyModal ?
         <BuyModal
           buyButtonText={buyButtonText}
           handleError={handleError}
           handlePublicMint={handlePublicMint}
           setShowModal={setShowBuyModal}
         />
-      )}
+      : null}
 
-      {showErrorModal && (
+      {showErrorModal ?
         <ErrorModal message={errorMessage} setShowModal={setShowErrorModal} />
-      )}
+      : null}
 
-      {showSuccessModal && successInfo && (
+      {showSuccessModal && successInfo ?
         <SuccessModal
           setShowModal={setShowSuccessModal}
           successInfo={successInfo}
         />
-      )}
+      : null}
     </St.ButtonContainer>
   );
 };

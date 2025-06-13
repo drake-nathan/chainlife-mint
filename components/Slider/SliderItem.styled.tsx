@@ -36,14 +36,14 @@ export const SliderItemDiv = styled.div<Props>`
   }
 
   :hover ~ * {
-    transform: translateY(${(props) => props.zoomFactor / 2 + "%"}) !important;
+    transform: translateY(${(props) => `${props.zoomFactor / 2}%`}) !important;
   }
 
   &.left {
     transform-origin: top;
 
     :hover ~ * {
-      transform: translateY(${(props) => props.zoomFactor + "%"}) !important;
+      transform: translateY(${(props) => `${props.zoomFactor}%`}) !important;
     }
   }
 

@@ -1,6 +1,6 @@
-import React from "react";
-
 import type { IToken } from "services/azureApi/types";
+
+import React from "react";
 
 import * as St from "./Traits.styled";
 
@@ -12,29 +12,27 @@ const Traits: React.FC<Props> = ({ token }) => {
   const { attributes } = token;
 
   return (
-    <>
-      <St.Container>
-        <St.TitleDiv>
-          <St.NewTitle>TRAITS</St.NewTitle>
-        </St.TitleDiv>
-        <St.Table>
-          <St.HeaderContainer>
-            <St.Header>Trait</St.Header>
-            <St.Header>Value</St.Header>
-          </St.HeaderContainer>
-          <St.TableWrapper>
-            <St.TableBody>
-              {attributes.map((trait) => (
-                <St.RowContainer key={trait.trait_type}>
-                  <St.Row>{trait.trait_type}</St.Row>
-                  <St.Row>{trait.value}</St.Row>
-                </St.RowContainer>
-              ))}
-            </St.TableBody>
-          </St.TableWrapper>
-        </St.Table>
-      </St.Container>
-    </>
+    <St.Container>
+      <St.TitleDiv>
+        <St.NewTitle>TRAITS</St.NewTitle>
+      </St.TitleDiv>
+      <St.Table>
+        <St.HeaderContainer>
+          <St.Header>Trait</St.Header>
+          <St.Header>Value</St.Header>
+        </St.HeaderContainer>
+        <St.TableWrapper>
+          <St.TableBody>
+            {attributes.map((trait) => (
+              <St.RowContainer key={trait.trait_type}>
+                <St.Row>{trait.trait_type}</St.Row>
+                <St.Row>{trait.value}</St.Row>
+              </St.RowContainer>
+            ))}
+          </St.TableBody>
+        </St.TableWrapper>
+      </St.Table>
+    </St.Container>
   );
 };
 

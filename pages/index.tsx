@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 
+import NavBar from "components/NavBar/NavBar";
+import TokenIdForm from "components/TokenForm/TokenIdForm";
 import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 
 import * as St from "../styles/App.styled";
-import NavBar from "components/NavBar/NavBar";
-import TokenIdForm from "components/TokenForm/TokenIdForm";
 
 const Home: NextPage = () => {
   return (
@@ -22,10 +22,6 @@ const Home: NextPage = () => {
         <St.TopSection>
           <St.TitleRow>
             <St.Title>Welcome to Chainlife!</St.Title>
-
-            <Link href="/mint">
-              <St.Button>Mint Here</St.Button>
-            </Link>
           </St.TitleRow>
 
           <St.SubTitle id="main-subtitle">
@@ -39,7 +35,7 @@ const Home: NextPage = () => {
             frameBorder="0"
             src="https://chainlife.art/"
             title="random generator"
-          ></iframe>
+          />
         </St.FrameDiv>
 
         <St.NotesSection>

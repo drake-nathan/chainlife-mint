@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { NextPage } from "next";
 
-import Head from "next/head";
-import React, { useEffect, useState } from "react";
-import { type QueryFunctionContext, useInfiniteQuery } from "react-query";
+import type { NextPage } from "next";
 
 import CollectionGrid from "components/Collection/Grid/Grid";
 import CollectionMenu from "components/Collection/Menu/Menu";
 import NavBar from "components/NavBar/NavBar";
 import { useChain } from "hooks/useChain";
+import Head from "next/head";
+import React, { useEffect, useState } from "react";
+import { type QueryFunctionContext, useInfiniteQuery } from "react-query";
 import { fetchCollectionTokens, fetchProject } from "services/azureApi/fetches";
 import {
   Chain,
@@ -49,7 +48,6 @@ const Collection: NextPage = () => {
   });
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
     fetchProject("chainlife").then(setProject).catch(console.error);
   }, []);
 
@@ -59,9 +57,11 @@ const Collection: NextPage = () => {
       console.error(error.message);
     }
     if (data) {
-      setHasMore(lastPage.hasMore);
-      setCurrentLength(lastPage.skip + lastPage.tokens.length);
+      setHasMore(lastPage?.hasMore ?? false);
+      setCurrentLength(lastPage?.skip ?? 0 + (lastPage?.tokens.length ?? 0));
     }
+    // eslint-disable-next-line react-hooks/react-compiler
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);
 
   useEffect(() => {

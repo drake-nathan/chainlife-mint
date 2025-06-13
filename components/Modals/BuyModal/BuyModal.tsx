@@ -1,8 +1,8 @@
+import { useMintDetails } from "hooks/useMintDetails";
 import React, { useState } from "react";
 import { isAddress } from "web3-utils";
 
 import * as St from "./BuyModal.styled";
-import { useMintDetails } from "hooks/useMintDetails";
 
 interface Props {
   buyButtonText: string;
@@ -22,7 +22,9 @@ const BuyModal: React.FC<Props> = ({
   const [toAddress, setToAddress] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleCloseModal = () => setShowModal(false);
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   const handleMintClick = () => {
     const isAddressValid = isAddress(toAddress);
@@ -56,14 +58,16 @@ const BuyModal: React.FC<Props> = ({
             onClick={handleDropdownClick}
           />
         </St.Row>
-        {isDropdownOpen && (
+        {isDropdownOpen ?
           <St.Input
-            onChange={(e) => setToAddress(e.target.value.toLowerCase())}
+            onChange={(e) => {
+              setToAddress(e.target.value.toLowerCase());
+            }}
             placeholder="Paste optional wallet addres to mint to"
             type="text"
             value={toAddress}
           />
-        )}
+        : null}
       </St.BuyModalContainer>
     </>
   );

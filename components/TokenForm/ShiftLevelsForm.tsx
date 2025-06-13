@@ -1,11 +1,11 @@
 import { useWeb3React } from "@web3-react/core";
-import React, { useEffect, useState } from "react";
-import { type SubmitHandler, useForm } from "react-hook-form";
-
-import * as St from "./TokenForms.styled";
 import { useContract } from "hooks/useContract";
 import { useMintDetails } from "hooks/useMintDetails";
+import React, { useEffect, useState } from "react";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import { callShiftLevels } from "services/web3/contractInteractions";
+
+import * as St from "./TokenForms.styled";
 
 interface IShiftLevels {
   levelShift: number;
@@ -40,19 +40,17 @@ const ShiftLevelsForm: React.FC<Props> = ({
       handleError("Must be connected to wallet");
     } else if (!isOwner) {
       handleError("Must be owner of token.");
-    } else {
-      if (levelShift) {
-        try {
-          await callShiftLevels(
-            contract,
-            account as string,
-            tokenId,
-            levelShift,
-            shiftFee,
-          );
-        } catch (error) {
-          console.error(error);
-        }
+    } else if (levelShift) {
+      try {
+        await callShiftLevels(
+          contract,
+          account as string,
+          tokenId,
+          levelShift,
+          shiftFee,
+        );
+      } catch (error) {
+        console.error(error);
       }
     }
   };
@@ -60,7 +58,9 @@ const ShiftLevelsForm: React.FC<Props> = ({
   useEffect(() => {
     if (errors.levelShift?.message) {
       setErrorText(errors.levelShift.message);
-      setTimeout(() => setErrorText(""), 3000);
+      setTimeout(() => {
+        setErrorText("");
+      }, 3000);
     }
   }, [errors.levelShift]);
 
@@ -74,13 +74,17 @@ const ShiftLevelsForm: React.FC<Props> = ({
             valueAsNumber: true,
           })}
           id="level-shift"
-          onChange={(e) => setLevelShift(parseInt(e.target.value))}
+          onChange={(e) => {
+            setLevelShift(parseInt(e.target.value));
+          }}
           placeholder="Submit a Level Shift"
           value={levelShift || ""}
         />
         <St.Button type="submit">Submit</St.Button>
       </St.Form>
-      {errorText && <St.ErrorText>{errorText}</St.ErrorText>}
+      {errorText ?
+        <St.ErrorText>{errorText}</St.ErrorText>
+      : null}
     </>
   );
 };

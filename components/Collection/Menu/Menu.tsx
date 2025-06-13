@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-
 import type { IProject, TxCounts } from "services/azureApi/types";
+
+import React, { useEffect, useState } from "react";
+import { fetchTxCounts } from "services/azureApi/fetches";
+import { intlNumberFormat } from "utils/helpers";
 
 import * as St from "./Menu.styled";
 import TokenSearch from "./TokenSearch";
-import { fetchTxCounts } from "services/azureApi/fetches";
-import { intlNumberFormat } from "utils/helpers";
 
 interface Props {
   project: IProject | null;
@@ -34,7 +34,7 @@ const CollectionMenu: React.FC<Props> = ({
     if (project) {
       fetchTxCounts(project.project_slug)
         .then(setTxCounts)
-        // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
+
         .catch(console.error);
     }
   }, [project]);
@@ -48,24 +48,30 @@ const CollectionMenu: React.FC<Props> = ({
       <St.StatsDiv>
         <St.Title>Collection Stats</St.Title>
         <St.Stat>
-          {project?.current_supply && intlNumberFormat(project.current_supply)}{" "}
+          {project?.current_supply ?
+            intlNumberFormat(project.current_supply)
+          : null}{" "}
           / {intlNumberFormat(1024)}&nbsp; Tokens Minted
         </St.Stat>
         <St.Stat>
           Level Shifts:&nbsp;{" "}
-          {txCounts?.levelShifts && intlNumberFormat(txCounts.levelShifts)}
+          {txCounts?.levelShifts ?
+            intlNumberFormat(txCounts.levelShifts)
+          : null}
         </St.Stat>
         <St.Stat>
           Custom Rules:&nbsp;{" "}
-          {txCounts?.customRules && intlNumberFormat(txCounts.customRules)}
+          {txCounts?.customRules ?
+            intlNumberFormat(txCounts.customRules)
+          : null}
         </St.Stat>
         <St.Stat>
           Token Transfers:&nbsp;{" "}
-          {txCounts?.transfers && intlNumberFormat(txCounts.transfers)}
+          {txCounts?.transfers ? intlNumberFormat(txCounts.transfers) : null}
         </St.Stat>
         <St.Stat>
           Collection Transactions:&nbsp;{" "}
-          {project?.tx_count && intlNumberFormat(project.tx_count)}
+          {project?.tx_count ? intlNumberFormat(project.tx_count) : null}
         </St.Stat>
         <St.Stat>
           Carbon Offsets Remaining:&nbsp; {intlNumberFormat(offsetsRemaining)}

@@ -1,6 +1,5 @@
 import { useWeb3React } from "@web3-react/core";
 import { useEffect, useState } from "react";
-
 import { connectors } from "services/web3/connectors";
 
 export const useEagerConnect = () => {
@@ -19,6 +18,7 @@ export const useEagerConnect = () => {
         setTried(true);
       }
     });
+    // eslint-disable-next-line react-hooks/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // intentionally only running on mount (make sure it's only mounted once :))
 

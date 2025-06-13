@@ -18,20 +18,34 @@ const NavLinks: React.FC<Props> = ({
 }) => {
   return (
     <St.NavLinksDiv>
-      <Link href="/mint">
-        <St.NavItem onClick={() => setShowMobileNav(false)}>MINT</St.NavItem>
-      </Link>
-
       <Link href="/tokens">
-        <St.NavItem onClick={() => setShowMobileNav(false)}>TOKENS</St.NavItem>
+        <St.NavItem
+          onClick={() => {
+            setShowMobileNav(false);
+          }}
+        >
+          TOKENS
+        </St.NavItem>
       </Link>
 
       <Link href="/world">
-        <St.NavItem onClick={() => setShowMobileNav(false)}>WORLD</St.NavItem>
+        <St.NavItem
+          onClick={() => {
+            setShowMobileNav(false);
+          }}
+        >
+          WORLD
+        </St.NavItem>
       </Link>
 
       <a href="https://docs.chainlife.xyz/" rel="noreferrer" target="_blank">
-        <St.NavItem onClick={() => setShowMobileNav(false)}>DOCS</St.NavItem>
+        <St.NavItem
+          onClick={() => {
+            setShowMobileNav(false);
+          }}
+        >
+          DOCS
+        </St.NavItem>
       </a>
 
       <St.NavItem

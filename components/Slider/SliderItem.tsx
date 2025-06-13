@@ -23,18 +23,18 @@ const SliderItem: React.FC<Props> = ({
   visibleSlides,
   zoomFactor,
 }) => (
-  <>
-    <St.SliderItemDiv
-      className={slideClass}
-      onMouseOut={callbackOut}
-      onMouseOver={() => callback(id)}
-      slideMargin={slideMargin}
-      visibleSlides={visibleSlides}
-      zoomFactor={zoomFactor}
-    >
-      {children}
-    </St.SliderItemDiv>
-  </>
+  <St.SliderItemDiv
+    className={slideClass}
+    onMouseOut={callbackOut}
+    onMouseOver={() => {
+      callback(id);
+    }}
+    slideMargin={slideMargin}
+    visibleSlides={visibleSlides}
+    zoomFactor={zoomFactor}
+  >
+    {children}
+  </St.SliderItemDiv>
 );
 
 export default SliderItem;

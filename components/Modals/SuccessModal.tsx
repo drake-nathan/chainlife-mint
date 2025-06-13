@@ -1,6 +1,6 @@
-import React from "react";
-
 import type { ISuccessInfo } from "components/Web3/web3Helpers";
+
+import React from "react";
 
 import * as St from "./Modals.styled";
 
@@ -19,7 +19,7 @@ const SuccessModal: React.FC<Props> = ({ setShowModal, successInfo }) => {
 
   return (
     <>
-      <St.ModalBackground onClick={handleCloseModal}></St.ModalBackground>
+      <St.ModalBackground onClick={handleCloseModal} />
       <St.SuccessModalContainer>
         <St.SuccessSection>
           <St.SuccessText>

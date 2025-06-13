@@ -1,10 +1,10 @@
+import ErrorModal from "components/Modals/ErrorModal";
 import React, { useState } from "react";
 
 import CustomRuleForm from "./CustomRuleForm";
 import { crText, slText } from "./FormText";
 import ShiftLevelsForm from "./ShiftLevelsForm";
 import * as St from "./TokenForms.styled";
-import ErrorModal from "components/Modals/ErrorModal";
 
 interface Props {
   isOwner: boolean;
@@ -30,14 +30,18 @@ const TokenForms: React.FC<Props> = ({ isOwner, tokenId }) => {
         <St.SubTitleDiv>
           <St.SubTitle
             className={activeSection === 1 ? "" : "inactive"}
-            onClick={() => setActiveSection(1)}
+            onClick={() => {
+              setActiveSection(1);
+            }}
           >
             CUSTOM RULE
           </St.SubTitle>
           <St.SubTitle>|</St.SubTitle>
           <St.SubTitle
             className={activeSection === 2 ? "" : "inactive"}
-            onClick={() => setActiveSection(2)}
+            onClick={() => {
+              setActiveSection(2);
+            }}
           >
             SHIFT LEVELS
           </St.SubTitle>
@@ -73,9 +77,9 @@ const TokenForms: React.FC<Props> = ({ isOwner, tokenId }) => {
         }
       </St.Container>
 
-      {showErrorModal && (
+      {showErrorModal ?
         <ErrorModal message={errorMessage} setShowModal={setShowErrorModal} />
-      )}
+      : null}
     </>
   );
 };

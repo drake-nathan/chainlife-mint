@@ -1,5 +1,5 @@
-import { AiFillTwitterCircle } from "react-icons/ai";
 import { IoLogoYoutube } from "react-icons/io";
+import { RiBlueskyFill } from "react-icons/ri";
 import { SiDiscord } from "react-icons/si";
 import styled from "styled-components";
 
@@ -20,7 +20,7 @@ export const Container = styled.div`
   }
 `;
 
-export const TwitterIcon = styled(AiFillTwitterCircle)``;
+export const BlueskyIcon = styled(RiBlueskyFill)``;
 
 export const DiscordIcon = styled(SiDiscord)``;
 

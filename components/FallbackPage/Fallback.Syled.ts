@@ -1,10 +1,9 @@
-import styled from "styled-components";
-
 import {
   SubtleDiv,
   SubtleText,
 } from "components/DescriptionSections/Description.styled";
 import { NavItem } from "components/NavBar/NavLinks/NavLinks.styled";
+import styled from "styled-components";
 
 export const FallbackContainer = styled.div`
   display: flex;

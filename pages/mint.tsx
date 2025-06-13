@@ -1,21 +1,21 @@
-/* eslint-disable @next/next/no-img-element */
+/* eslint-disable nextjs/no-img-element */
 import type { NextPage } from "next";
 
-import Head from "next/head";
-import { useEffect, useState } from "react";
-
-import * as St from "../styles/mint.styles";
 import DescriptionSections from "components/DescriptionSections/DescriptionSections";
 import NavBar from "components/NavBar/NavBar";
 import Slider from "components/Slider/Slider";
 import Web3Buttons from "components/Web3/Web3Buttons";
 import { useMintDetails } from "hooks/useMintDetails";
 import { useWindowSize } from "hooks/useWindowSize";
+import Head from "next/head";
+import { useEffect, useState } from "react";
 import {
-  type Token,
   getGeneratorUrl,
   getSliderThumbnails,
+  type Token,
 } from "utils/getRandomToken";
+
+import * as St from "../styles/mint.styles";
 
 const Home: NextPage = () => {
   const { currentSupply, maxSupply } = useMintDetails();
@@ -50,9 +50,9 @@ const Home: NextPage = () => {
                   className="tool"
                   data-tip={`Chainlife # ${token.id}`}
                   key={token.id}
-                  onClick={() =>
-                    setActiveToken({ genUrl: token.genUrl, id: token.id })
-                  }
+                  onClick={() => {
+                    setActiveToken({ genUrl: token.genUrl, id: token.id });
+                  }}
                 >
                   <img alt="nft" src={token.thumbUrl} />
                 </div>
@@ -67,15 +67,15 @@ const Home: NextPage = () => {
                     `${currentSupply} of ${maxSupply} minted`
                   : `${maxSupply} max supply.`}
                 </St.Title>
-                {activeToken && (
+                {activeToken ?
                   <St.SubTitle>
                     Showing Chainlife # {activeToken.id}
                   </St.SubTitle>
-                )}
+                : null}
               </St.TitleContainer>
               {windowWidth > 800 && <Web3Buttons />}
             </St.TitleAndCryptoContainer>
-            {activeToken && (
+            {activeToken ?
               <iframe
                 frameBorder="0"
                 height={
@@ -89,8 +89,8 @@ const Home: NextPage = () => {
                 src={activeToken.genUrl}
                 title="generator"
                 width={windowWidth > 750 ? "650" : "390"}
-              ></iframe>
-            )}
+              />
+            : null}
 
             <St.InfoContainer>
               {windowWidth < 800 && <Web3Buttons />}

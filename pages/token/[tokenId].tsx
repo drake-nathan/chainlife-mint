@@ -1,7 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+
 import type { NextPage } from "next";
+import type { IToken } from "services/azureApi/types";
 
 import { useWeb3React } from "@web3-react/core";
+import NavBar from "components/NavBar/NavBar";
+import TokenForms from "components/TokenForm/TokenForms";
+import Traits from "components/Traits/Traits";
+import { useContract } from "hooks/useContract";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -10,23 +16,17 @@ import { IoIosExpand } from "react-icons/io";
 import { MdOutlineMobileFriendly } from "react-icons/md";
 import { RiImage2Line } from "react-icons/ri";
 import { TfiNewWindow } from "react-icons/tfi";
+import { fetchToken } from "services/azureApi/fetches";
+import { getOwner } from "services/web3/contractInteractions";
+import { equalAddresses, shortenAddress } from "services/web3/web3helpers";
 
-import type { IToken } from "services/azureApi/types";
-
-import X2Y2 from "../../public/Logo.png";
 import Artacle from "../../public/artacle-logo.png";
 import EsoterraIcon from "../../public/eso-01.svg";
+import X2Y2 from "../../public/Logo.png";
 import LooksRare from "../../public/looksrare-logo.png";
 import OpenSea from "../../public/openSea-logo.png";
 import { AppContainer } from "../../styles/App.styled";
 import * as St from "../../styles/token.styled";
-import NavBar from "components/NavBar/NavBar";
-import TokenForms from "components/TokenForm/TokenForms";
-import Traits from "components/Traits/Traits";
-import { useContract } from "hooks/useContract";
-import { fetchToken } from "services/azureApi/fetches";
-import { getOwner } from "services/web3/contractInteractions";
-import { equalAddresses, shortenAddress } from "services/web3/web3helpers";
 
 const Token: NextPage = () => {
   const router = useRouter();
@@ -49,7 +49,7 @@ const Token: NextPage = () => {
             setGeneratorUrl(res.generator_url);
           }
         })
-        // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
+
         .catch(console.error);
     }
   }, [tokenId, tokenIdNum]);
@@ -63,7 +63,7 @@ const Token: NextPage = () => {
             setIsOwner(equalAddresses(account, res));
           }
         })
-        // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
+
         .catch(console.error);
     }
   }, [tokenId, account, active, contract, tokenIdNum]);
@@ -129,17 +129,13 @@ const Token: NextPage = () => {
           </St.HeaderContainer>
 
           <St.FrameContainer>
-            <iframe
-              frameBorder="0"
-              src={generatorUrl}
-              title="generator"
-            ></iframe>
+            <iframe frameBorder="0" src={generatorUrl} title="generator" />
           </St.FrameContainer>
 
           <St.FooterContainer>
             <St.TokenFooter>
               <St.TokenTitle>Chainlife #{tokenId}</St.TokenTitle>
-              {owner && (
+              {owner ?
                 <>
                   <St.SubtleTitle>
                     Owner: {shortenAddress(owner)}
@@ -156,7 +152,7 @@ const Token: NextPage = () => {
                     </a>
                   </St.SubtleTitle>
                 </>
-              )}
+              : null}
             </St.TokenFooter>
             <St.MarketLinks>
               <a
@@ -210,7 +206,9 @@ const Token: NextPage = () => {
         <St.ControlsAndTraits>
           <TokenForms isOwner={isOwner} tokenId={tokenIdNum} />
 
-          {token && <Traits token={token} />}
+          {token ?
+            <Traits token={token} />
+          : null}
         </St.ControlsAndTraits>
       </St.PageContainer>
     </AppContainer>

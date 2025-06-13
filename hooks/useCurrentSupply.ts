@@ -1,7 +1,6 @@
 import type { Contract } from "web3-eth-contract";
 
 import { useQuery } from "react-query";
-
 import { fetchCurrentSupply } from "services/web3/contractInteractions";
 
 export const useCurrentSupply = (contract: Contract): number | undefined => {

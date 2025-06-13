@@ -28,7 +28,7 @@ export const SliderWrapper = styled.div<SliderWrapperProps>`
   margin-top: 30px;
   gap: 30px;
   width: 225px;
-  padding: ${(props) => (props.zoomFactor / props.visibleSlides) * 0.7 + "%"} 0;
+  padding: ${(props) => `${(props.zoomFactor / props.visibleSlides) * 0.7}%`} 0;
 
   .button-wrapper {
     display: flex;

@@ -1,7 +1,7 @@
+import { useWindowSize } from "hooks/useWindowSize";
 import React from "react";
 
 import * as St from "./LoadingVideo.styled";
-import { useWindowSize } from "hooks/useWindowSize";
 
 const LoadingVideo: React.FC = () => {
   const { windowWidth } = useWindowSize();

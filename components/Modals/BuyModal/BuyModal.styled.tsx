@@ -1,8 +1,8 @@
 import { IoIosArrowDropdown } from "react-icons/io";
 import styled from "styled-components";
+import { Main } from "styles/Library/Button.styled";
 
 import { ModalBackground } from "../Modals.styled";
-import { Main } from "styles/Library/Button.styled";
 
 interface Dropdown {
   $isDropdownOpen: boolean;

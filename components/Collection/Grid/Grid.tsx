@@ -1,9 +1,8 @@
 import type { InfiniteData } from "react-query";
+import type { CollectionResponse } from "services/azureApi/types";
 
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-
-import type { CollectionResponse } from "services/azureApi/types";
 
 import Card from "../Card/Card";
 import * as St from "./Grid.styled";

@@ -5,8 +5,12 @@ import * as St from "./SocialIcons.styled";
 const SocialIcons: React.FC = () => {
   return (
     <St.Container>
-      <a href="https://twitter.com/MonkMatto" rel="noreferrer" target="_blank">
-        <St.TwitterIcon className="icon" />
+      <a
+        href="https://bsky.app/profile/matto.bsky.social"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <St.BlueskyIcon className="icon" />
       </a>
       <a
         href="https://discord.com/invite/AQDwjAa3g2"

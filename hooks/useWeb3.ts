@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useWeb3React } from "@web3-react/core";
 import { useEffect, useState } from "react";
 import Web3 from "web3";
@@ -20,6 +19,7 @@ export const useWeb3 = () => {
     } else {
       setWeb3(new Web3(web3Provider));
     }
+    // eslint-disable-next-line react-hooks/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
 

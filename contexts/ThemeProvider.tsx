@@ -1,8 +1,8 @@
+import { useWindowSize } from "hooks/useWindowSize";
 import React, { useEffect, useState } from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 
 import { theme } from "../styles/theme";
-import { useWindowSize } from "hooks/useWindowSize";
 
 interface Props {
   children: React.ReactNode;
